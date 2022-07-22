@@ -7,6 +7,8 @@ module.exports = {
   parser: '@typescript-eslint/parser', // @typescript-eslint/parser
   extends: [
     'next/core-web-vitals',
+    'airbnb',
+    'airbnb/hooks',
     'plugin:react/recommended', // eslint-plugin-react
     'plugin:@typescript-eslint/recommended', // @typescript-eslint/eslint-plugin
     'plugin:prettier/recommended', // eslint-plugin-prettier
