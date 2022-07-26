@@ -1,0 +1,12 @@
+{
+  "extends": ["next/core-web-vitals", "airbnb", "plugin:prettier/recommended"],
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "import/no-unresolved": 0,
+    "react/jsx-filename-extension": { "extensions": [".jsx", ".tsx"] },
+    "react/function-component-definition": "off",
+    "no-underscore-dangle": "off"
+  }
+}
