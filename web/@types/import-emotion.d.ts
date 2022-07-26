@@ -5,6 +5,16 @@ declare module '@emotion/react' {
     colors: {
       black: array;
       white: array;
+      main: array;
+      mainLight: array;
+      gray: array;
+    };
+    fontSize: {
+      t: array;
+      h: array;
+      b: array;
+      c: array;
+      l: array;
     };
   }
 }
