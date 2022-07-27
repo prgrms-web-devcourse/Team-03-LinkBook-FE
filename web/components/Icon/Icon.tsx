@@ -6,7 +6,7 @@ interface Props {
 }
 
 const defaultProps = {
-  size: '40',
+  size: '',
   name: '',
 };
 
