@@ -1,0 +1,75 @@
+import * as S from './Footer.style';
+import FooterItem from './FooterItem';
+import SNSButton from './SNSButton';
+
+const Footer = () => {
+  const itemFrontText = [
+    {
+      strong: '강력 3팀-Front',
+      plane: '프로그래머스 데브코스 프론트엔드 과정',
+    },
+    {
+      strong: '팀장',
+      plane: 'STONY',
+    },
+    {
+      strong: '팀원',
+      plane: 'HAEYUM | MIRAL | ONION',
+    },
+    {
+      strong: '한줄 소개',
+      plane: '강력 3팀 프론트엔드입니다.',
+    },
+  ];
+
+  const itemBackText = [
+    {
+      strong: '강력 3팀-Back',
+      plane: '프로그래머스 데브코스 백엔드 과정',
+    },
+    {
+      strong: '팀장',
+      plane: 'HOWARD',
+    },
+    {
+      strong: '팀원',
+      plane: 'ELLA | RAN | HARRY | SMITH',
+    },
+    {
+      strong: '한줄 소개',
+      plane: '강력 3팀 백엔드입니다.',
+    },
+  ];
+
+  return (
+    <S.Container>
+      <S.FooterText>
+        <S.TextContainer>
+          <S.TextNavigation>
+            <S.Nav>
+              <S.NavItem href="https://github.com/prgrms-web-devcourse/Team-03-LinkBook-FE">
+                프론트깃허브
+              </S.NavItem>
+              <S.NavItem href="https://github.com/prgrms-web-devcourse/Team-03-LinkBook-BE">
+                백엔드깃허브
+              </S.NavItem>
+            </S.Nav>
+            <S.Nav>
+              <SNSButton text="인스타그램" />
+              <SNSButton text="카카오 채널" />
+            </S.Nav>
+          </S.TextNavigation>
+          <S.TextInfo>
+            <FooterItem title="FRONTEND" textArr={itemFrontText}></FooterItem>
+            <FooterItem title="BACKEND" textArr={itemBackText}></FooterItem>
+          </S.TextInfo>
+        </S.TextContainer>
+      </S.FooterText>
+      <S.FooterCopyright>
+        <S.Copyright>Copyright ⓒ 2022 Team3 All rights reserved.</S.Copyright>
+      </S.FooterCopyright>
+    </S.Container>
+  );
+};
+
+export default Footer;

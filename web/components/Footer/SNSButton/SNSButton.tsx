@@ -14,6 +14,7 @@ const defaultProps = {
 };
 
 const SNSButton = ({ image, text, onClick }: Props) => {
+  // NEXT/Image Component => 추후 icon Component로 교체 예정
   return (
     <S.Container onClick={onClick}>
       {/* <Image src={image} alt="이미지입니다." /> */}
