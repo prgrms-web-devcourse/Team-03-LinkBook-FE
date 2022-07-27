@@ -1,4 +1,4 @@
-import S from './FooterItem.style';
+import * as S from './FooterItem.style';
 
 interface TextProps {
   strong: string;
