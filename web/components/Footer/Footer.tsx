@@ -60,8 +60,8 @@ const Footer = () => {
             </S.Nav>
           </S.TextNavigation>
           <S.TextInfo>
-            <FooterItem title="FRONTEND" textArr={itemFrontText}></FooterItem>
-            <FooterItem title="BACKEND" textArr={itemBackText}></FooterItem>
+            <FooterItem title="FRONTEND" textArr={itemFrontText} />
+            <FooterItem title="BACKEND" textArr={itemBackText} />
           </S.TextInfo>
         </S.TextContainer>
       </S.FooterText>
