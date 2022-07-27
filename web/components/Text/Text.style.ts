@@ -17,7 +17,7 @@ const Header = ({ theme }: ThemeProps) => css`
 
 export const Text = styled.span`
   font-size: ${({ size }: Props) => size};
-  weight: ${({ weight }: Props) => weight};
+  font-weight: ${({ weight }: Props) => weight};
   color: ${({ color }: Props) => color};
   font-family: ${({ fontFamily }: Props) => fontFamily};
 
