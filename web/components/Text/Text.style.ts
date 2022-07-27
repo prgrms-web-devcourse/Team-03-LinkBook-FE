@@ -15,6 +15,13 @@ const Header = ({ theme }: ThemeProps) => css`
   font-weight: bold;
 `;
 
+const Logo = ({ theme }: ThemeProps) => css`
+  font-size: 50px;
+  font-family: "Dongle", sans-serif;
+  font-weight: bold;
+  color: ${theme.colors.main[0]};
+`;
+
 export const Text = styled.span`
   font-size: ${({ size }: Props) => size};
   font-weight: ${({ weight }: Props) => weight};
@@ -25,6 +32,8 @@ export const Text = styled.span`
     switch (version) {
       case 'header':
         return Header;
+      case 'logo':
+        return Logo;
       default:
         return;
     }
