@@ -13,7 +13,7 @@ const defaultProps = {
   text: 'SNS',
 };
 
-const SNSButton = ({ image, text, onClick }: Props) => {
+const SNSButton = ({ text, onClick }: Props) => {
   // NEXT/Image Component => 추후 icon Component로 교체 예정
   return (
     <S.Container onClick={onClick}>
