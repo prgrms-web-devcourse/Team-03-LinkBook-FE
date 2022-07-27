@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 
-interface Props {
-  size: number;
-}
-
 export const AvatarWrapper = styled.div`
   display: flex;
   justify-content: center;

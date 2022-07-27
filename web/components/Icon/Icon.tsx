@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 interface Props {
   name: string;
-  size: string;
+  size: string | number;
 }
 
 const defaultProps = {
