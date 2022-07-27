@@ -5,7 +5,6 @@ function GlobalStyle() {
   return (
     <Global
       styles={css`
-        @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
         ${reset}
         *, *::after, *::before {
           box-sizing: border-box;
