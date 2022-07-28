@@ -7,7 +7,6 @@ interface Props {
 }
 
 const TagItem = ({ children, onClick }: Props) => {
-  console.log(children);
   return <S.TagItem onClick={onClick}>{children}</S.TagItem>;
 };
 

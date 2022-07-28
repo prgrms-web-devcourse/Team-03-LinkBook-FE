@@ -1,10 +1,15 @@
 import TabItem from './TabItem';
 import * as S from './Tab.style';
 
+interface Item {
+  id: string;
+  text: string;
+}
+
 interface Props {
   onClick: (item: string) => void;
   selectedItem: string;
-  tabItems: string[];
+  tabItems: Item[];
 }
 
 const Tab = ({ onClick, selectedItem, tabItems }: Props) => {
@@ -13,11 +18,11 @@ const Tab = ({ onClick, selectedItem, tabItems }: Props) => {
       {tabItems &&
         tabItems.map((item) => (
           <TabItem
-            key={item}
+            key={item.id}
             onClick={onClick}
-            selected={item === selectedItem}
+            selected={item.text === selectedItem}
           >
-            {item}
+            {item.text}
           </TabItem>
         ))}
     </S.TabWrapper>
