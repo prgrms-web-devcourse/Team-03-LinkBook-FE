@@ -25,7 +25,7 @@ const Input = ({
         placeholder={placeholder}
         maxLength={maxLength}
         onChange={onChange}
-        style={{ ...styles }}
+        {...styles}
       />
       <S.Action>{children}</S.Action>
     </S.Wrapper>

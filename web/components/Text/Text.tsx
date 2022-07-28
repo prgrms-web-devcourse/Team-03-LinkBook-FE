@@ -30,7 +30,7 @@ const Text = ({
         weight={weight}
         version={version}
         fontFamily={fontFamily}
-        style={{ ...styles }}
+        {...styles}
       >
         {children}
       </S.Text>
