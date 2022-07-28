@@ -10,8 +10,7 @@ interface Props {
 }
 
 const defaultProps = {
-  type: 'submit',
-  version: 'default',
+  version: '',
 };
 
 const Button = ({
@@ -28,7 +27,7 @@ const Button = ({
       version={version}
       onClick={onClick}
       disabled={disabled}
-      style={{ ...styles }}
+      {...styles}
     >
       {children}
     </S.Button>
