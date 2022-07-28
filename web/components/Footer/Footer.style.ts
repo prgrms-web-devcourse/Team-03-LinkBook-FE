@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: 440px;
-  border-top: ${({ theme }) => `1px solid ${theme.colors.gray[4]}`};
+  border-top: ${({ theme }) => `1px solid ${theme.colors.gray[5]}`};
 `;
 
 // FooterText Area
