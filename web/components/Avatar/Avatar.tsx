@@ -15,7 +15,7 @@ const defaultProps = {
   placeholder: 'empty',
 };
 
-const Avatar = ({ size, src, name, layout, placeholder }: Props) => {
+const Avatar = ({ size, src, name, layout, placeholder, ...styles }: Props) => {
   return (
     <S.AvatarWrapper>
       <S.AvatarImg
@@ -25,6 +25,7 @@ const Avatar = ({ size, src, name, layout, placeholder }: Props) => {
         layout={layout}
         placeholder={placeholder}
         alt="프로필 사진"
+        {...styles}
       />
       {name && <S.AvatarName>{name}</S.AvatarName>}
     </S.AvatarWrapper>
