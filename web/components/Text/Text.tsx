@@ -6,7 +6,6 @@ interface Props {
   color?: string;
   weight?: string | number;
   version?: string;
-  fontFamily?: string;
 }
 
 const defaultProps = {
