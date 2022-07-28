@@ -34,15 +34,20 @@ export const TextNavigation = styled.div`
 export const Nav = styled.div`
   display: flex;
   gap: 20px;
+  align-items: center;
 `;
 
 export const NavItem = styled.a`
   min-width: 100px;
   color: ${({ theme }) => theme.colors.black[0]};
-  font-weight: 500;
+  font-weight: 600;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: ${({ theme }) => theme.fontSize.h[2]};
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const TextInfo = styled.div`

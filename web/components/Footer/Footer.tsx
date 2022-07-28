@@ -55,8 +55,8 @@ const Footer = () => {
               </S.NavItem>
             </S.Nav>
             <S.Nav>
-              <SNSButton text="인스타그램" />
-              <SNSButton text="카카오 채널" />
+              <SNSButton text="인스타그램" iconName="ico_instagram" />
+              <SNSButton text="카카오 채널" iconName="ico_kakaochannel" />
             </S.Nav>
           </S.TextNavigation>
           <S.TextInfo>
