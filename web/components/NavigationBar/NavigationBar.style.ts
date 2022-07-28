@@ -7,6 +7,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 60px;
+  padding: 5px 0;
   background-color: ${({ theme }) => theme.colors.white[0]};
   border-bottom: ${({ theme }) => `1px solid ${theme.colors.gray[5]}`};
 `;
@@ -17,7 +18,7 @@ export const ItemContainer = styled.div`
   align-items: center;
   max-width: 1200px;
   height: 50px;
-  margin: 5px auto;
+  margin: auto;
 `;
 
 export const Logo = styled.a`
@@ -51,12 +52,12 @@ export const NavItem = styled.a`
   }
 `;
 
-export const Login = styled.div`
+export const UserContainer = styled.div`
   display: flex;
   gap: 10px;
 `;
 
-export const UserSignUp = styled.button`
+export const UserButton = styled.button`
   font-weight: 600;
   font-size: ${({ theme }) => theme.fontSize.b[1]};
   background-color: transparent;
