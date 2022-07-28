@@ -10,7 +10,6 @@ interface Props {
 }
 
 const defaultProps = {
-  type: 'submit',
   version: '',
 };
 
