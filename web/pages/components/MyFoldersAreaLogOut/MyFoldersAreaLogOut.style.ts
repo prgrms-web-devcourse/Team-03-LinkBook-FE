@@ -41,6 +41,8 @@ export const MainColor = styled(Text)`
 `;
 
 export const Description = styled(Text)`
+  font-size: ${({ theme }) => theme.fontSize.h[2]};
+  font-weight: 500;
   text-align: center;
 `;
 

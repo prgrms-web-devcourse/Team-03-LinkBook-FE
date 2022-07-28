@@ -13,12 +13,13 @@ const MyFoldersAreaLogOut = () => {
       <S.ContentContainer>
         <S.TextWrapper>
           <S.Header>
-            지금 바로 <br></br>
-            <S.MainColor>나만의 북마크 폴더</S.MainColor>를<br></br>
+            지금 바로 <br />
+            <S.MainColor>나만의 북마크 폴더</S.MainColor>를<br />
             만들어 보세요!
           </S.Header>
           <S.Description>
-            북마크 폴더를 공유하고 싶을 땐 전체 공개<br></br>
+            북마크 폴더를 공유하고 싶을 땐 전체 공개
+            <br />
             나만 보고 싶을 땐 나만 보기 설정이 가능해요 😎
           </S.Description>
         </S.TextWrapper>
