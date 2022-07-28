@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 450px;
+  height: 440px;
   border-top: ${({ theme }) => `1px solid ${theme.colors.gray[4]}`};
 `;
 
@@ -56,7 +56,7 @@ export const FooterCopyright = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 70px;
+  height: 60px;
   background-color: ${({ theme }) => theme.colors.main[0]};
 `;
 
