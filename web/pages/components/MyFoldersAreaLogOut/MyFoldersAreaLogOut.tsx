@@ -1,4 +1,4 @@
-import { Button, Text } from '../../../components';
+import { Button } from '../../../components';
 import * as S from './MyFoldersAreaLogOut.style';
 
 const MyFoldersAreaLogOut = () => {
@@ -19,7 +19,7 @@ const MyFoldersAreaLogOut = () => {
           </S.Header>
           <S.Description>
             북마크 폴더를 공유하고 싶을 땐 전체 공개<br></br>
-            나만 보고 싶을 땐 나만 보기 설정이 가능해요 😎{' '}
+            나만 보고 싶을 땐 나만 보기 설정이 가능해요 😎
           </S.Description>
         </S.TextWrapper>
         <S.ButtonWrapper>
