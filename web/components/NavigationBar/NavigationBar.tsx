@@ -15,10 +15,10 @@ const defaultProps = {
 };
 
 const NavigationBar = ({ isLogin }: Props) => {
-  const [isLoggedIn, setisLoggedIn] = useState(isLogin);
+  const [isLoggedIn, setIsLoggedIn] = useState(isLogin);
 
   useEffect(() => {
-    setisLoggedIn(isLogin);
+    setIsLoggedIn(isLogin);
   }, [isLogin]);
 
   return (
@@ -43,7 +43,7 @@ const NavigationBar = ({ isLogin }: Props) => {
             <Avatar size={35} />
             <S.Line>|</S.Line>
             <S.UserContainer>
-              <Link href="/mypage" passHref>
+              <Link href="/myPage" passHref>
                 <S.NavItem>마이페이지</S.NavItem>
               </Link>
               <Button type="button" version="navBar">
