@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import Avatar from '../Avatar';
-import Button from '../Button';
-import Icon from '../Icon';
-import Text from '../Text';
+import { Avatar, Button, Icon, Text } from '../index';
 import * as S from './NavigationBar.style';
 
 interface Props {
