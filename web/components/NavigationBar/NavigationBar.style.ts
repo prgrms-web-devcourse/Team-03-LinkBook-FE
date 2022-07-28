@@ -8,6 +8,7 @@ export const Container = styled.div`
   width: 100%;
   height: 60px;
   background-color: ${({ theme }) => theme.colors.white[0]};
+  border-bottom: ${({ theme }) => `1px solid ${theme.colors.gray[5]}`};
 `;
 
 export const ItemContainer = styled.div`
@@ -50,7 +51,7 @@ export const NavItem = styled.a`
   }
 `;
 
-export const User = styled.div`
+export const Login = styled.div`
   display: flex;
   gap: 10px;
 `;
