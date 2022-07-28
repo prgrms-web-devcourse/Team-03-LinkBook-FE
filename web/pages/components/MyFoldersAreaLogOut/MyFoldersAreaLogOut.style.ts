@@ -7,8 +7,8 @@ export const AreaContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1200px;
-  height: 932px;
+  width: 100%;
+  height: auto;
 `;
 
 export const BackgroundImage = styled(Image)`
