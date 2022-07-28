@@ -13,15 +13,7 @@ const defaultProps = {
   size: '14px',
 };
 
-const Text = ({
-  children,
-  size,
-  color,
-  weight,
-  version,
-  fontFamily,
-  ...styles
-}: Props) => {
+const Text = ({ children, size, color, weight, version, ...styles }: Props) => {
   return (
     <>
       <S.Text
@@ -29,7 +21,6 @@ const Text = ({
         color={color}
         weight={weight}
         version={version}
-        fontFamily={fontFamily}
         {...styles}
       >
         {children}

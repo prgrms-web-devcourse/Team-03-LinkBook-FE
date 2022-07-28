@@ -17,7 +17,7 @@ const Header = ({ theme }: ThemeProps) => css`
 
 const Logo = ({ theme }: ThemeProps) => css`
   font-size: 50px;
-  font-family: "Dongle", sans-serif;
+  font-family: 'Dongle', sans-serif;
   font-weight: bold;
   color: ${theme.colors.main[0]};
 `;
@@ -26,7 +26,7 @@ export const Text = styled.span`
   font-size: ${({ size }: Props) => size};
   font-weight: ${({ weight }: Props) => weight};
   color: ${({ color }: Props) => color};
-  font-family: ${({ fontFamily }: Props) => fontFamily};
+  font-family: 'Noto Sans KR', sans-serif;
 
   ${({ version }: Props) => {
     switch (version) {
