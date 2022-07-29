@@ -16,7 +16,7 @@ interface User {
   name: string;
 }
 interface BookMarks {
-  id: string;
+  id: number;
   image: string;
   title: string;
   url: string;
