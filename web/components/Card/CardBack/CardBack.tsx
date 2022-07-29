@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { MouseEventHandler } from 'react';
-import Avatar from '../../Avatar';
-import Icon from '../../Icon';
-import Text from '../../Text';
+import { Avatar, Icon, Text } from '../../index';
 import * as S from './CardBack.style';
 
 interface Data {
