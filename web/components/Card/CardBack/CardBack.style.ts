@@ -30,6 +30,7 @@ export const BookmarkList = styled.ul`
   height: 340px;
   padding-top: 8px;
   overflow: auto;
+  overscroll-behavior-y: contain;
   /* 스크롤바 전체 */
   &::-webkit-scrollbar {
     width: 8px;
