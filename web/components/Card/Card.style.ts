@@ -79,7 +79,7 @@ export const LinkWrapper = styled.div`
   justify-content: center;
   margin-top: 2px;
   padding: 16px 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.gray[3]};
+  border-top: 1px solid ${({ theme }) => theme.colors.gray[4]};
 `
 
 export const StyledLink = styled.a`
