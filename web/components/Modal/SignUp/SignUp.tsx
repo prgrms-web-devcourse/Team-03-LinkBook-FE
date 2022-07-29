@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { InnerContainer } from '../Modal.style';
 import { Page01, Page02 } from './SignUpPage';
 
 const SignUp = () => {
@@ -29,7 +30,7 @@ const SignUp = () => {
     }
   };
 
-  return <>{switchPage(page)}</>;
+  return <InnerContainer>{switchPage(page)}</InnerContainer>;
 };
 
 export default SignUp;

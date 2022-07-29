@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Page01, Page02, Page03, Page04, Page05 } from './FirstLoginPage';
+import { InnerContainer } from '../Modal.style';
 
 const FirstLogin = () => {
   const [page, setPage] = useState(0);
@@ -41,7 +42,7 @@ const FirstLogin = () => {
     }
   };
 
-  return <>{switchPage(page)}</>;
+  return <InnerContainer>{switchPage(page)}</InnerContainer>;
 };
 
 export default FirstLogin;

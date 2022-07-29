@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import * as S from '../FirstLogin.style';
+import * as S from '../../Modal.style';
 import { Button, Input, Icon } from '../../../index';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
   return (
-    <S.Container>
+    <>
       <S.PreviousButton onClick={handlePreviousPage}>
         <Icon name="arrowLeft" size={30} />
       </S.PreviousButton>
@@ -27,7 +27,7 @@ const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
           다음 &gt;
         </Button>
       </S.ButtonContainer>
-    </S.Container>
+    </>
   );
 };
 
