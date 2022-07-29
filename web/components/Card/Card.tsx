@@ -3,12 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import theme from '../../styles/themes';
-import Avatar from '../Avatar';
-import Icon from '../Icon';
-import Text from '../Text';
+import { Avatar, Icon, Text, Tag } from '../index';
 import CardBack from './CardBack/CardBack';
 import * as S from './Card.style';
-import Tag from '../Tag';
 
 interface Tags {
   id: string;
