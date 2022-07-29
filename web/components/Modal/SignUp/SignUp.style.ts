@@ -17,6 +17,17 @@ export const Title = styled.p`
   font-size: ${({ theme }) => theme.fontSize.h[0]};
   font-family: 'Noto Sans KR', sans-serif;
   line-height: 1.3;
+
+  animation: fadeIn 0.5s;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Description = styled.p`
