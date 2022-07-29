@@ -1,23 +1,22 @@
-import Image from 'next/image';
 import { MouseEventHandler } from 'react';
+import Icon from '../../Icon';
 import * as S from './SNSButton.style';
 
 interface Props {
-  image: string;
+  iconName: string;
   text: string;
   onClick?: MouseEventHandler;
 }
 
 const defaultProps = {
-  image: 'https://avatars.githubusercontent.com/u/72294509?v=4',
+  iconName: 'ico_instagram',
   text: 'SNS',
 };
 
-const SNSButton = ({ text, onClick }: Props) => {
-  // NEXT/Image Component => 추후 icon Component로 교체 예정
+const SNSButton = ({ iconName, text, onClick }: Props) => {
   return (
     <S.Container onClick={onClick}>
-      {/* <Image src={image} alt="이미지입니다." /> */}
+      <Icon name={iconName} size={30} />
       <S.Text>{text}</S.Text>
     </S.Container>
   );

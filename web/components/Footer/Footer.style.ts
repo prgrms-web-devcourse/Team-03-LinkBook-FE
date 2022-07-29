@@ -4,8 +4,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 450px;
-  border-top: ${({ theme }) => `1px solid ${theme.colors.gray[4]}`};
+  height: 440px;
+  border-top: ${({ theme }) => `1px solid ${theme.colors.gray[5]}`};
 `;
 
 // FooterText Area
@@ -34,15 +34,20 @@ export const TextNavigation = styled.div`
 export const Nav = styled.div`
   display: flex;
   gap: 20px;
+  align-items: center;
 `;
 
 export const NavItem = styled.a`
   min-width: 100px;
   color: ${({ theme }) => theme.colors.black[0]};
-  font-weight: 500;
+  font-weight: 600;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: ${({ theme }) => theme.fontSize.h[2]};
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const TextInfo = styled.div`
@@ -56,7 +61,7 @@ export const FooterCopyright = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 70px;
+  height: 60px;
   background-color: ${({ theme }) => theme.colors.main[0]};
 `;
 
