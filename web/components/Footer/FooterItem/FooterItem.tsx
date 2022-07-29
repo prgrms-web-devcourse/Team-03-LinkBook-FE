@@ -24,10 +24,10 @@ const FooterItem = ({ title, textArr }: Props) => {
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
-      {textArr.map((text) => {
+      {textArr.map((text, index) => {
         const { strong, plane } = text;
         return (
-          <S.TextContainer>
+          <S.TextContainer key={index}>
             <S.Strong>{strong}</S.Strong>
             <S.Plane>{plane}</S.Plane>
           </S.TextContainer>
