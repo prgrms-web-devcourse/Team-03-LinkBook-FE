@@ -16,6 +16,7 @@ export const Card = styled.div<Props>`
   height: auto;
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background-color: ${({ theme }) => theme.colors.white[0]};
 
   transition-duration: 1s;
   transform: ${({reverseCard}) => reverseCard ? 'rotateY(180deg)' : 'rotateY(0)'};
