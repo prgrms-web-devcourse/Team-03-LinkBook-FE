@@ -39,3 +39,10 @@ export const ButtonContainer = styled.div`
   width: fit-content;
   margin: 20px auto 0 auto;
 `;
+
+export const PreviousButton = styled.div`
+  position: absolute;
+  top: 55px;
+  left: 20px;
+  cursor: pointer;
+`;
