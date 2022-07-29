@@ -2,6 +2,7 @@ import { MouseEventHandler, useEffect, useState } from 'react';
 import Icon from '../Icon';
 import Login from './Login';
 import * as S from './Modal.style';
+import SignUp from './SignUp';
 
 interface Props {
   version: 'login' | 'signUp';
@@ -28,7 +29,7 @@ const Modal = ({ version, show, closeFunc }: Props) => {
                 <Icon name="x" size={10} />
               </S.CloseBtn>
             </S.ModalTitle>
-            {version === 'login' ? <Login /> : ''}
+            {version === 'login' ? <Login /> : <SignUp />}
           </S.Container>
         </>
       )}
