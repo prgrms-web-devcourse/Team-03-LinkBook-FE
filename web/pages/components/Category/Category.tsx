@@ -10,9 +10,10 @@ interface Props {
   onClick: () => void;
   selectedItem: string;
   tabItem: Item[];
+  isLoading: boolean;
 }
 
-const Category = ({ onClick, selectedItem, tabItem }: Props) => {
+const Category = ({ onClick, selectedItem, tabItem, isLoading }: Props) => {
   return (
     <S.CategoryWrapper>
       <S.DescriptionText>

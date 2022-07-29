@@ -6,14 +6,14 @@ export const CategoryWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto 0 auto;
-  padding: 0 50px 0 50px;
+  margin: 0 auto;
+  padding: 0 50px;
 `;
 
 export const DescriptionText = styled(Text)`
   font-weight: 700;
   font-size: ${({ theme }) => theme.fontSize.h[0]};
-  color: #222222;
+  color: ${({ theme }) => theme.colors.black[1]};
 `;
 
 export const TabWrapper = styled.div`
