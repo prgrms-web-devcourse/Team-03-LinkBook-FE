@@ -1,11 +1,12 @@
 import { MouseEventHandler, useEffect, useState } from 'react';
 import Icon from '../Icon';
+import FirstLogin from './FirstLogin';
 import Login from './Login';
-import * as S from './Modal.style';
 import SignUp from './SignUp';
+import * as S from './Modal.style';
 
 interface Props {
-  version: 'login' | 'signUp';
+  version: 'login' | 'signUp' | 'firstLogin';
   show: boolean;
   closeFunc: MouseEventHandler;
 }
@@ -16,6 +17,17 @@ const Modal = ({ version, show, closeFunc }: Props) => {
   useEffect(() => {
     setModalShow(show);
   }, [show]);
+
+  const handleVersion = (versionStr: string) => {
+    switch (versionStr) {
+      case 'login':
+        return <Login />;
+      case 'signUp':
+        return <SignUp />;
+      default:
+        return <FirstLogin />;
+    }
+  };
 
   return (
     <>
@@ -29,7 +41,7 @@ const Modal = ({ version, show, closeFunc }: Props) => {
                 <Icon name="x" size={10} />
               </S.CloseBtn>
             </S.ModalTitle>
-            {version === 'login' ? <Login /> : <SignUp />}
+            {handleVersion(version)}
           </S.Container>
         </>
       )}
