@@ -9,7 +9,7 @@ const Login = () => {
       </S.Title>
       <S.InputContainer>
         <Input placeholder="아이디(이메일)"></Input>
-        <Input placeholder="비밀번호"></Input>
+        <Input placeholder="비밀번호" type="password"></Input>
         <S.LoggedButton>
           <Icon name="btn_notChecked" size={25} />
           <S.LoggedText>로그인 상태 유지</S.LoggedText>
