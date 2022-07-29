@@ -1,4 +1,4 @@
-import * as S from '../SignUp.style';
+import * as S from '../../Modal.style';
 import { Button, Input } from '../../../index';
 import { MouseEventHandler } from 'react';
 
@@ -8,7 +8,7 @@ interface Props {
 
 const Page01 = ({ handlePage }: Props) => {
   return (
-    <S.Container>
+    <>
       <S.Title>
         <S.MainText>Linkbook</S.MainText>에 처음 오셨군요! 🎉
         <br />
@@ -32,7 +32,7 @@ const Page01 = ({ handlePage }: Props) => {
           다음 &gt;
         </Button>
       </S.ButtonContainer>
-    </S.Container>
+    </>
   );
 };
 

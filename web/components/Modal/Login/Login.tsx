@@ -1,9 +1,9 @@
 import { Button, Input, Icon } from '../../index';
-import * as S from './Login.style';
+import * as S from '../Modal.style';
 
 const Login = () => {
   return (
-    <S.Container>
+    <S.InnerContainer>
       <S.Title>
         <S.MainText>Linkbook</S.MainText>에 오신것을 환영합니다! 🎉
       </S.Title>
@@ -30,7 +30,7 @@ const Login = () => {
           </Button>
         </S.ButtonContainer>
       </S.SignUpContainer>
-    </S.Container>
+    </S.InnerContainer>
   );
 };
 
