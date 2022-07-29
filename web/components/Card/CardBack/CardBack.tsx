@@ -31,7 +31,7 @@ const CardBack = ({
       <S.IconWrapper onClick={handleRotateCard}>
         <Icon name="back" size={20} />
       </S.IconWrapper>
-      <S.BookmarkList>
+      <S.BookmarkList reverseCard={reverseCard}>
         {data.map((bookmark) => (
           <Link href={bookmark.url} passHref key={bookmark.id}>
             <S.Bookmark>
