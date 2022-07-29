@@ -16,15 +16,20 @@ const SignUp = () => {
     console.log('회원가입 로직');
   };
 
-  return (
-    <>
-      {page === 0 ? (
-        <Page01 handlePage={handleNextPage} />
-      ) : (
-        <Page02 handlePage={handlePreviousPage} onSignUp={handleSignUp} />
-      )}
-    </>
-  );
+  const switchPage = (pageNum: number) => {
+    switch (pageNum) {
+      case 0:
+        return <Page01 handlePage={handleNextPage} />;
+      case 1:
+        return (
+          <Page02 handlePage={handlePreviousPage} onSignUp={handleSignUp} />
+        );
+      default:
+        return <Page01 handlePage={handleNextPage} />;
+    }
+  };
+
+  return <>{switchPage(page)}</>;
 };
 
 export default SignUp;
