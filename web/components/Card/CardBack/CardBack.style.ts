@@ -30,6 +30,16 @@ export const BookmarkList = styled.ul`
   height: 340px;
   padding-top: 8px;
   overflow: auto;
+  /* 스크롤바 전체 */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* 스크롤 막대 */
+  &::-webkit-scrollbar-thumb {
+    height: 30%;
+    border-radius: 10px;
+    background-color: ${(props) => props.theme.colors.gray[4]};
+  }
 `
 
 export const Bookmark = styled.li`
