@@ -4,7 +4,7 @@ import { Avatar, Icon, Text } from '../../index';
 import * as S from './CardBack.style';
 
 interface Data {
-  id: string;
+  id: number;
   image: string;
   title: string;
   url: string;
