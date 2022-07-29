@@ -5,11 +5,11 @@ const SignUp = () => {
   const [page, setPage] = useState(0);
 
   const handleNextPage = () => {
-    setPage(1);
+    setPage(page + 1);
   };
 
   const handlePreviousPage = () => {
-    setPage(0);
+    setPage(page - 1);
   };
 
   const handleSignUp = () => {
