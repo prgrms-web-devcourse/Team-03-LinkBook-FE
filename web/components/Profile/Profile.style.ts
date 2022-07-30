@@ -64,6 +64,7 @@ const ProfileDescription = ({ theme }: ThemeProps) => css`
 
 export const Description = styled.p`
   font-weight: 500;
+  color: ${({ theme }) => theme.colors.gray[0]};
 
   ${({ version }: Props) => {
     switch (version) {

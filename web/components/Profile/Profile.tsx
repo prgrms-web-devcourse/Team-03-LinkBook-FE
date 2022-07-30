@@ -32,12 +32,12 @@ const defaultProps = {
 };
 
 const Profile = ({ iconSize, version, user, createdAt }: Props) => {
-  const { name, introduce } = user;
+  const { name, image, introduce } = user;
 
   return (
     <S.Container>
       <S.IconContainer size={iconSize}>
-        <Avatar size={iconSize} />
+        <Avatar size={iconSize} src={image} />
       </S.IconContainer>
       <S.TextContainer>
         <S.Name version={version}>{name}</S.Name>
