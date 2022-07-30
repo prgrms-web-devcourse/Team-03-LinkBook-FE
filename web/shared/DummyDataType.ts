@@ -3,6 +3,7 @@ export interface UserInfo {
   email?: string;
   name: string;
   image: string;
+  introduce?: string;
   interest?: string[];
 }
 

@@ -23,7 +23,8 @@ export const specificUserFolders: SpecificUserFolders = {
       user: {
         id: 1,
         name: '이수연',
-        image: '이미지 url',
+        image:
+          'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
       },
       tags: ['코딩', '개발', '취미'],
     },
@@ -70,7 +71,8 @@ export const specificFolder: Folder = {
       user: {
         id: 2,
         name: '이지연',
-        image: '이미지 url',
+        image:
+          'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
       },
       createdAt: '',
       updatedAt: ' ',
