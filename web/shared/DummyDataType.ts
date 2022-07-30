@@ -13,7 +13,7 @@ export interface SpecificUserFolders {
 
 export interface Folder {
   id: string | number;
-  name: string;
+  title: string;
   image: string;
   content?: string;
   originId?: string | number | null;
@@ -24,6 +24,7 @@ export interface Folder {
   comments?: Comment[];
   bookmarks?: Bookmark[];
   tags?: string[];
+  createdAt?: string;
 }
 
 export interface Comment {
@@ -40,3 +41,5 @@ export interface Bookmark {
   url: string;
   title: string;
 }
+
+export interface AllFolders {}
