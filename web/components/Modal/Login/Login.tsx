@@ -1,7 +1,12 @@
+import { MouseEventHandler } from 'react';
 import { Button, Input, Icon } from '../../index';
 import * as S from '../Modal.style';
 
-const Login = () => {
+interface Props {
+  switchFunc?: MouseEventHandler;
+}
+
+const Login = ({ switchFunc }: Props) => {
   return (
     <S.InnerContainer>
       <S.Title>
@@ -25,7 +30,7 @@ const Login = () => {
       <S.SignUpContainer>
         <S.SignUpText> 아직 Linkbook의 회원이 아니신가요?</S.SignUpText>
         <S.ButtonContainer>
-          <Button type="button" version="mainLight">
+          <Button type="button" version="mainLight" onClick={switchFunc}>
             회원가입
           </Button>
         </S.ButtonContainer>
