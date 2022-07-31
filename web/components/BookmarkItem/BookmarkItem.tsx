@@ -17,13 +17,17 @@ const BookmarkItem = ({ url, title, onBookmarkClick, onIconClick }: Props) => {
           src={url ? `${FAVICON_IMAGE}${url}&sz=256` : '/icons/star.svg'}
           size={40}
         />
-        <S.BookmarkTitle>
-          {title ? title : '링크를 입력해 주세요'}
-        </S.BookmarkTitle>
+        {title ? (
+          <Text>{title}</Text>
+        ) : (
+          <input placeholder="링크를 입력해 주세요" />
+        )}
       </S.BookmarkItem>
-      <S.IconWrapper onClick={onIconClick}>
-        <Icon name="clip" size={20} />
-      </S.IconWrapper>
+      {url && (
+        <S.IconWrapper onClick={onIconClick}>
+          <Icon name="clip" size={20} />
+        </S.IconWrapper>
+      )}
     </S.BookmarkWrapper>
   );
 };
