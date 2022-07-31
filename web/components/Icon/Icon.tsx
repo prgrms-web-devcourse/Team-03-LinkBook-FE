@@ -3,7 +3,6 @@ import Image from 'next/image';
 interface Props {
   name: string;
   size: string | number;
-  onClick?: () => void;
 }
 
 const defaultProps = {
@@ -11,16 +10,9 @@ const defaultProps = {
   name: '',
 };
 
-const Icon = ({ size, name, onClick, ...styles }: Props) => {
+const Icon = ({ size, name }: Props) => {
   return (
-    <Image
-      src={`/icons/${name}.svg`}
-      width={size}
-      height={size}
-      alt="icon"
-      {...styles}
-      onClick={onClick}
-    />
+    <Image src={`/icons/${name}.svg`} width={size} height={size} alt="icon" />
   );
 };
 
