@@ -1,35 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Card, Icon } from '../../../components';
 import * as S from './FolderSlider.style';
-
-interface Tags {
-  id: string;
-  text: string;
-}
-interface User {
-  image: string;
-  name: string;
-}
-interface BookMarks {
-  id: number;
-  image: string;
-  title: string;
-  url: string;
-}
-
-interface Data {
-  id: number;
-  image: string;
-  title: string;
-  tags: Tags[];
-  user: User;
-  createdAt: string;
-  likes: number;
-  bookmarks: BookMarks[];
-}
+import { Folder } from '../../../shared/DummyDataType';
 
 interface Props {
-  data: Data[];
+  data: Folder[];
 }
 
 const defaultProps = {
@@ -107,12 +82,12 @@ const FolderSlider = ({ data }: Props) => {
         <>
           <S.SliderContainer>
             <S.CardList useCarousel={true} ref={sliderRef}>
-              {bookmarks.map((cardInfo, idx) => (
+              {bookmarks.map((bookmark, idx) => (
                 <S.CardWrapper
-                  key={cardInfo.id * idx + 1}
+                  key={bookmark.id * idx + 1}
                   active={isActive(idx)}
                 >
-                  <Card data={cardInfo} />
+                  <Card data={bookmark} />
                 </S.CardWrapper>
               ))}
             </S.CardList>
@@ -126,8 +101,8 @@ const FolderSlider = ({ data }: Props) => {
         </>
       ) : (
         <S.CardList useCarousel={false}>
-          {bookmarks.map((cardInfo, idx) => (
-            <Card key={idx} data={cardInfo} />
+          {bookmarks.map((bookmark, idx) => (
+            <Card key={idx} data={bookmark} />
           ))}
         </S.CardList>
       )}

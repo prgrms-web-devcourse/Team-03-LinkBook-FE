@@ -1,10 +1,14 @@
-import { data } from './data';
 import { Text } from '../../../components';
 import { FolderSlider } from '../index';
 import * as S from './MyFoldersAreaLogIn.style';
 import theme from '../../../styles/themes';
+import { Folder } from '../../../shared/DummyDataType';
 
-const MyFoldersAreaLogIn = () => {
+interface Props {
+  data: Folder[];
+}
+
+const MyFoldersAreaLogIn = ({ data }: Props) => {
   return (
     <S.Container>
       <S.Header>
