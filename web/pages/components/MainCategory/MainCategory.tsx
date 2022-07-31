@@ -1,6 +1,7 @@
 import * as S from './MainCategory.style';
 import { Category } from '../../../components';
 import { useState } from 'react';
+import CardDummyData from '../../../shared/categoryCardDummy';
 
 interface Props {
   data?: any;
@@ -38,7 +39,7 @@ const MainCategory = ({ data, isLoading }: Props) => {
         링북 사용자들은 이런 북마크 폴더를 사용해요!
       </S.DescriptionText>
       <Category
-        data={data}
+        data={CardDummyData}
         tabItems={tabItems}
         isLoading={isLoading}
         onClick={onTabClick}

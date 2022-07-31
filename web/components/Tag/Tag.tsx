@@ -2,7 +2,7 @@ import TagItem from './TagItem';
 import * as S from './Tag.style';
 
 interface Items {
-  id: string;
+  id: number;
   text: string;
 }
 

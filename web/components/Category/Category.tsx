@@ -2,7 +2,6 @@ import * as S from './Category.style';
 import Skeleton from '../Skeleton';
 import Tab from '../Tab';
 import Card from '../Card';
-import CardDummyData from '../../shared/categoryCardDummy';
 
 interface Props {
   data?: any;

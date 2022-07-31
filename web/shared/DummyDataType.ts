@@ -6,6 +6,11 @@ export interface UserInfo {
   interest?: string[];
 }
 
+export interface Tag {
+  id: number;
+  text: string;
+}
+
 export interface SpecificUserFolders {
   folders: Folder[];
   user: UserInfo;
@@ -23,7 +28,7 @@ export interface Folder {
   user?: UserInfo;
   comments?: Comment[];
   bookmarks?: Bookmark[];
-  tags?: string[];
+  tags?: Tag[];
   createdAt?: string;
 }
 
@@ -40,6 +45,7 @@ export interface Bookmark {
   id: string | number;
   url: string;
   title: string;
+  image?: string;
 }
 
 export interface AllFolders {}
