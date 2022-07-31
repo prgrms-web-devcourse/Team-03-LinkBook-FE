@@ -1,4 +1,4 @@
-export const CardDummyData = [
+const CardDummyData = [
   {
     id: 1,
     image:
@@ -83,3 +83,4 @@ export const CardDummyData = [
     ],
   },
 ];
+export default CardDummyData;
