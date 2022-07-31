@@ -24,13 +24,23 @@ const NavigationBar = ({ isLogin }: Props) => {
     setShowSignUpModal(!showSignUpModal);
   };
 
+  const handleSwitchModal = () => {
+    handleLogin();
+    handleSignUp();
+  };
+
   useEffect(() => {
     setIsLoggedIn(isLogin);
   }, [isLogin]);
 
   return (
     <>
-      <Modal version="login" show={showLoginModal} closeFunc={handleLogin} />
+      <Modal
+        version="login"
+        show={showLoginModal}
+        closeFunc={handleLogin}
+        switchFunc={handleSwitchModal}
+      />
       <Modal version="signUp" show={showSignUpModal} closeFunc={handleSignUp} />
       <S.Container>
         <S.ItemContainer>

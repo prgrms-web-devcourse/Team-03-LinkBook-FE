@@ -9,9 +9,10 @@ interface Props {
   version: 'login' | 'signUp' | 'firstLogin';
   show: boolean;
   closeFunc: MouseEventHandler;
+  switchFunc?: MouseEventHandler;
 }
 
-const Modal = ({ version, show, closeFunc }: Props) => {
+const Modal = ({ version, show, closeFunc, switchFunc }: Props) => {
   const [modalShow, setModalShow] = useState(show);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Modal = ({ version, show, closeFunc }: Props) => {
   const handleVersion = (versionStr: string) => {
     switch (versionStr) {
       case 'login':
-        return <Login />;
+        return <Login switchFunc={switchFunc} />;
       case 'signUp':
         return <SignUp />;
       default:
