@@ -82,7 +82,7 @@ export const InnerContainer = styled.div`
   margin: 30px auto;
 `;
 
-export const Title = styled.p`
+export const Title = styled.div`
   width: fit-content;
   margin: 0 auto;
   padding-top: 20px;
