@@ -5,7 +5,6 @@ export const BookmarkWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
   max-width: 1100px;
   padding: 13px 21px;
@@ -18,7 +17,6 @@ export const BookmarkItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   gap: 16px;
 `;
 
@@ -44,7 +42,6 @@ export const UpdateContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 4px;
 `;
 
