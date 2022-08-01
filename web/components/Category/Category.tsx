@@ -1,8 +1,5 @@
 import * as S from './Category.style';
-import Skeleton from '../Skeleton';
-import Tab from '../Tab';
-import Card from '../Card';
-
+import { Skeleton, Tab, Card } from '../index';
 interface Props {
   data?: any;
   tabItems: string[];
@@ -33,7 +30,9 @@ const Category = ({
         {isLoading ? (
           <Skeleton width={340} height={400} repeat={data.length} />
         ) : (
-          data.map((item: any) => <Card version={cardVersion} data={item} />)
+          data.map((item: any) => (
+            <Card key={item.id} version={cardVersion} data={item} />
+          ))
         )}
       </S.CategoryCardWrapper>
     </>

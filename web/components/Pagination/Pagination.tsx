@@ -35,14 +35,11 @@ const Pagination = ({ defaultPage, limit, total, onChange }: Props) => {
     setPage(newPage);
   };
 
-  const case1 = page < 4;
-  const case2 = page > totalPage - 5;
-
   const filterdArray = Array.from(new Array(totalPage), (_, i) => i).filter(
     (i) => {
-      if (case1) {
+      if (page < 4) {
         return i < 6 || i === totalPage - 1;
-      } else if (case2) {
+      } else if (page > totalPage - 5) {
         return i === defaultPage || i > totalPage - 7;
       }
       return (
@@ -57,8 +54,8 @@ const Pagination = ({ defaultPage, limit, total, onChange }: Props) => {
     <S.PaginationContainer>
       <ArrowButton isLeft onClick={() => page !== 0 && changePage(page - 1)} />
       {filterdArray.map((i, index) => {
-        if (case1) {
-          if (index === filterdArray.length - 2)
+        if (page < 4) {
+          if (totalPage > 5 && index === filterdArray.length - 2)
             return (
               <S.PaginationButton disable key={i}>
                 ...
@@ -75,7 +72,7 @@ const Pagination = ({ defaultPage, limit, total, onChange }: Props) => {
             </S.PaginationButton>
           );
         }
-        if (case2) {
+        if (page > totalPage - 5) {
           if (index === 1)
             return (
               <S.PaginationButton disable key={i}>

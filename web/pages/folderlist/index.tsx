@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Category, Icon, Pagination, Text } from '../../components';
+import { Category, Pagination } from '../../components';
 import FolderListDummy from '../../shared/folderListPageDummy';
 import SearchBar from './components/SerachBar';
 import * as S from './index.style';
@@ -54,6 +54,7 @@ const FolderList = () => {
           onClick={onTabClick}
           selectedItem={selectedItem}
           data={data.slice(offset, offset + limit)}
+          cardVersion="othersCard"
         />
       </S.CategoryWrapper>
       <S.PaginationWrapper>

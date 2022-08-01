@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
-import { HTMLAttributes, MouseEventHandler } from 'react';
 
 export const PaginationButton = styled.div<{
   active?: boolean;
   disable: boolean;
-  onClick?: () => void;
 }>`
   color: ${({ active, theme }) =>
     active ? theme.colors.gray[0] : theme.colors.gray[2]};
