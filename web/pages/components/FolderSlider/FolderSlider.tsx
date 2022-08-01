@@ -22,7 +22,7 @@ const FolderSlider = ({ data }: Props) => {
 
   const handleClickPrevButton = () => {
     const lastIndex = winX > 1280 ? bookmarkCount - 3 : bookmarkCount - 1;
-    if (currentIndex === 0) {
+    if (currentIndex <= 0) {
       setCurrentIndex(lastIndex);
     } else {
       setCurrentIndex(currentIndex - 1);
@@ -31,7 +31,7 @@ const FolderSlider = ({ data }: Props) => {
 
   const handleClickNextButton = () => {
     const lastIndex = winX > 1280 ? bookmarkCount - 3 : bookmarkCount - 1;
-    if (currentIndex === lastIndex) {
+    if (currentIndex >= lastIndex) {
       setCurrentIndex(0);
     } else {
       setCurrentIndex(currentIndex + 1);
@@ -62,7 +62,12 @@ const FolderSlider = ({ data }: Props) => {
     if (sliderRef.current) {
       sliderRef.current.style.transition = `all 0.5s `;
       if (winX > 660) {
-        sliderRef.current.style.transform = `translateX(calc(-150px + (-315px * ${currentIndex}))`;
+        if (currentIndex >= bookmarkCount - 3) {
+          setCurrentIndex(0);
+          sliderRef.current.style.transform = `translateX(-150px)`;
+        } else {
+          sliderRef.current.style.transform = `translateX(calc(-150px + (-315px * ${currentIndex}))`;
+        }
       } else {
         sliderRef.current.style.transform = `translateX(calc(-315px + (-315px * ${currentIndex}))`;
       }
@@ -91,13 +96,13 @@ const FolderSlider = ({ data }: Props) => {
                 </S.CardWrapper>
               ))}
             </S.CardList>
+            <S.IconWrapper position="left" onClick={handleClickPrevButton}>
+              <Icon name="arrowLeft" size={40} />
+            </S.IconWrapper>
+            <S.IconWrapper position="right" onClick={handleClickNextButton}>
+              <Icon name="arrowRight" size={40} />
+            </S.IconWrapper>
           </S.SliderContainer>
-          <S.IconWrapper position="left" onClick={handleClickPrevButton}>
-            <Icon name="arrowLeft" size={40} />
-          </S.IconWrapper>
-          <S.IconWrapper position="right" onClick={handleClickNextButton}>
-            <Icon name="arrowRight" size={40} />
-          </S.IconWrapper>
         </>
       ) : (
         <S.CardList useCarousel={false}>
