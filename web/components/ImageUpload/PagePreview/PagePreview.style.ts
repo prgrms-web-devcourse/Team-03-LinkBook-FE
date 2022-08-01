@@ -15,15 +15,8 @@ export const DefaultContainer = styled.div`
   gap: 10px;
 `;
 
-export const UploadButton = styled(Button)`
-  width: 100%;
-  padding: 29px;
-  color: ${({ theme }) => theme.colors.gray[3]};
-  background-color: ${({ theme }) => theme.colors.white[0]};
-  box-shadow: 1px 6px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 40px;
-`;
-
 export const UploadText = styled(Text)`
-  color: ${({ theme }) => theme.colors.gray[3]};
+  color: ${({ theme }) => theme.colors.white[0]};
+  font-size: ${({ theme }) => theme.fontSize.h[1]};
+  font-weight: 700;
 `;

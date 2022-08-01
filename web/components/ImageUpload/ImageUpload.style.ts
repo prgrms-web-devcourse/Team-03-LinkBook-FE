@@ -21,6 +21,10 @@ export const ImageUploadForm = styled.form`
   position: relative;
   background: ${({ theme }) => theme.colors.gray[4]};
 
+  &:hover {
+    border: 4px dashed ${({ theme }) => theme.colors.main[0]};
+  }
+
   ${({ version }: Props) => {
     switch (version) {
       case 'modal':
