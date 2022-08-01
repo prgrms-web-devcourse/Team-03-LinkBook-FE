@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Comment } from '../../shared/DummyDataType';
-import { Profile } from '../index';
+import { Profile, CommentInput } from '../index';
 import * as S from './Comment.style';
 
 interface Props {
@@ -31,16 +31,20 @@ const CommentComponent = ({ comment }: Props) => {
         />
       </S.ProfileContainer>
       <S.CommentContainer>{content}</S.CommentContainer>
-      {children?.length === 0 ? (
-        <S.RepliesButton>답글 달기 +</S.RepliesButton>
-      ) : (
-        <S.RepliesButton onClick={handleShowReplies}>
-          {children?.length}개의 답글 {showReplies ? '숨기기 ▲' : '확인 ▼'}
+      <S.ButtonContainer>
+        <S.RepliesButton onClick={handleShowInputArea}>
+          답글 달기 {showInputArea ? '-' : '+'}
         </S.RepliesButton>
-      )}
+        {children?.length !== 0 && (
+          <S.RepliesButton onClick={handleShowReplies}>
+            {children?.length}개의 답글 {showReplies ? '숨기기 ▲' : '확인 ▼'}
+          </S.RepliesButton>
+        )}
+      </S.ButtonContainer>
       <S.RepliesContainer>
+        {showInputArea && <CommentInput />}
         {showReplies &&
-          children?.map((child, index) => {
+          children?.map((child) => {
             const { id, content, user, createdAt } = child;
 
             return (
@@ -56,9 +60,6 @@ const CommentComponent = ({ comment }: Props) => {
                   </S.ProfileContainer>
                   <S.CommentContainer>{content}</S.CommentContainer>
                 </S.ReplyContainer>
-                {index === children.length - 1 && (
-                  <S.RepliesButton>답글 달기 +</S.RepliesButton>
-                )}
               </>
             );
           })}
