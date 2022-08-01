@@ -1,26 +1,20 @@
-import { useState } from 'react';
-
 type onCopyUrl = (url: string) => Promise<boolean>;
 
-export const useCopyUrl = (): [boolean, onCopyUrl] => {
-  const [isCopy, setIsCopy] = useState<boolean>(false);
-
+export const useCopyUrl = (): onCopyUrl => {
   const onCopy: onCopyUrl = async (url: string) => {
     try {
       await navigator.clipboard.writeText(url);
-      setIsCopy(true);
 
-      alert('url 복사 성공');
+      alert('url 복사 성공'); // 추후에 Toast로 하면 좋을 거 같습니다
       return true;
     } catch (error) {
       console.error('url 복사 실패', [error]);
-      setIsCopy(false);
 
       return false;
     }
   };
 
-  return [isCopy, onCopy];
+  return onCopy;
 };
 
 export default useCopyUrl;

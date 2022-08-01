@@ -11,7 +11,7 @@ interface Props {
 }
 
 const BookmarkItem = ({ url, title, version }: Props) => {
-  const [isCopy, onCopy] = useCopyUrl();
+  const onCopy = useCopyUrl();
 
   const onEnter = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
