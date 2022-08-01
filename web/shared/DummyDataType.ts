@@ -30,11 +30,11 @@ export interface Folder {
 
 export interface Comment {
   id: string | number;
-  parentId: string | number | null;
   content: string;
   user: UserInfo;
   createdAt: string;
   updatedAt: string;
+  children?: Array<Comment> | [];
 }
 
 export interface Bookmark {

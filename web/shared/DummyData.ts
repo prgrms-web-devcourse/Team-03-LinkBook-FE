@@ -66,7 +66,6 @@ export const specificFolder: Folder = {
   comments: [
     {
       id: 1,
-      parentId: null,
       content: '도움이 많이 되었습니다.',
       user: {
         id: 2,
@@ -76,6 +75,20 @@ export const specificFolder: Folder = {
       },
       createdAt: '',
       updatedAt: ' ',
+      children: [
+        {
+          id: 1,
+          content: '도움이 많이 되었습니다.',
+          user: {
+            id: 2,
+            name: '이지연',
+            image:
+              'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+          },
+          createdAt: '',
+          updatedAt: ' ',
+        },
+      ],
     },
   ],
   bookmarks: [
