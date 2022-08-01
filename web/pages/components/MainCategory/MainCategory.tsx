@@ -44,6 +44,7 @@ const MainCategory = ({ data, isLoading }: Props) => {
         isLoading={isLoading}
         onClick={onTabClick}
         selectedItem={selectedItem}
+        cardVersion="othersCard"
       />
       <S.BtnWrapper>
         <S.MoreBtn type="button">더보기+</S.MoreBtn>

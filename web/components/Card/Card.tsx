@@ -8,7 +8,7 @@ import CardBack from './CardBack/CardBack';
 import * as S from './Card.style';
 
 interface Tags {
-  id: string;
+  id: number;
   text: string;
 }
 interface User {

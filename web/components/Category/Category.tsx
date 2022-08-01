@@ -9,6 +9,7 @@ interface Props {
   isLoading?: boolean;
   onClick: (item: string) => void;
   selectedItem: string;
+  cardVersion: string;
 }
 
 const Category = ({
@@ -17,6 +18,7 @@ const Category = ({
   isLoading,
   onClick,
   selectedItem,
+  cardVersion,
 }: Props) => {
   return (
     <>
@@ -31,7 +33,7 @@ const Category = ({
         {isLoading ? (
           <Skeleton width={340} height={400} repeat={data.length} />
         ) : (
-          data.map((item: any) => <Card data={item} />)
+          data.map((item: any) => <Card version={cardVersion} data={item} />)
         )}
       </S.CategoryCardWrapper>
     </>
