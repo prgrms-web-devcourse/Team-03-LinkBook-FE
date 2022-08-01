@@ -20,7 +20,8 @@ export const IconContainer = styled.div`
   height: ${({ size }: Props) =>
     typeof size === 'number' ? `${size}px` : size};
   border: ${({ theme }) => `1px solid ${theme.colors.gray[5]}`};
-  border-radius: 50px;
+  border-radius: 50%;
+  overflow: hidden;
 `;
 
 export const TextContainer = styled.div`
@@ -41,6 +42,11 @@ const ProfileName = ({ theme }: ThemeProps) => css`
 
 export const Name = styled.h1`
   font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   ${({ version }: Props) => {
     switch (version) {
