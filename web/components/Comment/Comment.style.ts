@@ -23,6 +23,11 @@ export const CommentContainer = styled.div`
   line-height: 1.4;
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
 export const RepliesButton = styled.button`
   width: fit-content;
   padding: 3px 8px;
