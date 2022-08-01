@@ -39,3 +39,16 @@ export const IconWrapper = styled.div`
     border-radius: 50%;
   }
 `;
+
+export const UpdateContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 4px;
+`;
+
+export const Line = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.b[0]};
+  color: ${({ theme }) => theme.colors.gray[2]};
+`;
