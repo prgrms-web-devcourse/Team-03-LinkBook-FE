@@ -1,29 +1,19 @@
 import BookmarkItem from '../BookmarkItem';
 import * as S from './BookmarkList.style';
 import { Bookmark } from '../../shared/DummyDataType';
+import React from 'react';
 
 interface Props {
-  onBookmarkClick: () => void;
-  onIconClick?: () => void;
+  version: 'watch' | 'update';
   bookmarkItems: Bookmark[];
 }
 
-const BookmarkList = ({
-  onBookmarkClick,
-  bookmarkItems,
-  onIconClick,
-}: Props) => {
+const BookmarkList = ({ version, bookmarkItems }: Props) => {
   return (
     <S.BookmarkContainer>
       {bookmarkItems &&
         bookmarkItems.map(({ id, title, url }) => (
-          <BookmarkItem
-            key={id}
-            onBookmarkClick={onBookmarkClick}
-            onIconClick={onIconClick}
-            url={url}
-            title={title}
-          />
+          <BookmarkItem key={id} url={url} title={title} version={version} />
         ))}
     </S.BookmarkContainer>
   );
