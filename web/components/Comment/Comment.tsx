@@ -48,19 +48,17 @@ const CommentComponent = ({ comment }: Props) => {
             const { id, content, user, createdAt } = child;
 
             return (
-              <>
-                <S.ReplyContainer key={id}>
-                  <S.ProfileContainer>
-                    <Profile
-                      version="comment"
-                      user={user}
-                      createdAt={createdAt}
-                      iconSize={50}
-                    />
-                  </S.ProfileContainer>
-                  <S.CommentContainer>{content}</S.CommentContainer>
-                </S.ReplyContainer>
-              </>
+              <S.ReplyContainer key={id}>
+                <S.ProfileContainer>
+                  <Profile
+                    version="comment"
+                    user={user}
+                    createdAt={createdAt}
+                    iconSize={50}
+                  />
+                </S.ProfileContainer>
+                <S.CommentContainer>{content}</S.CommentContainer>
+              </S.ReplyContainer>
             );
           })}
       </S.RepliesContainer>

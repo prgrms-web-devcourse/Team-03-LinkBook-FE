@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, MouseEventHandler, useRef, useState } from 'react';
 import Button from '../Button';
 import * as S from './CommentInput.style';
 
@@ -8,6 +8,10 @@ const CommentInput = () => {
 
   const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(target.value);
+  };
+
+  const handleClick = () => {
+    console.log(value, '클릭');
   };
 
   return (
@@ -21,7 +25,7 @@ const CommentInput = () => {
         <S.TextLenContainer>{value.length} / 300</S.TextLenContainer>
       </S.InputContainer>
       <S.ButtonContainer>
-        <Button type="submit" version="navBar">
+        <Button type="submit" version="navBar" onClick={handleClick}>
           댓글 작성
         </Button>
       </S.ButtonContainer>
