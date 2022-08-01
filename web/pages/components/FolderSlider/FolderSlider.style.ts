@@ -49,7 +49,13 @@ export const CardWrapper = styled.div<Prop>`
 
 export const IconWrapper = styled.div<Prop>`
   position: absolute;
-  left: ${({position}) => position === 'left' && '8%'};
-  right: ${({position}) => position === 'right' && '8%'};
+  top: 43%;
+  left: ${({position}) => position === 'left' && '3%'};
+  right: ${({position}) => position === 'right' && '3%'};
   cursor: pointer;
+
+  @media (max-width: 660px) {
+    left: ${({position}) => position === 'left' && '3%'};
+    right: ${({position}) => position === 'right' && '3%'};
+  }
 `;
