@@ -6,6 +6,7 @@ import theme from '../../styles/themes';
 import { Avatar, Icon, Text, Tag } from '../index';
 import CardBack from './CardBack/CardBack';
 import * as S from './Card.style';
+import { useGetWidth } from '../../hooks';
 
 interface Tags {
   id: number;
@@ -55,9 +56,16 @@ const Card = ({ data, version, ...styles }: Props) => {
     router.push(`/detail/${data.id}`);
   };
 
+  const [cardWidth, cardRef] = useGetWidth();
+
   return (
     <S.Container>
-      <S.Card version={version} reverseCard={reverseCard} {...styles}>
+      <S.Card
+        version={version}
+        reverseCard={reverseCard}
+        {...styles}
+        ref={cardRef}
+      >
         <S.ContentContainer
           onClick={
             version === 'default' ? handleRotateCard : moveFolderDetailPage
@@ -76,7 +84,7 @@ const Card = ({ data, version, ...styles }: Props) => {
               <S.Title>{data.title}</S.Title>
             </S.TitleWrapper>
             <S.TagWrapper>
-              <Tag tagItems={data.tags} />
+              <Tag tagItems={data.tags} cardWidth={cardWidth} />
             </S.TagWrapper>
             <S.Info version={version}>
               <Avatar name={data.user.name} src={data.user.image} />

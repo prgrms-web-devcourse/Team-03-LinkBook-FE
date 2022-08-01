@@ -8,9 +8,11 @@ interface Items {
 
 interface Props {
   tagItems: Items[];
+  cardWidth?: number;
 }
 
-const Tag = ({ tagItems }: Props) => {
+const Tag = ({ tagItems, cardWidth }: Props) => {
+  console.log(cardWidth);
   return (
     <S.TagWrapper>
       {tagItems.map((item) => (
