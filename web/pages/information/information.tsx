@@ -65,10 +65,15 @@ const informationPage = () => {
       children: [],
     },
   ];
+
+  const handleClick = () => {
+    console.log('클릭!');
+  };
+
   return (
     <S.Container>
       <S.HeadLine>1. Profile Component</S.HeadLine>
-      <Profile user={user} />
+      <Profile user={user} onClick={handleClick} />
       <S.HeadLine>2. CommentInput Component</S.HeadLine>
       <CommentInput />
       <S.HeadLine>
