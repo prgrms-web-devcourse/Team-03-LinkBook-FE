@@ -41,8 +41,17 @@ export const RepliesButton = styled.button`
 export const RepliesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   width: 100%;
   height: auto;
-  margin-left: 50px;
+  margin-left: 30px;
+`;
+
+export const ReplyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 1100px;
+  height: fit-content;
+  padding: 10px;
 `;
