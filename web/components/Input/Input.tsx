@@ -2,6 +2,7 @@ import { ChangeEventHandler } from 'react';
 import * as S from './Input.style';
 
 interface Props {
+  type: string;
   children?: React.ReactNode;
   placeholder: string;
   maxLength?: number;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const defaultProps = {
+  type: 'text',
   placeholder: '검색어를 입력하세요.',
 };
 
@@ -17,11 +19,13 @@ const Input = ({
   placeholder,
   maxLength,
   onChange,
+  type,
   ...styles
 }: Props) => {
   return (
     <S.Wrapper>
       <S.Input
+        type={type}
         placeholder={placeholder}
         maxLength={maxLength}
         onChange={onChange}

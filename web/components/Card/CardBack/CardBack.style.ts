@@ -26,11 +26,12 @@ export const IconWrapper = styled.div`
   cursor: pointer;
 `
 
-export const BookmarkList = styled.ul`
+export const BookmarkList = styled.ul<Props>`
   height: 340px;
   padding-top: 8px;
-  overflow: auto;
-  overscroll-behavior-y: contain;
+  /* overflow: auto; */
+  overflow: ${({reverseCard}) => reverseCard ? 'auto' : 'hidden'};
+  overscroll-behavior-y: ${({reverseCard}) => reverseCard ? 'contain' : 'auto'};
   /* 스크롤바 전체 */
   &::-webkit-scrollbar {
     width: 8px;

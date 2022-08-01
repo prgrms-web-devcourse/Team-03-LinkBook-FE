@@ -12,7 +12,7 @@ export interface SpecificUserFolders {
 }
 
 export interface Folder {
-  id: string | number;
+  id: number;
   title: string;
   image: string;
   content?: string;
