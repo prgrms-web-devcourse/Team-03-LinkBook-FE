@@ -10,7 +10,7 @@ interface Props {
 
 const defaultProps = {
   size: '24',
-  src: `/icons/userLine.svg`,
+  src: `/icons/ico_user.svg`,
   layout: 'fixed',
   placeholder: 'empty',
 };
