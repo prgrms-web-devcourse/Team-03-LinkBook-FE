@@ -8,7 +8,6 @@ interface Props {
 }
 
 const TagItem = ({ children, onClick, shrinking = false }: Props) => {
-  console.log(shrinking);
   return (
     <S.TagItem shrinking={shrinking} onClick={onClick}>
       {children}
