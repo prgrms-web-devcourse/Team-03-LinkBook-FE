@@ -12,25 +12,8 @@ const FolderList = () => {
   const tabItems = ['인기순', '최신순', '댓글많은순', '오래된순'];
   const [selectedItem, setSelectedItem] = useState(tabItems?.[0]);
 
-  const changeTabItem = (item: string) => {
-    setSelectedItem(item);
-  };
-
-  const sortFolderList = (data: any, item: string) => {
-    switch (item) {
-      case '인기순':
-        item = 'likes';
-        break;
-      //TODO: Tab 추가
-      default:
-        break;
-    }
-    data.sort((a: any, b: any) => b[item] - a[item]);
-  };
-
   const onTabClick = (item: string) => {
-    changeTabItem(item);
-    sortFolderList(data, item);
+    setSelectedItem(item);
   };
 
   const limit = 12;

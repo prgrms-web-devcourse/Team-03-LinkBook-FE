@@ -6,7 +6,6 @@ import theme from '../../styles/themes';
 import { Avatar, Icon, Text, Tag } from '../index';
 import CardBack from './CardBack/CardBack';
 import * as S from './Card.style';
-import { useGetWidth } from '../../hooks';
 
 interface Tags {
   id: number;
@@ -37,14 +36,16 @@ interface Data {
 interface Props {
   data: Data;
   version?: string;
+  shrinking?: boolean;
 }
 
 const defaultProps = {
   data: {},
   version: 'default',
+  shrinking: true,
 };
 
-const Card = ({ data, version, ...styles }: Props) => {
+const Card = ({ data, version, shrinking, ...styles }: Props) => {
   const router = useRouter();
   const [reverseCard, setReverseCard] = useState(false);
 
@@ -56,16 +57,9 @@ const Card = ({ data, version, ...styles }: Props) => {
     router.push(`/detail/${data.id}`);
   };
 
-  const [cardWidth, cardRef] = useGetWidth();
-
   return (
     <S.Container>
-      <S.Card
-        version={version}
-        reverseCard={reverseCard}
-        {...styles}
-        ref={cardRef}
-      >
+      <S.Card version={version} reverseCard={reverseCard} {...styles}>
         <S.ContentContainer
           onClick={
             version === 'default' ? handleRotateCard : moveFolderDetailPage
@@ -84,7 +78,7 @@ const Card = ({ data, version, ...styles }: Props) => {
               <S.Title>{data.title}</S.Title>
             </S.TitleWrapper>
             <S.TagWrapper>
-              <Tag tagItems={data.tags} cardWidth={cardWidth} />
+              <Tag tagItems={data.tags} shrinking={shrinking} />
             </S.TagWrapper>
             <S.Info version={version}>
               <Avatar name={data.user.name} src={data.user.image} />

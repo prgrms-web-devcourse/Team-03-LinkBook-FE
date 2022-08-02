@@ -8,15 +8,25 @@ interface Items {
 
 interface Props {
   tagItems: Items[];
-  cardWidth?: number;
+  shrinking?: boolean;
 }
 
-const Tag = ({ tagItems, cardWidth }: Props) => {
-  console.log(cardWidth);
-  return (
+const Tag = ({ tagItems, shrinking = false }: Props) => {
+  return shrinking && tagItems.length > 3 ? (
+    <S.TagWrapper>
+      {tagItems.slice(0, 3).map((item) => (
+        <TagItem shrinking key={item.id}>
+          {item.text}
+        </TagItem>
+      ))}
+      <TagItem key={123}>{`+${tagItems.length - 3}`}</TagItem>
+    </S.TagWrapper>
+  ) : (
     <S.TagWrapper>
       {tagItems.map((item) => (
-        <TagItem key={item.id}>{item.text}</TagItem>
+        <TagItem shrinking={shrinking} key={item.id}>
+          {item.text}
+        </TagItem>
       ))}
     </S.TagWrapper>
   );

@@ -8,6 +8,7 @@ const CardDummyData = [
       { id: 1, text: '프론트엔드 개발자' },
       { id: 2, text: '개발자' },
       { id: 3, text: '프론트엔드' },
+      { id: 4, text: '요리사' },
     ],
     user: {
       image:
