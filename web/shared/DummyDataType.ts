@@ -26,11 +26,11 @@ export interface Folder {
   isPinned?: boolean;
   isPrivate?: boolean;
   likes: string | number;
-  user?: UserInfo;
+  user: UserInfo;
   comments?: Comment[];
-  bookmarks?: Bookmark[];
-  tags?: Tag[];
-  createdAt?: string;
+  bookmarks: Bookmark[];
+  tags: string[];
+  createdAt: string;
 }
 
 export interface Comment {
