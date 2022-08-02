@@ -3,6 +3,7 @@ export interface UserInfo {
   email?: string;
   name: string;
   image: string;
+  introduce?: string;
   interest?: string[];
 }
 
@@ -17,7 +18,7 @@ export interface SpecificUserFolders {
 }
 
 export interface Folder {
-  id: string | number;
+  id: number;
   title: string;
   image: string;
   content?: string;
@@ -34,11 +35,11 @@ export interface Folder {
 
 export interface Comment {
   id: string | number;
-  parentId: string | number | null;
   content: string;
   user: UserInfo;
   createdAt: string;
   updatedAt: string;
+  children?: Array<Comment> | [];
 }
 
 export interface Bookmark {

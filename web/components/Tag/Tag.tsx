@@ -1,20 +1,15 @@
 import TagItem from './TagItem';
 import * as S from './Tag.style';
 
-interface Items {
-  id: number;
-  text: string;
-}
-
 interface Props {
-  tagItems: Items[];
+  tagItems: string[];
 }
 
 const Tag = ({ tagItems }: Props) => {
   return (
     <S.TagWrapper>
       {tagItems.map((item, index) => (
-        <TagItem key={index}>{item.text}</TagItem>
+        <TagItem key={index}>{item}</TagItem>
       ))}
     </S.TagWrapper>
   );

@@ -10,7 +10,7 @@ export const AvatarWrapper = styled.div`
 
 export const AvatarImg = styled(Image)`
   border-radius: 50%;
-  background-color: ${(props) => props.theme.colors.gray[3]};
+  background-color: ${(props) => props.theme.colors.gray[4]};
 `;
 
 export const AvatarName = styled.span`

@@ -17,21 +17,31 @@ const NavBarBtn = ({ theme }: ThemeProps) => css`
 
 const MainLightBtn = ({ theme }: ThemeProps) => css`
   width: 7rem;
-  height: 3.5rem;
+  height: 3rem;
 
-  font-size: ${theme.fontSize.b[0]};
+  font-size: ${theme.fontSize.h[2]};
   font-weight: 500;
   border-radius: 2.5rem;
   background-color: ${theme.colors.mainLight[0]};
 `;
 
 const MainBtn = ({ theme }: ThemeProps) => css`
-  width: 8rem;
-  height: 3.25rem;
+  width: 7rem;
+  height: 3rem;
 
-  font-size: ${theme.fontSize.b[0]};
+  font-size: ${theme.fontSize.h[2]};
   font-weight: 500;
   border-radius: 3.5rem;
+  background-color: ${theme.colors.main[0]};
+`;
+
+const ModalBtn = ({ theme }: ThemeProps) => css`
+  width: fit-content;
+  height: fit-content;
+  padding: 0.4rem;
+
+  font-size: ${theme.fontSize.c[1]};
+  border-radius: 0.5rem;
   background-color: ${theme.colors.main[0]};
 `;
 
@@ -56,6 +66,8 @@ export const Button = styled.button`
         return NavBarBtn;
       case 'mainLight':
         return MainLightBtn;
+      case 'modal':
+        return ModalBtn;
       default:
         return MainBtn;
     }
