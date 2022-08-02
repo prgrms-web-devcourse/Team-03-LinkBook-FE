@@ -9,9 +9,9 @@ interface Props {
 const Tag = ({ tagItems, shrinking = false }: Props) => {
   return shrinking && tagItems.length > 3 ? (
     <S.TagWrapper>
-      {tagItems.slice(0, 3).map((item) => (
-        <TagItem shrinking key={item.id}>
-          {item.text}
+      {tagItems.slice(0, 3).map((item, index) => (
+        <TagItem shrinking key={index}>
+          {item}
         </TagItem>
       ))}
       <TagItem key={123}>{`+${tagItems.length - 3}`}</TagItem>
