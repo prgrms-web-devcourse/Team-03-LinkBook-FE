@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 
 interface Props {
-  inputResultVisible: boolean;
+  inputResultVisible?: boolean;
+  active?: boolean;
+  isDefault?: boolean;
 }
 
 export const List = styled.ul<Props>`
@@ -22,11 +24,12 @@ export const List = styled.ul<Props>`
   }
 `
 
-export const Item = styled.li`
+export const Item = styled.li<Props>`
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  background-color: ${({theme, active}) => active ? theme.colors.gray[5] : theme.colors.white[0]};
   &:hover {
-    background-color: ${(props) => props.theme.colors.gray[5]};
+    background-color: ${({theme, isDefault}) => isDefault ? theme.colors.white[0] : theme.colors.gray[5]};
   }
 `
