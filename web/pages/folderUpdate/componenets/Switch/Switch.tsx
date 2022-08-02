@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as S from './Switch.style';
 
 export interface Props {
@@ -8,15 +8,13 @@ export interface Props {
 export const Switch = ({ setIsPrivate }: Props) => {
   const [checked, setChecked] = useState(false);
 
-  const onClick = (event: React.MouseEvent) => {
-    event.preventDefault();
-
+  const onToggle = () => {
     setChecked(!checked);
     //setIsPrivate(!checked)
   };
 
   return (
-    <S.SwitchWrapper onClick={onClick}>
+    <S.SwitchWrapper onClick={onToggle}>
       <S.SwitchInput type="checkbox" />
       <S.SwitchLabel
         checked={checked}
