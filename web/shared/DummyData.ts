@@ -35,6 +35,46 @@ export const specificUserFolders: SpecificUserFolders = {
       },
       tags: ['코딩', '개발', '취미'],
       createdAt: '2022-07-23',
+      comments: [
+        {
+          id: 1,
+          content: '도움이 많이 되었습니다.1',
+          user: {
+            id: 2,
+            name: '댓글작성자1',
+            image:
+              'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+          },
+          createdAt: '2022-08-01',
+          updatedAt: '2022-08-02',
+          children: [
+            {
+              id: 1,
+              content: '도움이 많이 되었습니다.2',
+              user: {
+                id: 2,
+                name: '대댓글작성자1',
+                image:
+                  'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+              },
+              createdAt: '2022-08-02',
+              updatedAt: '2022-08-03',
+            },
+            {
+              id: 1,
+              content: '도움이 많이 되었습니다.3',
+              user: {
+                id: 2,
+                name: '대댓글작성자2',
+                image:
+                  'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+              },
+              createdAt: '2022-08-03',
+              updatedAt: '2022-08-04',
+            },
+          ],
+        },
+      ],
     },
     {
       id: 2,
@@ -59,11 +99,51 @@ export const specificUserFolders: SpecificUserFolders = {
       },
       tags: ['창업', '마케팅', '취미'],
       createdAt: '2022-07-25',
+      comments: [
+        {
+          id: 1,
+          content: '도움이 많이 되었습니다.1',
+          user: {
+            id: 2,
+            name: '댓글작성자1',
+            image:
+              'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+          },
+          createdAt: '2022-08-01',
+          updatedAt: '2022-08-02',
+          children: [
+            {
+              id: 1,
+              content: '도움이 많이 되었습니다.2',
+              user: {
+                id: 2,
+                name: '대댓글작성자1',
+                image:
+                  'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+              },
+              createdAt: '2022-08-02',
+              updatedAt: '2022-08-03',
+            },
+            {
+              id: 1,
+              content: '도움이 많이 되었습니다.3',
+              user: {
+                id: 2,
+                name: '대댓글작성자2',
+                image:
+                  'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+              },
+              createdAt: '2022-08-03',
+              updatedAt: '2022-08-04',
+            },
+          ],
+        },
+      ],
     },
   ],
   user: {
     id: 1,
-    name: '이수연',
+    name: '해윰',
     image: '',
   },
 };
@@ -74,7 +154,7 @@ export const specificFolder: Folder = {
   title: '알고리즘 공부용',
   image:
     'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-  content: 'python으로 공부합니다.',
+  content: 'python으로 공부합니다. 내용을 조금 더 길게 해볼게요',
   originId: null,
   isPinned: true,
   isPrivate: false,
@@ -118,6 +198,44 @@ export const specificFolder: Folder = {
         },
       ],
     },
+    {
+      id: 11,
+      content: '도움이 많이 되었습니다.4',
+      user: {
+        id: 12,
+        name: '댓글작성자1',
+        image:
+          'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+      },
+      createdAt: '2022-08-01',
+      updatedAt: '2022-08-02',
+      children: [
+        {
+          id: 111,
+          content: '도움이 많이 되었습니다.5',
+          user: {
+            id: 12,
+            name: '대댓글작성자1',
+            image:
+              'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+          },
+          createdAt: '2022-08-02',
+          updatedAt: '2022-08-03',
+        },
+        {
+          id: 111,
+          content: '도움이 많이 되었습니다.6',
+          user: {
+            id: 12,
+            name: '대댓글작성자2',
+            image:
+              'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+          },
+          createdAt: '2022-08-03',
+          updatedAt: '2022-08-04',
+        },
+      ],
+    },
   ],
   bookmarks: [
     {
@@ -133,10 +251,10 @@ export const specificFolder: Folder = {
   ],
   user: {
     id: 1,
-    name: '이수연',
+    name: 'Haeyum',
     image:
       'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-    introduce: '한 줄 소개입니다.',
+    introduce: '한 줄 소개입니다 ~~~~~~~~~~~~',
   },
   tags: ['코딩', '개발', '취미'],
   createdAt: '2022-08-01',
@@ -212,6 +330,46 @@ export const allFolders: Folder[] = [
         url: 'https://www.acmicpc.net/',
       },
     ],
+    comments: [
+      {
+        id: 1,
+        content: '도움이 많이 되었습니다.1',
+        user: {
+          id: 2,
+          name: '댓글작성자1',
+          image:
+            'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+        },
+        createdAt: '2022-08-01',
+        updatedAt: '2022-08-02',
+        children: [
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.2',
+            user: {
+              id: 2,
+              name: '대댓글작성자1',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-02',
+            updatedAt: '2022-08-03',
+          },
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.3',
+            user: {
+              id: 2,
+              name: '대댓글작성자2',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-03',
+            updatedAt: '2022-08-04',
+          },
+        ],
+      },
+    ],
   },
   {
     id: 2,
@@ -271,6 +429,46 @@ export const allFolders: Folder[] = [
         id: 9,
         title: 'Baekjoon Online Judge',
         url: 'https://www.acmicpc.net/',
+      },
+    ],
+    comments: [
+      {
+        id: 1,
+        content: '도움이 많이 되었습니다.1',
+        user: {
+          id: 2,
+          name: '댓글작성자1',
+          image:
+            'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+        },
+        createdAt: '2022-08-01',
+        updatedAt: '2022-08-02',
+        children: [
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.2',
+            user: {
+              id: 2,
+              name: '대댓글작성자1',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-02',
+            updatedAt: '2022-08-03',
+          },
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.3',
+            user: {
+              id: 2,
+              name: '대댓글작성자2',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-03',
+            updatedAt: '2022-08-04',
+          },
+        ],
       },
     ],
   },
@@ -334,6 +532,46 @@ export const allFolders: Folder[] = [
         url: 'https://www.acmicpc.net/',
       },
     ],
+    comments: [
+      {
+        id: 1,
+        content: '도움이 많이 되었습니다.1',
+        user: {
+          id: 2,
+          name: '댓글작성자1',
+          image:
+            'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+        },
+        createdAt: '2022-08-01',
+        updatedAt: '2022-08-02',
+        children: [
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.2',
+            user: {
+              id: 2,
+              name: '대댓글작성자1',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-02',
+            updatedAt: '2022-08-03',
+          },
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.3',
+            user: {
+              id: 2,
+              name: '대댓글작성자2',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-03',
+            updatedAt: '2022-08-04',
+          },
+        ],
+      },
+    ],
   },
   {
     id: 4,
@@ -393,6 +631,46 @@ export const allFolders: Folder[] = [
         id: 9,
         title: 'Baekjoon Online Judge',
         url: 'https://www.acmicpc.net/',
+      },
+    ],
+    comments: [
+      {
+        id: 1,
+        content: '도움이 많이 되었습니다.1',
+        user: {
+          id: 2,
+          name: '댓글작성자1',
+          image:
+            'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+        },
+        createdAt: '2022-08-01',
+        updatedAt: '2022-08-02',
+        children: [
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.2',
+            user: {
+              id: 2,
+              name: '대댓글작성자1',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-02',
+            updatedAt: '2022-08-03',
+          },
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.3',
+            user: {
+              id: 2,
+              name: '대댓글작성자2',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-03',
+            updatedAt: '2022-08-04',
+          },
+        ],
       },
     ],
   },
@@ -456,6 +734,46 @@ export const allFolders: Folder[] = [
         url: 'https://www.acmicpc.net/',
       },
     ],
+    comments: [
+      {
+        id: 1,
+        content: '도움이 많이 되었습니다.1',
+        user: {
+          id: 2,
+          name: '댓글작성자1',
+          image:
+            'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+        },
+        createdAt: '2022-08-01',
+        updatedAt: '2022-08-02',
+        children: [
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.2',
+            user: {
+              id: 2,
+              name: '대댓글작성자1',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-02',
+            updatedAt: '2022-08-03',
+          },
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.3',
+            user: {
+              id: 2,
+              name: '대댓글작성자2',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-03',
+            updatedAt: '2022-08-04',
+          },
+        ],
+      },
+    ],
   },
   {
     id: 6,
@@ -515,6 +833,46 @@ export const allFolders: Folder[] = [
         id: 9,
         title: 'Baekjoon Online Judge',
         url: 'https://www.acmicpc.net/',
+      },
+    ],
+    comments: [
+      {
+        id: 1,
+        content: '도움이 많이 되었습니다.1',
+        user: {
+          id: 2,
+          name: '댓글작성자1',
+          image:
+            'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+        },
+        createdAt: '2022-08-01',
+        updatedAt: '2022-08-02',
+        children: [
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.2',
+            user: {
+              id: 2,
+              name: '대댓글작성자1',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-02',
+            updatedAt: '2022-08-03',
+          },
+          {
+            id: 1,
+            content: '도움이 많이 되었습니다.3',
+            user: {
+              id: 2,
+              name: '대댓글작성자2',
+              image:
+                'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+            },
+            createdAt: '2022-08-03',
+            updatedAt: '2022-08-04',
+          },
+        ],
       },
     ],
   },

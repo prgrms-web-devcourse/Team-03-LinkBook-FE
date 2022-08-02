@@ -27,7 +27,7 @@ export interface Folder {
   isPrivate?: boolean;
   likes: string | number;
   user: UserInfo;
-  comments?: Comment[];
+  comments: Comment[];
   bookmarks: Bookmark[];
   tags: string[];
   createdAt: string;
