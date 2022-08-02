@@ -18,4 +18,5 @@ export { default as ImageUpload } from './ImageUpload';
 export { default as Profile } from './Profile';
 export { default as Comment } from './Comment';
 export { default as CommentInput } from './CommentInput';
-
+export { default as InputResult } from './InputResult'
+export { default as TagSelector } from './TagSelector'
