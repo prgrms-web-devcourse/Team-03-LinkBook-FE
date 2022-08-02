@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import { Button, Text } from '../..';
+import { Text } from '../..';
 
 export const PreviewImage = styled(Image)`
   background-color: ${({ theme }) => theme.colors.white[0]};
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const DefaultContainer = styled.div`
