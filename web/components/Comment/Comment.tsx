@@ -44,7 +44,7 @@ const CommentComponent = ({ comment }: Props) => {
       <S.RepliesContainer>
         {showInputArea && <CommentInput />}
         {showReplies &&
-          children?.map((child) => {
+          children?.map((child: Comment) => {
             const { id, content, user, createdAt } = child;
 
             return (
