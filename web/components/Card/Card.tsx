@@ -12,17 +12,21 @@ import { Folder } from '../../shared/DummyDataType';
 interface Props {
   data: Folder;
   version?: string;
+  shrinking?: boolean;
 }
 
 const defaultProps = {
   data: {},
   version: 'default',
+  shrinking: true,
 };
 
-const Card = ({ data, version, ...styles }: Props) => {
+
+const Card = ({ data, version,shrinking, ...styles }: Props) => {
   const author = 'Miral'; // 나중에 수정
   const authorImage =
     'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'; // 나중에 수정
+
   const router = useRouter();
   const [reverseCard, setReverseCard] = useState(false);
 
@@ -55,7 +59,7 @@ const Card = ({ data, version, ...styles }: Props) => {
               <S.Title>{data.title}</S.Title>
             </S.TitleWrapper>
             <S.TagWrapper>
-              <Tag tagItems={data.tags!} />
+              <Tag tagItems={data.tags!} shrinking={shrinking}/>
             </S.TagWrapper>
             <S.Info version={version}>
               <Avatar name={author} src={authorImage} />

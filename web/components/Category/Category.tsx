@@ -31,7 +31,7 @@ const Category = ({
           <Skeleton width={340} height={400} repeat={data.length} />
         ) : (
           data.map((item: any) => (
-            <Card key={item.id} version={cardVersion} data={item} />
+            <Card shrinking key={item.id} version={cardVersion} data={item} />
           ))
         )}
       </S.CategoryCardWrapper>

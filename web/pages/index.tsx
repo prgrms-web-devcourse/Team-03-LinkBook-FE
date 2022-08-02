@@ -4,6 +4,7 @@ import { MainCategory, MyFoldersAreaLogOut } from './components';
 import { MyFoldersAreaLogIn, MyFoldersAreaLogOut } from './components';
 import { allFolders } from '../shared/DummyData';
 
+
 const MainPage: NextPage = () => {
   return (
     <S.Div>
