@@ -12,6 +12,7 @@ export { default as Card } from './Card';
 export { default as BookmarkItem } from './BookmarkItem';
 export { default as BookmarkList } from './BookmarkList';
 export { default as Skeleton } from './Skeleton';
+export { default as ImageUpload } from './ImageUpload';
 export { default as Profile } from './Profile';
 export { default as Comment } from './Comment';
 export { default as CommentInput } from './CommentInput';
