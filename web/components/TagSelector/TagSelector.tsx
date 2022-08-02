@@ -24,6 +24,9 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
     '마케팅 필터링 테스트',
   ];
   const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+
+  const [activeItem, setActiveItem] = useState(0);
   const [autoCompleteSearch, setAutoCompleteSearch] = useState<string[]>([]);
   const [inputResultVisible, setInputResultVisible] = useState(false);
 
@@ -31,17 +34,13 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
     const keyword = inputRef.current!.value;
     const filteredSearch = tags.filter((tag) => tag.indexOf(keyword) >= 0);
 
-    // 아무것도 입력하지 않았을 때
     if (!keyword) {
       setAutoCompleteSearch([]);
       handleVisibleInputResult(false);
       return;
     }
-    // 자동완성된 결과가 없을 떄
+
     handleVisibleInputResult(true);
-    if (filteredSearch.length === 0) {
-      return setAutoCompleteSearch(['일치하는 태그가 없습니다.']);
-    }
     setAutoCompleteSearch(filteredSearch);
   };
 
@@ -53,6 +52,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   const handleResetSelector = () => {
     inputRef.current!.value = '';
     handleVisibleInputResult(false);
+    setActiveItem(0);
   };
 
   const handleAddTag = (e: React.MouseEvent<HTMLLIElement>) => {
@@ -71,6 +71,41 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
     setInputResultVisible(state);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!inputResultVisible) {
+      return;
+    }
+
+    const node = listRef.current;
+    const itemHeight =
+      listRef.current && listRef.current.children[0].scrollHeight;
+    switch (e.key) {
+      case 'ArrowUp':
+        if (activeItem > 0) {
+          setActiveItem(activeItem - 1);
+          node?.scrollBy(0, -itemHeight!);
+        }
+        break;
+      case 'ArrowDown':
+        if (activeItem < autoCompleteSearch.length - 1) {
+          setActiveItem(activeItem + 1);
+          node?.scrollBy(0, itemHeight!);
+        }
+        break;
+      case 'Enter':
+        setSelectedTag([...selectedTag, autoCompleteSearch[activeItem]]);
+        handleResetSelector();
+        break;
+      case 'Escape':
+        setActiveItem(0);
+        handleResetSelector();
+        break;
+      default:
+        setActiveItem(0);
+        break;
+    }
+  };
+
   return (
     <S.Container {...styles}>
       <Tag tagItems={selectedTag} handleRemoveTag={handleRemoveTag} />
@@ -79,8 +114,11 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
         ref={inputRef}
         placeholder="태그를 입력해 주세요! 클릭 혹은 엔터를 사용해서 입력할 수 있습니다."
         onChange={handleFilterInputValue}
+        onKeyDown={handleKeyDown}
       />
       <InputResult
+        active={activeItem}
+        ref={listRef}
         inputResultVisible={inputResultVisible}
         inputResults={autoCompleteSearch}
         onClick={handleClickResultItem}
