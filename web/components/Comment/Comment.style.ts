@@ -37,6 +37,7 @@ export const RepliesButton = styled.button`
   background-color: transparent;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray[5]};
@@ -59,4 +60,11 @@ export const ReplyContainer = styled.div`
   max-width: 1100px;
   height: fit-content;
   padding: 10px;
+`;
+
+export const Line = styled.hr`
+  height: 1px;
+  margin: 10px 0 0 0;
+  background-color: ${({ theme }) => theme.colors.gray[5]};
+  border: 0px;
 `;
