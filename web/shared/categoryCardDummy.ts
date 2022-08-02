@@ -4,11 +4,7 @@ const CardDummyData = [
     image:
       'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
     title: '프론트엔드 개발자를 위한 학습 로드맵',
-    tags: [
-      { id: 1, text: '프론트엔드 개발자' },
-      { id: 2, text: '개발자' },
-      { id: 3, text: '프론트엔드' },
-    ],
+    tags: ['프론트엔드 개발자', '개발자', '프론트엔드'],
     user: {
       image:
         'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',

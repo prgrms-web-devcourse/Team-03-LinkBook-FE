@@ -13,8 +13,8 @@ interface Props {
 const Tag = ({ tagItems }: Props) => {
   return (
     <S.TagWrapper>
-      {tagItems.map((item) => (
-        <TagItem key={item.id}>{item.text}</TagItem>
+      {tagItems.map((item, index) => (
+        <TagItem key={index}>{item.text}</TagItem>
       ))}
     </S.TagWrapper>
   );
