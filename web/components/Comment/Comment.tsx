@@ -44,21 +44,22 @@ const CommentComponent = ({ comment }: Props) => {
       <S.RepliesContainer>
         {showInputArea && <CommentInput />}
         {showReplies &&
-          children?.map((child: Comment) => {
-            const { id, content, user, createdAt } = child;
-
+          children?.map((child: Comment, index: number) => {
             return (
-              <S.ReplyContainer key={id}>
-                <S.ProfileContainer>
-                  <Profile
-                    version="comment"
-                    user={user}
-                    createdAt={createdAt}
-                    iconSize={50}
-                  />
-                </S.ProfileContainer>
-                <S.CommentContainer>{content}</S.CommentContainer>
-              </S.ReplyContainer>
+              <div key={child.id}>
+                <S.ReplyContainer>
+                  <S.ProfileContainer>
+                    <Profile
+                      version="comment"
+                      user={child.user}
+                      createdAt={child.createdAt}
+                      iconSize={50}
+                    />
+                  </S.ProfileContainer>
+                  <S.CommentContainer>{child.content}</S.CommentContainer>
+                </S.ReplyContainer>
+                {index !== children.length - 1 && <S.Line />}
+              </div>
             );
           })}
       </S.RepliesContainer>
