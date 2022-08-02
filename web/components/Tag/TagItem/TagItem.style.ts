@@ -6,6 +6,7 @@ interface Props {
 }
 
 const ShrinkTag = ({ theme }: ThemeProps) => css`
+  display: inline-block;
   max-width: 80px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -14,7 +15,9 @@ const ShrinkTag = ({ theme }: ThemeProps) => css`
 `;
 
 export const TagItem = styled.div`
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 5px 10px;
   border-radius: 3px;
   color: ${({ theme }) => theme.colors.gray[0]};
@@ -23,3 +26,7 @@ export const TagItem = styled.div`
 
   ${({ shrinking }: Props) => shrinking && ShrinkTag}
 `;
+
+export const IconWrapper = styled.div`
+  cursor: pointer;
+`
