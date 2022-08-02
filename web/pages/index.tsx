@@ -1,12 +1,15 @@
 import type { NextPage } from 'next';
 import * as S from './index.style';
 import { MainCategory, MyFoldersAreaLogOut } from './components';
-import FolderList from './folderlist';
+import { MyFoldersAreaLogIn, MyFoldersAreaLogOut } from './components';
+import { allFolders } from '../shared/DummyData';
+
 
 const MainPage: NextPage = () => {
   return (
     <S.Div>
-      <FolderList />
+      {/* <MyFoldersAreaLogOut /> */}
+      <MyFoldersAreaLogIn data={allFolders} />
     </S.Div>
   );
 };

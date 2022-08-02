@@ -1,13 +1,8 @@
 import TagItem from './TagItem';
 import * as S from './Tag.style';
 
-interface Items {
-  id: number;
-  text: string;
-}
-
 interface Props {
-  tagItems: Items[];
+  tagItems: string[];
   shrinking?: boolean;
 }
 
@@ -23,9 +18,9 @@ const Tag = ({ tagItems, shrinking = false }: Props) => {
     </S.TagWrapper>
   ) : (
     <S.TagWrapper>
-      {tagItems.map((item) => (
-        <TagItem shrinking={shrinking} key={item.id}>
-          {item.text}
+      {tagItems.map((item, index) => (
+        <TagItem shrinking={shrinking} key={index}>
+          {item}
         </TagItem>
       ))}
     </S.TagWrapper>

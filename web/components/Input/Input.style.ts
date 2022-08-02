@@ -2,23 +2,25 @@ import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
   position: relative;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.gray[3]};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.gray[4]};
   padding: 8px;
-`
+`;
+
 export const Input = styled.input`
   width: 100%;
+  font-size: ${({ theme }) => theme.fontSize.h[2]};
   border: none;
 
-  &:focus{
+  &:focus {
     outline: none;
   }
 `;
 
 export const Action = styled.div`
-  display: flex;
   position: absolute;
-  bottom: 0;
   right: 0;
-  padding-bottom: 8px;
+  bottom: 0;
+  display: flex;
   padding-right: 8px;
-`
+  padding-bottom: 8px;
+`;

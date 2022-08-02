@@ -6,35 +6,11 @@ import theme from '../../styles/themes';
 import { Avatar, Icon, Text, Tag } from '../index';
 import CardBack from './CardBack/CardBack';
 import * as S from './Card.style';
+import { Folder } from '../../shared/DummyDataType';
 
-interface Tags {
-  id: number;
-  text: string;
-}
-interface User {
-  image: string;
-  name: string;
-}
-interface BookMarks {
-  id: number;
-  image: string;
-  title: string;
-  url: string;
-}
-
-interface Data {
-  id: number;
-  image: string;
-  title: string;
-  tags: Tags[];
-  user: User;
-  createdAt: string;
-  likes: number;
-  bookmarks: BookMarks[];
-}
 
 interface Props {
-  data: Data;
+  data: Folder;
   version?: string;
   shrinking?: boolean;
 }
@@ -45,7 +21,12 @@ const defaultProps = {
   shrinking: true,
 };
 
-const Card = ({ data, version, shrinking, ...styles }: Props) => {
+
+const Card = ({ data, version,shrinking, ...styles }: Props) => {
+  const author = 'Miral'; // 나중에 수정
+  const authorImage =
+    'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'; // 나중에 수정
+
   const router = useRouter();
   const [reverseCard, setReverseCard] = useState(false);
 
@@ -78,10 +59,10 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
               <S.Title>{data.title}</S.Title>
             </S.TitleWrapper>
             <S.TagWrapper>
-              <Tag tagItems={data.tags} shrinking={shrinking} />
+              <Tag tagItems={data.tags!} shrinking={shrinking}/>
             </S.TagWrapper>
             <S.Info version={version}>
-              <Avatar name={data.user.name} src={data.user.image} />
+              <Avatar name={author} src={authorImage} />
               <div>
                 <Text size={theme.fontSize.c[1]}>{data.createdAt}</Text>
                 {version === 'othersCard' && (
