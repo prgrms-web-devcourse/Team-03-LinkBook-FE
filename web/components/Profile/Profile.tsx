@@ -5,7 +5,7 @@ import * as S from './Profile.style';
 
 interface Props {
   iconSize: number | string;
-  version: 'comment' | 'profile';
+  version: 'comment' | 'profile' | 'author';
   user: UserInfo;
   onClick?: MouseEventHandler;
   createdAt?: string;
@@ -20,7 +20,7 @@ const Profile = ({ iconSize, version, user, onClick, createdAt }: Props) => {
   const { name, image, introduce } = user;
 
   return (
-    <S.Container>
+    <S.Container version={version}>
       <S.IconContainer size={iconSize} onClick={onClick}>
         <Avatar size={iconSize} src={image} />
       </S.IconContainer>
@@ -28,9 +28,11 @@ const Profile = ({ iconSize, version, user, onClick, createdAt }: Props) => {
         <S.Name version={version} onClick={onClick}>
           {name}
         </S.Name>
-        <S.Description version={version}>
-          {createdAt ? createdAt : introduce}
-        </S.Description>
+        {version !== 'author' && (
+          <S.Description version={version}>
+            {createdAt ? createdAt : introduce}
+          </S.Description>
+        )}
       </S.TextContainer>
     </S.Container>
   );

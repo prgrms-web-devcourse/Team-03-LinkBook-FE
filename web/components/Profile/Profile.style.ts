@@ -3,15 +3,16 @@ import styled from '@emotion/styled';
 
 interface Props {
   size?: number | string;
-  version?: 'comment' | 'profile';
+  version?: 'comment' | 'profile' | 'author';
 }
 
 export const Container = styled.div`
   max-width: 1100px;
   height: auto;
   display: flex;
-  gap: 15px;
+  gap: ${({ version }: Props) => (version === 'author' ? '10px' : '15px')};
   padding: 5px 0;
+  align-items: center;
 `;
 
 export const IconContainer = styled.div`
@@ -40,6 +41,10 @@ const ProfileName = ({ theme }: ThemeProps) => css`
   font-size: ${theme.fontSize.h[1]};
 `;
 
+const AuthorName = ({ theme }: ThemeProps) => css`
+  font-size: ${theme.fontSize.b[2]};
+`;
+
 export const Name = styled.h1`
   font-weight: bold;
   cursor: pointer;
@@ -54,6 +59,8 @@ export const Name = styled.h1`
         return CommentName;
       case 'profile':
         return ProfileName;
+      case 'author':
+        return AuthorName;
       default:
         return ProfileName;
     }
