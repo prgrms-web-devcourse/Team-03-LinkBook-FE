@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Input, Button } from '../../../components';
+import { Input, Button } from '../../components';
 
 export const ContentContainer = styled.div`
   display: flex;

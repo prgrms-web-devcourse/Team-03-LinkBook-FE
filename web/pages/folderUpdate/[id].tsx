@@ -1,5 +1,5 @@
-import { Switch } from '../componenets';
-import * as S from './index.style';
+import { Switch } from './componenets';
+import * as S from './folderUpdate.style';
 import {
   Input,
   ImageUpload,
@@ -7,9 +7,9 @@ import {
   BookmarkList,
   Button,
   Modal,
-} from '../../../components';
+} from '../../components';
 import { useRef, useState } from 'react';
-import { allFolders } from '../../../shared/DummyData';
+import { allFolders } from '../../shared/DummyData';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
