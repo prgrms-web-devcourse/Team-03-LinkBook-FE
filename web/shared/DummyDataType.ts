@@ -7,11 +7,6 @@ export interface UserInfo {
   interest?: string[];
 }
 
-export interface Tag {
-  id: number;
-  text: string;
-}
-
 export interface SpecificUserFolders {
   folders: Folder[];
   user: UserInfo;

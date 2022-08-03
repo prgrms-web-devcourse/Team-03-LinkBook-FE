@@ -4,7 +4,8 @@ import { UserInfo, SpecificUserFolders, Folder } from './DummyDataType';
 export const myInfo: UserInfo = {
   email: 'example1@gmail.com',
   name: '익명의 사용자',
-  image: '',
+  image:
+    'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
   interest: ['개발', '쇼핑'],
 };
 
@@ -266,7 +267,7 @@ export const allFolders: Folder[] = [
     image:
       'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
     title: '일주일 자취 음식 레시피 모음! 어느새 나도 요리사?',
-    tags: ['코딩', '개발', '취미'],
+    tags: ['프론트엔드 개발자', '개발자', '프론트엔드'],
     user: {
       image:
         'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
@@ -376,7 +377,7 @@ export const allFolders: Folder[] = [
     image:
       'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
     title: '프론트엔드 개발자를 위한 학습 로드맵',
-    tags: ['코딩', '개발', '취미'],
+    tags: ['프론트엔드 개발자', '개발자', '프론트엔드'],
     user: {
       image:
         'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
@@ -477,7 +478,7 @@ export const allFolders: Folder[] = [
     image:
       'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
     title: '깃허브 유용한 레포 모음 - 개발자.ver',
-    tags: ['코딩', '개발', '취미'],
+    tags: ['프론트엔드 개발자', '개발자', '프론트엔드'],
     user: {
       image:
         'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
@@ -578,7 +579,7 @@ export const allFolders: Folder[] = [
     image:
       'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
     title: '일주일 자취 음식 레시피 모음! 어느새 나도 요리사?',
-    tags: ['코딩', '개발', '취미'],
+    tags: ['프론트엔드 개발자', '개발자', '프론트엔드'],
     user: {
       image:
         'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
@@ -679,7 +680,7 @@ export const allFolders: Folder[] = [
     image:
       'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
     title: '프론트엔드 개발자를 위한 학습 로드맵',
-    tags: ['코딩', '개발', '취미'],
+    tags: ['프론트엔드 개발자', '개발자', '프론트엔드'],
     user: {
       image:
         'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
@@ -780,7 +781,7 @@ export const allFolders: Folder[] = [
     image:
       'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
     title: '깃허브 유용한 레포 모음 - 개발자.ver',
-    tags: ['코딩', '개발', '취미'],
+    tags: ['프론트엔드 개발자', '개발자', '프론트엔드'],
     user: {
       image:
         'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
@@ -877,3 +878,4 @@ export const allFolders: Folder[] = [
     ],
   },
 ];
+
