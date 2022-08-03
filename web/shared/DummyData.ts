@@ -173,7 +173,7 @@ export const specificFolder: Folder = {
       updatedAt: '2022-08-02',
       children: [
         {
-          id: 1,
+          id: 2,
           content: '도움이 많이 되었습니다.2',
           user: {
             id: 2,
@@ -185,7 +185,7 @@ export const specificFolder: Folder = {
           updatedAt: '2022-08-03',
         },
         {
-          id: 1,
+          id: 3,
           content: '도움이 많이 되었습니다.3',
           user: {
             id: 2,
@@ -223,10 +223,10 @@ export const specificFolder: Folder = {
           updatedAt: '2022-08-03',
         },
         {
-          id: 111,
+          id: 112,
           content: '도움이 많이 되었습니다.6',
           user: {
-            id: 12,
+            id: 13,
             name: '대댓글작성자2',
             image:
               'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',

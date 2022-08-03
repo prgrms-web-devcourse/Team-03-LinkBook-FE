@@ -54,7 +54,7 @@ const folderDetailPage = () => {
             <S.Date>2022-07-21</S.Date>
           </S.ProfileItems>
           <S.TagItems>
-            <Tag tagItems={tags} />
+            <Tag tagItems={tags} shrinking />
           </S.TagItems>
           <S.ImageContainer>
             <Image
