@@ -41,8 +41,8 @@ const ProfileName = ({ theme }: ThemeProps) => css`
   font-size: ${theme.fontSize.h[1]};
 `;
 
-const AuthorName = ({ theme }: ThemeProps) => css`
-  font-size: ${theme.fontSize.b[2]};
+const TextBody01 = ({ theme }: ThemeProps) => css`
+  font-size: ${theme.fontSize.b[1]};
 `;
 
 export const Name = styled.h1`
@@ -60,7 +60,7 @@ export const Name = styled.h1`
       case 'profile':
         return ProfileName;
       case 'author':
-        return AuthorName;
+        return TextBody01;
       default:
         return ProfileName;
     }
@@ -69,10 +69,6 @@ export const Name = styled.h1`
 
 const CommentDescription = ({ theme }: ThemeProps) => css`
   font-size: ${theme.fontSize.c[0]};
-`;
-
-const ProfileDescription = ({ theme }: ThemeProps) => css`
-  font-size: ${theme.fontSize.b[1]};
 `;
 
 export const Description = styled.p`
@@ -84,9 +80,9 @@ export const Description = styled.p`
       case 'comment':
         return CommentDescription;
       case 'profile':
-        return ProfileDescription;
+        return TextBody01;
       default:
-        return ProfileDescription;
+        return TextBody01;
     }
   }};
 `;
