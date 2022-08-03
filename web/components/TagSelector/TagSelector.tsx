@@ -45,7 +45,9 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   };
 
   const handleClickResultItem = (e: React.MouseEvent<HTMLLIElement>) => {
-    handleAddTag(e);
+    const target = e.currentTarget;
+    const value = target.innerText;
+    handleAddTag(value);
     handleResetSelector();
   };
 
@@ -55,9 +57,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
     setActiveItem(0);
   };
 
-  const handleAddTag = (e: React.MouseEvent<HTMLLIElement>) => {
-    const target = e.currentTarget;
-    const value = target.innerText;
+  const handleAddTag = (value: string) => {
     const updatedData = new Set([...selectedTag, value]);
     setSelectedTag(Array.from(updatedData));
   };
@@ -72,7 +72,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!inputResultVisible) {
+    if (!inputResultVisible || e.keyCode === 229) {
       return;
     }
 
@@ -93,7 +93,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
         }
         break;
       case 'Enter':
-        setSelectedTag([...selectedTag, autoCompleteSearch[activeItem]]);
+        handleAddTag(autoCompleteSearch[activeItem]);
         handleResetSelector();
         break;
       case 'Escape':
@@ -102,7 +102,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
         break;
       default:
         setActiveItem(0);
-        break;
+      // break;
     }
   };
 
