@@ -1,17 +1,9 @@
-import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Category, Pagination, Profile } from '../../components';
 import { myInfo } from '../../shared/DummyData';
 import FolderListDummy from '../../shared/folderListPageDummy';
 import * as S from './user.style';
-
-const ProfileWrapper = styled.div`
-  max-width: 1100px;
-  width: 100%;
-  margin: 160px auto 30px auto;
-  text-align: left;
-`;
 
 const UserPage = () => {
   const userId = '1'; // Todo: recoil로 받아옴
@@ -39,9 +31,14 @@ const UserPage = () => {
 
   return (
     <S.PageContainer>
-      <ProfileWrapper>
+      <S.ProfileWrapper>
         <Profile user={user} />
-      </ProfileWrapper>
+        {id === userId && (
+          <S.ProfileModifyBtn>
+            <S.ProfileModifyText>내 정보 수정</S.ProfileModifyText>
+          </S.ProfileModifyBtn>
+        )}
+      </S.ProfileWrapper>
       <S.CategoryWrapper>
         <pre>
           <S.DescriptionText>
