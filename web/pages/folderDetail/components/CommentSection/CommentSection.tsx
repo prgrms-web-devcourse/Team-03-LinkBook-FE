@@ -1,6 +1,6 @@
 import * as S from './CommentSection.style';
 import { CommentInput } from '../../../../components';
-import CommentList from '../CommentList';
+import CommentList from './CommentList';
 import { specificFolder } from '../../../../shared/DummyData';
 
 interface Props {
