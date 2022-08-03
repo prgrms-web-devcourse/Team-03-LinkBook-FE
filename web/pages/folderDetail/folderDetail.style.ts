@@ -39,7 +39,9 @@ export const ProfileItems = styled.div`
   align-items: center;
 `;
 
-export const TagItems = styled.div``;
+export const TagItems = styled.div`
+  margin: 5px 5px 10px 5px;
+`;
 
 export const ImageContainer = styled.div`
   max-width: 1200px;

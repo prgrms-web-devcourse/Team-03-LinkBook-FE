@@ -12,7 +12,7 @@ interface Props {
 }
 
 const defaultProps = {
-  iconSize: 100,
+  iconSize: 120,
   version: 'profile',
 };
 

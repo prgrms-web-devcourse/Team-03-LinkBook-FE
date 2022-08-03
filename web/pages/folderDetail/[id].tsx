@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { BookmarkList, CommentInput, Icon, Profile } from '../../components';
+import {
+  BookmarkList,
+  CommentInput,
+  Icon,
+  Profile,
+  Tag,
+} from '../../components';
 import { specificFolder } from '../../shared/DummyData';
 import { CommentList } from './components';
 import * as S from './folderDetail.style';
@@ -47,6 +53,9 @@ const folderDetailPage = () => {
             <Profile iconSize={35} user={user} version="author" />
             <S.Date>2022-07-21</S.Date>
           </S.ProfileItems>
+          <S.TagItems>
+            <Tag tagItems={tags} />
+          </S.TagItems>
           <S.ImageContainer>
             <Image
               src={image}
