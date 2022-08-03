@@ -27,7 +27,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
       <S.Container>
         <S.InputContainer>
           <S.TextInput
-            placeholder="댓글을 입력해주세요."
+            placeholder={placeholderText}
             ref={ref}
             onChange={handleChange}
           />

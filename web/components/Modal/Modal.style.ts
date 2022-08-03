@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 // Modal Component
 export const Container = styled.div`
-  position: absolute;
+  position: fixed;
   top: calc(50% - 295px);
   left: calc(50% - 255px);
   z-index: 30;
@@ -26,9 +26,8 @@ export const Container = styled.div`
 `;
 
 export const Dim = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
   z-index: 20;
   width: 100%;
