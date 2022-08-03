@@ -100,6 +100,42 @@ export const NotClickedButton = styled.button`
   }
 `;
 
+export const MyContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const PublicTag = styled.div`
+  max-width: 70px;
+  height: 28px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray[3]};
+  border: 1px solid;
+`;
+
+export const MyButtonsContainer = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.gray[3]};
+  font-size: ${({ theme }) => theme.fontSize.b[1]};
+`;
+
+export const ButtonUpdateDelete = styled.button`
+  border: none;
+  color: ${({ theme }) => theme.colors.gray[1]};
+  font-size: ${({ theme }) => theme.fontSize.b[1]};
+  background-color: transparent;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray[5]};
+  }
+`;
+
 // Comment
 export const CommentContainer = styled.div``;
 

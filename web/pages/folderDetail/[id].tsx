@@ -25,6 +25,23 @@ const folderDetailPage = () => {
     <S.Container>
       <S.ContentContainer>
         <S.TitleContainer>
+          {/* 추후에 글 작성자인지 확인하는 로직으로 변경 예정 */}
+          {id === String(user.id) && (
+            <S.MyContainer>
+              <S.MyButtonsContainer>
+                <S.PublicTag>{isPrivate ? 'Private' : 'Public'}</S.PublicTag>
+                {isPinned && (
+                  <S.PublicTag>
+                    <Icon name="ico_pin" size={20} />
+                  </S.PublicTag>
+                )}
+              </S.MyButtonsContainer>
+              <S.MyButtonsContainer>
+                <S.ButtonUpdateDelete>수정</S.ButtonUpdateDelete>|
+                <S.ButtonUpdateDelete>삭제</S.ButtonUpdateDelete>
+              </S.MyButtonsContainer>
+            </S.MyContainer>
+          )}
           <S.Title>{title}</S.Title>
           <S.ProfileItems>
             <Profile iconSize={35} user={user} version="author" />
@@ -66,9 +83,9 @@ const folderDetailPage = () => {
       </S.ContentContainer>
       {!isPrivate && (
         <S.CommentContainer>
-          <S.CommentTitle>4개의 댓글</S.CommentTitle>
+          <S.CommentTitle>{comments.length}개의 댓글</S.CommentTitle>
           <CommentInput />
-          <CommentList />
+          <CommentList comments={comments} />
         </S.CommentContainer>
       )}
     </S.Container>
