@@ -24,8 +24,8 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.h1`
   padding: 5px;
-  font-size: ${({ theme }) => theme.fontSize.t[0]};
   font-weight: bold;
+  font-size: ${({ theme }) => theme.fontSize.t[0]};
 `;
 
 export const Date = styled.p`
@@ -33,10 +33,10 @@ export const Date = styled.p`
 `;
 
 export const ProfileItems = styled.div`
-  margin: 5px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  margin: 5px;
 `;
 
 export const TagItems = styled.div`
@@ -50,12 +50,12 @@ export const ImageContainer = styled.div`
 `;
 
 export const Description = styled.div`
-  max-width: 1100px;
   width: 100%;
+  max-width: 1100px;
   margin: 50px auto;
   color: ${({ theme }) => theme.colors.gray[0]};
-  font-size: ${({ theme }) => theme.fontSize.b[0]};
   font-weight: 500;
+  font-size: ${({ theme }) => theme.fontSize.b[0]};
 `;
 
 export const BookmarksContainer = styled.div``;
@@ -67,8 +67,8 @@ export const ProfileContainer = styled.div`
 
 export const ButtonsContainer = styled.div`
   display: flex;
-  width: fit-content;
   gap: 10px;
+  width: fit-content;
   margin: 0 auto;
 `;
 
@@ -81,20 +81,20 @@ export const ButtonContainer = styled.div`
 export const ButtonDescription = styled.div`
   width: fit-content;
   margin: 0 auto;
-  font-size: ${({ theme }) => theme.fontSize.b[2]};
   color: ${({ theme }) => theme.colors.gray[3]};
+  font-size: ${({ theme }) => theme.fontSize.b[2]};
 `;
 
 export const NotClickedButton = styled.button`
-  width: 50px;
-  height: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  border-radius: 50px;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
   background-color: ${({ theme }) => theme.colors.gray[4]};
   border: none;
+  border-radius: 50px;
   cursor: pointer;
 
   &:hover {
@@ -110,12 +110,12 @@ export const MyContainer = styled.div`
 export const PublicTag = styled.div`
   max-width: 70px;
   height: 28px;
-  padding: 5px 10px;
-  border-radius: 20px;
   margin-bottom: 5px;
-  text-align: center;
+  padding: 5px 10px;
   color: ${({ theme }) => theme.colors.gray[3]};
+  text-align: center;
   border: 1px solid;
+  border-radius: 20px;
 `;
 
 export const MyButtonsContainer = styled.div`
@@ -127,10 +127,10 @@ export const MyButtonsContainer = styled.div`
 `;
 
 export const ButtonUpdateDelete = styled.button`
-  border: none;
   color: ${({ theme }) => theme.colors.gray[1]};
   font-size: ${({ theme }) => theme.fontSize.b[1]};
   background-color: transparent;
+  border: none;
   border-radius: 5px;
 
   &:hover {
@@ -142,11 +142,11 @@ export const ButtonUpdateDelete = styled.button`
 export const CommentContainer = styled.div``;
 
 export const SubTitle = styled.h2`
-  max-width: 1080px;
   width: 100%;
+  max-width: 1080px;
   margin: 20px auto;
-  font-size: ${({ theme }) => theme.fontSize.h[1]};
   font-weight: bold;
+  font-size: ${({ theme }) => theme.fontSize.h[1]};
 `;
 
 export const Line = styled.hr`
@@ -162,9 +162,9 @@ export const CommentInputContainer = styled.div`
 `;
 
 export const CommentTitle = styled.h2`
-  max-width: 1150px;
   width: 100%;
+  max-width: 1150px;
   margin: 20px auto;
-  font-size: ${({ theme }) => theme.fontSize.h[1]};
   font-weight: bold;
+  font-size: ${({ theme }) => theme.fontSize.h[1]};
 `;
