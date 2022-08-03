@@ -878,4 +878,3 @@ export const allFolders: Folder[] = [
     ],
   },
 ];
-
