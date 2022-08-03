@@ -7,7 +7,15 @@ interface Props {
   onClick: (item: string) => void;
   selectedItem: string;
   cardVersion: string;
+  isPinned?: boolean;
 }
+
+const defaultProps = {
+  data: [],
+  tabItems: [],
+  isLoading: false,
+  isPinned: false,
+};
 
 const Category = ({
   data,
@@ -16,6 +24,7 @@ const Category = ({
   onClick,
   selectedItem,
   cardVersion,
+  isPinned,
 }: Props) => {
   return (
     <>
@@ -31,12 +40,20 @@ const Category = ({
           <Skeleton width={340} height={400} repeat={data.length} />
         ) : (
           data.map((item: any) => (
-            <Card shrinking key={item.id} version={cardVersion} data={item} />
+            <Card
+              shrinking
+              isPinned={isPinned}
+              key={item.id}
+              version={cardVersion}
+              data={item}
+            />
           ))
         )}
       </S.CategoryCardWrapper>
     </>
   );
 };
+
+Category.defaultProps = defaultProps;
 
 export default Category;
