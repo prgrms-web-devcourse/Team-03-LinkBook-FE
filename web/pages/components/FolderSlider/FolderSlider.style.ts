@@ -42,6 +42,7 @@ export const CardList = styled.ul<Prop>`
 `;
 
 export const CardWrapper = styled.div<Prop>`
+  transition: 1s opacity;
   opacity: ${({active}) => active ? '1' : '0.4'};
   // active에 따라 클릭 이벤트 설정
   pointer-events: ${({active}) => active ? 'auto' : 'none'};
