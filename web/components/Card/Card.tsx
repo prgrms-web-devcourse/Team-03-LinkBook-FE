@@ -35,7 +35,7 @@ const Card = ({ data, version, shrinking, isPinned, ...styles }: Props) => {
   };
 
   const moveFolderDetailPage = () => {
-    router.push(`/detail/${data.id}`);
+    router.push(`/folderdetail/${data.id}`);
   };
 
   return (
