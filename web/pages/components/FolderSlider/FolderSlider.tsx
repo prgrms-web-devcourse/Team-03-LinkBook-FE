@@ -59,19 +59,21 @@ const FolderSlider = ({ data }: Props) => {
   }, []);
 
   useEffect(() => {
-    if (sliderRef.current) {
-      sliderRef.current.style.transition = `all 0.5s `;
-      if (winX > 660) {
-        if (currentIndex >= bookmarkCount - 3) {
-          setCurrentIndex(0);
-          sliderRef.current.style.transform = `translateX(-150px)`;
-        } else {
-          sliderRef.current.style.transform = `translateX(calc(-150px + (-315px * ${currentIndex}))`;
-        }
-      } else {
-        sliderRef.current.style.transform = `translateX(calc(-315px + (-315px * ${currentIndex}))`;
-      }
+    if (!sliderRef.current) {
+      return;
     }
+
+    sliderRef.current.style.transition = `all 0.5s `;
+    if (winX > 660) {
+      if (currentIndex > bookmarkCount - 3) {
+        setCurrentIndex(0);
+        sliderRef.current.style.transform = `translateX(-150px)`;
+        return;
+      }
+      sliderRef.current.style.transform = `translateX(calc(-150px + (-315px * ${currentIndex}))`;
+      return;
+    }
+    sliderRef.current.style.transform = `translateX(calc(-315px + (-315px * ${currentIndex}))`;
   }, [currentIndex, winX]);
 
   useEffect(() => {
