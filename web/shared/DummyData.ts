@@ -7,6 +7,7 @@ export const myInfo: UserInfo = {
   image:
     'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
   interest: ['개발', '쇼핑'],
+  introduce: '나는야 즐거운 삽질 전문가라네',
 };
 
 //특정 사용자의 폴더리스트 조회

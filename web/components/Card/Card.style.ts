@@ -3,6 +3,7 @@ import Text from '../Text';
 
 interface Props {
   version?: string;
+  isPinned?: boolean;
   reverseCard?: boolean;
 }
 
@@ -29,15 +30,41 @@ export const ContentContainer = styled.div`
   cursor: pointer;
 `;
 
-export const ImageWrapper = styled.div`
-  height: 200px;
+export const ImageWrapper = styled.div<Props>`
+  height: ${({ version }) => (version === 'myCard' ? '180px' : '200px')};
   overflow: hidden;
 `;
 
 export const Content = styled.div<Props>`
+  position: relative;
   padding: 16px;
   padding-bottom: ${({ version }) => (version === 'default' ? '0' : '16px')};
 `;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  z-index: 1000;
+`;
+
+export const StatusWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  border: 1px solid ${({ theme }) => theme.colors.gray[3]};
+  border-radius: 39px;
+  width: 65px;
+`;
+
+export const StatusText = styled(Text)`
+  padding: 2px 10px;
+  font-size: ${({ theme }) => theme.fontSize.b[1]};
+  color: ${({ theme }) => theme.colors.gray[3]};
+  font-weight: 400;
+`;
+
 
 export const TitleWrapper = styled.div`
   // title을 2줄만 받고 그 이상은 말줌임 표시 처리 합니다.

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Category, Pagination } from '../../components';
 import FolderListDummy from '../../shared/folderListPageDummy';
 import SearchBar from './components/SearchBar';
