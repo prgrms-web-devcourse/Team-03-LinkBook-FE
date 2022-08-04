@@ -15,7 +15,7 @@ const CommentSection = ({ params }: Props) => {
     <S.Container>
       {!isPrivate && (
         <>
-          <S.CommentTitle>{comments.length}개의 댓글</S.CommentTitle>
+          <S.Title>{comments.length}개의 댓글</S.Title>
           <CommentInput version="comment" />
           <CommentList comments={comments} />
         </>

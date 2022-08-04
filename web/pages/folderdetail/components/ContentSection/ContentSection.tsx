@@ -27,28 +27,28 @@ const ContentSection = ({ params }: Props) => {
         {params === String(user.id) && (
           <S.MyContainer>
             <S.MyButtonsContainer>
-              <S.PublicTag>{isPrivate ? 'Private' : 'Public'}</S.PublicTag>
+              <S.Tag>{isPrivate ? 'Private' : 'Public'}</S.Tag>
               {isPinned && (
-                <S.PublicTag>
+                <S.Tag>
                   <Icon name="ico_pin" size={20} />
-                </S.PublicTag>
+                </S.Tag>
               )}
             </S.MyButtonsContainer>
             <S.MyButtonsContainer>
-              <S.ButtonUpdateDelete>수정</S.ButtonUpdateDelete>|
-              <S.ButtonUpdateDelete>삭제</S.ButtonUpdateDelete>
+              <S.UpdateButton>수정</S.UpdateButton>|
+              <S.UpdateButton>삭제</S.UpdateButton>
             </S.MyButtonsContainer>
           </S.MyContainer>
         )}
-        <S.Title>{title}</S.Title>
-        <S.ProfileItems>
+        <S.TitleWrapper>{title}</S.TitleWrapper>
+        <S.ProfileContainer>
           <Profile iconSize={35} user={user} version="author" />
           <S.Date>{createdAt}</S.Date>
-        </S.ProfileItems>
-        <S.TagItems>
+        </S.ProfileContainer>
+        <S.TagWrapper>
           <Tag tagItems={tags} shrinking />
-        </S.TagItems>
-        <S.ImageContainer>
+        </S.TagWrapper>
+        <S.ImageWrapper>
           <Image
             src={image}
             width={1200}
@@ -56,29 +56,29 @@ const ContentSection = ({ params }: Props) => {
             layout="responsive"
             objectFit="cover"
           />
-        </S.ImageContainer>
+        </S.ImageWrapper>
         <S.Description>{content}</S.Description>
       </S.TitleContainer>
       <S.BookmarksContainer>
         <S.SubTitle>북마크 모음</S.SubTitle>
         <BookmarkList bookmarkItems={bookmarks} version="watch" />
       </S.BookmarksContainer>
-      <S.ProfileContainer>
+      <S.ProfileWrapper>
         <Profile user={user} />
-      </S.ProfileContainer>
+      </S.ProfileWrapper>
       <S.ButtonsContainer>
-        <S.ButtonContainer>
+        <S.ButtonWrapper>
           <S.NotClickedButton>
             <Icon name="likes_clicked_white" size={25} />
           </S.NotClickedButton>
           <S.ButtonDescription>{likes}</S.ButtonDescription>
-        </S.ButtonContainer>
-        <S.ButtonContainer>
+        </S.ButtonWrapper>
+        <S.ButtonWrapper>
           <S.NotClickedButton>
             <Icon name="copy_white" size={25} />
           </S.NotClickedButton>
           <S.ButtonDescription>스크랩</S.ButtonDescription>
-        </S.ButtonContainer>
+        </S.ButtonWrapper>
       </S.ButtonsContainer>
     </S.Container>
   );
