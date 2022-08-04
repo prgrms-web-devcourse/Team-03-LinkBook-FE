@@ -2,6 +2,7 @@ import * as S from './MainCategory.style';
 import { Category } from '../../../components';
 import { useState } from 'react';
 import CardDummyData from '../../../shared/categoryCardDummy';
+import { useRouter } from 'next/router';
 
 interface Props {
   data?: any;
@@ -10,6 +11,10 @@ interface Props {
 
 const MainCategory = ({ data, isLoading }: Props) => {
   const tabItems = ['인기순', '최신순', '댓글많은순'];
+  const router = useRouter();
+  const moveFolderListPage = () => {
+    router.push(`folderlist`);
+  };
   const [selectedItem, setSelectedItem] = useState(tabItems?.[0]);
 
   const changeTabItem = (item: string) => {
@@ -47,7 +52,9 @@ const MainCategory = ({ data, isLoading }: Props) => {
         cardVersion="othersCard"
       />
       <S.BtnWrapper>
-        <S.MoreBtn type="button">더보기+</S.MoreBtn>
+        <S.MoreBtn type="button" onClick={moveFolderListPage}>
+          더보기+
+        </S.MoreBtn>
       </S.BtnWrapper>
     </S.CategoryWrapper>
   );
