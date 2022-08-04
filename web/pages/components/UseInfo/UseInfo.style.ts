@@ -10,6 +10,7 @@ export const UseInfoContainer = styled.div`
   width: 100%;
   height: auto;
   padding: 156px 0;
+  margin-top: 156px;
   background-color: ${({ theme }) => theme.colors.mainLight[1]};
 `;
 
