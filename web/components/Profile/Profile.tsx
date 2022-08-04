@@ -16,10 +16,10 @@ const defaultProps = {
 };
 
 const Profile = ({ iconSize, version, user, createdAt }: Props) => {
+  const router = useRouter();
   const { id, name, image, introduce } = user;
 
   const handleClick = () => {
-    const router = useRouter();
     router.push(`/user/${id}`);
   };
 
