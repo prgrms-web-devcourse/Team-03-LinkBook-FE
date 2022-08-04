@@ -33,6 +33,13 @@ export const ContentContainer = styled.div`
 export const ImageWrapper = styled.div<Props>`
   height: ${({ version }) => (version === 'myCard' ? '180px' : '200px')};
   overflow: hidden;
+
+  &:hover {
+    .image {
+      transform: scale(1.1);
+      transition: all 0.3s 0.1s ease-out;
+    }
+  }
 `;
 
 export const Content = styled.div<Props>`
@@ -64,7 +71,6 @@ export const StatusText = styled(Text)`
   color: ${({ theme }) => theme.colors.gray[3]};
   font-weight: 400;
 `;
-
 
 export const TitleWrapper = styled.div`
   // title을 2줄만 받고 그 이상은 말줌임 표시 처리 합니다.

@@ -48,6 +48,7 @@ const Card = ({ data, version, shrinking, isPinned, ...styles }: Props) => {
         >
           <S.ImageWrapper version={version}>
             <Image
+              className="image"
               width="300px"
               height={206}
               src={data.image}
