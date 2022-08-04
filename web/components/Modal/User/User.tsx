@@ -2,8 +2,8 @@ import { Button, Input, ImageUpload } from '../../index';
 import * as S from '../Modal.style';
 
 const User = () => {
-  const addBookmark = () => {
-    console.log('북마크 등록');
+  const handleUpdate = () => {
+    console.log('회원정보 수정 완료');
   };
 
   return (
@@ -21,7 +21,7 @@ const User = () => {
         <Input placeholder="변경할 한 줄 소개" type="text" />
       </S.InputContainer>
       <S.ButtonContainer>
-        <Button type="button" onClick={addBookmark}>
+        <Button type="button" onClick={handleUpdate}>
           수정
         </Button>
       </S.ButtonContainer>
