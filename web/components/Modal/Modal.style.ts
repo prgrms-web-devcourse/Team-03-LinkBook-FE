@@ -65,6 +65,7 @@ export const CloseBtn = styled.button`
   background-color: transparent;
   border: none;
   border-radius: 50px;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray[5]};
