@@ -34,9 +34,7 @@ const UserPage = () => {
       <S.ProfileWrapper>
         <Profile user={user} />
         {id === userId && (
-          <S.ProfileModifyBtn>
-            <S.ProfileModifyText>내 정보 수정</S.ProfileModifyText>
-          </S.ProfileModifyBtn>
+          <S.ProfileModifyBtn type="button">내 정보 수정</S.ProfileModifyBtn>
         )}
       </S.ProfileWrapper>
       <S.CategoryWrapper>

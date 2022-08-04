@@ -120,6 +120,7 @@ export const UpdateButton = styled.button`
   background-color: transparent;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray[5]};
   }
