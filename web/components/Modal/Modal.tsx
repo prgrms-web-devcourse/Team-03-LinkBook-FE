@@ -5,9 +5,10 @@ import Login from './Login';
 import SignUp from './SignUp';
 import Bookmark from './Bookmark';
 import * as S from './Modal.style';
+import User from './User';
 
 interface Props {
-  version: 'login' | 'signUp' | 'firstLogin' | 'bookmark';
+  version: 'login' | 'signUp' | 'firstLogin' | 'bookmark' | 'user';
   show: boolean;
   closeFunc: MouseEventHandler;
   switchFunc?: MouseEventHandler;
@@ -28,6 +29,8 @@ const Modal = ({ version, show, closeFunc, switchFunc }: Props) => {
         return <SignUp />;
       case 'bookmark':
         return <Bookmark />;
+      case 'user':
+        return <User />;
       default:
         return <FirstLogin />;
     }

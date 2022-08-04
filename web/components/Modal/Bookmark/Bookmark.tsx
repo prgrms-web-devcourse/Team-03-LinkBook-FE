@@ -1,5 +1,4 @@
-import { MouseEventHandler } from 'react';
-import { Button, Input, Icon } from '../../index';
+import { Button, Input } from '../../index';
 import * as S from '../Modal.style';
 
 const Bookmark = () => {
@@ -18,8 +17,8 @@ const Bookmark = () => {
         </S.Description>
       </S.Title>
       <S.InputContainer>
-        <Input placeholder="북마크 제목" />
-        <Input placeholder="북마크 링크" />
+        <Input placeholder="북마크 제목" type="text" />
+        <Input placeholder="북마크 링크" type="text" />
       </S.InputContainer>
       <S.ButtonContainer>
         <Button type="button" onClick={addBookmark}>
