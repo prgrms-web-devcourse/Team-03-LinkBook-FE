@@ -51,7 +51,7 @@ const NavigationBar = ({ isLogin }: Props) => {
             </S.Logo>
           </Link>
           <S.Nav>
-            <Link href="/folderList" passHref>
+            <Link href="/folderlist" passHref>
               <S.NavItem>북마크리스트</S.NavItem>
             </Link>
             <Link href="/information" passHref>
@@ -63,7 +63,7 @@ const NavigationBar = ({ isLogin }: Props) => {
               <Avatar size={35} />
               <S.Line>|</S.Line>
               <S.UserContainer>
-                <Link href="/myPage" passHref>
+                <Link href="/user/1" passHref>
                   <S.NavItem>마이페이지</S.NavItem>
                 </Link>
                 <Button type="button" version="navBar">
