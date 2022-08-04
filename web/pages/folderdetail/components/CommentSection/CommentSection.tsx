@@ -8,7 +8,6 @@ interface Props {
 }
 
 const CommentSection = ({ params }: Props) => {
-  console.log(params);
   const { comments, isPrivate } = specificFolder;
 
   return (
