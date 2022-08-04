@@ -4,7 +4,7 @@ import * as S from './UseInfo.style';
 const UseInfo = () => {
   const router = useRouter();
   const moveInformationPage = () => {
-    router.push(`folderlist`);
+    router.push(`information`);
   };
 
   return (

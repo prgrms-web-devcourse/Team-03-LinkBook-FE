@@ -2,6 +2,7 @@ import { specificFolder } from '../../../../shared/DummyData';
 import * as S from './ContentSection.style';
 import { Icon, Profile, BookmarkList, Tag } from '../../../../components';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 interface Props {
   params?: string | string[];
@@ -20,6 +21,13 @@ const ContentSection = ({ params }: Props) => {
     tags,
     createdAt,
   } = specificFolder;
+
+  const router = useRouter();
+
+  const moveFolderUpdatePage = () => {
+    router.push(`/folderupdate/${params}`);
+  };
+
   return (
     <S.Container>
       <S.TitleContainer>
@@ -35,8 +43,10 @@ const ContentSection = ({ params }: Props) => {
               )}
             </S.MyButtonsContainer>
             <S.MyButtonsContainer>
-              <S.UpdateButton>수정</S.UpdateButton>|
-              <S.UpdateButton>삭제</S.UpdateButton>
+              <S.UpdateButton onClick={moveFolderUpdatePage}>
+                수정
+              </S.UpdateButton>
+              |<S.UpdateButton>삭제</S.UpdateButton>
             </S.MyButtonsContainer>
           </S.MyContainer>
         )}

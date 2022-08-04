@@ -10,6 +10,7 @@ import {
 } from '../../components';
 import { useRef, useState } from 'react';
 import { allFolders } from '../../shared/DummyData';
+import { useRouter } from 'next/router';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -22,6 +23,17 @@ const FolderUpdate = () => {
 
   const handleBookmark = () => {
     setShowBookmarkModal(!showBookmarkModal);
+  };
+
+  const router = useRouter();
+  const { id } = router.query;
+
+  const moveUserPage = () => {
+    router.push(`/user/1`); // 추후 전역에서 사용하는 user id 붙이기
+  };
+
+  const moveFolderDetailPage = () => {
+    router.push(`/folderdetail/${id}`);
   };
 
   return (
@@ -51,10 +63,12 @@ const FolderUpdate = () => {
         </S.ButtonWrapper>
       </S.ContentContainer>
       <S.ButtonWrapper>
-        <Button type="button" version="mainLight">
+        <Button type="button" version="mainLight" onClick={moveUserPage}>
           작성 취소
         </Button>
-        <Button type="submit">폴더 등록</Button>
+        <Button type="submit" onClick={moveFolderDetailPage}>
+          폴더 등록
+        </Button>
       </S.ButtonWrapper>
     </>
   );

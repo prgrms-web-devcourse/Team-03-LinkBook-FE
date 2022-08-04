@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { useRouter } from 'next/router';
 import { UserInfo } from '../../shared/DummyDataType';
 import { Avatar } from '../index';
 import * as S from './Profile.style';
@@ -7,7 +7,6 @@ interface Props {
   iconSize: number | string;
   version: 'comment' | 'profile' | 'author';
   user: UserInfo;
-  onClick?: MouseEventHandler;
   createdAt?: string;
 }
 
@@ -16,16 +15,21 @@ const defaultProps = {
   version: 'profile',
 };
 
-const Profile = ({ iconSize, version, user, onClick, createdAt }: Props) => {
-  const { name, image, introduce } = user;
+const Profile = ({ iconSize, version, user, createdAt }: Props) => {
+  const { id, name, image, introduce } = user;
+
+  const handleClick = () => {
+    const router = useRouter();
+    router.push(`/user/${id}`);
+  };
 
   return (
     <S.Container version={version}>
-      <S.IconContainer size={iconSize} onClick={onClick}>
+      <S.IconContainer size={iconSize} onClick={handleClick}>
         <Avatar size={iconSize} src={image} />
       </S.IconContainer>
       <S.TextContainer>
-        <S.Name version={version} onClick={onClick}>
+        <S.Name version={version} onClick={handleClick}>
           {name}
         </S.Name>
         {version !== 'author' && (
