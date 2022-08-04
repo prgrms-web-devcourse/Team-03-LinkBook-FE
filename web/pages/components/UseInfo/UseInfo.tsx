@@ -1,6 +1,12 @@
+import { useRouter } from 'next/router';
 import * as S from './UseInfo.style';
 
 const UseInfo = () => {
+  const router = useRouter();
+  const moveInformationPage = () => {
+    router.push(`folderlist`);
+  };
+
   return (
     <S.UseInfoContainer>
       <S.TextWrapper>
@@ -17,7 +23,7 @@ const UseInfo = () => {
         </S.Description>
       </S.TextWrapper>
       <S.ButtonWrapper>
-        <S.LinkButton type="submit">
+        <S.LinkButton type="button" onClick={moveInformationPage}>
           <S.LogoText version="logo">링북</S.LogoText>
           100% 활용법 ＞
         </S.LinkButton>
