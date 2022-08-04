@@ -1,14 +1,25 @@
 import type { NextPage } from 'next';
 import * as S from './index.style';
-import { MyFoldersAreaLogIn, MyFoldersAreaLogOut } from './components';
+import {
+  MainCategory,
+  MyFoldersAreaLogIn,
+  MyFoldersAreaLogOut,
+  UseInfo,
+} from './components';
 import { allFolders } from '../shared/DummyData';
 
 const MainPage: NextPage = () => {
+  const isLogined = true;
   return (
-    <S.Div>
-      {/* <MyFoldersAreaLogOut /> */}
-      <MyFoldersAreaLogIn data={allFolders} />
-    </S.Div>
+    <S.Container>
+      {isLogined ? (
+        <MyFoldersAreaLogIn data={allFolders} />
+      ) : (
+        <MyFoldersAreaLogOut />
+      )}
+      <MainCategory />
+      <UseInfo />
+    </S.Container>
   );
 };
 
