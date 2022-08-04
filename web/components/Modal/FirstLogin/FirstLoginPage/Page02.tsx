@@ -19,7 +19,7 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
         <br />
         <S.MainText>한 줄로 자신을 소개</S.MainText>해 주세요!
       </S.Title>
-      <Input placeholder="한 줄 소개" />
+      <Input placeholder="한 줄 소개" type="text" />
       <S.ButtonContainer>
         <Button type="button" onClick={handleNextPage}>
           다음 &gt;

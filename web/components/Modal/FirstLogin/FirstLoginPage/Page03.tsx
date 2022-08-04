@@ -21,7 +21,7 @@ const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
           추천해드려요.
         </S.Description>
       </S.Title>
-      <Input placeholder="관심사를 선택해주세요." />
+      <Input placeholder="관심사를 선택해주세요." type="text" />
       <S.ButtonContainer>
         <Button type="button" onClick={handleNextPage}>
           다음 &gt;

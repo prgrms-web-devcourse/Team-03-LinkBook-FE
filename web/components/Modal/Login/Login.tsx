@@ -13,7 +13,7 @@ const Login = ({ switchFunc }: Props) => {
         <S.MainText>Linkbook</S.MainText>에 오신것을 환영합니다! 🎉
       </S.Title>
       <S.InputContainer>
-        <Input placeholder="아이디(이메일)"></Input>
+        <Input placeholder="아이디(이메일)" type="text"></Input>
         <Input placeholder="비밀번호" type="password"></Input>
         <S.LoggedButton>
           <Icon name="btn_notChecked" size={25} />

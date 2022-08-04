@@ -16,12 +16,15 @@ const Page01 = ({ handlePage }: Props) => {
         <S.Description>이메일 형식으로 입력해 주세요!</S.Description>
       </S.Title>
       <S.InputContainer>
-        <Input placeholder="아이디(이메일)">
+        <Input placeholder="아이디(이메일)" type="text">
           <Button type="button" version="modal">
             인증번호 발송
           </Button>
         </Input>
-        <Input placeholder="이메일로 발송된 6자리 인증 코드를 입력해주세요.">
+        <Input
+          placeholder="이메일로 발송된 6자리 인증 코드를 입력해주세요."
+          type="number"
+        >
           <Button type="button" version="modal">
             인증
           </Button>

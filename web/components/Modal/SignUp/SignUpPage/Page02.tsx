@@ -21,8 +21,11 @@ const Page02 = ({ handlePage, onSignUp }: Props) => {
         </S.Description>
       </S.Title>
       <S.InputContainer>
-        <Input placeholder="비밀번호" />
-        <Input placeholder="비밀번호를 한번 더 입력해 주세요." />
+        <Input placeholder="비밀번호" type="password" />
+        <Input
+          placeholder="비밀번호를 한번 더 입력해 주세요."
+          type="password"
+        />
       </S.InputContainer>
       <S.ButtonContainer>
         <Button type="button" onClick={onSignUp}>

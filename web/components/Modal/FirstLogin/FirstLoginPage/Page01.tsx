@@ -15,7 +15,7 @@ const Page01 = ({ handleNextPage }: Props) => {
         <br />
         사용할 <S.MainText>닉네임</S.MainText>을 입력해 주세요.
       </S.Title>
-      <Input placeholder="닉네임" />
+      <Input placeholder="닉네임" type="text" />
       <S.ButtonContainer>
         <Button type="button" onClick={handleNextPage}>
           다음 &gt;
