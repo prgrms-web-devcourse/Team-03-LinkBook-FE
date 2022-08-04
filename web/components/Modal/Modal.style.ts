@@ -129,6 +129,11 @@ export const InputContainer = styled.div`
   gap: 20px;
 `;
 
+export const ImageUploadWrapper = styled.div`
+  width: fit-content;
+  margin: 10px auto 0 auto;
+`;
+
 export const LoggedButton = styled.button`
   display: flex;
   gap: 8px;
@@ -149,6 +154,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
   justify-content: center;
+  margin-top: 10px;
 `;
 
 export const PreviousButton = styled.div`
