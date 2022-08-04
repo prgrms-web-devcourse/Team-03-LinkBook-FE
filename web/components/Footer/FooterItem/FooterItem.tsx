@@ -2,7 +2,7 @@ import * as S from './FooterItem.style';
 
 interface TextProps {
   strong: string;
-  plane: string;
+  plain: string;
 }
 
 interface Props {
@@ -15,7 +15,7 @@ const defaultProps = {
   text: [
     {
       strong: '강력 3팀-Front',
-      plane: '프로그래머스 데브코스 프론트엔드 과정',
+      plain: '프로그래머스 데브코스 프론트엔드 과정',
     },
   ],
 };
@@ -25,11 +25,11 @@ const FooterItem = ({ title, textArr }: Props) => {
     <S.Container>
       <S.Title>{title}</S.Title>
       {textArr.map((text, index) => {
-        const { strong, plane } = text;
+        const { strong, plain } = text;
         return (
           <S.TextContainer key={index}>
             <S.Strong>{strong}</S.Strong>
-            <S.Plane>{plane}</S.Plane>
+            <S.Plane>{plain}</S.Plane>
           </S.TextContainer>
         );
       })}

@@ -6,38 +6,38 @@ const Footer = () => {
   const itemFrontText = [
     {
       strong: '강력 3팀-Front',
-      plane: '프로그래머스 데브코스 프론트엔드 과정',
+      plain: '프로그래머스 데브코스 프론트엔드 과정',
     },
     {
       strong: '팀장',
-      plane: 'STONY',
+      plain: 'STONY',
     },
     {
       strong: '팀원',
-      plane: 'HAEYUM | MIRAL | ONION',
+      plain: 'HAEYUM | MIRAL | ONION',
     },
     {
       strong: '한줄 소개',
-      plane: '강력 3팀 프론트엔드입니다.',
+      plain: '강력 3팀 프론트엔드입니다.',
     },
   ];
 
   const itemBackText = [
     {
       strong: '강력 3팀-Back',
-      plane: '프로그래머스 데브코스 백엔드 과정',
+      plain: '프로그래머스 데브코스 백엔드 과정',
     },
     {
       strong: '팀장',
-      plane: 'HOWARD',
+      plain: 'HOWARD',
     },
     {
       strong: '팀원',
-      plane: 'ELLA | RAN | HARRY | SMITH',
+      plain: 'ELLA | RAN | HARRY | SMITH',
     },
     {
       strong: '한줄 소개',
-      plane: '강력 3팀 백엔드입니다.',
+      plain: '강력 3팀 백엔드입니다.',
     },
   ];
 
