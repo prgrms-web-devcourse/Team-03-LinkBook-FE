@@ -39,7 +39,7 @@ const FolderUpdate = () => {
           placeholder="제목을 입력하세요"
         />
         <ImageUpload version="page" />
-        <CommentInput />
+        <CommentInput version="update" />
         <BookmarkList
           version="update"
           bookmarkItems={allFolders[0].bookmarks!}

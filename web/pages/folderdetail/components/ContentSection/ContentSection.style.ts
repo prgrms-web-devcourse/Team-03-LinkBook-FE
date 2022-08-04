@@ -11,7 +11,7 @@ export const TitleContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Title = styled.h1`
+export const TitleWrapper = styled.h1`
   padding: 5px;
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSize.t[0]};
@@ -21,18 +21,18 @@ export const Date = styled.p`
   font-size: ${({ theme }) => theme.fontSize.b[1]};
 `;
 
-export const ProfileItems = styled.div`
+export const ProfileContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 5px;
 `;
 
-export const TagItems = styled.div`
+export const TagWrapper = styled.div`
   margin: 5px 5px 10px 5px;
 `;
 
-export const ImageContainer = styled.div`
+export const ImageWrapper = styled.div`
   max-width: 1200px;
   overflow: hidden;
   border-radius: 5px;
@@ -49,7 +49,7 @@ export const Description = styled.div`
 
 export const BookmarksContainer = styled.div``;
 
-export const ProfileContainer = styled.div`
+export const ProfileWrapper = styled.div`
   width: 100%;
   margin: 50px auto 20px auto;
 `;
@@ -61,7 +61,7 @@ export const ButtonsContainer = styled.div`
   margin: 0 auto;
 `;
 
-export const ButtonContainer = styled.div`
+export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -95,7 +95,7 @@ export const MyContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const PublicTag = styled.div`
+export const Tag = styled.div`
   max-width: 70px;
   height: 28px;
   margin-bottom: 5px;
@@ -114,7 +114,7 @@ export const MyButtonsContainer = styled.div`
   font-size: ${({ theme }) => theme.fontSize.b[1]};
 `;
 
-export const ButtonUpdateDelete = styled.button`
+export const UpdateButton = styled.button`
   color: ${({ theme }) => theme.colors.gray[1]};
   font-size: ${({ theme }) => theme.fontSize.b[1]};
   background-color: transparent;

@@ -65,6 +65,7 @@ export const StatusText = styled(Text)`
   font-weight: 400;
 `;
 
+
 export const TitleWrapper = styled.div`
   // title을 2줄만 받고 그 이상은 말줌임 표시 처리 합니다.
   display: -webkit-box;
@@ -83,9 +84,6 @@ export const Title = styled(Text)`
 
 export const TagWrapper = styled.div`
   padding-top: 8px;
-  & > div > div {
-    font-size: 14px;
-  }
 `;
 
 export const Info = styled.div<Props>`

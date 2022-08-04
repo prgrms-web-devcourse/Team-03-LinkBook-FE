@@ -42,7 +42,7 @@ const CommentComponent = ({ comment }: Props) => {
         )}
       </S.ButtonContainer>
       <S.RepliesContainer>
-        {showInputArea && <CommentInput />}
+        {showInputArea && <CommentInput version="comment" />}
         {showReplies &&
           children?.map((child: Comment, index: number) => {
             return (

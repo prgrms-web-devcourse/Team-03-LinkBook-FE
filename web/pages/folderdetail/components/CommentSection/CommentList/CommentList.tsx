@@ -1,5 +1,5 @@
-import CommentComponent from '../../../../components/Comment';
-import { Comment } from '../../../../shared/DummyDataType';
+import CommentComponent from '../../../../../components/Comment';
+import { Comment } from '../../../../../shared/DummyDataType';
 import * as S from './CommentList.style';
 
 interface Props {
