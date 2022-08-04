@@ -1,17 +1,11 @@
-import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app';
-import { Footer, NavigationBar } from '../components';
-import GlobalStyle from '../styles/GlobalStyle';
-import theme from '../styles/themes';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <NavigationBar />
+    <Layout>
       <Component {...pageProps} />
-      <Footer />
-    </ThemeProvider>
+    </Layout>
   );
 }
 
