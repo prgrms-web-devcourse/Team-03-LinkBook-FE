@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import { Button, Text } from '../../../components';
+import { Button, Text } from '../../../../components';
 
 export const AreaContainer = styled.div`
   display: flex;

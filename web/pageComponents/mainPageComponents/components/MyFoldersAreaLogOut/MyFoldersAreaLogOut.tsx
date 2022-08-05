@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Modal } from '../../../components';
+import { Button, Modal } from '../../../../components';
 import * as S from './MyFoldersAreaLogOut.style';
 
 const MyFoldersAreaLogOut = () => {
