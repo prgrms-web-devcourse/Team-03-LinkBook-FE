@@ -1,12 +1,13 @@
 import type { NextPage } from 'next';
-import * as S from './index.style';
+import * as S from '../styles/pageStyles/index.style';
+
+import { allFolders } from '../shared/DummyData';
 import {
   MainCategory,
   MyFoldersAreaLogIn,
   MyFoldersAreaLogOut,
   UseInfo,
-} from './components';
-import { allFolders } from '../shared/DummyData';
+} from '../pageComponents/mainPageComponents/components';
 
 const MainPage: NextPage = () => {
   const isLogined = true;

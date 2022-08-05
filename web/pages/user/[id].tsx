@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Category, Modal, Pagination, Profile } from '../../components';
 import { myInfo } from '../../shared/DummyData';
 import FolderListDummy from '../../shared/folderListPageDummy';
-import * as S from './user.style';
+import * as S from '../../styles/pageStyles/user.style';
 
 const UserPage = () => {
   const userId = '1'; // Todo: recoil로 받아옴

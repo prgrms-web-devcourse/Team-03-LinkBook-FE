@@ -1,7 +1,7 @@
 import * as S from './MainCategory.style';
-import { Category } from '../../../components';
+import { Category } from '../../../../components';
 import { useState } from 'react';
-import CardDummyData from '../../../shared/categoryCardDummy';
+import CardDummyData from '../../../../shared/categoryCardDummy';
 import { useRouter } from 'next/router';
 
 interface Props {

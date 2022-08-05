@@ -1,8 +1,8 @@
-import { Text } from '../../../components';
+import { Text } from '../../../../components';
 import { FolderSlider } from '../index';
 import * as S from './MyFoldersAreaLogIn.style';
-import theme from '../../../styles/themes';
-import { Folder } from '../../../shared/DummyDataType';
+import theme from '../../../../styles/themes';
+import { Folder } from '../../../../shared/DummyDataType';
 import { useRouter } from 'next/router';
 
 interface Props {
