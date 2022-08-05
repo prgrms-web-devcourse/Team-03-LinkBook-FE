@@ -1,4 +1,4 @@
-export const BASE_URL = 'www.linkbook.tk/api';
+export const BASE_URL = 'http://linkbook.tk';
 
 // user
 export const USER = '/users';
