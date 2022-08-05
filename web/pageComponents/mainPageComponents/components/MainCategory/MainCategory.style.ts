@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button, Text } from '../../../components';
+import { Button, Text } from '../../../../components';
 
 export const CategoryWrapper = styled.div`
   display: flex;

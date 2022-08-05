@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button } from "../../../components";
+import { Button } from '../../../../components';
 
 export const Container = styled.div`
   display: flex;
@@ -18,11 +18,11 @@ export const Header = styled.div`
   text-align: center;
   line-height: 52px;
 
-  &>span {
+  & > span {
     font-size: inherit;
   }
-`
+`;
 
 export const StyledButton = styled(Button)`
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px
-`
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px;
+`;

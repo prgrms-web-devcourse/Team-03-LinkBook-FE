@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Card, Icon } from '../../../components';
+import { Card, Icon } from '../../../../components';
 import * as S from './FolderSlider.style';
-import { Folder } from '../../../shared/DummyDataType';
+import { Folder } from '../../../../shared/DummyDataType';
 
 interface Props {
   data: Folder[];

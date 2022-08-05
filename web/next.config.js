@@ -14,6 +14,9 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'www.google.com'],
   },
+	eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

@@ -1,5 +1,4 @@
-import { Switch } from './components';
-import * as S from './folderUpdate.style';
+import * as S from '../../styles/pageStyles/folderUpdate.style';
 import {
   Input,
   ImageUpload,
@@ -11,6 +10,7 @@ import {
 import { useRef, useState } from 'react';
 import { allFolders } from '../../shared/DummyData';
 import { useRouter } from 'next/router';
+import { Switch } from '../../pageComponents/folderupdateComponents/components';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);

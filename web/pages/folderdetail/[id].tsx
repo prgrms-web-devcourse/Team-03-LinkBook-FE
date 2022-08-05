@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
-import * as S from './folderDetail.style';
-import { ContentSection, CommentSection } from './components';
+import {
+  CommentSection,
+  ContentSection,
+} from '../../pageComponents/folderdetailComponents/components';
+import * as S from '../../styles/pageStyles/folderDetail.style';
 
 const folderDetailPage = () => {
   const router = useRouter();

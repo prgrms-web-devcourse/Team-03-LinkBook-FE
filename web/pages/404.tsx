@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import * as S from './index.style';
+import * as S from '../styles/pageStyles/index.style';
 
 const NotFoundPage: NextPage = () => {
   return (

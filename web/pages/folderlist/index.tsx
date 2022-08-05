@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Category, Pagination } from '../../components';
+import SearchBar from '../../pageComponents/folderlistComponents/components/SearchBar';
 import FolderListDummy from '../../shared/folderListPageDummy';
-import SearchBar from './components/SearchBar';
-import * as S from './index.style';
+import * as S from '../../styles/pageStyles/folderList.style';
 
 const FolderList = () => {
   const data = FolderListDummy;
