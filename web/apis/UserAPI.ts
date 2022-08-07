@@ -40,7 +40,7 @@ interface FieldProps {
 }
 
 // 내 정보 수정 성공
-export const patchUserInfo = async (
+export const updateUserInfo = async (
   name: string,
   image: string,
   interests: Array<FieldProps>,
