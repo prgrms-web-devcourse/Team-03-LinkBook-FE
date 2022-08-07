@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Icon } from "../components";
+import Modal from "../components/Modal";
 import * as S from "./MainPage.style";
 
 const MainPage = () => {
@@ -7,6 +8,7 @@ const MainPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [folderSelector, setFolderSelector] = useState("📁 북마크 폴더 선택 ▼");
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const getUrl = () => {
     chrome.tabs &&
@@ -29,6 +31,10 @@ const MainPage = () => {
 
   return (
     <S.Container>
+      <Modal
+        isVisible={modalVisible}
+        modalClose={() => setModalVisible(false)}
+      />
       <S.IconWraaper>
         <Icon name="logo" width={50} height={30} />
         <Icon
@@ -49,7 +55,9 @@ const MainPage = () => {
       </S.ImageWrapper>
       <S.UrlWrapper>{url}</S.UrlWrapper>
       <S.Input ref={inputRef} placeholder="북마크 이름" />
-      <S.FolderSelector>{folderSelector}</S.FolderSelector>
+      <S.FolderSelector onClick={() => setModalVisible(true)}>
+        {folderSelector}
+      </S.FolderSelector>
       <S.ButtonWrapper>
         <S.StoreButton disabled={buttonDisabled}>저장</S.StoreButton>
       </S.ButtonWrapper>
