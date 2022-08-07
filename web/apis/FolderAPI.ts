@@ -7,7 +7,13 @@ export const getFolderList = async (
   size: number,
   sort: string,
 ) => {
-  const res = await axios.get(`${FOLDERS}?page=0&size=10&sort=likes`); // 수정 필요
+  const res = await axios.get(`${FOLDERS}`, {
+    params: {
+      page,
+      size,
+      sort,
+    },
+  });
 
   console.log(res);
   return res;
@@ -21,9 +27,14 @@ export const getUserFolderList = async (
   size: number,
   sort: string,
 ) => {
-  const res = await axios.get(
-    `${FOLDERS}${USER}/${id}?isPrivate=false&page=0&size=10&sort=likes`,
-  ); // 수정 필요
+  const res = await axios.get(`${FOLDERS}${USER}/${id}`, {
+    params: {
+      isPrivate,
+      page,
+      size,
+      sort,
+    },
+  });
 
   console.log(res);
   return res;
