@@ -6,6 +6,7 @@ export const userSignUp = async (email: string, password: string) => {
   const res = await axios.post(`${USER}${SIGNUP}`, {
     email,
     password,
+    image: 'https://avatars.githubusercontent.com/u/72294509?v=4',
   });
 
   console.log(res);
@@ -14,9 +15,10 @@ export const userSignUp = async (email: string, password: string) => {
 
 // 로그인
 export const userLogin = async (email: string, password: string) => {
+  console.log(email, password);
   const res = await axios.post(`${USER}${LOGIN}`, {
-    email,
-    password,
+    email: 'user@gmail.com',
+    password: 'qwer123',
   });
 
   console.log(res);
