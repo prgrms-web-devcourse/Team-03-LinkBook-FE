@@ -15,20 +15,19 @@ export const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 50px;
 `;
 
 export const DescriptionText = styled(Text)`
   font-weight: 600;
-  font-size: ${({ theme }) => theme.fontSize.h[0]};
+  font-size: ${({ theme }) => theme.fontSize.h[1]};
   color: ${({ theme }) => theme.colors.black[1]};
 `;
 
 export const BoldText = styled(Text)`
   font-weight: 700;
-  font-size: ${({ theme }) => theme.fontSize.l[1]};
+  font-size: ${({ theme }) => theme.fontSize.h[0]};
   color: ${({ theme }) => theme.colors.black[1]};
 `;
 
