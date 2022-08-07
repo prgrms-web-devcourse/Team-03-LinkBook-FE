@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { Icon } from '../../../../components';
+import { Icon } from '../../../components';
 import * as S from './SearchBar.style';
 const SearchBar = () => {
   //TODO: Debounce적용

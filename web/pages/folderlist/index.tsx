@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Category, Pagination } from '../../components';
-import SearchBar from '../../pageComponents/folderlistComponents/components/SearchBar';
+import SearchBar from '../../pageComponents/folderlistComponents';
 import FolderListDummy from '../../shared/folderListPageDummy';
 import * as S from '../../styles/pageStyles/folderList.style';
 
