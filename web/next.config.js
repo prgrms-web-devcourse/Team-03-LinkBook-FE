@@ -2,12 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  async redirects() {
+  async rewrites() {
     return [
       {
-        source: '/:page/components/:file*',
-        destination: '/:page',
-        permanent: false,
+        source: '/api/:slug*',
+        destination: 'https://www.linkbook-api.ml/api/:slug*',
       },
     ];
   },
