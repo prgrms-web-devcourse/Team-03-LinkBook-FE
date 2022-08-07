@@ -1,8 +1,8 @@
-export const BASE_URL = 'http://linkbook.tk';
+export const BASE_URL = 'https://www.linkbook-api.ml/api';
+export const API = '/api';
 
 // user
 export const USER = '/users';
-
 export const SIGNUP = '/register';
 export const LOGIN = '/login';
 export const GET_USER_DATA = '/me';
