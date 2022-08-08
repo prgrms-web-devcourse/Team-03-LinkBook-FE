@@ -18,3 +18,12 @@ export interface Comments {
   comments: Comment[];
   isPrivate: boolean;
 }
+
+// req body type
+export interface CreateOrUpdateComment {
+  id?: number;
+  content: string;
+  folderId: number;
+  userId: number;
+  parentId: number;
+}
