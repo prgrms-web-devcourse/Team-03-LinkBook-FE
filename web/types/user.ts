@@ -19,3 +19,18 @@ export interface LogIn {
 export interface MyInfo {
   user: User;
 }
+
+export interface SignUpOrIn {
+  email: string;
+  password: string;
+}
+
+interface InterestsField {
+  field: string;
+}
+export interface UpdateInfo {
+  name: string;
+  image: string;
+  introduce: string;
+  interests: InterestsField[] | [];
+}
