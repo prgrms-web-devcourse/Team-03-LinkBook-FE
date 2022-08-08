@@ -1,8 +1,10 @@
-export type { LogIn, MyInfo } from './user';
+export type { LogIn, MyInfo, SignUpOrIn, UpdateInfo } from './user';
 export type {
   AllFolderList,
   SpecificUserFolderList,
   SpecificFolder,
   FolderCreateOrUpdate,
+  GetFolderList,
+  GetUserFolderList,
 } from './folder';
-export type { Comments } from './comment';
+export type { Comments, CreateOrUpdateComment } from './comment';
