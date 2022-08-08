@@ -1,8 +1,9 @@
 import axios from '.';
 import { USER, SIGNUP, LOGIN, GET_USER_DATA } from './url';
+import type { LogIn, SignUpOrIn, UpdateInfo } from '../types';
 
 // 회원가입
-export const userSignUp = async (email: string, password: string) => {
+export const userSignUp = async ({ email, password }: SignUpOrIn) => {
   const res = await axios.post(`${USER}${SIGNUP}`, {
     email,
     password,
@@ -14,11 +15,11 @@ export const userSignUp = async (email: string, password: string) => {
 };
 
 // 로그인
-export const userLogin = async (email: string, password: string) => {
+export const userLogin = async ({ email, password }: SignUpOrIn) => {
   console.log(email, password);
   const res = await axios.post(`${USER}${LOGIN}`, {
-    email: 'user@gmail.com',
-    password: 'qwer123',
+    email,
+    password,
   });
 
   console.log(res);
@@ -35,16 +36,12 @@ export const getUserInfo = async () => {
   return res;
 };
 
-interface FieldProps {
-  field: string;
-}
-
 // 내 정보 수정 성공
-export const updateUserInfo = async (
-  name: string,
-  image: string,
-  interests: Array<FieldProps>,
-) => {
+export const updateUserInfo = async ({
+  name,
+  image,
+  interests,
+}: UpdateInfo) => {
   const res = await axios.patch(`${USER}`, {
     name,
     image,
