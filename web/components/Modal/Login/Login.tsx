@@ -1,12 +1,22 @@
 import { MouseEventHandler } from 'react';
 import { Button, Input, Icon } from '../../index';
+import { useSetRecoilState } from 'recoil';
+
 import * as S from '../Modal.style';
+import { loginStatus } from '../../../recoil/authentication';
+import { setCookies } from '../../../util/cookies';
 
 interface Props {
   switchFunc?: MouseEventHandler;
 }
 
 const Login = ({ switchFunc }: Props) => {
+  const setLoginStatus = useSetRecoilState(loginStatus);
+  const handleLogin = () => {
+    setCookies('token', 'tempToken', '/');
+    setLoginStatus(true);
+  };
+
   return (
     <S.InnerContainer>
       <S.Title>
@@ -21,7 +31,9 @@ const Login = ({ switchFunc }: Props) => {
         </S.LoggedButton>
       </S.InputContainer>
       <S.ButtonContainer>
-        <Button type="button">로그인</Button>
+        <Button type="button" onClick={handleLogin}>
+          로그인
+        </Button>
       </S.ButtonContainer>
       {/* <S.ButtonContainer>
         <Button type="button">Kakao 로그인</Button>
