@@ -1,4 +1,4 @@
-import { MouseEventHandler, useCallback } from 'react';
+import { MouseEvent, MouseEventHandler, useCallback } from 'react';
 import { userLogin } from '../../../apis/UserAPI';
 import { Button, Input, Icon } from '../../index';
 import { useSetRecoilState } from 'recoil';
@@ -9,6 +9,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   switchFunc?: MouseEventHandler;
+  closeFunc: MouseEventHandler;
 }
 
 interface IFormInput {
@@ -16,30 +17,33 @@ interface IFormInput {
   password: string;
 }
 
-const Login = ({ switchFunc }: Props) => {
+const Login = ({ switchFunc, closeFunc }: Props) => {
   const setLoginStatus = useSetRecoilState(loginStatus);
-  const handleLogin = () => {
-    setCookies('token', 'tempToken', '/');
-    setLoginStatus(true);
-  };
-
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = useCallback(async (data) => {
-    console.log(data);
-    const { email, password } = data;
+  const onSubmit: any = useCallback(
+    async (data: IFormInput, e: MouseEvent<HTMLButtonElement>) => {
+      console.log(data);
+      const { email, password } = data;
 
-    try {
-      const res = await userLogin(email, password);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+      try {
+        const res: any = await userLogin(email, password);
+        const { accessToken, refreshToken } = res;
+
+        setCookies('ACCESS_TOKEN', accessToken, '/');
+        setCookies('REFRESH_TOKEN', refreshToken, '/');
+        setLoginStatus(true);
+        closeFunc(e);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [],
+  );
 
   return (
     <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
@@ -75,13 +79,13 @@ const Login = ({ switchFunc }: Props) => {
             <S.errorText role="alert">{errors.password.message}</S.errorText>
           )}
         </div>
-        <S.LoggedButton>
+        <S.LoggedButton type="button">
           <Icon name="btn_notChecked" size={25} />
           <S.LoggedText>로그인 상태 유지</S.LoggedText>
         </S.LoggedButton>
       </S.InputContainer>
       <S.ButtonContainer>
-        <Button type="submit" onClick={handleLogin} disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting}>
           로그인
         </Button>
       </S.ButtonContainer>

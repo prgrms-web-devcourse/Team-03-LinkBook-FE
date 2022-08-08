@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 export interface User {
   id: number;
   email: string;
@@ -10,8 +11,8 @@ export interface User {
 }
 
 export interface LogIn {
-  access_token: string;
-  refresh_token: string;
+  accessToken: string;
+  refreshToken: string;
   isFirstLogin: boolean;
   user: User;
 }

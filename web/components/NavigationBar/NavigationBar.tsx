@@ -32,7 +32,8 @@ const NavigationBar = ({ token }: Props) => {
   };
 
   const handleLogout = () => {
-    removeCookie('token');
+    removeCookie('ACCESS_TOKEN');
+    removeCookie('REFRESH_TOKEN');
     setLoginState(false);
   };
 
