@@ -10,10 +10,6 @@ interface Props {
   reverseCard: boolean;
 }
 
-const defaultProps = {
-  data: [],
-};
-
 const CardBack = ({
   data,
   handleRotateCard,
@@ -43,7 +39,5 @@ const CardBack = ({
     </S.Card>
   );
 };
-
-CardBack.defaultProps = defaultProps;
 
 export default CardBack;
