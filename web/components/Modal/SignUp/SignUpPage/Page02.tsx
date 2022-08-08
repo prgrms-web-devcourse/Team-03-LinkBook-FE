@@ -3,6 +3,7 @@ import { Button, Input, Icon } from '../../../index';
 import * as S from '../../Modal.style';
 import { useUserInfo } from '../contexts/UserProvider';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { userSignUp } from '../../../../apis/UserAPI';
 
 interface Props {
   handlePage: MouseEventHandler;
@@ -14,7 +15,7 @@ interface PasswordInput {
 
 const Page02 = ({ handlePage }: Props) => {
   const [isValidate, setIsValidate] = useState(true);
-  const { setPassword } = useUserInfo();
+  const { email, password, setPassword, removeUserInfo } = useUserInfo();
   const passwordRef = useRef<HTMLInputElement>(null);
   const {
     register,
@@ -22,18 +23,23 @@ const Page02 = ({ handlePage }: Props) => {
     formState: { errors },
   } = useForm<PasswordInput>();
 
-  const onSubmit: SubmitHandler<PasswordInput> = useCallback((data) => {
-    const { password } = data;
-
-    if (password !== passwordRef.current!.value) {
+  const onSubmit: SubmitHandler<PasswordInput> = useCallback(async (data) => {
+    if (data.password !== passwordRef.current.value) {
       setIsValidate(false);
       return;
     }
 
+    setPassword(data.password);
     setIsValidate(true);
-    console.log(password, passwordRef.current!.value);
-    setPassword(password);
-    // 회원가입 로직 작성
+
+    try {
+      console.log(email, password);
+      const res = await userSignUp(email, password);
+      console.log(res);
+      await removeUserInfo();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
