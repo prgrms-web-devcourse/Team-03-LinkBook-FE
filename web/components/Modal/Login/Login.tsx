@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, useCallback } from 'react';
+import { MouseEventHandler, useCallback } from 'react';
 import { userLogin } from '../../../apis/UserAPI';
 import { Button, Input, Icon } from '../../index';
 import { useSetRecoilState } from 'recoil';
@@ -25,9 +25,9 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
     formState: { isSubmitting, errors },
   } = useForm<IFormInput>();
 
-  const onSubmit: any = useCallback(
-    async (data: IFormInput, e: MouseEvent<HTMLButtonElement>) => {
-      console.log(data);
+  const onSubmit: SubmitHandler<IFormInput> = useCallback(
+    async (data, { target }) => {
+      console.log(data, target);
       const { email, password } = data;
 
       try {
@@ -37,7 +37,7 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
         setCookies('ACCESS_TOKEN', accessToken, '/');
         setCookies('REFRESH_TOKEN', refreshToken, '/');
         setLoginStatus(true);
-        closeFunc(e);
+        closeFunc(target);
       } catch (error) {
         console.log(error);
       }
