@@ -1,4 +1,3 @@
-export const BASE_URL = 'https://www.linkbook-api.ml/api';
 export const API = '/api';
 
 // user
