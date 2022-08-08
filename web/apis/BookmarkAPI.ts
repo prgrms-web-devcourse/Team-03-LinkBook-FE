@@ -4,10 +4,10 @@ import { BOOKMARKS } from './url';
 // 특정 북마크 수정
 // Headers : Access Token 필요
 export const updateBookmark = async (
-  id: string,
+  id: number,
   url: string,
   title: string,
-  folderId: string,
+  folderId: number,
 ) => {
   const res = await axios.put(`${BOOKMARKS}/${id}`, {
     url,
@@ -21,7 +21,7 @@ export const updateBookmark = async (
 
 // 특정 북마크 삭제
 // Headers : Access Token 필요
-export const deleteBookmark = async (id: string) => {
+export const deleteBookmark = async (id: number) => {
   const res = await axios.delete(`${BOOKMARKS}/${id}`);
 
   console.log(res);

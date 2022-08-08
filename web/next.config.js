@@ -6,7 +6,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:slug*',
-        destination: 'https://www.linkbook-api.ml/api/:slug*',
+        destination: 'https://www.linkbook-api.tk/api/:slug*',
       },
     ];
   },

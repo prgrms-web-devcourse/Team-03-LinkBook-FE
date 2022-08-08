@@ -2,7 +2,7 @@ import axios from '.';
 import { FOLDERS, COMMENTS } from './url';
 
 // 특정 폴더 댓글 조회
-export const getFolderComment = async (id: string) => {
+export const getFolderComment = async (id: number) => {
   const res = await axios.get(`${COMMENTS}${FOLDERS}/${id}`);
 
   console.log(res);
@@ -13,9 +13,9 @@ export const getFolderComment = async (id: string) => {
 // Headers : Access Token 필요
 export const createComment = async (
   content: string,
-  folderId: string,
-  userId: string,
-  parentId: string,
+  folderId: number,
+  userId: number,
+  parentId: number,
 ) => {
   const res = await axios.post(`${COMMENTS}`, {
     content,
@@ -31,11 +31,11 @@ export const createComment = async (
 // 댓글 수정
 // Headers : Access Token 필요
 export const updateComment = async (
-  id: string,
+  id: number,
   content: string,
-  folderId: string,
-  userId: string,
-  parentId: string,
+  folderId: number,
+  userId: number,
+  parentId: number,
 ) => {
   const res = await axios.put(`${COMMENTS}/${id}`, {
     content,
@@ -50,7 +50,7 @@ export const updateComment = async (
 
 // 댓글 삭제
 // Headers : Access Token 필요
-export const deleteComment = async (id: string) => {
+export const deleteComment = async (id: number) => {
   const res = await axios.put(`${COMMENTS}/${id}`);
 
   console.log(res);
