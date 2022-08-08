@@ -11,8 +11,6 @@ interface Props {
 }
 
 const defaultProps = {
-  data: [],
-  tabItems: [],
   isLoading: false,
   isPinned: false,
 };
