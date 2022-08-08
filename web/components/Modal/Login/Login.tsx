@@ -1,13 +1,19 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useCallback } from 'react';
+import { userLogin } from '../../../apis/UserAPI';
 import { Button, Input, Icon } from '../../index';
 import { useSetRecoilState } from 'recoil';
-
 import * as S from '../Modal.style';
 import { loginStatus } from '../../../recoil/authentication';
 import { setCookies } from '../../../util/cookies';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   switchFunc?: MouseEventHandler;
+}
+
+interface IFormInput {
+  email: string;
+  password: string;
 }
 
 const Login = ({ switchFunc }: Props) => {
@@ -17,21 +23,65 @@ const Login = ({ switchFunc }: Props) => {
     setLoginStatus(true);
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = useCallback(async (data) => {
+    console.log(data);
+    const { email, password } = data;
+
+    try {
+      const res = await userLogin(email, password);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
-    <S.InnerContainer>
+    <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
       <S.Title>
         <S.MainText>Linkbook</S.MainText>에 오신것을 환영합니다! 🎉
       </S.Title>
       <S.InputContainer>
-        <Input placeholder="아이디(이메일)" type="text"></Input>
-        <Input placeholder="비밀번호" type="password"></Input>
+        <div>
+          <Input
+            placeholder="아이디(이메일)"
+            type="text"
+            {...register('email', {
+              required: '이메일은 필수 입력입니다.',
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: '이메일 형식에 맞지 않습니다.',
+              },
+            })}
+          />
+          {errors.email && (
+            <S.errorText role="alert">{errors.email.message}</S.errorText>
+          )}
+        </div>
+        <div>
+          <Input
+            placeholder="비밀번호"
+            type="password"
+            {...register('password', {
+              required: '비밀번호는 필수 입력입니다.',
+            })}
+          />
+          {errors.password && (
+            <S.errorText role="alert">{errors.password.message}</S.errorText>
+          )}
+        </div>
         <S.LoggedButton>
           <Icon name="btn_notChecked" size={25} />
           <S.LoggedText>로그인 상태 유지</S.LoggedText>
         </S.LoggedButton>
       </S.InputContainer>
       <S.ButtonContainer>
-        <Button type="button" onClick={handleLogin}>
+        <Button type="submit" onClick={handleLogin} disabled={isSubmitting}>
           로그인
         </Button>
       </S.ButtonContainer>
