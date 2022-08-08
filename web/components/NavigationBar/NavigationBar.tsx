@@ -1,23 +1,39 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Avatar, Button, Icon, Text, Modal } from '../index';
+import { useRecoilState } from 'recoil';
+import { loginStatus } from '../../recoil/authentication';
+import nookies from 'nookies';
 import * as S from './NavigationBar.style';
+import { removeCookie } from '../../util/cookies';
+import { NextPageContext } from 'next';
 
-interface Props {
-  isLogin: boolean;
-}
-
-const defaultProps = {
-  isLogin: false,
+export const getServerSideProps = (ctx: NextPageContext) => {
+  const { token } = nookies.get(ctx);
+  return {
+    props: {
+      token,
+    },
+  };
 };
 
-const NavigationBar = ({ isLogin }: Props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(isLogin);
+interface Props {
+  token: string;
+}
+
+const NavigationBar = ({ token }: Props) => {
+  const [loginState, setLoginState] = useRecoilState(loginStatus);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!token);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   const handleLogin = () => {
     setShowLoginModal(!showLoginModal);
+  };
+
+  const handleLogout = () => {
+    removeCookie('token');
+    setLoginState(false);
   };
 
   const handleSignUp = () => {
@@ -30,8 +46,8 @@ const NavigationBar = ({ isLogin }: Props) => {
   };
 
   useEffect(() => {
-    setIsLoggedIn(isLogin);
-  }, [isLogin]);
+    setIsLoggedIn(loginState);
+  }, [loginState]);
 
   return (
     <>
@@ -69,6 +85,9 @@ const NavigationBar = ({ isLogin }: Props) => {
                 <Button type="button" version="navBar">
                   새 폴더 작성
                 </Button>
+                <Button type="button" version="navBar" onClick={handleLogout}>
+                  로그아웃
+                </Button>
               </S.UserContainer>
             </>
           ) : (
@@ -87,7 +106,5 @@ const NavigationBar = ({ isLogin }: Props) => {
     </>
   );
 };
-
-NavigationBar.defaultProps = defaultProps;
 
 export default NavigationBar;
