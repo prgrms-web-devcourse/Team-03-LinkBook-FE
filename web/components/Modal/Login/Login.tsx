@@ -1,6 +1,6 @@
-import { MouseEventHandler, useCallback } from 'react';
+import { MouseEventHandler, useCallback, useRef } from 'react';
 import { userLogin } from '../../../apis/UserAPI';
-import { Button, Input, Icon } from '../../index';
+import { Button, Input } from '../../index';
 import { useSetRecoilState } from 'recoil';
 import * as S from '../Modal.style';
 import { loginStatus } from '../../../recoil/authentication';
@@ -18,6 +18,7 @@ interface IFormInput {
 }
 
 const Login = ({ switchFunc, closeFunc }: Props) => {
+  const checkRef = useRef<HTMLInputElement>(null);
   const setLoginStatus = useSetRecoilState(loginStatus);
   const {
     register,
@@ -25,25 +26,24 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
     formState: { isSubmitting, errors },
   } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = useCallback(
-    async (data, { target }) => {
-      console.log(data, target);
-      const { email, password } = data;
+  const onSubmit: SubmitHandler<IFormInput> = useCallback(async (data, e) => {
+    e.preventDefault();
+    const isChecked = checkRef.current.checked;
+    const { email, password } = data;
 
-      try {
-        const res: any = await userLogin(email, password);
-        const { accessToken, refreshToken } = res;
+    try {
+      const res: any = await userLogin(email, password);
+      const { accessToken, refreshToken } = res;
 
-        setCookies('ACCESS_TOKEN', accessToken, '/');
-        setCookies('REFRESH_TOKEN', refreshToken, '/');
-        setLoginStatus(true);
-        closeFunc(target);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [],
-  );
+      if (isChecked) setCookies('REFRESH_TOKEN', refreshToken, '/');
+      setCookies('ACCESS_TOKEN', accessToken, '/');
+
+      setLoginStatus(true);
+      closeFunc(e.target);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
@@ -79,10 +79,10 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
             <S.errorText role="alert">{errors.password.message}</S.errorText>
           )}
         </div>
-        <S.LoggedButton type="button">
-          <Icon name="btn_notChecked" size={25} />
-          <S.LoggedText>로그인 상태 유지</S.LoggedText>
-        </S.LoggedButton>
+        <S.keepLoginWrapper>
+          <S.keepLoginInput type="checkbox" value="keepLogin" ref={checkRef} />
+          <S.keepLoginText>로그인 상태 유지</S.keepLoginText>
+        </S.keepLoginWrapper>
       </S.InputContainer>
       <S.ButtonContainer>
         <Button type="submit" disabled={isSubmitting}>
