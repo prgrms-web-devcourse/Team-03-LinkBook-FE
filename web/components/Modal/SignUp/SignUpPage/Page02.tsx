@@ -9,7 +9,7 @@ interface Props {
 
 const Page02 = ({ handlePage, onSignUp }: Props) => {
   return (
-    <>
+    <S.InnerContainer>
       <S.PreviousButton onClick={handlePage}>
         <Icon name="arrowLeft" size={30} />
       </S.PreviousButton>
@@ -32,7 +32,7 @@ const Page02 = ({ handlePage, onSignUp }: Props) => {
           회원가입 &gt;
         </Button>
       </S.ButtonContainer>
-    </>
+    </S.InnerContainer>
   );
 };
 
