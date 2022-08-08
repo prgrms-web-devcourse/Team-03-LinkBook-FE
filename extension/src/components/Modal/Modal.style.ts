@@ -2,11 +2,14 @@ import styled from "@emotion/styled";
 
 // Modal Component
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
   position: fixed;
   top: calc(50% - 125px);
   left: calc(50% - 120px);
   z-index: 30;
-  width: 240;
+  width: 240px;
   height: 250px;
   margin: 0 auto;
   background-color: #ffffff;
@@ -43,4 +46,11 @@ export const Dim = styled.div`
       opacity: 1;
     }
   }
+`;
+
+export const CloseButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
 `;

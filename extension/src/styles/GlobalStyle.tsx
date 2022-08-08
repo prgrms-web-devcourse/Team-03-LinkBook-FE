@@ -5,12 +5,16 @@ function GlobalStyle() {
   return (
     <Global
       styles={css`
+        @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
         ${reset}
         *, *::after, *::before {
           box-sizing: border-box;
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
-          font-family: "Noto Sans KR", sans-serif;
+        }
+        html {
+          border-radius: 15px;
         }
       `}
     />
