@@ -1,15 +1,15 @@
 import axios from '.';
+import { CreateBookmark } from '../types/bookmark';
 import { BOOKMARKS } from './url';
 
-// 특정 북마크 수정
+// 특정 북마크 생성
 // Headers : Access Token 필요
-export const updateBookmark = async (
-  id: number,
-  url: string,
-  title: string,
-  folderId: number,
-) => {
-  const res = await axios.put(`${BOOKMARKS}/${id}`, {
+export const updateBookmark = async ({
+  url,
+  title,
+  folderId,
+}: CreateBookmark) => {
+  const res = await axios.put(`${BOOKMARKS}`, {
     url,
     title,
     folderId,
