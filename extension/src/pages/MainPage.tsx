@@ -6,7 +6,10 @@ import * as S from "./MainPage.style";
 const MainPage = () => {
   const [url, setUrl] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const [folderSelector, setFolderSelector] = useState("📁 북마크 폴더 선택 ▼");
+  const [folderSelector, setFolderSelector] = useState({
+    id: 0,
+    title: "📁 북마크 폴더 선택",
+  });
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -21,7 +24,6 @@ const MainPage = () => {
   }, []);
 
   const handleTabsCallback = (url: string) => {
-    console.log(url);
     setUrl(url);
   };
 
@@ -29,11 +31,35 @@ const MainPage = () => {
     e.target.src = "/icons/defaultImg.png";
   };
 
+  const handleSubmit = () => {
+    if (
+      folderSelector.title === "📁 북마크 폴더 선택" ||
+      inputRef.current?.value === ""
+    ) {
+      console.log("북마크 이름을 작성해주세요");
+      return;
+    }
+
+    console.log("url: ", url);
+    console.log("folderId:", folderSelector.id);
+    console.log("title:", inputRef.current?.value);
+  };
+
+  const handleSelectFolder = (id: number, title: string) => {
+    setFolderSelector({
+      id,
+      title,
+    });
+    setButtonDisabled(false);
+    setModalVisible(false);
+  };
+
   return (
     <S.Container>
       <Modal
         isVisible={modalVisible}
         modalClose={() => setModalVisible(false)}
+        handleSelectFolder={handleSelectFolder}
       />
       <S.IconWraaper>
         <Icon name="logo" width={50} height={30} />
@@ -56,10 +82,12 @@ const MainPage = () => {
       <S.UrlWrapper>{url}</S.UrlWrapper>
       <S.Input ref={inputRef} placeholder="북마크 이름" />
       <S.FolderSelector onClick={() => setModalVisible(true)}>
-        {folderSelector}
+        {folderSelector.title} ▼
       </S.FolderSelector>
       <S.ButtonWrapper>
-        <S.StoreButton disabled={buttonDisabled}>저장</S.StoreButton>
+        <S.StoreButton onClick={handleSubmit} disabled={buttonDisabled}>
+          저장
+        </S.StoreButton>
       </S.ButtonWrapper>
     </S.Container>
   );

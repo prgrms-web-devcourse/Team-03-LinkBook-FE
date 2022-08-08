@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button } from "../components";
 
@@ -39,7 +38,7 @@ export const UrlWrapper = styled.div`
 
 export const Input = styled.input`
   padding: 12px 18px;
-  color: #bdbdbd;
+  color: #4f4f4f;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   font-size: 11px;
@@ -68,12 +67,8 @@ export const StoreButton = styled(Button)<{ disabled: boolean }>`
   background: #e0e0e0;
   border-radius: 56px;
 
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      background-color: #4285f4;
-      cursor: pointer;
-    `}
+  background-color: ${({ disabled }) => (disabled ? "#e0e0e0" : "#4285f4")};
+  cursor: ${({ disabled }) => disabled || "pointer"};
 `;
 
 export const ButtonWrapper = styled.div`
