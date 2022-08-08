@@ -1,20 +1,21 @@
-export interface LogIn {
-  access_token: string;
-  refresh_token: string;
-  email: string;
-  name: string;
-  image: string;
-  interest: string[];
-}
-
-export interface MyInfo {
+export interface User {
   id: number;
   email: string;
   name: string;
   image: string;
-  introduce: string | null;
-  role: string;
-  createdAt: string;
-  updatedAt: string;
-  interest: string[];
+  introduce: string;
+  role?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface LogIn {
+  access_token: string;
+  refresh_token: string;
+  isFirstLogin: boolean;
+  user: User;
+}
+
+export interface MyInfo {
+  user: User;
 }
