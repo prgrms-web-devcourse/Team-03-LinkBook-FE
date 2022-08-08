@@ -1,19 +1,13 @@
+import type { User } from './user';
+
 // 댓글 생성 또는 수정 후 받는 response
 export interface CommentCreateOrUpdate {
   id: number;
 }
 
-interface User {
-  id: number;
-  email: string;
-  name: string;
-  image: string;
-  introduce: string;
-}
-
 interface Comment {
   id: number;
-  children: Comment[];
+  children: Comment[] | [];
   content: string;
   user: User;
   createdAt: string;

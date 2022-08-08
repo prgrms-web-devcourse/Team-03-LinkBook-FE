@@ -1,7 +1,7 @@
 interface User {
   id: number;
   name: string;
-  image: string | null;
+  image: string;
 }
 
 interface Sort {
@@ -39,17 +39,19 @@ interface Bookmark {
 
 // 전체 폴더리스트 조회
 export interface AllFolderList {
-  content: Folder[];
-  pageable: Page;
-  last: boolean;
-  totalElements: number;
-  totalPages: number;
-  numberOfElements: number;
-  sort: Sort;
-  number: number;
-  first: boolean;
-  size: number;
-  empty: boolean;
+  folders: {
+    content: Folder[] | [];
+    pageable: Page;
+    last: boolean;
+    totalElements: number;
+    totalPages: number;
+    numberOfElements: number;
+    sort: Sort;
+    number: number;
+    first: boolean;
+    size: number;
+    empty: boolean;
+  };
 }
 
 // 특정사용자의 폴더리스트 조회
@@ -60,7 +62,9 @@ export interface SpecificUserFolderList {
 
 //특정 폴더 조회
 export interface SpecificFolder extends Folder {
-  bookmarks: Bookmark[];
+  content: string;
+  originId: string;
+  bookmarks: Bookmark[] | [];
 }
 
 // 폴더 생성 또는 수정 후 받는 response
