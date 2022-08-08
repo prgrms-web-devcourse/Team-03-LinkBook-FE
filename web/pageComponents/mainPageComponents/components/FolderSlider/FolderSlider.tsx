@@ -65,7 +65,7 @@ const FolderSlider = ({ data }: Props) => {
 
     sliderRef.current.style.transition = `all 0.5s `;
     if (winX > 660) {
-      if (currentIndex > bookmarkCount - 3) {
+      if (winX > 1280 && currentIndex > bookmarkCount - 3) {
         setCurrentIndex(0);
         sliderRef.current.style.transform = `translateX(-150px)`;
         return;
