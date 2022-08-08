@@ -1,12 +1,9 @@
 import axios from '.';
+import { GetFolderList, GetUserFolderList } from '../types';
 import { FOLDERS, USER } from './url';
 
 // 폴더 리스트 전체 조회 (페이지, 정렬)
-export const getFolderList = async (
-  page: number,
-  size: number,
-  sort: string,
-) => {
+export const getFolderList = async ({ page, size, sort }: GetFolderList) => {
   const res = await axios.get(`${FOLDERS}`, {
     params: {
       page,
@@ -20,13 +17,13 @@ export const getFolderList = async (
 };
 
 // 특정 사용자 폴더리스트 조회
-export const getUserFolderList = async (
-  id: string,
-  isPrivate: boolean,
-  page: number,
-  size: number,
-  sort: string,
-) => {
+export const getUserFolderList = async ({
+  id,
+  isPrivate,
+  page,
+  size,
+  sort,
+}: GetUserFolderList) => {
   const res = await axios.get(`${FOLDERS}${USER}/${id}`, {
     params: {
       isPrivate,

@@ -71,3 +71,18 @@ export interface SpecificFolder extends Folder {
 export interface FolderCreateOrUpdate {
   id: number;
 }
+
+// Req Body type
+export interface GetFolderList {
+  page: number;
+  size: number;
+  sort: string;
+}
+
+export interface GetUserFolderList {
+  id: string;
+  isPrivate: boolean;
+  page: number;
+  size: number;
+  sort: string;
+}
