@@ -1,7 +1,8 @@
 import * as S from '../../Modal.style';
 import { Button, Input } from '../../../index';
-import { MouseEventHandler, useCallback, useRef } from 'react';
+import { MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useUserInfo } from '../contexts/UserProvider';
 
 interface Props {
   handlePage: MouseEventHandler;
@@ -12,6 +13,8 @@ interface EmailInput {
 }
 
 const Page01 = ({ handlePage }: Props) => {
+  const [emailValue, setEmailValue] = useState('');
+  const { setEmail } = useUserInfo();
   const codeRef = useRef<HTMLInputElement>(null);
   const {
     register,
@@ -20,11 +23,13 @@ const Page01 = ({ handlePage }: Props) => {
   } = useForm<EmailInput>();
 
   const onSubmit: SubmitHandler<EmailInput> = useCallback((data) => {
-    console.log(data);
+    const { email } = data;
+    setEmailValue(email);
   }, []);
 
   const onValidateCode = () => {
-    console.log(codeRef.current!.value);
+    // 이메일 인증 과정 거쳐 전역에 email 저장
+    setEmail(emailValue);
   };
 
   return (

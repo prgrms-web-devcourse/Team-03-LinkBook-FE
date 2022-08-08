@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Page01, Page02 } from './SignUpPage';
+import UserProvider from './contexts/UserProvider';
 
 const SignUp = () => {
   const [page, setPage] = useState(0);
@@ -29,7 +30,7 @@ const SignUp = () => {
     }
   };
 
-  return <>{switchPage(page)}</>;
+  return <UserProvider>{switchPage(page)}</UserProvider>;
 };
 
 export default SignUp;
