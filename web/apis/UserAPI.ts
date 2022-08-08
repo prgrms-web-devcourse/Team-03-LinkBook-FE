@@ -1,4 +1,5 @@
 import axios from '.';
+import { LogIn } from '../types';
 import { USER, SIGNUP, LOGIN, GET_USER_DATA } from './url';
 
 // 회원가입
@@ -17,12 +18,12 @@ export const userSignUp = async (email: string, password: string) => {
 export const userLogin = async (email: string, password: string) => {
   console.log(email, password);
   const res = await axios.post(`${USER}${LOGIN}`, {
-    email: 'user@gmail.com',
-    password: 'qwer123',
+    email,
+    password,
   });
 
   console.log(res);
-  return res;
+  return res as unknown as LogIn;
 };
 
 // 로그아웃

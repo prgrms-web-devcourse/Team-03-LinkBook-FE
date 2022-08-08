@@ -6,6 +6,8 @@ import * as S from '../Modal.style';
 import { loginStatus } from '../../../recoil/authentication';
 import { setCookies } from '../../../util/cookies';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { LogIn } from '../../../types';
+import { AxiosResponse } from 'axios';
 
 interface Props {
   switchFunc?: MouseEventHandler;
@@ -32,7 +34,7 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
     const { email, password } = data;
 
     try {
-      const res: any = await userLogin(email, password);
+      const res: LogIn = await userLogin(email, password);
       const { accessToken, refreshToken } = res;
 
       if (isChecked) setCookies('REFRESH_TOKEN', refreshToken, '/');
@@ -41,6 +43,7 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
       setLoginStatus(true);
       closeFunc(e.target);
     } catch (error) {
+      alert('이메일 혹은 비밀번호가 일치하지 않습니다.');
       console.log(error);
     }
   }, []);
