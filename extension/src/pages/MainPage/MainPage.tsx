@@ -50,7 +50,6 @@ const MainPage = () => {
   };
 
   const handleFolderMade = (id: number, title: string) => {
-    console.log("run");
     setFolderSelector({
       ...folderSelector,
       id,
