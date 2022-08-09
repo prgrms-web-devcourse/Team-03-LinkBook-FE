@@ -8,15 +8,7 @@ interface IUserContext {
   removeUserInfo: Function;
 }
 
-const defaultValue = {
-  email: '',
-  setEmail: () => {},
-  password: '',
-  setPassword: () => {},
-  removeUserInfo: () => {},
-};
-
-const UserContext = createContext<IUserContext>(defaultValue);
+const UserContext = createContext<IUserContext>(null);
 export const useUserInfo = () => useContext(UserContext);
 
 const UserProvider = ({ children }: any) => {

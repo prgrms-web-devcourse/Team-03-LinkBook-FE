@@ -34,7 +34,7 @@ const Page02 = ({ handlePage }: Props) => {
 
     try {
       console.log(email, password);
-      const res = await userSignUp(email, password);
+      const res = await userSignUp({ email, password });
       console.log(res);
       await removeUserInfo();
     } catch (error) {
