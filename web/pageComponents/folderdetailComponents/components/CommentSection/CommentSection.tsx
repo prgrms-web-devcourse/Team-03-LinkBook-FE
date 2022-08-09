@@ -1,14 +1,14 @@
 import * as S from './CommentSection.style';
-import { CommentInput } from '../../../../components';
-import CommentList from './CommentList';
-import { specificFolder } from '../../../../shared/DummyData';
+import { CommentInput, Comment } from '../../../../components';
+import { Comments } from '../../../../types';
 
 interface Props {
-  params?: string | string[];
+  id?: string | string[];
+  data?: Comments;
 }
 
-const CommentSection = ({ params }: Props) => {
-  const { comments, isPrivate } = specificFolder;
+const CommentSection = ({ id, data }: Props) => {
+  const { comments, isPrivate } = data;
 
   return (
     <S.Container>
@@ -16,7 +16,9 @@ const CommentSection = ({ params }: Props) => {
         <>
           <S.Title>{comments.length}개의 댓글</S.Title>
           <CommentInput version="comment" />
-          <CommentList comments={comments} />
+          {comments?.map((comment) => {
+            return <Comment comment={comment} key={comment.id} />;
+          })}
         </>
       )}
     </S.Container>

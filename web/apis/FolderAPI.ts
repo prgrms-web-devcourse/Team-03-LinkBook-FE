@@ -1,3 +1,4 @@
+import { SpecificFolder } from './../types/folder';
 import axios from '.';
 import { GetFolderList, GetUserFolderList } from '../types';
 import { FOLDERS, USER } from './url';
@@ -38,11 +39,11 @@ export const getUserFolderList = async ({
 };
 
 // 특정 폴더 조회
-export const getFolder = async (id: number) => {
+export const getFolder = async (id: string | string[]) => {
   const res = await axios.get(`${FOLDERS}/${id}`);
 
   console.log(res);
-  return res;
+  return res as unknown as SpecificFolder;
 };
 
 // 폴더 생성 (북마크까지) => 미개발
@@ -56,7 +57,7 @@ export const createFolder = async () => {
 
 // 폴더 수정 (북마크까지) => 미개발
 // Headers : Access Token 필요
-export const updateFolder = async (id: number) => {
+export const updateFolder = async (id: string) => {
   const res = await axios.put(`${FOLDERS}/${id}`);
 
   console.log(res);
@@ -65,7 +66,7 @@ export const updateFolder = async (id: number) => {
 
 // 폴더 삭제
 // Headers : Access Token 필요
-export const deleteFolder = async (id: number) => {
+export const deleteFolder = async (id: string) => {
   const res = await axios.delete(`${FOLDERS}/${id}`);
 
   console.log(res);

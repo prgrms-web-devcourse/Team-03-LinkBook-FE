@@ -11,7 +11,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ['images.unsplash.com', 'www.google.com'],
+    domains: ['images.unsplash.com', 'www.google.com', 'cdn.inflearn.com'],
   },
   eslint: {
     ignoreDuringBuilds: true,
