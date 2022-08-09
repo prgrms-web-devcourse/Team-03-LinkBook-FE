@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Login from "./Login";
+import LoginPage from "./LoginPage";
 import MainPage from "./MainPage";
 
 const RootStack = () => {
@@ -8,7 +8,7 @@ const RootStack = () => {
   if (isLoggined) {
     page = <MainPage />;
   } else {
-    page = <Login />;
+    page = <LoginPage />;
   }
 
   return (

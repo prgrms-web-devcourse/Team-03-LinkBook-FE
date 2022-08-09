@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useRef, useState } from "react";
+import Button from "../../Button";
 
 const Container = styled.div`
   display: flex;
@@ -23,13 +24,18 @@ const SelectPrivateText = styled.div`
   font-weight: 500;
   font-size: 14px;
   color: #4285f4;
+  cursor: pointer;
 `;
 
-const MakeFolderButton = styled.button`
+const MakeFolderButton = styled(Button)`
   background-color: #4285f4;
   padding: 9.5px 31px;
   font-weight: 500;
   font-size: 14px;
+  position: absolute;
+  bottom: 10px;
+  border-radius: 56px;
+  cursor: pointer;
 `;
 
 interface Props {
@@ -45,7 +51,7 @@ const FolderModal02 = ({ handleMakeFolder, handelPrevPage }: Props) => {
     //폴더 생성
     //title,image,isPinned,isPrivate,tags:[],bookmarks:[]
     //response folder Id
-    if (inputRef.current && inputRef.current.value === "") {
+    if (inputRef.current && inputRef.current.value !== "") {
       handleMakeFolder(1, inputRef.current?.value);
     }
   };
