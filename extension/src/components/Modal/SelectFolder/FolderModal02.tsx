@@ -27,6 +27,27 @@ const SelectPrivateText = styled.div`
   cursor: pointer;
 `;
 
+const SelectRangeWrapper = styled.div`
+  padding: 7px;
+  overflow: scroll;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  border-top: 0;
+  border-radius: 5px;
+`;
+
+const SelectRange = styled.div`
+  padding: 6px 9px;
+  font-size: 11px;
+  line-height: 11px;
+  color: #4f4f4f;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+`;
+
 const MakeFolderButton = styled(Button)`
   background-color: #4285f4;
   padding: 9.5px 31px;
@@ -45,21 +66,37 @@ interface Props {
 
 const FolderModal02 = ({ handleMakeFolder, handelPrevPage }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isPrivate, setIsPrivate] = useState<boolean>();
+  const [isPrivate, setIsPrivate] = useState(false);
+  const [selectRangeOn, setSelectRangeOn] = useState<boolean>();
+  const [selectRangeText, setSelectRangeText] = useState("🔒 공개 범위 선택 ▼");
   const onMakeFolderBtnClick = () => {
+    if (!inputRef.current!.value) return alert("폴더이름을 작성해주세요");
+    if (selectRangeOn === undefined) return alert("공개 범위를 선택해주세요");
     //api
     //폴더 생성
     //title,image,isPinned,isPrivate,tags:[],bookmarks:[]
     //response folder Id
     if (inputRef.current && inputRef.current.value !== "") {
-      handleMakeFolder(1, inputRef.current?.value);
+      handleMakeFolder(1, inputRef.current.value);
     }
   };
 
   return (
     <Container>
       <FolderTitleInput ref={inputRef} placeholder="북마크이름" />
-      <SelectPrivateText>🔒 공개 범위 선택 ▼</SelectPrivateText>
+      <SelectPrivateText onClick={() => setSelectRangeOn((prev) => !prev)}>
+        {selectRangeText}
+      </SelectPrivateText>
+      {selectRangeOn && (
+        <SelectRangeWrapper onClick={() => setSelectRangeOn(false)}>
+          <SelectRange onClick={() => setSelectRangeText("나만보기")}>
+            나만보기
+          </SelectRange>
+          <SelectRange onClick={() => setSelectRangeText("전체공개")}>
+            전체공개
+          </SelectRange>
+        </SelectRangeWrapper>
+      )}
       <MakeFolderButton onClick={onMakeFolderBtnClick}>
         폴더 만들기
       </MakeFolderButton>
