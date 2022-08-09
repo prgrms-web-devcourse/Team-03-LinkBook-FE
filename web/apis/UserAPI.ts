@@ -1,5 +1,4 @@
 import axios from '.';
-import { LogIn } from '../types';
 import { USER, SIGNUP, LOGIN, GET_USER_DATA } from './url';
 import type { LogIn, SignUpOrIn, UpdateInfo } from '../types';
 

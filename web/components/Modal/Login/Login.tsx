@@ -7,7 +7,6 @@ import { loginStatus } from '../../../recoil/authentication';
 import { setCookies } from '../../../util/cookies';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LogIn } from '../../../types';
-import { AxiosResponse } from 'axios';
 
 interface Props {
   switchFunc?: MouseEventHandler;
@@ -34,7 +33,7 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
     const { email, password } = data;
 
     try {
-      const res: LogIn = await userLogin(email, password);
+      const res: LogIn = await userLogin({ email, password });
       const { accessToken, refreshToken } = res;
 
       if (isChecked) setCookies('REFRESH_TOKEN', refreshToken, '/');
