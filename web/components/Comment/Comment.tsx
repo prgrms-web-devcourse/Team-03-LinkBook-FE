@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { Comment } from '../../shared/DummyDataType';
 import { Profile, CommentInput } from '../index';
 import * as S from './Comment.style';
+import { Comment } from '../../types/comment';
 
 interface Props {
   comment: Comment;
+  folderId: number;
 }
 
-const CommentComponent = ({ comment }: Props) => {
+const CommentComponent = ({ comment, folderId }: Props) => {
   const [showReplies, setShowReplies] = useState(false);
   const [showInputArea, setShowInputArea] = useState(false);
   const { id, content, user, createdAt, children } = comment;
@@ -26,7 +27,7 @@ const CommentComponent = ({ comment }: Props) => {
         <Profile
           version="comment"
           user={user}
-          createdAt={createdAt}
+          createdAt={`${createdAt.slice(0, 10)} ${createdAt.slice(11, 19)}`}
           iconSize={50}
         />
       </S.ProfileContainer>
@@ -42,7 +43,9 @@ const CommentComponent = ({ comment }: Props) => {
         )}
       </S.ButtonContainer>
       <S.RepliesContainer>
-        {showInputArea && <CommentInput version="comment" />}
+        {showInputArea && (
+          <CommentInput version="comment" folderId={folderId} parentId={id} />
+        )}
         {showReplies &&
           children?.map((child: Comment, index: number) => {
             return (

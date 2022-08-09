@@ -1,21 +1,38 @@
 import { ChangeEvent, forwardRef, useState } from 'react';
+import { createComment } from '../../apis/CommentAPI';
 import Button from '../Button';
 import * as S from './CommentInput.style';
 
 interface Props {
   version: 'comment' | 'update';
+  folderId: number;
+  parentId?: number;
 }
 
 const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
-  ({ version = 'comment' }, ref) => {
+  ({ version = 'comment', folderId, parentId = null }, ref) => {
     const [value, setValue] = useState('');
 
     const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
       setValue(target.value);
     };
 
-    const handleClick = () => {
-      console.log(value, '클릭');
+    const handleCreateComment = async () => {
+      console.log(folderId, parentId, value);
+
+      try {
+        const res = await createComment({
+          content: value,
+          folderId,
+          userId: 4,
+          parentId,
+        });
+
+        console.log(res);
+      } catch (error) {
+        alert('문제가 발생했습니다.');
+        console.log(error);
+      }
     };
 
     const placeholderText =
@@ -35,7 +52,11 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
         </S.InputContainer>
         <S.ButtonContainer>
           {version === 'comment' && (
-            <Button type="submit" version="navBar" onClick={handleClick}>
+            <Button
+              type="button"
+              version="navBar"
+              onClick={handleCreateComment}
+            >
               댓글 작성
             </Button>
           )}
