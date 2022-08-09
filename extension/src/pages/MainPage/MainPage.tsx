@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import { Icon } from "../components";
-import Modal from "../components/Modal";
+import { Icon } from "../../components";
+import Modal from "../../components/Modal";
 
 import * as S from "./MainPage.style";
 
@@ -50,6 +50,7 @@ const MainPage = () => {
   };
 
   const handleFolderMade = (id: number, title: string) => {
+    console.log("run");
     setFolderSelector({
       ...folderSelector,
       id,

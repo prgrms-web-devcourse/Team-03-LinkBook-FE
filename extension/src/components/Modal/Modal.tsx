@@ -35,7 +35,7 @@ const Modal = ({ isVisible, handleFolderMade, modalClose }: Props) => {
       case 0:
         return (
           <FolderModal01
-            handleSelectFolder={handleFolderMade}
+            handleSelectFolder={handleModalClose}
             handleAddFolder={nextPage}
           />
         );
