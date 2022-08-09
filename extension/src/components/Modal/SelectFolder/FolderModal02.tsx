@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useRef, useState } from "react";
 import Button from "../../Button";
-import Icon from "../../Icon";
 
 const Container = styled.div`
   display: flex;
