@@ -1,14 +1,16 @@
-import { specificFolder } from '../../../../shared/DummyData';
 import * as S from './ContentSection.style';
 import { Icon, Profile, BookmarkList, Tag } from '../../../../components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { SpecificFolder } from '../../../../types';
 
 interface Props {
-  params?: string | string[];
+  id?: string | string[];
+  data?: SpecificFolder;
 }
 
-const ContentSection = ({ params }: Props) => {
+const ContentSection = ({ id, data }: Props) => {
+  const router = useRouter();
   const {
     title,
     image,
@@ -20,19 +22,17 @@ const ContentSection = ({ params }: Props) => {
     user,
     tags,
     createdAt,
-  } = specificFolder;
-
-  const router = useRouter();
+  } = data;
 
   const moveFolderUpdatePage = () => {
-    router.push(`/folderupdate/${params}`);
+    router.push(`/folderupdate/${id}`);
   };
 
   return (
     <S.Container>
       <S.TitleContainer>
         {/* 추후에 글 작성자인지 확인하는 로직으로 변경 예정 */}
-        {params === String(user.id) && (
+        {id === String(user.id) && (
           <S.MyContainer>
             <S.MyButtonsContainer>
               <S.Tag>{isPrivate ? 'Private' : 'Public'}</S.Tag>
@@ -53,7 +53,7 @@ const ContentSection = ({ params }: Props) => {
         <S.TitleWrapper>{title}</S.TitleWrapper>
         <S.ProfileContainer>
           <Profile iconSize={35} user={user} version="author" />
-          <S.Date>{createdAt}</S.Date>
+          <S.Date>{createdAt.slice(0, 10)}</S.Date>
         </S.ProfileContainer>
         <S.TagWrapper>
           <Tag tagItems={tags} shrinking />

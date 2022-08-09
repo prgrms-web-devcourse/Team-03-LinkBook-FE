@@ -1,13 +1,13 @@
 import axios from '.';
-import { CreateOrUpdateComment } from '../types';
+import { Comments, CreateOrUpdateComment } from '../types';
 import { FOLDERS, COMMENTS } from './url';
 
 // 특정 폴더 댓글 조회
-export const getFolderComment = async (id: number) => {
+export const getFolderComment = async (id: string | string[]) => {
   const res = await axios.get(`${COMMENTS}${FOLDERS}/${id}`);
 
   console.log(res);
-  return res;
+  return res as unknown as Comments;
 };
 
 // 댓글 작성
@@ -51,7 +51,7 @@ export const updateComment = async ({
 
 // 댓글 삭제
 // Headers : Access Token 필요
-export const deleteComment = async (id: number) => {
+export const deleteComment = async (id: string) => {
   const res = await axios.put(`${COMMENTS}/${id}`);
 
   console.log(res);

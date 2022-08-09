@@ -10,6 +10,7 @@ import { NextPageContext } from 'next';
 
 export const getServerSideProps = (ctx: NextPageContext) => {
   const { token } = nookies.get(ctx);
+  console.log(token);
   return {
     props: {
       token,
