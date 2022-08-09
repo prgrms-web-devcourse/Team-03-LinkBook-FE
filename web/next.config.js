@@ -2,19 +2,18 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  async redirects() {
+  async rewrites() {
     return [
       {
-        source: '/:page/components/:file*',
-        destination: '/:page',
-        permanent: false,
+        source: '/api/:slug*',
+        destination: 'https://www.linkbook-api.tk/api/:slug*',
       },
     ];
   },
   images: {
     domains: ['images.unsplash.com', 'www.google.com'],
   },
-	eslint: {
+  eslint: {
     ignoreDuringBuilds: true,
   },
 };

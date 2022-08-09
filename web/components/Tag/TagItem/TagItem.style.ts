@@ -22,6 +22,7 @@ export const TagItem = styled.div`
   border-radius: 3px;
   color: ${({ theme }) => theme.colors.gray[0]};
   font-size: ${({ theme }) => theme.fontSize.c[0]};
+  font-family: 'Noto Sans KR', sans-serif;
   background-color: ${({ theme }) => theme.colors.gray[5]};
 
   ${({ shrinking }: Props) => shrinking && ShrinkTag}
@@ -29,4 +30,4 @@ export const TagItem = styled.div`
 
 export const IconWrapper = styled.div`
   cursor: pointer;
-`
+`;

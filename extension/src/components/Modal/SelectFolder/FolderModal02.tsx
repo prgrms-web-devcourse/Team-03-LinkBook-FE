@@ -31,6 +31,7 @@ const MakeFolderButton = styled.button`
   font-size: 14px;
 `;
 
+
 interface Props {
   modalClose: () => void;
   handelPrevPage: () => void;
@@ -46,6 +47,7 @@ const FolderModal02 = ({ modalClose, handelPrevPage }: Props) => {
     //title,image,isPinned,isPrivate,tags:[],bookmarks:[]
     //response folder Id
   };
+
   return (
     <Container>
       <FolderTitleInput ref={inputRef} placeholder="북마크이름" />

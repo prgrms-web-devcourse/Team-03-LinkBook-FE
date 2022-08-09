@@ -24,7 +24,7 @@ const Modal = ({ version, show, closeFunc, switchFunc }: Props) => {
   const handleVersion = (versionStr: string) => {
     switch (versionStr) {
       case 'login':
-        return <Login switchFunc={switchFunc} />;
+        return <Login switchFunc={switchFunc} closeFunc={closeFunc} />;
       case 'signUp':
         return <SignUp />;
       case 'bookmark':

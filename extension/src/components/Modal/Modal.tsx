@@ -10,6 +10,7 @@ interface Props {
 }
 
 const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
+
   const [page, setPage] = useState(0);
 
   const handleModalClose = () => {
