@@ -1,16 +1,15 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Icon } from "../components";
 import Modal from "../components/Modal";
-import Login from "./Login";
 
 import * as S from "./MainPage.style";
 
 const MainPage = () => {
-  const [url, setUrl] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const [folderSelector, setFolderSelector] = useState({
     id: 0,
     title: "📁 북마크 폴더 선택",
+    url: "",
   });
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
@@ -26,7 +25,10 @@ const MainPage = () => {
   }, []);
 
   const handleTabsCallback = (url: string) => {
-    setUrl(url);
+    setFolderSelector({
+      ...folderSelector,
+      url,
+    });
   };
 
   const handleErrorImg = (e: ChangeEvent<HTMLImageElement>) => {
@@ -38,17 +40,18 @@ const MainPage = () => {
       folderSelector.title === "📁 북마크 폴더 선택" ||
       inputRef.current?.value === ""
     ) {
-      console.log("북마크 이름을 작성해주세요");
+      alert("북마크 이름을 작성해주세요");
       return;
     }
 
-    console.log("url: ", url);
+    console.log("url: ", folderSelector.url);
     console.log("folderId:", folderSelector.id);
     console.log("title:", inputRef.current?.value);
   };
 
-  const handleSelectFolder = (id: number, title: string) => {
+  const handleFolderMade = (id: number, title: string) => {
     setFolderSelector({
+      ...folderSelector,
       id,
       title,
     });
@@ -60,8 +63,8 @@ const MainPage = () => {
     <S.Container>
       <Modal
         isVisible={modalVisible}
+        handleFolderMade={handleFolderMade}
         modalClose={() => setModalVisible(false)}
-        handleSelectFolder={handleSelectFolder}
       />
       <S.IconWraaper>
         <Icon name="logo" width={50} height={30} />
@@ -76,12 +79,12 @@ const MainPage = () => {
         <img
           width={87}
           height={87}
-          src={`https://www.google.com/s2/favicons?domain=${url}&sz=128`}
+          src={`https://www.google.com/s2/favicons?domain=${folderSelector.url}&sz=128`}
           alt=""
           onError={handleErrorImg}
         />
       </S.ImageWrapper>
-      <S.UrlWrapper>{url}</S.UrlWrapper>
+      <S.UrlWrapper>{folderSelector.url}</S.UrlWrapper>
       <S.Input ref={inputRef} placeholder="북마크 이름" />
       <S.FolderSelector onClick={() => setModalVisible(true)}>
         {folderSelector.title} ▼

@@ -60,6 +60,7 @@ const AddFolderText = styled.div`
   color: #4285f4;
   align-self: center;
   margin-top: 4px;
+  cursor: pointer;
 `;
 
 const DummyFolderList = [
