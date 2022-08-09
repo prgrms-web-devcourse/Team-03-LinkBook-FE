@@ -1,8 +1,15 @@
 import * as S from '../../Modal.style';
 import { Button, Input } from '../../../index';
-import { MouseEventHandler, useCallback, useRef, useState } from 'react';
+import {
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUserInfo } from '../contexts/UserProvider';
+import { requestEmailKey, validateEmailKey } from '../../../../apis/EmailAPI';
 
 interface Props {
   handlePage: MouseEventHandler;
@@ -15,21 +22,35 @@ interface EmailInput {
 const Page01 = ({ handlePage }: Props) => {
   const [emailValue, setEmailValue] = useState('');
   const { setEmail } = useUserInfo();
-  const codeRef = useRef<HTMLInputElement>(null);
+  const keyRef = useRef<HTMLInputElement>(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<EmailInput>();
 
-  const onSubmit: SubmitHandler<EmailInput> = useCallback((data) => {
+  const onSubmit: SubmitHandler<EmailInput> = useCallback(async (data) => {
     const { email } = data;
-    setEmailValue(email);
+
+    try {
+      await requestEmailKey(email);
+      alert('입력한 이메일로 인증 코드가 전송되었습니다.');
+      setEmailValue(email);
+    } catch (error) {
+      alert('문제가 발생했습니다. 다시 시도해주세요.');
+      console.log(error);
+    }
   }, []);
 
-  const onValidateCode = () => {
-    // 이메일 인증 과정 거쳐 전역에 email 저장
-    setEmail(emailValue);
+  const onValidateKey = async () => {
+    try {
+      await validateEmailKey(emailValue, keyRef.current.value);
+      alert('인증되었습니다.');
+      setEmail(emailValue);
+    } catch (error) {
+      alert('인증코드가 일치하지 않습니다.');
+      console.log(error);
+    }
   };
 
   return (
@@ -63,11 +84,11 @@ const Page01 = ({ handlePage }: Props) => {
         </div>
         <div>
           <Input
-            placeholder="이메일로 발송된 6자리 인증 코드를 입력해주세요."
-            type="number"
-            ref={codeRef}
+            placeholder="이메일로 발송된 인증 코드를 입력해주세요."
+            type="text"
+            ref={keyRef}
           >
-            <Button type="button" version="modal" onClick={onValidateCode}>
+            <Button type="button" version="modal" onClick={onValidateKey}>
               인증
             </Button>
           </Input>

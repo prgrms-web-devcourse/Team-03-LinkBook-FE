@@ -36,8 +36,10 @@ const Page02 = ({ handlePage }: Props) => {
       console.log(email, password);
       const res = await userSignUp({ email, password });
       console.log(res);
+      alert('회원가입이 완료되었습니다. 로그인을 진행해주세요.');
       await removeUserInfo();
     } catch (error) {
+      alert('이미 등록된 회원입니다. 로그인을 진행해주세요.');
       console.log(error);
     }
   }, []);
