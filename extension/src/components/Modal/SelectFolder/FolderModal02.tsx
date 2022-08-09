@@ -16,6 +16,7 @@ const FolderTitleInput = styled.input`
   width: 100%;
   line-height: 16px;
   margin-bottom: 17px;
+  margin-top: 5px;
 `;
 
 const SelectPrivateText = styled.div`
@@ -31,28 +32,31 @@ const MakeFolderButton = styled.button`
   font-size: 14px;
 `;
 
-
 interface Props {
-  modalClose: () => void;
+  handleMakeFolder: (id: number, title: string) => void;
   handelPrevPage: () => void;
 }
 
-const FolderModal02 = ({ modalClose, handelPrevPage }: Props) => {
+const FolderModal02 = ({ handleMakeFolder, handelPrevPage }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isPrivate, setIsPrivate] = useState<boolean>();
   const onMakeFolderBtnClick = () => {
-    modalClose();
     //api
     //폴더 생성
     //title,image,isPinned,isPrivate,tags:[],bookmarks:[]
     //response folder Id
+    if (inputRef.current && inputRef.current.value === "") {
+      handleMakeFolder(1, inputRef.current?.value);
+    }
   };
 
   return (
     <Container>
       <FolderTitleInput ref={inputRef} placeholder="북마크이름" />
       <SelectPrivateText>🔒 공개 범위 선택 ▼</SelectPrivateText>
-      <MakeFolderButton onClick={onMakeFolderBtnClick} />
+      <MakeFolderButton onClick={onMakeFolderBtnClick}>
+        폴더 만들기
+      </MakeFolderButton>
     </Container>
   );
 };

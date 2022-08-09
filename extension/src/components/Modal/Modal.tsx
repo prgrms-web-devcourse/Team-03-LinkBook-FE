@@ -5,15 +5,19 @@ import { FolderModal01, FolderModal02 } from "./SelectFolder";
 
 interface Props {
   isVisible: boolean;
+  handleFolderMade: (id: number, title: string) => void;
   modalClose: () => void;
-  handleSelectFolder: (id: number, title: string) => void;
 }
 
-const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
-
+const Modal = ({ isVisible, handleFolderMade, modalClose }: Props) => {
   const [page, setPage] = useState(0);
 
-  const handleModalClose = () => {
+  const handleModalClose = (id: number, title: string) => {
+    handleFolderMade(id, title);
+    setPage(0);
+  };
+
+  const handleMdoalForceClose = () => {
     modalClose();
     setPage(0);
   };
@@ -31,7 +35,7 @@ const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
       case 0:
         return (
           <FolderModal01
-            handleSelectFolder={handleSelectFolder}
+            handleSelectFolder={handleFolderMade}
             handleAddFolder={nextPage}
           />
         );
@@ -39,12 +43,12 @@ const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
         return (
           <FolderModal02
             handelPrevPage={prevPage}
-            modalClose={handleModalClose}
+            handleMakeFolder={handleModalClose}
           />
         );
       default:
         <FolderModal01
-          handleSelectFolder={handleSelectFolder}
+          handleSelectFolder={handleFolderMade}
           handleAddFolder={nextPage}
         />;
     }
@@ -53,14 +57,14 @@ const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
     <>
       {isVisible && (
         <>
-          <S.Dim onClick={handleModalClose} />
+          <S.Dim onClick={handleMdoalForceClose} />
           <S.Container>
             <S.CloseButtonWrapper>
               <Icon
                 name="btn_x"
                 width={10}
                 height={10}
-                onClick={handleModalClose}
+                onClick={handleMdoalForceClose}
               />
             </S.CloseButtonWrapper>
             {switchModal(page)}
