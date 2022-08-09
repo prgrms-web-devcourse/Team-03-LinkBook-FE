@@ -134,18 +134,19 @@ export const ImageUploadWrapper = styled.div`
   margin: 10px auto 0 auto;
 `;
 
-export const LoggedButton = styled.button`
+export const keepLoginWrapper = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
   width: fit-content;
   padding-left: 10px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
 `;
 
-export const LoggedText = styled.span`
+export const keepLoginInput = styled.input`
+  margin: 0;
+`;
+
+export const keepLoginText = styled.span`
   font-size: ${({ theme }) => theme.fontSize.b[2]};
   font-family: 'Noto Sans KR', sans-serif;
 `;
@@ -191,4 +192,10 @@ export const ConfirmButton = styled.button`
 export const LogoText = styled.span`
   font-size: ${({ theme }) => theme.fontSize.l[2]};
   font-family: 'Dongle', sans-serif;
+`;
+
+export const errorText = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.c[0]};
+  color: red;
+  margin: 5px;
 `;

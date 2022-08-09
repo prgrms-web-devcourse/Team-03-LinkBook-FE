@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { InnerContainer } from '../Modal.style';
 import { Page01, Page02 } from './SignUpPage';
+import UserProvider from './contexts/UserProvider';
 
 const SignUp = () => {
   const [page, setPage] = useState(0);
@@ -13,24 +13,18 @@ const SignUp = () => {
     setPage(page - 1);
   };
 
-  const handleSignUp = () => {
-    console.log('회원가입 로직');
-  };
-
   const switchPage = (pageNum: number) => {
     switch (pageNum) {
       case 0:
         return <Page01 handlePage={handleNextPage} />;
       case 1:
-        return (
-          <Page02 handlePage={handlePreviousPage} onSignUp={handleSignUp} />
-        );
+        return <Page02 handlePage={handlePreviousPage} />;
       default:
         return <Page01 handlePage={handleNextPage} />;
     }
   };
 
-  return <InnerContainer>{switchPage(page)}</InnerContainer>;
+  return <UserProvider>{switchPage(page)}</UserProvider>;
 };
 
 export default SignUp;

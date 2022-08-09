@@ -1,4 +1,5 @@
 import axios from '.';
+import { LogIn } from '../types';
 import { USER, SIGNUP, LOGIN, GET_USER_DATA } from './url';
 import type { LogIn, SignUpOrIn, UpdateInfo } from '../types';
 
@@ -23,7 +24,7 @@ export const userLogin = async ({ email, password }: SignUpOrIn) => {
   });
 
   console.log(res);
-  return res;
+  return res as unknown as LogIn;
 };
 
 // 로그아웃
