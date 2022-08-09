@@ -10,35 +10,60 @@ interface Props {
 }
 
 const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
-  // const [page, setPage] = useState(0);
-  // const switchModal = () => {
-  //   switch (page) {
-  //     case 0:
-  //       <FolderModal01
-  //         handleAddFolder={setPage((prev) => prev + 1)}
-  //         handleSelectFolder={handleSelectFolder}
-  //       />;
-  //       break;
-  //     case 1:
-  //       <FolderModal02 />;
-  //       break;
-  //     default:
-  //       <FolderModal01
-  //         handleAddFolder={setPage((prev) => prev + 1)}
-  //         handleSelectFolder={handleSelectFolder}
-  //       />;
-  //   }
-  // };
+
+  const [page, setPage] = useState(0);
+
+  const handleModalClose = () => {
+    modalClose();
+    setPage(0);
+  };
+
+  const nextPage = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  const prevPage = () => {
+    setPage((prev) => prev - 1);
+  };
+
+  const switchModal = (page: number) => {
+    switch (page) {
+      case 0:
+        return (
+          <FolderModal01
+            handleSelectFolder={handleSelectFolder}
+            handleAddFolder={nextPage}
+          />
+        );
+      case 1:
+        return (
+          <FolderModal02
+            handelPrevPage={prevPage}
+            modalClose={handleModalClose}
+          />
+        );
+      default:
+        <FolderModal01
+          handleSelectFolder={handleSelectFolder}
+          handleAddFolder={nextPage}
+        />;
+    }
+  };
   return (
     <>
       {isVisible && (
         <>
-          <S.Dim onClick={modalClose} />
+          <S.Dim onClick={handleModalClose} />
           <S.Container>
             <S.CloseButtonWrapper>
-              <Icon name="btn_x" width={10} height={10} onClick={modalClose} />
+              <Icon
+                name="btn_x"
+                width={10}
+                height={10}
+                onClick={handleModalClose}
+              />
             </S.CloseButtonWrapper>
-            <FolderModal01 handleSelectFolder={handleSelectFolder} />
+            {switchModal(page)}
           </S.Container>
         </>
       )}

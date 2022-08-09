@@ -31,14 +31,28 @@ const MakeFolderButton = styled.button`
   font-size: 14px;
 `;
 
-const FolderModal02 = () => {
+
+interface Props {
+  modalClose: () => void;
+  handelPrevPage: () => void;
+}
+
+const FolderModal02 = ({ modalClose, handelPrevPage }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isPrivate, setIsPrivate] = useState<boolean>();
+  const onMakeFolderBtnClick = () => {
+    modalClose();
+    //api
+    //폴더 생성
+    //title,image,isPinned,isPrivate,tags:[],bookmarks:[]
+    //response folder Id
+  };
+
   return (
     <Container>
       <FolderTitleInput ref={inputRef} placeholder="북마크이름" />
       <SelectPrivateText>🔒 공개 범위 선택 ▼</SelectPrivateText>
-      <MakeFolderButton />
+      <MakeFolderButton onClick={onMakeFolderBtnClick} />
     </Container>
   );
 };

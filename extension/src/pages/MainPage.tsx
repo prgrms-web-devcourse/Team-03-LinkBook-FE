@@ -1,6 +1,8 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Icon } from "../components";
 import Modal from "../components/Modal";
+import Login from "./Login";
+
 import * as S from "./MainPage.style";
 
 const MainPage = () => {
