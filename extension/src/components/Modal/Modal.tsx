@@ -26,10 +26,6 @@ const Modal = ({ isVisible, handleFolderMade, modalClose }: Props) => {
     setPage((prev) => prev + 1);
   };
 
-  const prevPage = () => {
-    setPage((prev) => prev - 1);
-  };
-
   const switchModal = (page: number) => {
     switch (page) {
       case 0:
@@ -40,12 +36,7 @@ const Modal = ({ isVisible, handleFolderMade, modalClose }: Props) => {
           />
         );
       case 1:
-        return (
-          <FolderModal02
-            handelPrevPage={prevPage}
-            handleMakeFolder={handleModalClose}
-          />
-        );
+        return <FolderModal02 handleMakeFolder={handleModalClose} />;
       default:
         <FolderModal01
           handleSelectFolder={handleFolderMade}
