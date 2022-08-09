@@ -1,12 +1,17 @@
 import styled from "@emotion/styled";
 import React, { useRef, useState } from "react";
 import Button from "../../Button";
+import Icon from "../../Icon";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1px;
   align-items: center;
+`;
+
+const PrevButton = styled(Icon)`
+  position: absolute;
 `;
 
 const FolderTitleInput = styled.input`
@@ -61,10 +66,9 @@ const MakeFolderButton = styled(Button)`
 
 interface Props {
   handleMakeFolder: (id: number, title: string) => void;
-  handelPrevPage: () => void;
 }
 
-const FolderModal02 = ({ handleMakeFolder, handelPrevPage }: Props) => {
+const FolderModal02 = ({ handleMakeFolder }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isPrivate, setIsPrivate] = useState(false);
   const [selectRangeOn, setSelectRangeOn] = useState<boolean>();
