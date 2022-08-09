@@ -1,12 +1,6 @@
 import * as S from '../../Modal.style';
 import { Button, Input } from '../../../index';
-import {
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUserInfo } from '../contexts/UserProvider';
 import { requestEmailKey, validateEmailKey } from '../../../../apis/EmailAPI';
@@ -34,8 +28,8 @@ const Page01 = ({ handlePage }: Props) => {
 
     try {
       await requestEmailKey(email);
-      alert('입력한 이메일로 인증 코드가 전송되었습니다.');
       setEmailValue(email);
+      alert('입력한 이메일로 인증 코드가 전송되었습니다.');
     } catch (error) {
       alert('문제가 발생했습니다. 다시 시도해주세요.');
       console.log(error);

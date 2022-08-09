@@ -15,7 +15,7 @@ interface PasswordInput {
 
 const Page02 = ({ handlePage }: Props) => {
   const [isValidate, setIsValidate] = useState(true);
-  const { email, password, setPassword, removeUserInfo } = useUserInfo();
+  const { email, removeUserInfo } = useUserInfo();
   const passwordRef = useRef<HTMLInputElement>(null);
   const {
     register,
@@ -24,20 +24,18 @@ const Page02 = ({ handlePage }: Props) => {
   } = useForm<PasswordInput>();
 
   const onSubmit: SubmitHandler<PasswordInput> = useCallback(async (data) => {
-    if (data.password !== passwordRef.current.value) {
+    const password = passwordRef.current.value;
+    if (data.password !== password) {
       setIsValidate(false);
       return;
     }
 
-    setPassword(data.password);
     setIsValidate(true);
 
     try {
-      console.log(email, password);
-      const res = await userSignUp({ email, password });
-      console.log(res);
-      alert('회원가입이 완료되었습니다. 로그인을 진행해주세요.');
+      await userSignUp({ email, password });
       await removeUserInfo();
+      alert('회원가입이 완료되었습니다. 로그인을 진행해주세요.');
     } catch (error) {
       alert('이미 등록된 회원입니다. 로그인을 진행해주세요.');
       console.log(error);
