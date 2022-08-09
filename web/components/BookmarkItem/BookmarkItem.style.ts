@@ -8,9 +8,13 @@ export const BookmarkWrapper = styled.div`
   width: 100%;
   max-width: 1100px;
   padding: 13px 21px;
-  border: 1px solid ${({ theme }) => theme.colors.gray[3]};
-  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.gray[5]};
+  border-radius: 10px;
   cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray[5]};
+  }
 `;
 
 export const BookmarkItem = styled.div`
@@ -21,7 +25,7 @@ export const BookmarkItem = styled.div`
 `;
 
 export const BookmarkTitle = styled(Text)`
-  color: ${({ theme }) => theme.colors.gray[3]};
+  color: ${({ theme }) => theme.colors.gray[4]};
 `;
 
 export const IconWrapper = styled.div`
@@ -33,7 +37,7 @@ export const IconWrapper = styled.div`
   height: 40px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray[5]};
+    background-color: ${({ theme }) => theme.colors.gray[4]};
     border-radius: 50%;
   }
 `;

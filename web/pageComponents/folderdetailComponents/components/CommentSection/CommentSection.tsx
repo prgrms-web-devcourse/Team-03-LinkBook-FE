@@ -15,9 +15,15 @@ const CommentSection = ({ id, data }: Props) => {
       {!isPrivate && (
         <>
           <S.Title>{comments.length}개의 댓글</S.Title>
-          <CommentInput version="comment" />
+          <CommentInput version="comment" folderId={Number(id)} />
           {comments?.map((comment) => {
-            return <Comment comment={comment} key={comment.id} />;
+            return (
+              <Comment
+                comment={comment}
+                folderId={Number(id)}
+                key={comment.id}
+              />
+            );
           })}
         </>
       )}

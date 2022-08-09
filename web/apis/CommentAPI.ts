@@ -18,12 +18,21 @@ export const createComment = async ({
   userId,
   parentId,
 }: CreateOrUpdateComment) => {
-  const res = await axios.post(`${COMMENTS}`, {
-    content,
-    folderId,
-    userId,
-    parentId,
-  });
+  const res = await axios.post(
+    `${COMMENTS}`,
+    {
+      content,
+      folderId,
+      userId,
+      parentId,
+    },
+    {
+      headers: {
+        'Access-Token':
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMDY4NTMzLCJpYXQiOjE2NjAwNjQ5MzMsImVtYWlsIjoiOTAzeWhAbmF2ZXIuY29tIn0.Kxug26ko-HOnmPVHgY4PW2CMc4u7QTPyiQCZ93u8IaUeR5CxmA_Jk6MkVjImM-eSYFvDlIUi6WW1VfMP3UoSHg',
+      },
+    },
+  );
 
   console.log(res);
   return res;

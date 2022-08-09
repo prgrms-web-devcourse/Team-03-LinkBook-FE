@@ -5,7 +5,7 @@ export interface CommentCreateOrUpdate {
   id: number;
 }
 
-interface Comment {
+export interface Comment {
   id: number;
   children: Comment[] | [];
   content: string;
