@@ -10,10 +10,6 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const PrevButton = styled(Icon)`
-  position: absolute;
-`;
-
 const FolderTitleInput = styled.input`
   border-radius: 5px;
   border: 1px solid #e0e0e0;
