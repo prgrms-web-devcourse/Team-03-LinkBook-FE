@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import FolderListDummy from '../../../shared/folderListPageDummy';
-import FolderList from '..';
-import TagCategory from '../../../pageComponents/folderlistComponents/components/TagCategory';
+import {
+  FolderList,
+  TagCategory,
+} from '../../../pageComponents/folderlistComponents/components';
 import styled from '@emotion/styled';
 
 const explore = () => {

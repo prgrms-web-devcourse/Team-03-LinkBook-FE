@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Category, Pagination } from '../../components';
-import SearchBar from '../../pageComponents/folderlistComponents';
-import FolderListDummy from '../../shared/folderListPageDummy';
-import * as S from '../../styles/pageStyles/folderList.style';
+import { Category, Pagination } from '../../../../components';
+import { Folder } from '../../../../shared/DummyDataType';
+import * as S from './FolderList.style';
 
 interface Props {
   children?: React.ReactNode;
