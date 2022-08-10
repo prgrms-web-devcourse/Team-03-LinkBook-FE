@@ -13,16 +13,18 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
   ({ version = 'comment', folderId, parentId = null }, ref) => {
     const [value, setValue] = useState('');
 
-    const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChangeValue = ({
+      target,
+    }: ChangeEvent<HTMLTextAreaElement>) => {
       setValue(target.value);
     };
 
-    const handleCreateComment = async () => {
+    const handleClickAddComment = async () => {
       console.log(folderId, parentId, value);
 
       try {
         const tempToken =
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMDY4NTMzLCJpYXQiOjE2NjAwNjQ5MzMsImVtYWlsIjoiOTAzeWhAbmF2ZXIuY29tIn0.Kxug26ko-HOnmPVHgY4PW2CMc4u7QTPyiQCZ93u8IaUeR5CxmA_Jk6MkVjImM-eSYFvDlIUi6WW1VfMP3UoSHg';
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMTE5NjQxLCJpYXQiOjE2NjAxMTYwNDEsImVtYWlsIjoianVuZ21pbWluZ0BnbWFpbC5jb20ifQ.NICeStkUqu_XM2N7gE2eL4-W2JgJ7jp3CwrjlK-DX6X-StsJUyAROJ-xmI3XOmS5wBjjN1Ixbat9DEq02Qup1w';
         const res = await createComment(
           {
             content: value,
@@ -51,7 +53,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
           <S.TextInput
             placeholder={placeholderText}
             ref={ref}
-            onChange={handleChange}
+            onChange={handleChangeValue}
           />
           <S.TextLenContainer>{value.length} / 300</S.TextLenContainer>
         </S.InputContainer>
@@ -60,7 +62,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
             <Button
               type="button"
               version="navBar"
-              onClick={handleCreateComment}
+              onClick={handleClickAddComment}
             >
               댓글 작성
             </Button>
