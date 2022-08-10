@@ -2,11 +2,6 @@ import { Tag } from './DummyDataType';
 
 export const TagDummyData: Tag[] = [
   {
-    main: '🌈 전체 카테고리',
-    value: 'all',
-    sub: [],
-  },
-  {
     main: '🎮 게임',
     value: 'game',
     sub: [
