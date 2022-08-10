@@ -1,6 +1,6 @@
-import RoundButton from '../RoundButton';
-import * as S from './HandleFolderSection.style';
+import { RoundButton } from '../index';
 import { createLike, deleteLike } from '../../../../apis/LikeAPI';
+import { useState } from 'react';
 
 interface Props {
   id: number;
@@ -8,11 +8,15 @@ interface Props {
   token?: string;
 }
 
-const HandleFolderSection = ({ id, likes, token }: Props) => {
+const LikeButtonSection = ({ id, likes, token }: Props) => {
+  // initialLiked State 설정 필요
+  const [isLiked, setIsLiked] = useState(false);
+
   const handleClickAddLike = async () => {
     try {
       const res = await createLike(id, 4, token);
       console.log(res);
+      setIsLiked(true);
     } catch (error) {
       alert('문제가 발생했습니다.');
       console.log(error);
@@ -23,27 +27,20 @@ const HandleFolderSection = ({ id, likes, token }: Props) => {
     try {
       const res = await deleteLike(id, token);
       console.log(res);
+      setIsLiked(false);
     } catch (error) {
       alert('문제가 발생했습니다.');
       console.log(error);
     }
   };
 
-  const handleClickScrap = async () => {
-    try {
-    } catch (error) {}
-  };
-
   return (
-    <S.Container>
-      <RoundButton iconName="likes_clicked_white" description={likes} />
-      <RoundButton
-        iconName="copy_white"
-        description="스크랩"
-        onClick={handleClickScrap}
-      />
-    </S.Container>
+    <RoundButton
+      iconName="likes_clicked_white"
+      description={likes}
+      onClick={isLiked ? handleClickCancelLike : handleClickAddLike}
+    />
   );
 };
 
-export default HandleFolderSection;
+export default LikeButtonSection;
