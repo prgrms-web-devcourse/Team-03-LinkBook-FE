@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import FolderList from '..';
+import { FolderList } from '../../../pageComponents/folderlistComponents/components';
 import FolderListDummy from '../../../shared/folderListPageDummy';
 import styled from '@emotion/styled';
 
