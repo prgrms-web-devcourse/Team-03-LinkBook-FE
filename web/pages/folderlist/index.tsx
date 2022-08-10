@@ -24,6 +24,7 @@ const FolderList = () => {
       <S.SearchBarWrapper>
         <SearchBar />
       </S.SearchBarWrapper>
+      <TagCategory />
       <S.CategoryWrapper>
         <pre>
           <S.DescriptionText>
