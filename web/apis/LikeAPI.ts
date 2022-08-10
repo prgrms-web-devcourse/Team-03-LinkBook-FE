@@ -27,8 +27,12 @@ export const createLike = async (
 
 // 좋아요 삭제
 // headers: Access-Token 필요
-export const deleteLike = async (id: number) => {
-  const res = await axios.delete(`${LIKES}/${id}`);
+export const deleteLike = async (id: number, token: string) => {
+  const res = await axios.delete(`${LIKES}/${id}`, {
+    headers: {
+      'Access-Token': token,
+    },
+  });
 
   console.log(res);
   return res;

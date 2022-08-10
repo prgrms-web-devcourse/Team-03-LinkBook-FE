@@ -55,7 +55,10 @@ const CommentComponent = ({ comment, folderId }: Props) => {
                     <Profile
                       version="comment"
                       user={child.user}
-                      createdAt={child.createdAt}
+                      createdAt={`${child.createdAt.slice(
+                        0,
+                        10,
+                      )} ${child.createdAt.slice(11, 19)}`}
                       iconSize={50}
                     />
                   </S.ProfileContainer>

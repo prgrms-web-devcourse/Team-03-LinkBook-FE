@@ -1,16 +1,16 @@
 import * as S from './ContentSection.style';
-import { Icon, Profile, BookmarkList, Tag } from '../../../../components';
+import { Profile, BookmarkList, Tag } from '../../../../components';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { SpecificFolder } from '../../../../types';
+import PrivateSection from '../PrivateSection';
+import HandleFolderSection from '../HandleFolderSection';
 
 interface Props {
-  id?: string | string[];
+  id?: number;
   data?: SpecificFolder;
 }
 
 const ContentSection = ({ id, data }: Props) => {
-  const router = useRouter();
   const {
     title,
     image,
@@ -23,32 +23,20 @@ const ContentSection = ({ id, data }: Props) => {
     tags,
     createdAt,
   } = data;
-
-  const moveFolderUpdatePage = () => {
-    router.push(`/folderupdate/${id}`);
-  };
+  const tempToken =
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMDY4NTMzLCJpYXQiOjE2NjAwNjQ5MzMsImVtYWlsIjoiOTAzeWhAbmF2ZXIuY29tIn0.Kxug26ko-HOnmPVHgY4PW2CMc4u7QTPyiQCZ93u8IaUeR5CxmA_Jk6MkVjImM-eSYFvDlIUi6WW1VfMP3UoSHg';
 
   return (
     <S.Container>
       <S.TitleContainer>
         {/* 추후에 글 작성자인지 확인하는 로직으로 변경 예정 */}
-        {id === String(user.id) && (
-          <S.MyContainer>
-            <S.MyButtonsContainer>
-              <S.Tag>{isPrivate ? 'Private' : 'Public'}</S.Tag>
-              {isPinned && (
-                <S.Tag>
-                  <Icon name="ico_pin" size={20} />
-                </S.Tag>
-              )}
-            </S.MyButtonsContainer>
-            <S.MyButtonsContainer>
-              <S.UpdateButton onClick={moveFolderUpdatePage}>
-                수정
-              </S.UpdateButton>
-              |<S.UpdateButton>삭제</S.UpdateButton>
-            </S.MyButtonsContainer>
-          </S.MyContainer>
+        {id === 7 && (
+          <PrivateSection
+            id={id}
+            isPrivate={isPrivate}
+            isPinned={isPinned}
+            token={tempToken}
+          />
         )}
         <S.TitleWrapper>{title}</S.TitleWrapper>
         <S.ProfileContainer>
@@ -76,20 +64,7 @@ const ContentSection = ({ id, data }: Props) => {
       <S.ProfileWrapper>
         <Profile user={user} />
       </S.ProfileWrapper>
-      <S.ButtonsContainer>
-        <S.ButtonWrapper>
-          <S.NotClickedButton>
-            <Icon name="likes_clicked_white" size={25} />
-          </S.NotClickedButton>
-          <S.ButtonDescription>{likes}</S.ButtonDescription>
-        </S.ButtonWrapper>
-        <S.ButtonWrapper>
-          <S.NotClickedButton>
-            <Icon name="copy_white" size={25} />
-          </S.NotClickedButton>
-          <S.ButtonDescription>스크랩</S.ButtonDescription>
-        </S.ButtonWrapper>
-      </S.ButtonsContainer>
+      <HandleFolderSection id={id} likes={likes} token={tempToken} />
     </S.Container>
   );
 };
