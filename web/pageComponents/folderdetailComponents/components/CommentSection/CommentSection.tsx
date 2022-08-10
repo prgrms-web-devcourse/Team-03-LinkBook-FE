@@ -3,7 +3,7 @@ import { CommentInput, Comment } from '../../../../components';
 import { Comments } from '../../../../types';
 
 interface Props {
-  id?: string | string[];
+  id?: number;
   data?: Comments;
 }
 
@@ -15,15 +15,9 @@ const CommentSection = ({ id, data }: Props) => {
       {!isPrivate && (
         <>
           <S.Title>{comments.length}개의 댓글</S.Title>
-          <CommentInput version="comment" folderId={Number(id)} />
+          <CommentInput version="comment" folderId={id} />
           {comments?.map((comment) => {
-            return (
-              <Comment
-                comment={comment}
-                folderId={Number(id)}
-                key={comment.id}
-              />
-            );
+            return <Comment comment={comment} folderId={id} key={comment.id} />;
           })}
         </>
       )}
