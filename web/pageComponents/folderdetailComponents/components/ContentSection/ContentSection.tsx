@@ -1,13 +1,19 @@
 import * as S from './ContentSection.style';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Profile, BookmarkList, Tag } from '../../../../components';
-import Image from 'next/image';
 import { SpecificFolder } from '../../../../types';
-import PrivateSection from '../PrivateSection';
-import HandleFolderSection from '../HandleFolderSection';
 import { getFolder } from '../../../../apis/FolderAPI';
 import { useRouter } from 'next/router';
-import { TEMP_TOKEN } from '../../../../constants/alert.constants';
+import {
+  PrivateSection,
+  ScrapButtonSection,
+  LikeButtonSection,
+} from '../index';
+import {
+  TEMP_TOKEN,
+  TEMP_USER_ID,
+} from '../../../../constants/alert.constants';
 
 interface Props {
   id?: number;
@@ -29,7 +35,7 @@ const ContentSection = ({ id }: Props) => {
         router.push('/404');
       }
     })();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -37,7 +43,7 @@ const ContentSection = ({ id }: Props) => {
         <S.Container>
           <S.TitleContainer>
             {/* 추후에 글 작성자인지 확인하는 로직으로 변경 예정 */}
-            {id === 7 && (
+            {data.user.id === TEMP_USER_ID && (
               <PrivateSection
                 id={id}
                 isPrivate={data.isPrivate}
@@ -71,7 +77,10 @@ const ContentSection = ({ id }: Props) => {
           <S.ProfileWrapper>
             <Profile user={data.user} />
           </S.ProfileWrapper>
-          <HandleFolderSection id={id} likes={data.likes} token={TEMP_TOKEN} />
+          <S.ButtonsContainer>
+            <LikeButtonSection id={id} likes={data.likes} token={TEMP_TOKEN} />
+            <ScrapButtonSection id={id} data={data} token={TEMP_TOKEN} />
+          </S.ButtonsContainer>
         </S.Container>
       )}
     </>

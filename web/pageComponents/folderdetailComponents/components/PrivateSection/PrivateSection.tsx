@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router';
 import * as S from './PrivateSection.style';
+import { useRouter } from 'next/router';
 import { Icon } from '../../../../components';
+import { deleteFolder } from '../../../../apis/FolderAPI';
 
 interface Props {
   id: number;
@@ -16,8 +17,16 @@ const PrivateSection = ({ id, isPrivate, isPinned, token }: Props) => {
     router.push(`/folderupdate/${id}`);
   };
 
-  const handleClickDeletePost = () => {
-    console.log(token);
+  const handleClickDeletePost = async () => {
+    const confirmDelete = confirm('정말 삭제하시겠습니까?');
+    if (!confirmDelete) return;
+
+    try {
+      await deleteFolder(id, token);
+      await router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
     console.log('delete');
   };
 

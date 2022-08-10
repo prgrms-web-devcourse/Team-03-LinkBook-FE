@@ -1,10 +1,9 @@
+import * as S from './CommentItem.style';
 import { Comment, CreateOrUpdateComment } from '../../../types/comment';
 import { deleteComment, updateComment } from '../../../apis/CommentAPI';
-import Profile from '../../Profile';
-import * as S from './CommentItem.style';
 import { useRef, useState } from 'react';
-import { CommentInput } from '../../index';
-import { TEMP_TOKEN } from '../../../constants/alert.constants';
+import { CommentInput, Profile } from '../../index';
+import { TEMP_TOKEN, TEMP_USER_ID } from '../../../constants/alert.constants';
 
 interface Props {
   comment: Comment;
@@ -15,24 +14,23 @@ const CommentItem = ({ comment, folderId }: Props) => {
   const { id, content, user, createdAt } = comment;
   const [updating, setUpdating] = useState(false);
   const updateInputRef = useRef<HTMLTextAreaElement>(null);
-  const tempUserID: number = 5;
 
   const handleShowUpdateArea = () => {
     setUpdating(!updating);
   };
 
   const handleClickUpdateComment = async () => {
+    if (!updateInputRef) return;
+
     const newComment: CreateOrUpdateComment = {
       id,
       content: updateInputRef.current.value,
       folderId,
-      userId: tempUserID,
+      userId: TEMP_USER_ID,
     };
-    console.log(newComment);
 
     try {
-      const res = await updateComment(newComment, TEMP_TOKEN);
-      console.log(res);
+      await updateComment(newComment, TEMP_TOKEN);
       setUpdating(!updating);
     } catch (error) {
       console.log(error);
@@ -44,8 +42,7 @@ const CommentItem = ({ comment, folderId }: Props) => {
     if (!confirmDelete) return;
 
     try {
-      const res = await deleteComment(id, TEMP_TOKEN);
-      console.log(res);
+      await deleteComment(id, TEMP_TOKEN);
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +56,7 @@ const CommentItem = ({ comment, folderId }: Props) => {
           createdAt={`${createdAt.slice(0, 10)} ${createdAt.slice(11, 19)}`}
           iconSize={50}
         />
-        {5 === user.id && (
+        {TEMP_USER_ID === user.id && (
           <>
             {updating ? (
               <S.ButtonsWrapper>
