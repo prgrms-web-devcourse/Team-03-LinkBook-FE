@@ -83,7 +83,7 @@ const MakeFolderModal = ({ handleMakeFolder }: Props) => {
 
   return (
     <Container>
-      <FolderTitleInput ref={inputRef} placeholder="북마크이름" />
+      <FolderTitleInput ref={inputRef} placeholder="폴더 이름" />
       <SelectPrivateText onClick={() => setSelectRangeOn((prev) => !prev)}>
         {selectRangeText}
       </SelectPrivateText>
