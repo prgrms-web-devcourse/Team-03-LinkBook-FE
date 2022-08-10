@@ -1,33 +1,52 @@
+import Router, { useRouter } from 'next/router';
 import { useState } from 'react';
 import { TagDummyData } from '../../../../shared/tagDummyData';
 import * as S from './TagCategory.style';
 
-export interface Props {
-  setSelectedSubTag: (selectedTag: string) => void;
-}
+export const TagCategory = () => {
+  const router = useRouter();
+  const [selectMainTag, setSelectMainTag] = useState(router.query.mainTag);
+  const [visibleSubTagList, setVisibleSubTagList] = useState(
+    router.query.mainTag,
+  );
 
-export const TagCategory = ({ setSelectedSubTag }: Props) => {
-  const [activeMainTag, setActiveMainTag] = useState('all');
-  const [visibleSubTagList, setVisibleSubTagList] = useState('all');
-
-  const handleSelectMainTag = (value: string) => {
-    setActiveMainTag(value);
-    setVisibleSubTagList(value);
+  const handleSelectMainTag = (mainTag: string) => {
+    if (mainTag === 'all') {
+      handleSelectSubTag(mainTag);
+      return;
+    }
+    setSelectMainTag(mainTag);
+    setVisibleSubTagList(mainTag);
   };
 
-  const handleSelectSubTag = (value: string) => {
-    // setSelectedSubTag(value);
+  const handleSelectSubTag = (subTag: string) => {
+    Router.push(
+      {
+        pathname: `/folderlist/explore/${subTag}`,
+        query: {
+          mainTag: selectMainTag,
+          subTag,
+        },
+      },
+      `/folderlist/explore/${subTag}`,
+    );
     setVisibleSubTagList('');
   };
 
   return (
     <S.Container>
-      <S.Header>북마크 폴더 리스트</S.Header>
+      <S.Header>태그 리스트</S.Header>
       <S.MainTagList>
+        <S.MainTag
+          active={selectMainTag === 'all'}
+          onClick={() => handleSelectMainTag('all')}
+        >
+          🌈 전체 카테고리
+        </S.MainTag>
         {TagDummyData.map((mainTag, idx) => (
-          <S.TagConatiner key={mainTag.value} idx={idx + 1}>
+          <S.TagConatiner key={mainTag.value} idx={idx + 2}>
             <S.MainTag
-              active={activeMainTag === mainTag.value}
+              active={selectMainTag === mainTag.value}
               onClick={() => handleSelectMainTag(mainTag.value)}
             >
               {mainTag.main}
