@@ -37,6 +37,7 @@ const SelectRangeWrapper = styled.div`
 `;
 
 const SelectRange = styled.div`
+  width: 115px;
   padding: 6px 9px;
   font-size: 11px;
   line-height: 11px;
@@ -63,7 +64,7 @@ interface Props {
   handleMakeFolder: (id: number, title: string) => void;
 }
 
-const FolderModal02 = ({ handleMakeFolder }: Props) => {
+const MakeFolderModal = ({ handleMakeFolder }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isPrivate, setIsPrivate] = useState(false);
   const [selectRangeOn, setSelectRangeOn] = useState<boolean>();
@@ -103,4 +104,4 @@ const FolderModal02 = ({ handleMakeFolder }: Props) => {
   );
 };
 
-export default FolderModal02;
+export default MakeFolderModal;

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Icon from "../Icon";
 
 // Modal Component
 export const Container = styled.div`
@@ -52,5 +53,8 @@ export const CloseButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+`;
+
+export const CloseIcon = styled(Icon)`
   cursor: pointer;
 `;
