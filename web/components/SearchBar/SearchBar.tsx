@@ -1,22 +1,53 @@
 import * as S from './SearchBar.style';
 import Image from 'next/image';
 import Icon from '../Icon';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
+import { useEffect } from 'react';
+import Router from 'next/router';
 
 interface Props {
   setShowSearchBar: Dispatch<SetStateAction<boolean>>;
 }
 
 const SearchBar = ({ setShowSearchBar }: Props) => {
+  const inputRef = useRef<HTMLInputElement>();
+
   const handleClickX = () => {
     setShowSearchBar(false);
   };
+
+  const handleOnSearch = () => {
+    const value = inputRef.current.value;
+    if (value.replace(/ /g, '') === '') {
+      alert('올바른 검색어를 입력해주세요.');
+      return;
+    }
+    Router.push(`/folderlist/search/${value}`);
+  };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.keyCode === 229) return;
+      if (e.key === 'Enter') {
+        handleOnSearch();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleOnSearch]);
 
   return (
     <S.Container>
       <S.Search>
         <S.SearchInner>
-          <S.Input />
+          <S.Input ref={inputRef} placeholder="검색어를 입력하세요." />
           <S.Actions position="left">
             <S.IconWrapper position="left">
               <Icon name="search_ic" size={15} />
