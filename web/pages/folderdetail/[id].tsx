@@ -16,7 +16,7 @@ const folderDetailPage = () => {
 
   useEffect(() => {
     if (!router.isReady) return;
-    const { id } = router.query;
+    const id = Number(router.query.id);
 
     (async () => {
       try {
@@ -34,11 +34,11 @@ const folderDetailPage = () => {
   return (
     <S.Container>
       {contentData && (
-        <ContentSection id={router.query.id} data={contentData} />
+        <ContentSection id={Number(router.query.id)} data={contentData} />
       )}
       <S.Line />
       {commentData && (
-        <CommentSection id={router.query.id} data={commentData} />
+        <CommentSection id={Number(router.query.id)} data={commentData} />
       )}
     </S.Container>
   );

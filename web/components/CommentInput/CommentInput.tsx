@@ -21,12 +21,17 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
       console.log(folderId, parentId, value);
 
       try {
-        const res = await createComment({
-          content: value,
-          folderId,
-          userId: 4,
-          parentId,
-        });
+        const tempToken =
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMDY4NTMzLCJpYXQiOjE2NjAwNjQ5MzMsImVtYWlsIjoiOTAzeWhAbmF2ZXIuY29tIn0.Kxug26ko-HOnmPVHgY4PW2CMc4u7QTPyiQCZ93u8IaUeR5CxmA_Jk6MkVjImM-eSYFvDlIUi6WW1VfMP3UoSHg';
+        const res = await createComment(
+          {
+            content: value,
+            folderId,
+            userId: 4,
+            parentId,
+          },
+          tempToken,
+        );
 
         console.log(res);
       } catch (error) {
