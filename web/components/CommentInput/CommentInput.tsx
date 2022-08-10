@@ -24,7 +24,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
 
       try {
         const tempToken =
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMTE5NjQxLCJpYXQiOjE2NjAxMTYwNDEsImVtYWlsIjoianVuZ21pbWluZ0BnbWFpbC5jb20ifQ.NICeStkUqu_XM2N7gE2eL4-W2JgJ7jp3CwrjlK-DX6X-StsJUyAROJ-xmI3XOmS5wBjjN1Ixbat9DEq02Qup1w';
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMTI4ODYxLCJpYXQiOjE2NjAxMjUyNjEsImVtYWlsIjoianVuZ21pbWluZ0BnbWFpbC5jb20ifQ.F5N76kkVG2WGgL-A5cLQi7cpSClfpA1CPqIEMNHCh3u9CiRXFy00pKzEpxaeIkVMLn-L1MrJ0drDC5nttAWtsw';
         const res = await createComment(
           {
             content: value,

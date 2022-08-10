@@ -25,5 +25,5 @@ export interface CreateOrUpdateComment {
   content: string;
   folderId: number;
   userId: number;
-  parentId: number;
+  parentId?: number;
 }

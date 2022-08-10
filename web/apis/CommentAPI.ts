@@ -38,16 +38,16 @@ export const createComment = async (
 // 댓글 수정
 // Headers : Access Token 필요
 export const updateComment = async (
-  { id, content, folderId, userId, parentId }: CreateOrUpdateComment,
+  { id, content, folderId, userId }: CreateOrUpdateComment,
   token: string,
 ) => {
   const res = await axios.put(
     `${COMMENTS}/${id}`,
     {
+      id,
       content,
       folderId,
       userId,
-      parentId,
     },
     {
       headers: {
@@ -62,8 +62,12 @@ export const updateComment = async (
 
 // 댓글 삭제
 // Headers : Access Token 필요
-export const deleteComment = async (id: number) => {
-  const res = await axios.put(`${COMMENTS}/${id}`);
+export const deleteComment = async (id: number, token: string) => {
+  const res = await axios.delete(`${COMMENTS}/${id}`, {
+    headers: {
+      'Access-Token': token,
+    },
+  });
 
   console.log(res);
   return res;
