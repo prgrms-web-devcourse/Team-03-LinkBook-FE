@@ -4,19 +4,23 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-width: 1100px;
+  max-width: 1200px;
   height: fit-content;
   padding: 15px 20px;
   font-family: 'Noto Sans KR', sans-serif;
   border-bottom: ${({ theme }) => `1px solid ${theme.colors.gray[5]}`};
+  margin: 0 auto;
+  box-sizing: border-box;
 `;
 
-export const ProfileContainer = styled.div`
+export const ProfileWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   height: fit-content;
 `;
 
-export const CommentContainer = styled.div`
+export const CommentWrapper = styled.div`
   width: 100%;
   height: auto;
   max-height: 100px;
@@ -37,6 +41,7 @@ export const RepliesButton = styled.button`
   background-color: transparent;
   border: none;
   border-radius: 5px;
+  box-sizing: border-box;
   cursor: pointer;
 
   &:hover {
@@ -51,13 +56,14 @@ export const RepliesContainer = styled.div`
   width: 100%;
   height: auto;
   margin-left: 30px;
+  padding-right: 20px;
 `;
 
 export const ReplyContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-width: 1100px;
+  max-width: 1150px;
   height: fit-content;
   padding: 10px;
 `;
