@@ -69,3 +69,7 @@ export const UserButton = styled.button`
     background-color: ${({ theme }) => theme.colors.gray[5]};
   }
 `;
+
+export const IconWrapper = styled.div`
+  cursor: pointer;
+`;
