@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-top: 10px;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -32,6 +32,7 @@ export const ButtonsWrapper = styled.div`
 export const Button = styled.button`
   color: ${({ theme }) => theme.colors.gray[1]};
   font-size: ${({ theme }) => theme.fontSize.b[2]};
+  padding: 3px 5px;
   background-color: transparent;
   border: none;
   border-radius: 5px;

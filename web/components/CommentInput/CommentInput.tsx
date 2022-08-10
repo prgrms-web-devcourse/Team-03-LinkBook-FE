@@ -2,16 +2,21 @@ import { ChangeEvent, forwardRef, useState } from 'react';
 import { createComment } from '../../apis/CommentAPI';
 import Button from '../Button';
 import * as S from './CommentInput.style';
+import { TEMP_TOKEN } from '../../constants/alert.constants';
 
 interface Props {
   version: 'comment' | 'update';
   folderId: number;
   parentId?: number;
+  defaultValue?: string;
 }
 
 const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
-  ({ version = 'comment', folderId, parentId = null }, ref) => {
-    const [value, setValue] = useState('');
+  (
+    { version = 'comment', folderId, parentId = null, defaultValue = '' },
+    ref,
+  ) => {
+    const [value, setValue] = useState(defaultValue);
 
     const handleChangeValue = ({
       target,
@@ -20,11 +25,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
     };
 
     const handleClickAddComment = async () => {
-      console.log(folderId, parentId, value);
-
       try {
-        const tempToken =
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMTI4ODYxLCJpYXQiOjE2NjAxMjUyNjEsImVtYWlsIjoianVuZ21pbWluZ0BnbWFpbC5jb20ifQ.F5N76kkVG2WGgL-A5cLQi7cpSClfpA1CPqIEMNHCh3u9CiRXFy00pKzEpxaeIkVMLn-L1MrJ0drDC5nttAWtsw';
         const res = await createComment(
           {
             content: value,
@@ -32,7 +33,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
             userId: 4,
             parentId,
           },
-          tempToken,
+          TEMP_TOKEN,
         );
 
         console.log(res);
@@ -54,6 +55,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
             placeholder={placeholderText}
             ref={ref}
             onChange={handleChangeValue}
+            defaultValue={value}
           />
           <S.TextLenContainer>{value.length} / 300</S.TextLenContainer>
         </S.InputContainer>

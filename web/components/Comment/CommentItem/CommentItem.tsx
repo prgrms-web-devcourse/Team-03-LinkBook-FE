@@ -2,6 +2,9 @@ import { Comment, CreateOrUpdateComment } from '../../../types/comment';
 import { deleteComment, updateComment } from '../../../apis/CommentAPI';
 import Profile from '../../Profile';
 import * as S from './CommentItem.style';
+import { useRef, useState } from 'react';
+import { CommentInput } from '../../index';
+import { TEMP_TOKEN } from '../../../constants/alert.constants';
 
 interface Props {
   comment: Comment;
@@ -10,33 +13,38 @@ interface Props {
 
 const CommentItem = ({ comment, folderId }: Props) => {
   const { id, content, user, createdAt } = comment;
+  const [updating, setUpdating] = useState(false);
+  const updateInputRef = useRef<HTMLTextAreaElement>(null);
   const tempUserID: number = 5;
-  const tempToken: string =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMTI4ODYxLCJpYXQiOjE2NjAxMjUyNjEsImVtYWlsIjoianVuZ21pbWluZ0BnbWFpbC5jb20ifQ.F5N76kkVG2WGgL-A5cLQi7cpSClfpA1CPqIEMNHCh3u9CiRXFy00pKzEpxaeIkVMLn-L1MrJ0drDC5nttAWtsw';
 
-  const handleClickUpdateComment = () => {
+  const handleShowUpdateArea = () => {
+    setUpdating(!updating);
+  };
+
+  const handleClickUpdateComment = async () => {
     const newComment: CreateOrUpdateComment = {
       id,
-      content,
+      content: updateInputRef.current.value,
       folderId,
       userId: tempUserID,
     };
     console.log(newComment);
 
     try {
-      const res = updateComment(newComment, tempToken);
+      const res = await updateComment(newComment, TEMP_TOKEN);
       console.log(res);
+      setUpdating(!updating);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleClickDeleteComment = () => {
+  const handleClickDeleteComment = async () => {
     const confirmDelete = confirm('정말 삭제하시겠습니까?');
     if (!confirmDelete) return;
 
     try {
-      const res = deleteComment(id, tempToken);
+      const res = await deleteComment(id, TEMP_TOKEN);
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -52,13 +60,33 @@ const CommentItem = ({ comment, folderId }: Props) => {
           iconSize={50}
         />
         {5 === user.id && (
-          <S.ButtonsWrapper>
-            <S.Button onClick={handleClickUpdateComment}>수정</S.Button>|
-            <S.Button onClick={handleClickDeleteComment}>삭제</S.Button>
-          </S.ButtonsWrapper>
+          <>
+            {updating ? (
+              <S.ButtonsWrapper>
+                <S.Button onClick={handleClickUpdateComment}>수정완료</S.Button>
+                |<S.Button onClick={handleShowUpdateArea}>수정취소</S.Button>
+              </S.ButtonsWrapper>
+            ) : (
+              <S.ButtonsWrapper>
+                <S.Button onClick={handleShowUpdateArea}>수정</S.Button>
+                <S.Button onClick={handleClickDeleteComment}>삭제</S.Button>
+              </S.ButtonsWrapper>
+            )}
+          </>
         )}
       </S.HeaderWrapper>
-      <S.BodyWrapper>{content}</S.BodyWrapper>
+      {updating ? (
+        <>
+          <CommentInput
+            version="update"
+            folderId={folderId}
+            defaultValue={content}
+            ref={updateInputRef}
+          />
+        </>
+      ) : (
+        <S.BodyWrapper>{content}</S.BodyWrapper>
+      )}
     </S.Container>
   );
 };
