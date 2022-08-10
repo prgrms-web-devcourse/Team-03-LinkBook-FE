@@ -7,6 +7,7 @@ import PrivateSection from '../PrivateSection';
 import HandleFolderSection from '../HandleFolderSection';
 import { getFolder } from '../../../../apis/FolderAPI';
 import { useRouter } from 'next/router';
+import { TEMP_TOKEN } from '../../../../constants/alert.constants';
 
 interface Props {
   id?: number;
@@ -30,9 +31,6 @@ const ContentSection = ({ id }: Props) => {
     })();
   }, []);
 
-  const tempToken =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMDY4NTMzLCJpYXQiOjE2NjAwNjQ5MzMsImVtYWlsIjoiOTAzeWhAbmF2ZXIuY29tIn0.Kxug26ko-HOnmPVHgY4PW2CMc4u7QTPyiQCZ93u8IaUeR5CxmA_Jk6MkVjImM-eSYFvDlIUi6WW1VfMP3UoSHg';
-
   return (
     <>
       {data && (
@@ -44,7 +42,7 @@ const ContentSection = ({ id }: Props) => {
                 id={id}
                 isPrivate={data.isPrivate}
                 isPinned={data.isPinned}
-                token={tempToken}
+                token={TEMP_TOKEN}
               />
             )}
             <S.TitleWrapper>{data.title}</S.TitleWrapper>
@@ -73,7 +71,7 @@ const ContentSection = ({ id }: Props) => {
           <S.ProfileWrapper>
             <Profile user={data.user} />
           </S.ProfileWrapper>
-          <HandleFolderSection id={id} likes={data.likes} token={tempToken} />
+          <HandleFolderSection id={id} likes={data.likes} token={TEMP_TOKEN} />
         </S.Container>
       )}
     </>
