@@ -73,7 +73,17 @@ const NavigationBar = ({ token }: Props) => {
             </S.Logo>
           </Link>
           <S.Nav>
-            <Link href="/folderlist" passHref>
+            <Link
+              href={{
+                pathname: '/folderlist/explore/all',
+                query: {
+                  mainTag: 'all',
+                  subTag: 'all',
+                },
+              }}
+              as={'/folderlist/explore/all'}
+              passHref
+            >
               <S.NavItem>북마크리스트</S.NavItem>
             </Link>
             <Link href="/information" passHref>
