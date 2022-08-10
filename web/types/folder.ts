@@ -72,6 +72,17 @@ export interface FolderCreateOrUpdate {
   id: number;
 }
 
+export interface CreateOrUpdateFolder {
+  title: string;
+  image: string;
+  content: string;
+  isPinned: boolean;
+  isPrivate: boolean;
+  tags: string[];
+  bookmarks: Bookmark[] | [];
+  originId?: number;
+}
+
 // Req Body type
 export interface GetFolderList {
   page: number;

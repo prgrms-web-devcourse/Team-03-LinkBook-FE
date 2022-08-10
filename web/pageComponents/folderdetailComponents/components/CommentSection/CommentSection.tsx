@@ -22,7 +22,7 @@ const CommentSection = ({ id }: Props) => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [id]);
 
   return (
     <>

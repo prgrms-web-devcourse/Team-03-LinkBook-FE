@@ -1,8 +1,7 @@
+import * as S from './Comment.style';
 import { useState } from 'react';
 import { CommentInput } from '../index';
-import * as S from './Comment.style';
 import { Comment } from '../../types/comment';
-
 import CommentItem from './CommentItem';
 
 interface Props {
