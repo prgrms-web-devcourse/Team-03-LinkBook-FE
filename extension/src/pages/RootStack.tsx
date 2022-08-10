@@ -3,18 +3,12 @@ import LoginPage from "./LoginPage";
 import MainPage from "./MainPage";
 
 const RootStack = () => {
-  const [isLoggined, setIsLoggined] = useState(false);
-  let page;
-  if (isLoggined) {
-    page = <MainPage />;
-  } else {
-    page = <LoginPage />;
-  }
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <>
-      {page}
-      <button onClick={() => setIsLoggined((prev) => !prev)}>로그인</button>
+      {isLogin ? <MainPage /> : <LoginPage />}
+      {!isLogin && <button onClick={() => setIsLogin(true)}>login</button>}
     </>
   );
 };

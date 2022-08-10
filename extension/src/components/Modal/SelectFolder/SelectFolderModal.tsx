@@ -82,7 +82,7 @@ interface Props {
   handleAddFolder?: () => void;
 }
 
-const FolderModal01 = ({ handleSelectFolder, handleAddFolder }: Props) => {
+const SelectFolderModal = ({ handleSelectFolder, handleAddFolder }: Props) => {
   const onFolderClick = (id: number, title: string) => {
     handleSelectFolder(id, title);
   };
@@ -110,4 +110,4 @@ const FolderModal01 = ({ handleSelectFolder, handleAddFolder }: Props) => {
   );
 };
 
-export default FolderModal01;
+export default SelectFolderModal;

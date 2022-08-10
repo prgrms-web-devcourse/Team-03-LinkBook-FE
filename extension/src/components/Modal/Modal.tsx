@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Icon from "../Icon";
 import * as S from "./Modal.style";
-import { FolderModal01, FolderModal02 } from "./SelectFolder";
+import { SelectFolderModal, MakeFolderModal } from "./SelectFolder";
 
 interface Props {
   isVisible: boolean;
@@ -30,15 +29,15 @@ const Modal = ({ isVisible, handleFolderMade, modalClose }: Props) => {
     switch (page) {
       case 0:
         return (
-          <FolderModal01
+          <SelectFolderModal
             handleSelectFolder={handleModalClose}
             handleAddFolder={nextPage}
           />
         );
       case 1:
-        return <FolderModal02 handleMakeFolder={handleModalClose} />;
+        return <MakeFolderModal handleMakeFolder={handleModalClose} />;
       default:
-        <FolderModal01
+        <SelectFolderModal
           handleSelectFolder={handleFolderMade}
           handleAddFolder={nextPage}
         />;
@@ -51,7 +50,7 @@ const Modal = ({ isVisible, handleFolderMade, modalClose }: Props) => {
           <S.Dim onClick={handleMdoalForceClose} />
           <S.Container>
             <S.CloseButtonWrapper>
-              <Icon
+              <S.CloseIcon
                 name="btn_x"
                 width={10}
                 height={10}
