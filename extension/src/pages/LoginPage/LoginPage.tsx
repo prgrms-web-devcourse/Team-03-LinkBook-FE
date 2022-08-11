@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { userLogin } from "../../api/userLogin";
 import Input from "../../components/Input";
 import { ACCESS_TOKEN } from "../../utils/constants";
-import { getCookies, setCookie } from "../../utils/cookies";
+import { getCookie, setCookie } from "../../utils/cookies";
 import * as S from "./LoginPage.style";
 
 interface Props {
@@ -37,7 +37,7 @@ const LoginPage = ({ isLogin }: Props) => {
         "accesstoken"
       );
 
-      getCookies(ACCESS_TOKEN, "https://google.com");
+      getCookie(ACCESS_TOKEN, "https://google.com");
 
       isLogin(true);
     } catch (error) {

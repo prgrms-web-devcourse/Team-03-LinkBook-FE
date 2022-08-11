@@ -26,7 +26,7 @@ export const setCookie = (
   });
 };
 
-export const getCookies = (key: string, url: string) => {
+export const getCookie = (key: string, url: string) => {
   return new Promise((resolve, reject) => {
     chrome.cookies.get(
       {
