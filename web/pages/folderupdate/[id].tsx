@@ -4,15 +4,16 @@ import {
   CommentInput,
   BookmarkList,
   Button,
-  Modal,
   Icon,
 } from '../../components';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Switch } from '../../pageComponents/folderupdateComponents/components';
+import {
+  Switch,
+  BookmarkInput,
+} from '../../pageComponents/folderupdateComponents/components';
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
 import { SpecificFolder } from '../../types';
-import { listFiles } from '../../util/S3ImageHandler';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -22,14 +23,9 @@ const FolderUpdate = () => {
   const [isPinned, setIsPinned] = useState(false);
   const contentInput = useRef<HTMLTextAreaElement>();
   const [bookmarks, setBookmarks] = useState([]);
-  const [showBookmarkModal, setShowBookmarkModal] = useState(false);
 
   const router = useRouter();
   const { id } = router.query;
-
-  const handleBookmark = () => {
-    setShowBookmarkModal(!showBookmarkModal);
-  };
 
   const moveUserPage = () => {
     router.push(`/user/1`); // 추후 전역에서 사용하는 user id 붙이기
@@ -42,19 +38,18 @@ const FolderUpdate = () => {
   const moveFolderDetailPage = async () => {
     const title = titleInput.current.value;
     const content = contentInput.current.value;
+    console.log(title, imageSrc, content, isPinned, isPrivate, bookmarks);
 
     await updateFolder({
       id: Number(id),
       title,
-      image: '',
+      image: imageSrc,
       content,
       isPinned,
       isPrivate,
       tags: [],
       bookmarks,
     });
-    const res = await listFiles();
-    console.log(res);
     router.push(`/folderdetail/${id}`);
   };
 
@@ -65,7 +60,7 @@ const FolderUpdate = () => {
       setIsPrivate(isPrivate);
       titleInput.current.value = title;
       // setTags(folder.tags)
-      // setImageSrc(image);
+      setImageSrc(image);
       contentInput.current.value = content;
       setBookmarks(bookmarks);
     };
@@ -74,11 +69,6 @@ const FolderUpdate = () => {
 
   return (
     <>
-      <Modal
-        version="bookmark"
-        show={showBookmarkModal}
-        closeFunc={handleBookmark}
-      />
       <S.ContentContainer>
         <S.SwitchContainer>
           <Switch isPrivate={isPrivate} setIsPrivate={setIsPrivate} />
@@ -92,14 +82,18 @@ const FolderUpdate = () => {
           placeholder="제목을 입력해 주세요"
           ref={titleInput}
         />
-        <ImageUpload version="page" setImageSrc={setImageSrc} />
+        <ImageUpload
+          version="page"
+          imageSrc={imageSrc}
+          setImageSrc={setImageSrc}
+        />
         <CommentInput ref={contentInput} version="update" />
-        <BookmarkList version="update" bookmarkItems={bookmarks} />
-        <S.ButtonWrapper>
-          <S.BookmarkButton onClick={handleBookmark} type="button">
-            북마크 추가하기 +
-          </S.BookmarkButton>
-        </S.ButtonWrapper>
+        <BookmarkList
+          version="update"
+          bookmarkItems={bookmarks}
+          setBookmarks={setBookmarks}
+        />
+        <BookmarkInput bookmarks={bookmarks} setBookmarks={setBookmarks} />
       </S.ContentContainer>
       <S.ButtonWrapper>
         <Button type="button" version="mainLight" onClick={moveUserPage}>
