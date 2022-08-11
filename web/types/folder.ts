@@ -17,7 +17,6 @@ export interface Folder {
   title: string;
   content: string;
   image: string;
-  content: string;
   isPinned: boolean;
   isPrivate: boolean;
   user: User;
@@ -25,6 +24,20 @@ export interface Folder {
   likes: number;
   isLiked: boolean;
   createdAt: string;
+}
+
+interface Folders {
+  content: Folder[] | [];
+  pageable: Page;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
 }
 
 interface Page {
@@ -44,25 +57,13 @@ interface Bookmark {
 
 // 전체 폴더리스트 조회
 export interface AllFolderList {
-  folders: {
-    content: Folder[] | [];
-    pageable: Page;
-    totalPages: number;
-    totalElements: number;
-    last: boolean;
-    size: number;
-    number: number;
-    sort: Sort;
-    numberOfElements: number;
-    first: boolean;
-    empty: boolean;
-  };
+  folders: Folders;
 }
 
 // 특정사용자의 폴더리스트 조회
 export interface SpecificUserFolderList {
   user: User;
-  folders: AllFolderList;
+  folders: Folders;
 }
 
 //특정 폴더 조회
