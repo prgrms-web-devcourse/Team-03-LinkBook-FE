@@ -1,10 +1,20 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Icon } from "../../components";
 import Modal from "../../components/Modal";
+import { IUserContext, useUserContext } from "../../contexts/ContextProvider";
+import { getUserInfo } from "../../utils/api";
 
 import * as S from "./MainPage.style";
 
 const MainPage = () => {
+  const { setUserInfo, userInfo } = useUserContext() as IUserContext;
+  useEffect(() => {
+    (async function () {
+      setUserInfo(await getUserInfo());
+    })();
+  }, [setUserInfo]);
+
+  console.log("userinfo:", userInfo);
   const inputRef = useRef<HTMLInputElement>(null);
   const [folderSelector, setFolderSelector] = useState({
     id: 0,
