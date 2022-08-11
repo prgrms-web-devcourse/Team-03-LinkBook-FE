@@ -67,6 +67,18 @@ export interface SpecificFolder extends Folder {
   content: string;
   originId: string;
   bookmarks: Bookmark[] | [];
+  originFolder: null | OriginFolder;
+}
+
+export interface OriginFolder {
+  id: number;
+  title: string;
+  user: OriginUser;
+}
+
+export interface OriginUser {
+  id: number;
+  name: string;
 }
 
 // 폴더 생성 또는 수정 후 받는 response

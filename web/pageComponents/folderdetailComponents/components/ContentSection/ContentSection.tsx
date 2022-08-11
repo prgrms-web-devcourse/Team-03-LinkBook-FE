@@ -10,6 +10,7 @@ import {
   PrivateSection,
   ScrapButtonSection,
   LikeButtonSection,
+  OriginFolderSection,
 } from '../index';
 import {
   TEMP_TOKEN,
@@ -51,6 +52,9 @@ const ContentSection = ({ id }: Props) => {
                 isPinned={data.isPinned}
                 token={TEMP_TOKEN}
               />
+            )}
+            {data.originFolder && (
+              <OriginFolderSection originFolder={data.originFolder} />
             )}
             <S.TitleWrapper>{data.title}</S.TitleWrapper>
             <S.ProfileContainer>
