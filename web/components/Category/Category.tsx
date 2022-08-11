@@ -1,19 +1,14 @@
 import * as S from './Category.style';
 import { Skeleton, Tab, Card } from '../index';
+import { Folder, TabType } from '../../types';
 interface Props {
-  data?: any;
-  tabItems: string[];
-  isLoading?: boolean;
-  onClick: (item: string) => void;
-  selectedItem: string;
+  data: Folder[];
+  tabItems: TabType[];
+  isLoading: boolean;
+  onClick: (item: TabType) => void;
+  selectedItem: TabType;
   cardVersion: string;
-  isPinned?: boolean;
 }
-
-const defaultProps = {
-  isLoading: false,
-  isPinned: false,
-};
 
 const Category = ({
   data,
@@ -22,7 +17,6 @@ const Category = ({
   onClick,
   selectedItem,
   cardVersion,
-  isPinned,
 }: Props) => {
   return (
     <>
@@ -38,20 +32,12 @@ const Category = ({
           <Skeleton width={340} height={400} repeat={data.length} />
         ) : (
           data.map((item: any) => (
-            <Card
-              shrinking
-              isPinned={isPinned}
-              key={item.id}
-              version={cardVersion}
-              data={item}
-            />
+            <Card shrinking key={item.id} version={cardVersion} data={item} />
           ))
         )}
       </S.CategoryCardWrapper>
     </>
   );
 };
-
-Category.defaultProps = defaultProps;
 
 export default Category;
