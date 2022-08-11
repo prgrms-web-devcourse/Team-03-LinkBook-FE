@@ -45,21 +45,23 @@ const BookmarkItem = ({ url, title, version }: Props) => {
     <S.BookmarkWrapper onClick={onEnter}>
       <S.BookmarkItem>
         <Avatar src={`${FAVICON_IMAGE}${url}&sz=256`} size={40} />
-        <Text>{title}</Text>
+        <Text weight={400} size={16}>
+          {title}
+        </Text>
       </S.BookmarkItem>
       {version === 'watch' && (
         <S.IconWrapper onClick={onCopyUrl}>
-          <Icon name="clip" size={20} />
+          <Icon name="clip" size={18} />
         </S.IconWrapper>
       )}
       {version === 'update' && (
         <S.UpdateContainer>
           <S.IconWrapper onClick={onUpdate}>
-            <Icon name="pencil" size={20} />
+            <Icon name="pencil" size={18} />
           </S.IconWrapper>
           <S.Line>┃</S.Line>
           <S.IconWrapper onClick={onDelete}>
-            <Icon name="delete" size={20} />
+            <Icon name="delete" size={18} />
           </S.IconWrapper>
         </S.UpdateContainer>
       )}
