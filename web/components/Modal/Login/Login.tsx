@@ -1,14 +1,19 @@
+import * as S from '../Modal.style';
 import { useCallback, useRef } from 'react';
 import { userLogin } from '../../../apis/UserAPI';
 import { Button, Input } from '../../index';
 import { useSetRecoilState } from 'recoil';
-import * as S from '../Modal.style';
 import { loginStatus } from '../../../recoil/authentication';
 import { setCookies } from '../../../util/cookies';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LogIn } from '../../../types';
 import { LoginValidation } from '../../../constants/validation.constants';
 import { showModalStatus } from '../../../recoil/showModal';
+import {
+  closeModal,
+  showFirstModal,
+  showSignUpModal,
+} from '../../../constants/modal.constants';
 
 interface IFormInput {
   email: string;
@@ -32,30 +37,23 @@ const Login = () => {
 
     try {
       const res: LogIn = await userLogin({ email, password });
-      const { accessToken, refreshToken } = res;
+      const { accessToken, refreshToken, isFirstLogin } = res;
 
       if (isChecked) setCookies('REFRESH_TOKEN', refreshToken, '/');
       setCookies('ACCESS_TOKEN', accessToken, '/');
-
       setLoginStatus(true);
-      setShowModalStatus({
-        Login: false,
-        SignUp: false,
-        FirstLogin: false,
-      });
+
+      if (!isFirstLogin) {
+        setShowModalStatus(showFirstModal);
+        return;
+      }
+
+      setShowModalStatus(closeModal);
     } catch (error) {
       alert('이메일 혹은 비밀번호가 일치하지 않습니다.');
       console.log(error);
     }
   }, []);
-
-  const handleSwitchSignUpModal = () => {
-    setShowModalStatus({
-      Login: false,
-      SignUp: true,
-      FirstLogin: false,
-    });
-  };
 
   return (
     <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
@@ -96,7 +94,7 @@ const Login = () => {
           <Button
             type="button"
             version="mainLight"
-            onClick={handleSwitchSignUpModal}
+            onClick={() => setShowModalStatus(showSignUpModal)}
           >
             회원가입
           </Button>

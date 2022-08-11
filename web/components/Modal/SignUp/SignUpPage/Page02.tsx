@@ -7,6 +7,7 @@ import { userSignUp } from '../../../../apis/UserAPI';
 import { RegisterValidation } from '../../../../constants/validation.constants';
 import { useSetRecoilState } from 'recoil';
 import { showModalStatus } from '../../../../recoil/showModal';
+import { showLoginModal } from '../../../../constants/modal.constants';
 
 interface Props {
   handlePage: MouseEventHandler;
@@ -28,11 +29,7 @@ const Page02 = ({ handlePage }: Props) => {
   } = useForm<PasswordInput>();
 
   const handleSwitchLoginModal = () => {
-    setShowModalStatus({
-      Login: true,
-      SignUp: false,
-      FirstLogin: false,
-    });
+    setShowModalStatus(showLoginModal);
   };
 
   const onSubmit: SubmitHandler<PasswordInput> = useCallback(async (data) => {

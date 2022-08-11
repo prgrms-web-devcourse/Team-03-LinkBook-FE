@@ -8,6 +8,7 @@ import Bookmark from './Bookmark';
 import User from './User';
 import { useSetRecoilState } from 'recoil';
 import { showModalStatus } from '../../recoil/showModal';
+import { closeModal } from '../../constants/modal.constants';
 
 interface Props {
   version: 'login' | 'signUp' | 'firstLogin' | 'bookmark' | 'user';
@@ -23,11 +24,7 @@ const Modal = ({ version, show }: Props) => {
   }, [show]);
 
   const handleCloseModal = () => {
-    setShowModalStatus({
-      Login: false,
-      SignUp: false,
-      FirstLogin: false,
-    });
+    setShowModalStatus(closeModal);
   };
 
   const handleVersion = (versionStr: string) => {
