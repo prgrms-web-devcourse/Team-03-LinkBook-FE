@@ -1,6 +1,6 @@
 import { RoundButton } from '../index';
 import { createLike, deleteLike } from '../../../../apis/LikeAPI';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TEMP_USER_ID } from '../../../../constants/alert.constants';
 
 interface Props {
@@ -8,11 +8,23 @@ interface Props {
   likes: number;
   token: string;
   isLiked: boolean;
+  disabled: boolean;
 }
 
-const LikeButtonSection = ({ folderId, likes, token, isLiked }: Props) => {
+const LikeButtonSection = ({
+  folderId,
+  likes,
+  token,
+  isLiked,
+  disabled,
+}: Props) => {
   const [isLikedValue, setIsLikedValue] = useState(isLiked);
   const [likesNum, setLikesNum] = useState(likes);
+
+  useEffect(() => {
+    setIsLikedValue(isLiked);
+    setLikesNum(likes);
+  }, [isLiked, likes]);
 
   const handleClickAddLike = async () => {
     try {
@@ -42,6 +54,7 @@ const LikeButtonSection = ({ folderId, likes, token, isLiked }: Props) => {
       description={likesNum}
       onClick={isLikedValue ? handleClickCancelLike : handleClickAddLike}
       isClicked={isLikedValue}
+      disabled={disabled}
     />
   );
 };
