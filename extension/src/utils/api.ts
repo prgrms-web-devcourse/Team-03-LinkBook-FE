@@ -39,7 +39,8 @@ export const cookieCheck = async () => {
       ACCESS_TOKEN,
       DOMAIN,
       URL,
-      reissuanceAccessToken
+      reissuanceAccessToken,
+      false
     );
 
     return AccessToken;
@@ -115,5 +116,6 @@ export const userLogin = async ({ email, password }: SignUpOrIn) => {
     return res;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };

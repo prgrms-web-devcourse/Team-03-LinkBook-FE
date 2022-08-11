@@ -2,13 +2,16 @@ export const setCookie = async (
   key: string,
   domain: string,
   url: string,
-  value: string
+  value: string,
+  isRefresh: boolean
 ) => {
   const res = await chrome.cookies.set({
     name: key,
     domain,
     url,
-    expirationDate: new Date().getTime() / 1000 + 3600,
+    expirationDate: isRefresh
+      ? new Date().getTime() / 1000 + 1209600
+      : new Date().getTime() / 1000 + 18000,
     value,
   });
 
