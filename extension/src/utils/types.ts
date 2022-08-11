@@ -20,3 +20,8 @@ export interface LogInResponse {
   isFirstLogin: boolean;
   user: User;
 }
+
+export interface ReissuanceAccessToken {
+  accessToken: string;
+  user: User;
+}

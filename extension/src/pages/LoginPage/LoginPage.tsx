@@ -1,8 +1,13 @@
 import React, { useCallback } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { userLogin } from "../../api/userLogin";
 import Input from "../../components/Input";
-import { ACCESS_TOKEN } from "../../utils/constants";
+import { userLogin } from "../../utils/api";
+import {
+  ACCESS_TOKEN,
+  DOMAIN,
+  REFRESH_TOKEN,
+  URL,
+} from "../../utils/constants";
 import { getCookie, setCookie } from "../../utils/cookies";
 import * as S from "./LoginPage.style";
 
@@ -26,18 +31,14 @@ const LoginPage = ({ isLogin }: Props) => {
     const { email, password } = data;
 
     try {
-      // const res = await userLogin({ email, password });
-      // if (!res) throw new Error("잘못된 로그인 리스폰스 타입");
-      // const { accessToken, refreshToken } = res;
+      const res = await userLogin({ email, password });
+      if (!res) throw new Error("잘못된 로그인 리스폰스 타입");
+      const { accessToken, refreshToken } = res;
 
-      setCookie(
-        ACCESS_TOKEN,
-        ".google.com",
-        "https://google.com",
-        "accesstoken"
-      );
+      await setCookie(ACCESS_TOKEN, DOMAIN, URL, accessToken);
+      await setCookie(REFRESH_TOKEN, DOMAIN, URL, refreshToken);
 
-      getCookie(ACCESS_TOKEN, "https://google.com");
+      getCookie(ACCESS_TOKEN, URL);
 
       isLogin(true);
     } catch (error) {
