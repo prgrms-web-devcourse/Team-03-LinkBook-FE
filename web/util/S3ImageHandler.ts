@@ -11,9 +11,11 @@ const s3Config = {
 const s3 = new ReactS3Client(s3Config);
 
 export const uploadImageToS3 = async (file) => {
+  const fileName = file.name.replace(/ /g, '');
+
   try {
     console.log(s3, file);
-    const res = await s3.uploadFile(file, file.name);
+    const res = await s3.uploadFile(file, fileName);
     console.log(res);
     return res;
   } catch (exception) {

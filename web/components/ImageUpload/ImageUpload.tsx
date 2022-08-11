@@ -5,19 +5,20 @@ import PagePreview from './PagePreview';
 import { uploadImageToS3 } from '../../util/S3ImageHandler';
 
 interface Props {
-  setImageSrc: React.Dispatch<React.SetStateAction<string>>;
+  imageSrc?: string;
+  setImageSrc?: React.Dispatch<React.SetStateAction<string>>;
   version: 'modal' | 'page';
 }
 
-const ImageUpload = ({ setImageSrc, version }: Props) => {
-  const [imgSrc, setImgSrc] = useState('');
+const ImageUpload = ({ imageSrc, setImageSrc, version }: Props) => {
+  const [imgSrc, setImgSrc] = useState(imageSrc);
+  console.log(imgSrc);
 
   // Input 추가하면 ImageSrc 추가
   const handleImage = async (img: Blob) => {
-    console.log(img);
     const result = await uploadImageToS3(img);
-    // const imageUrl = result.location;
-    // setImageSrc(imageUrl);
+    const imageUrl = result.location;
+    setImageSrc(imageUrl);
 
     const reader = new FileReader();
     if (img) {
