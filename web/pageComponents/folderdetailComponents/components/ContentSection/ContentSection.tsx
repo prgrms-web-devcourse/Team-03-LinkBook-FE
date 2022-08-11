@@ -79,7 +79,12 @@ const ContentSection = ({ id }: Props) => {
             <Profile user={data.user} />
           </S.ProfileWrapper>
           <S.ButtonsContainer>
-            <LikeButtonSection id={id} likes={data.likes} token={TEMP_TOKEN} />
+            <LikeButtonSection
+              id={id}
+              likes={data.likes}
+              token={TEMP_TOKEN}
+              initialIsLiked={data.isLiked}
+            />
             <ScrapButtonSection id={id} data={data} token={TEMP_TOKEN} />
           </S.ButtonsContainer>
         </S.Container>

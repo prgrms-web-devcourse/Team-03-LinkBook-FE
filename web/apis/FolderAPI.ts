@@ -61,24 +61,22 @@ export const createFolder = async (
   }: CreateOrUpdateFolder,
   token: string,
 ) => {
-  const res = await axios.post(
-    `${FOLDERS}`,
-    {
-      title,
-      image,
-      content,
-      isPinned,
-      isPrivate,
-      tags,
-      bookmarks,
-      originId: originId ? originId : null,
+  const data = {
+    title,
+    image,
+    content,
+    isPinned,
+    isPrivate,
+    tags,
+    bookmarks,
+    originId,
+  };
+  console.log(data);
+  const res = await axios.post(`${FOLDERS}`, data, {
+    headers: {
+      'Access-Token': token,
     },
-    {
-      headers: {
-        'Access-Token': token,
-      },
-    },
-  );
+  });
 
   console.log(res);
   return res as unknown as FolderCreateOrUpdate;
