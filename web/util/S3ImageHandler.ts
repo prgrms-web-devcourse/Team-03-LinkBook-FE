@@ -14,7 +14,6 @@ export const uploadImageToS3 = async (file: File) => {
   const fileName = file.name.replace(/ /g, '');
 
   try {
-    console.log(s3, file);
     const res = await s3.uploadFile(file, fileName);
     console.log(res);
     return res;

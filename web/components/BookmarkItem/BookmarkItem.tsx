@@ -16,8 +16,9 @@ const BookmarkItem = ({ url, title, version, onRemove }: Props) => {
 
   const onEnter = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
+    const link = url.indexOf('https://') === 0 ? url : `https://${url}`;
 
-    window.open(url, '_blank');
+    window.open(link, '_blank');
   }, []);
 
   const onCopyUrl = useCallback((event: React.MouseEvent) => {
