@@ -1,10 +1,11 @@
 import * as S from './ContentSection.style';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { PAGE_URL } from '../../../../constants/url.constants';
 import { Profile, BookmarkList, Tag } from '../../../../components';
 import { SpecificFolder } from '../../../../types';
 import { getFolder } from '../../../../apis/FolderAPI';
-import { useRouter } from 'next/router';
 import {
   PrivateSection,
   ScrapButtonSection,
@@ -32,7 +33,7 @@ const ContentSection = ({ id }: Props) => {
         setData(contentRes);
       } catch (error) {
         console.log(error);
-        router.push('/404');
+        router.push(PAGE_URL.ERROR);
       }
     })();
   }, [id]);

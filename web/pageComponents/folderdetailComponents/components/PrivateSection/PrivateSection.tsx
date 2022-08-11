@@ -2,6 +2,7 @@ import * as S from './PrivateSection.style';
 import { useRouter } from 'next/router';
 import { Icon } from '../../../../components';
 import { deleteFolder } from '../../../../apis/FolderAPI';
+import { PAGE_URL } from '../../../../constants/url.constants';
 
 interface Props {
   id: number;
@@ -14,7 +15,7 @@ const PrivateSection = ({ id, isPrivate, isPinned, token }: Props) => {
   const router = useRouter();
 
   const handleClickMoveUpdate = () => {
-    router.push(`/folderupdate/${id}`);
+    router.push(`/${PAGE_URL.UPDATE}/${id}`);
   };
 
   const handleClickDeletePost = async () => {
@@ -23,7 +24,7 @@ const PrivateSection = ({ id, isPrivate, isPinned, token }: Props) => {
 
     try {
       await deleteFolder(id, token);
-      await router.push('/');
+      await router.push(PAGE_URL.MAIN);
     } catch (error) {
       console.log(error);
     }
