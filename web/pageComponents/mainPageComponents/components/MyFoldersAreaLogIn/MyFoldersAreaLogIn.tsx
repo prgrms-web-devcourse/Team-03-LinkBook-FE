@@ -11,7 +11,7 @@ import { SpecificUserFolderList } from '../../../../types';
 import { getUserFolderList } from '../../../../apis/FolderAPI';
 
 const MyFoldersAreaLogIn = () => {
-  const getUserInfo = useRecoilValue(userInfo);
+  const getUserInfo: any = useRecoilValue(userInfo);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const router = useRouter();
@@ -37,6 +37,7 @@ const MyFoldersAreaLogIn = () => {
           size,
           sort,
         });
+        console.log(res);
         const pinnedFolder = res.folders.content.filter(
           (folder) => folder?.isPinned === true,
         );
