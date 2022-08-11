@@ -26,22 +26,11 @@ export const setCookie = (
   });
 };
 
-export const getCookie = (key: string, url: string) => {
-  return new Promise((resolve, reject) => {
-    chrome.cookies.get(
-      {
-        name: key,
-        url,
-      },
-      (cookie) => {
-        if (cookie) {
-          console.log(cookie);
-          resolve(cookie.value);
-        } else {
-          console.log("Can't get cookie");
-          reject(0);
-        }
-      }
-    );
+export const getCookie = async (key: string, url: string) => {
+  const res = await chrome.cookies.get({
+    name: key,
+    url,
   });
+  console.log(res?.value);
+  return res?.value;
 };
