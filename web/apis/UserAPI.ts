@@ -1,6 +1,6 @@
 import axios from '.';
 import { USER, SIGNUP, LOGIN, GET_USER_DATA } from './url';
-import type { LogIn, SignUpOrIn, UpdateInfo } from '../types';
+import type { LogIn, MyInfo, SignUpOrIn, UpdateInfo } from '../types';
 
 // 회원가입
 export const userSignUp = async ({ email, password }: SignUpOrIn) => {
@@ -29,11 +29,15 @@ export const userLogin = async ({ email, password }: SignUpOrIn) => {
 // 로그아웃
 
 //내 정보 조회
-export const getUserInfo = async () => {
-  const res = await axios.get(`${USER}${GET_USER_DATA}`);
+export const getUserInfo = async (token: string) => {
+  const res = await axios.get(`${USER}${GET_USER_DATA}`, {
+    headers: {
+      'Access-Token': token,
+    },
+  });
 
   console.log(res);
-  return res;
+  return res as unknown as MyInfo;
 };
 
 // 내 정보 수정 성공
