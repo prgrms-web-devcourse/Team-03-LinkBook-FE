@@ -1,12 +1,13 @@
 import { MouseEventHandler, useCallback, useRef } from 'react';
-import { userLogin } from '../../../apis/UserAPI';
+import { getUserInfo, userLogin } from '../../../apis/UserAPI';
 import { Button, Input } from '../../index';
 import { useSetRecoilState } from 'recoil';
 import * as S from '../Modal.style';
 import { loginStatus } from '../../../recoil/authentication';
 import { setCookies } from '../../../util/cookies';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { LogIn } from '../../../types';
+import { LogIn, MyInfo } from '../../../types';
+import { userInfo } from '../../../recoil/user';
 
 interface Props {
   switchFunc?: MouseEventHandler;
@@ -21,6 +22,7 @@ interface IFormInput {
 const Login = ({ switchFunc, closeFunc }: Props) => {
   const checkRef = useRef<HTMLInputElement>(null);
   const setLoginStatus = useSetRecoilState(loginStatus);
+  const setUserInfo = useSetRecoilState(userInfo);
   const {
     register,
     handleSubmit,
@@ -40,6 +42,8 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
       setCookies('ACCESS_TOKEN', accessToken, '/');
 
       setLoginStatus(true);
+      const userInfo: MyInfo = await getUserInfo(accessToken);
+      setUserInfo(userInfo);
       closeFunc(e.target);
     } catch (error) {
       alert('이메일 혹은 비밀번호가 일치하지 않습니다.');
