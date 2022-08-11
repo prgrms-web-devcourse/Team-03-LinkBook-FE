@@ -26,7 +26,7 @@ const RoundButton = ({
       <S.Button onClick={onClick} isClicked={isClicked}>
         <Icon name={iconName} size={iconSize} />
       </S.Button>
-      <S.Description>{description}</S.Description>
+      <S.Description isClicked={isClicked}>{description}</S.Description>
     </S.Container>
   );
 };

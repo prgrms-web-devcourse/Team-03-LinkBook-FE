@@ -25,9 +25,10 @@ export const Button = styled.button<{ isClicked: boolean }>`
   }
 `;
 
-export const Description = styled.div`
+export const Description = styled.div<{ isClicked: boolean }>`
   width: fit-content;
   margin: 0 auto;
-  color: ${({ theme }) => theme.colors.gray[3]};
+  color: ${({ theme, isClicked }) =>
+    !isClicked ? theme.colors.gray[3] : theme.colors.main[0]};
   font-size: ${({ theme }) => theme.fontSize.b[2]};
 `;

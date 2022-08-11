@@ -37,7 +37,7 @@ const PrivateSection = ({ id, isPrivate, isPinned, token }: Props) => {
         <S.Tag>{isPrivate ? 'Private' : 'Public'}</S.Tag>
         {isPinned && (
           <S.Tag>
-            <Icon name="ico_pin" size={20} />
+            <Icon name="ico_pin" size={15} />
           </S.Tag>
         )}
       </S.ButtonsContainer>

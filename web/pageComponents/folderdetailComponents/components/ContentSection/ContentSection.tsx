@@ -11,6 +11,7 @@ import {
   ScrapButtonSection,
   LikeButtonSection,
   OriginFolderSection,
+  PlaceholderSection,
 } from '../index';
 import {
   TEMP_TOKEN,
@@ -30,7 +31,8 @@ const ContentSection = ({ id }: Props) => {
 
     (async () => {
       try {
-        const contentRes = await getFolder(id);
+        // token이 있다고 가정하고 테스트 진행
+        const contentRes = await getFolder(id, TEMP_TOKEN);
         setData(contentRes);
       } catch (error) {
         console.log(error);
@@ -41,7 +43,7 @@ const ContentSection = ({ id }: Props) => {
 
   return (
     <>
-      {data && (
+      {data ? (
         <S.Container>
           <S.TitleContainer>
             {/* 추후에 글 작성자인지 확인하는 로직으로 변경 예정 */}
@@ -84,14 +86,16 @@ const ContentSection = ({ id }: Props) => {
           </S.ProfileWrapper>
           <S.ButtonsContainer>
             <LikeButtonSection
-              id={id}
+              folderId={id}
               likes={data.likes}
               token={TEMP_TOKEN}
-              initialIsLiked={data.isLiked}
+              likeId={5}
             />
             <ScrapButtonSection id={id} data={data} token={TEMP_TOKEN} />
           </S.ButtonsContainer>
         </S.Container>
+      ) : (
+        <PlaceholderSection />
       )}
     </>
   );
