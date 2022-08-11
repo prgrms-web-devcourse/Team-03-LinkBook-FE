@@ -1,5 +1,11 @@
 import axios from '.';
-import { GetFolderList, GetUserFolderList, SpecificFolder } from '../types';
+import {
+  AllFolderList,
+  GetFolderList,
+  GetUserFolderList,
+  SpecificFolder,
+  SpecificUserFolderList,
+} from '../types';
 import { CreateOrUpdateFolder, FolderCreateOrUpdate } from '../types/folder';
 import { FOLDERS, USER } from './url';
 
@@ -14,7 +20,7 @@ export const getFolderList = async ({ page, size, sort }: GetFolderList) => {
   });
 
   console.log(res);
-  return res;
+  return res as unknown as AllFolderList;
 };
 
 // 특정 사용자 폴더리스트 조회
@@ -35,7 +41,7 @@ export const getUserFolderList = async ({
   });
 
   console.log(res);
-  return res;
+  return res as unknown as SpecificUserFolderList;
 };
 
 // 특정 폴더 조회
