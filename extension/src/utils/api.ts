@@ -19,7 +19,9 @@ export const onReissuanceAccessToken = async () => {
     console.log(res);
 
     return res.data.accessToken;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // 쿠키 확인함수
