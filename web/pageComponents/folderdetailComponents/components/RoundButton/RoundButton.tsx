@@ -14,7 +14,13 @@ const defaultProps = {
   iconSize: 25,
 };
 
-const RoundButton = ({ iconName, iconSize, description, isClicked, onClick }: Props) => {
+const RoundButton = ({
+  iconName,
+  iconSize,
+  description,
+  isClicked,
+  onClick,
+}: Props) => {
   return (
     <S.Container>
       <S.Button onClick={onClick} isClicked={isClicked}>

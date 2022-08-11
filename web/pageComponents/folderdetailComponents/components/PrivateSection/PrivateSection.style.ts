@@ -18,16 +18,17 @@ export const Tag = styled.div`
 
 export const ButtonsContainer = styled.div`
   display: flex;
-  gap: 5px;
+  gap: 7px;
   align-items: center;
-  color: ${({ theme }) => theme.colors.gray[3]};
-  font-size: ${({ theme }) => theme.fontSize.b[1]};
+  color: ${({ theme }) => theme.colors.gray[4]};
+  font-size: ${({ theme }) => theme.fontSize.b[2]};
 `;
 
 export const UpdateButton = styled.button`
   color: ${({ theme }) => theme.colors.gray[1]};
   font-size: ${({ theme }) => theme.fontSize.b[1]};
   background-color: transparent;
+  padding: 4px 8px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
