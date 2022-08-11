@@ -23,6 +23,7 @@ interface Props {
 }
 
 const ContentSection = ({ id }: Props) => {
+  // like 로직은 임의로 구현
   const [data, setData] = useState<SpecificFolder>(undefined);
   const router = useRouter();
 

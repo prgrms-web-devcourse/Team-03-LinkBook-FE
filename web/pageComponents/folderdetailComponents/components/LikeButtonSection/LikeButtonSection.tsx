@@ -23,7 +23,6 @@ const LikeButtonSection = ({
   const handleClickAddLike = async () => {
     try {
       const res: any = await createLike(folderId, TEMP_USER_ID, token);
-      console.log(res);
       const { id } = res;
       setIsLiked(true);
       setLikeIdValue(id);
@@ -36,8 +35,7 @@ const LikeButtonSection = ({
 
   const handleClickCancelLike = async () => {
     try {
-      const res = await deleteLike(likeIdValue, token);
-      console.log(res);
+      await deleteLike(likeIdValue, token);
       setIsLiked(false);
       setLikeIdValue(null);
       setLikesNum(likesNum - 1);

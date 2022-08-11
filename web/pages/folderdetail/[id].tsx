@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
+import * as S from '../../styles/pageStyles/folderDetail.style';
 import {
   CommentSection,
   ContentSection,
 } from '../../pageComponents/folderdetailComponents/components';
-import * as S from '../../styles/pageStyles/folderDetail.style';
 
 const folderDetailPage = () => {
   const router = useRouter();
@@ -11,9 +11,9 @@ const folderDetailPage = () => {
 
   return (
     <S.Container>
-      <ContentSection id={Number(id)} />
+      <ContentSection id={id} />
       <S.Line />
-      <CommentSection id={Number(id)} />
+      <CommentSection id={id} />
     </S.Container>
   );
 };
