@@ -13,7 +13,11 @@ const Tab = ({ onClick, selectedItem, tabItems }: Props) => {
     <S.TabWrapper>
       {tabItems &&
         tabItems.map((item, idx) => (
-          <TabItem key={idx} onClick={onClick} selected={item === selectedItem}>
+          <TabItem
+            key={idx}
+            onClick={onClick}
+            selected={item.name === selectedItem.name}
+          >
             {item}
           </TabItem>
         ))}
