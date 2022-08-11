@@ -1,28 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
-import { Card, Icon, Text } from '../../../../components';
+import { Card, Icon, Skeleton, Text } from '../../../../components';
 import * as S from './FolderSlider.style';
 import { Folder } from '../../../../shared/DummyDataType';
 import Image from 'next/image';
 
 interface Props {
   data: Folder[];
+  isLoading: boolean;
 }
 
-const defaultProps = {
-  data: {},
-};
-
-const FolderSlider = ({ data }: Props) => {
+const FolderSlider = ({ data, isLoading }: Props) => {
   const sliderRef = useRef<HTMLUListElement>(null);
-  const bookmarkCount = data.length;
-  const bookmarks =
-    bookmarkCount > 3 ? [data[bookmarkCount - 1], ...data, data[0]] : data;
+  const folderCount = data.length;
+  const folders =
+    folderCount > 3 ? [data[folderCount - 1], ...data, data[0]] : data;
 
   const [winX, setWinX] = useState(1440);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleClickPrevButton = () => {
-    const lastIndex = winX > 1280 ? bookmarkCount - 3 : bookmarkCount - 1;
+    const lastIndex = winX > 1280 ? folderCount - 3 : folderCount - 1;
     if (currentIndex <= 0) {
       setCurrentIndex(lastIndex);
     } else {
@@ -31,7 +28,7 @@ const FolderSlider = ({ data }: Props) => {
   };
 
   const handleClickNextButton = () => {
-    const lastIndex = winX > 1280 ? bookmarkCount - 3 : bookmarkCount - 1;
+    const lastIndex = winX > 1280 ? folderCount - 3 : folderCount - 1;
     if (currentIndex >= lastIndex) {
       setCurrentIndex(0);
     } else {
@@ -48,7 +45,7 @@ const FolderSlider = ({ data }: Props) => {
       return currentIndex + 2 === idx + 1;
     }
     for (let i = 1; i <= 3; i++) {
-      if ((currentIndex + i) % (bookmarkCount + 1) === idx) {
+      if ((currentIndex + i) % (folderCount + 1) === idx) {
         return true;
       }
     }
@@ -66,7 +63,7 @@ const FolderSlider = ({ data }: Props) => {
 
     sliderRef.current.style.transition = `all 0.5s `;
     if (winX > 660) {
-      if (winX > 1280 && currentIndex > bookmarkCount - 3) {
+      if (winX > 1280 && currentIndex > folderCount - 3) {
         setCurrentIndex(0);
         sliderRef.current.style.transform = `translateX(-150px)`;
         return;
@@ -85,7 +82,7 @@ const FolderSlider = ({ data }: Props) => {
   }, []);
 
   const content = () => {
-    if (bookmarks.length === 0) {
+    if (folders.length === 0) {
       return (
         <S.DefaultContainer>
           <Image
@@ -108,10 +105,10 @@ const FolderSlider = ({ data }: Props) => {
       );
     }
 
-    if (bookmarks.length <= 3) {
+    if (folders.length <= 3) {
       return (
         <S.CardList useCarousel={false}>
-          {bookmarks.map((bookmark, idx) => (
+          {folders.map((bookmark, idx) => (
             <Card key={idx} data={bookmark} />
           ))}
         </S.CardList>
@@ -121,7 +118,7 @@ const FolderSlider = ({ data }: Props) => {
       <>
         <S.SliderContainer>
           <S.CardList useCarousel={true} ref={sliderRef}>
-            {bookmarks.map((bookmark, idx) => (
+            {folders.map((bookmark, idx) => (
               <S.CardWrapper key={bookmark.id * idx + 1} active={isActive(idx)}>
                 <Card data={bookmark} />
               </S.CardWrapper>
@@ -137,9 +134,17 @@ const FolderSlider = ({ data }: Props) => {
       </>
     );
   };
+
+  if (isLoading) {
+    return (
+      <S.Container>
+        <S.CardList>
+          <Skeleton width={300} height={384} repeat={3} />
+        </S.CardList>
+      </S.Container>
+    );
+  }
   return <S.Container>{content()}</S.Container>;
 };
-
-FolderSlider.defaultProps = defaultProps;
 
 export default FolderSlider;
