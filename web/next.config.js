@@ -11,7 +11,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ['images.unsplash.com', 'www.google.com'],
+    domains: ['images.unsplash.com', 'www.google.com', 'linkbook-s3-1.s3-ap-northeast-2.amazonaws.com'],
   },
   eslint: {
     ignoreDuringBuilds: true,
