@@ -2,7 +2,7 @@ import axios from "axios";
 import { ACCESS_TOKEN, DOMAIN, REFRESH_TOKEN, URL } from "./constants";
 import { getCookie, setCookie } from "./cookies";
 import { LogInResponse, SignUpOrIn } from "./types";
-import { LOGIN, USER } from "./url";
+import { LOGIN, USER, ME } from "./url";
 import { BaseUrl } from "./url";
 
 // access 토큰 재발급 함수
@@ -120,4 +120,17 @@ export const userLogin = async ({ email, password }: SignUpOrIn) => {
     console.error(error);
     return null;
   }
+};
+
+export const getUserInfo = async () => {
+  const res = await authFetch(`${USER}${ME}`, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+
+  console.log(res.user);
+
+  return res.user;
 };
