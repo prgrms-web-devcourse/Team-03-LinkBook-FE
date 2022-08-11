@@ -90,8 +90,11 @@ const ContentSection = ({ id }: Props) => {
               likes={data.likes}
               token={TEMP_TOKEN}
               isLiked={data.isLiked}
+              disabled={data.user.id !== TEMP_USER_ID ? false : true}
             />
-            <ScrapButtonSection id={id} data={data} token={TEMP_TOKEN} />
+            {data.user.id !== TEMP_USER_ID && (
+              <ScrapButtonSection id={id} data={data} token={TEMP_TOKEN} />
+            )}
           </S.ButtonsContainer>
         </S.Container>
       ) : (

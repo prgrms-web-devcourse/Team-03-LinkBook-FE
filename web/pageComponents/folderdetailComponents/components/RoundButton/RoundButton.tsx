@@ -8,10 +8,12 @@ interface Props {
   description: number | string;
   isClicked?: boolean;
   onClick?: MouseEventHandler;
+  disabled: boolean;
 }
 
 const defaultProps = {
   iconSize: 25,
+  disabled: false,
 };
 
 const RoundButton = ({
@@ -20,10 +22,11 @@ const RoundButton = ({
   description,
   isClicked,
   onClick,
+  disabled,
 }: Props) => {
   return (
     <S.Container>
-      <S.Button onClick={onClick} isClicked={isClicked}>
+      <S.Button onClick={onClick} isClicked={isClicked} disabled={disabled}>
         <Icon name={iconName} size={iconSize} />
       </S.Button>
       <S.Description isClicked={isClicked}>{description}</S.Description>

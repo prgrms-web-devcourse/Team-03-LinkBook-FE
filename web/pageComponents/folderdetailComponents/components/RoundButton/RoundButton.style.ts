@@ -7,15 +7,17 @@ export const Container = styled.div`
   width: fit-content;
 `;
 
-export const Button = styled.button<{ isClicked: boolean }>`
+export const Button = styled.button<{ isClicked: boolean; disabled: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 50px;
   height: 50px;
-  background: ${({ theme, isClicked }) =>
-    !isClicked
+  background: ${({ theme, isClicked, disabled }) =>
+    disabled
+      ? theme.colors.gray[4]
+      : !isClicked
       ? `linear-gradient(to left, ${theme.colors.gray[3]} 50%, ${theme.colors.main[0]} 50%)`
       : theme.colors.main[0]};
   background-size: 200%;
