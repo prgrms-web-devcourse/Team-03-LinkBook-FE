@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import { onReissuanceAccessToken } from "../utils/api";
 import { ACCESS_TOKEN, REFRESH_TOKEN, URL } from "../utils/constants";
 import { getCookie } from "../utils/cookies";
 import LoginPage from "./LoginPage";
@@ -11,7 +12,10 @@ const Root = () => {
     getCookie(ACCESS_TOKEN, URL).then((res) => {
       if (res) return setIsLogin(true);
       getCookie(REFRESH_TOKEN, URL).then((res) => {
-        if (res) return setIsLogin(true);
+        if (res) {
+          onReissuanceAccessToken();
+          return setIsLogin(true);
+        }
       });
     });
   }, []);
