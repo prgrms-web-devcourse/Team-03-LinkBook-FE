@@ -6,5 +6,6 @@ export type {
   FolderCreateOrUpdate,
   GetFolderList,
   GetUserFolderList,
+  CreateOrUpdateFolder,
 } from './folder';
 export type { Comments, CreateOrUpdateComment } from './comment';
