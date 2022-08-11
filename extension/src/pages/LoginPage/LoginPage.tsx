@@ -35,8 +35,8 @@ const LoginPage = ({ isLogin }: Props) => {
       if (!res) throw new Error("잘못된 로그인 리스폰스 타입");
       const { accessToken, refreshToken } = res;
 
-      await setCookie(ACCESS_TOKEN, DOMAIN, URL, accessToken);
-      await setCookie(REFRESH_TOKEN, DOMAIN, URL, refreshToken);
+      await setCookie(ACCESS_TOKEN, DOMAIN, URL, accessToken, false);
+      await setCookie(REFRESH_TOKEN, DOMAIN, URL, refreshToken, true);
 
       getCookie(ACCESS_TOKEN, URL);
 
