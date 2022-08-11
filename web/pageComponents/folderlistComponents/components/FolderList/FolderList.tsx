@@ -36,14 +36,14 @@ const FolderList = ({ children, data, label }: Props) => {
           개의 북마크 폴더 리스트들을 찾았습니다 */}
           {label}
         </S.DescriptionText>
-        <Category
+        {/* <Category
           tabItems={tabItems}
           isLoading={isLoading}
           onClick={onTabClick}
           selectedItem={selectedItem}
           data={data.slice(offset, offset + limit)}
           cardVersion="othersCard"
-        />
+        /> */}
       </S.CategoryWrapper>
       <S.PaginationWrapper>
         <Pagination
