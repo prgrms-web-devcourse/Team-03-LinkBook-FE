@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { Input } from '../../../../components';
 import * as S from './BookmarkInput.style';
-// import type { CreateBookmark } from '../../../../types/bookmark';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Bookmark {
   id?: number;
@@ -20,32 +20,49 @@ export interface Props {
 }
 
 export const BookmarkInput = ({ bookmarks, setBookmarks }: Props) => {
-  const titleInput = useRef<HTMLInputElement>();
-  const urlInput = useRef<HTMLInputElement>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Bookmark>();
 
-  const addBookmark = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+  const addBookmark: SubmitHandler<Bookmark> = useCallback(
+    (data, e) => {
       e.preventDefault();
+      let { title, url } = data;
+      title = title || '제목 없음';
 
-      const title = titleInput.current.value || '제목 없음';
-      const url = urlInput.current.value;
       const newBookmarks = [...bookmarks, { title, url }];
       setBookmarks(newBookmarks);
 
-      titleInput.current.value = '';
-      urlInput.current.value = '';
+      reset(data);
     },
     [bookmarks],
   );
 
   return (
-    <S.BookmarkInputContainer onSubmit={addBookmark}>
+    <S.BookmarkInputContainer onSubmit={handleSubmit(addBookmark)}>
       <Input
-        ref={titleInput}
         type="text"
         placeholder="북마크 제목을 입력해주세요"
+        {...register('title', {
+          required: '제목은 필수 입력입니다.',
+        })}
       />
-      <Input ref={urlInput} type="text" placeholder="url을 입력해주세요" />
+      {errors.title && <span>{errors.title.message}</span>}
+      <Input
+        type="text"
+        placeholder="url을 입력해주세요"
+        {...register('url', {
+          required: 'url은 필수 입력입니다.',
+          pattern: {
+            value: /\.com$/,
+            message: 'url 형식에 맞지 않습니다.',
+          },
+        })}
+      />
+      {errors.url && <span>{errors.url.message}</span>}
       <S.BookmarkButton type="submit">북마크 추가하기 +</S.BookmarkButton>
     </S.BookmarkInputContainer>
   );
