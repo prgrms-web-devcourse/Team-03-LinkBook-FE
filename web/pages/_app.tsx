@@ -14,8 +14,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
-  const { token } = nookies.get(appContext.ctx);
-  return { pageProps: { token } };
+  const { ACCESS_TOKEN } = nookies.get(appContext.ctx);
+  return { pageProps: { token: ACCESS_TOKEN } };
 };
 
 export default MyApp;
