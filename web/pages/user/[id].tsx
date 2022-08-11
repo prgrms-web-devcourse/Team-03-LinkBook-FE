@@ -36,7 +36,7 @@ const UserPage = () => {
 
   return (
     <>
-      <Modal version="user" show={showModal} closeFunc={handleModal} />
+      <Modal version="user" show={showModal} />
       <S.PageContainer>
         <S.ProfileWrapper>
           <Profile user={user} />

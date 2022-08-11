@@ -38,11 +38,7 @@ const FolderUpdate = () => {
 
   return (
     <>
-      <Modal
-        version="bookmark"
-        show={showBookmarkModal}
-        closeFunc={handleBookmark}
-      />
+      <Modal version="bookmark" show={showBookmarkModal} />
       <S.ContentContainer>
         <Switch />
         <S.TitleInput
