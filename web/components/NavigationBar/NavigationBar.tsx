@@ -7,6 +7,8 @@ import nookies from 'nookies';
 import * as S from './NavigationBar.style';
 import { removeCookie } from '../../util/cookies';
 import { NextPageContext } from 'next';
+import { PAGE_URL } from '../../constants/url.constants';
+import { TEMP_USER_ID } from '../../constants/alert.constants';
 
 export const getServerSideProps = (ctx: NextPageContext) => {
   const { token } = nookies.get(ctx);
@@ -62,17 +64,17 @@ const NavigationBar = ({ token }: Props) => {
       <Modal version="signUp" show={showSignUpModal} closeFunc={handleSignUp} />
       <S.Container>
         <S.ItemContainer>
-          <Link href="/" passHref>
-            <S.Logo href="/">
+          <Link href={PAGE_URL.MAIN} passHref>
+            <S.Logo href={PAGE_URL.MAIN}>
               <Text version="logo">링북</Text>
               <Icon name="bookmark" size={35} />
             </S.Logo>
           </Link>
           <S.Nav>
-            <Link href="/folderlist" passHref>
+            <Link href={PAGE_URL.LIST} passHref>
               <S.NavItem>북마크리스트</S.NavItem>
             </Link>
-            <Link href="/information" passHref>
+            <Link href={PAGE_URL.INFO} passHref>
               <S.NavItem>이용방법</S.NavItem>
             </Link>
           </S.Nav>
@@ -81,7 +83,7 @@ const NavigationBar = ({ token }: Props) => {
               <Avatar size={35} />
               <S.Line>|</S.Line>
               <S.UserContainer>
-                <Link href="/user/1" passHref>
+                <Link href={`${PAGE_URL.USER}/${TEMP_USER_ID}`} passHref>
                   <S.NavItem>마이페이지</S.NavItem>
                 </Link>
                 <Button type="button" version="navBar">

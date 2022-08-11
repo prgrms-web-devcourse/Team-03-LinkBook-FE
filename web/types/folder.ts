@@ -13,12 +13,14 @@ interface Sort {
 interface Folder {
   id: number;
   title: string;
+  content: string;
   image: string;
   isPinned: boolean;
   isPrivate: boolean;
   user: User;
   tags: string[];
   likes: number;
+  isLiked: boolean;
   createdAt: string;
 }
 
