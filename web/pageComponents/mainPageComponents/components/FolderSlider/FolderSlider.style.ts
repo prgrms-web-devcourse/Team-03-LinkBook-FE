@@ -4,7 +4,7 @@ interface Prop {
   position?: string;
   active?: boolean;
   useCarousel?: boolean;
-};
+}
 
 export const Container = styled.div`
   display: flex;
@@ -15,6 +15,19 @@ export const Container = styled.div`
   height: auto;
   padding-top: 60px;
   padding-bottom: 30px;
+`;
+
+export const DefaultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  width: 1200px;
+  height: 415px;
+  border: 3px solid ${({ theme }) => theme.colors.white[0]};
+  border-radius: 10px;
+  text-align: center;
 `;
 
 export const SliderContainer = styled.div`
@@ -35,28 +48,30 @@ export const SliderContainer = styled.div`
 
 export const CardList = styled.ul<Prop>`
   display: flex;
-  justify-content: ${({useCarousel}) => useCarousel ? 'flex-start' : 'center'};;
+  justify-content: ${({ useCarousel }) =>
+    useCarousel ? 'flex-start' : 'center'};
   gap: 15px;
   width: 100%;
-  transform: ${({useCarousel}) => useCarousel ? 'translateX(-150px)' : 'none'};
+  transform: ${({ useCarousel }) =>
+    useCarousel ? 'translateX(-150px)' : 'none'};
 `;
 
 export const CardWrapper = styled.div<Prop>`
   transition: 1s opacity;
-  opacity: ${({active}) => active ? '1' : '0.4'};
+  opacity: ${({ active }) => (active ? '1' : '0.4')};
   // active에 따라 클릭 이벤트 설정
-  pointer-events: ${({active}) => active ? 'auto' : 'none'};
+  pointer-events: ${({ active }) => (active ? 'auto' : 'none')};
 `;
 
 export const IconWrapper = styled.div<Prop>`
   position: absolute;
   top: 43%;
-  left: ${({position}) => position === 'left' && '3%'};
-  right: ${({position}) => position === 'right' && '3%'};
+  left: ${({ position }) => position === 'left' && '3%'};
+  right: ${({ position }) => position === 'right' && '3%'};
   cursor: pointer;
 
   @media (max-width: 660px) {
-    left: ${({position}) => position === 'left' && '3%'};
-    right: ${({position}) => position === 'right' && '3%'};
+    left: ${({ position }) => position === 'left' && '3%'};
+    right: ${({ position }) => position === 'right' && '3%'};
   }
 `;

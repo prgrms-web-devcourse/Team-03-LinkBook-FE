@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Card, Icon } from '../../../../components';
+import { Card, Icon, Text } from '../../../../components';
 import * as S from './FolderSlider.style';
 import { Folder } from '../../../../shared/DummyDataType';
+import Image from 'next/image';
 
 interface Props {
   data: Folder[];
@@ -83,38 +84,60 @@ const FolderSlider = ({ data }: Props) => {
     };
   }, []);
 
-  return (
-    <S.Container>
-      {bookmarks.length > 3 ? (
-        <>
-          <S.SliderContainer>
-            <S.CardList useCarousel={true} ref={sliderRef}>
-              {bookmarks.map((bookmark, idx) => (
-                <S.CardWrapper
-                  key={bookmark.id * idx + 1}
-                  active={isActive(idx)}
-                >
-                  <Card data={bookmark} />
-                </S.CardWrapper>
-              ))}
-            </S.CardList>
-            <S.IconWrapper position="left" onClick={handleClickPrevButton}>
-              <Icon name="arrowLeft" size={40} />
-            </S.IconWrapper>
-            <S.IconWrapper position="right" onClick={handleClickNextButton}>
-              <Icon name="arrowRight" size={40} />
-            </S.IconWrapper>
-          </S.SliderContainer>
-        </>
-      ) : (
+  const content = () => {
+    if (bookmarks.length === 0) {
+      return (
+        <S.DefaultContainer>
+          <Image
+            width={120}
+            height={108}
+            src="/backgrounds/whale1.svg"
+            alt="로그인화면"
+            layout="fixed"
+          />
+          <Text size={14} weight="bold">
+            등록된 북마크 폴더가 없어요!
+            <br />
+            <br />
+            <br />
+            지금 바로 나만의 북마크 폴더를
+            <br />
+            만들어 보세요!😊
+          </Text>
+        </S.DefaultContainer>
+      );
+    }
+
+    if (bookmarks.length <= 3) {
+      return (
         <S.CardList useCarousel={false}>
           {bookmarks.map((bookmark, idx) => (
             <Card key={idx} data={bookmark} />
           ))}
         </S.CardList>
-      )}
-    </S.Container>
-  );
+      );
+    }
+    return (
+      <>
+        <S.SliderContainer>
+          <S.CardList useCarousel={true} ref={sliderRef}>
+            {bookmarks.map((bookmark, idx) => (
+              <S.CardWrapper key={bookmark.id * idx + 1} active={isActive(idx)}>
+                <Card data={bookmark} />
+              </S.CardWrapper>
+            ))}
+          </S.CardList>
+          <S.IconWrapper position="left" onClick={handleClickPrevButton}>
+            <Icon name="arrowLeft" size={40} />
+          </S.IconWrapper>
+          <S.IconWrapper position="right" onClick={handleClickNextButton}>
+            <Icon name="arrowRight" size={40} />
+          </S.IconWrapper>
+        </S.SliderContainer>
+      </>
+    );
+  };
+  return <S.Container>{content()}</S.Container>;
 };
 
 FolderSlider.defaultProps = defaultProps;
