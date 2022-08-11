@@ -1,20 +1,23 @@
 interface User {
   id: number;
+  email: string;
   name: string;
   image: string;
+  introduce: string;
 }
 
 interface Sort {
-  unsorted: boolean;
   empty: boolean;
+  unsorted: boolean;
   sorted: boolean;
 }
 
-interface Folder {
+export interface Folder {
   id: number;
   title: string;
   content: string;
   image: string;
+  content: string;
   isPinned: boolean;
   isPrivate: boolean;
   user: User;
@@ -44,21 +47,21 @@ export interface AllFolderList {
   folders: {
     content: Folder[] | [];
     pageable: Page;
-    last: boolean;
-    totalElements: number;
     totalPages: number;
-    numberOfElements: number;
-    sort: Sort;
-    number: number;
-    first: boolean;
+    totalElements: number;
+    last: boolean;
     size: number;
+    number: number;
+    sort: Sort;
+    numberOfElements: number;
+    first: boolean;
     empty: boolean;
   };
 }
 
 // 특정사용자의 폴더리스트 조회
 export interface SpecificUserFolderList {
-  userResponse: User;
+  user: User;
   folders: AllFolderList;
 }
 
