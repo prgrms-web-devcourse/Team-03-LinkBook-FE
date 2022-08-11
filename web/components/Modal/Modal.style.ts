@@ -193,9 +193,3 @@ export const LogoText = styled.span`
   font-size: ${({ theme }) => theme.fontSize.l[2]};
   font-family: 'Dongle', sans-serif;
 `;
-
-export const errorText = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.c[0]};
-  color: red;
-  margin: 5px;
-`;

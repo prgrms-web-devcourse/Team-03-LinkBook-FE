@@ -4,6 +4,7 @@ import { MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUserInfo } from '../contexts/UserProvider';
 import { requestEmailKey, validateEmailKey } from '../../../../apis/EmailAPI';
+import { RegisterValidation } from '../../../../constants/validation.constants';
 
 interface Props {
   handlePage: MouseEventHandler;
@@ -56,37 +57,28 @@ const Page01 = ({ handlePage }: Props) => {
         <S.Description>이메일 형식으로 입력해 주세요!</S.Description>
       </S.Title>
       <S.InputContainer>
-        <div>
-          <Input
-            placeholder="아이디(이메일)"
-            type="text"
-            {...register('email', {
-              required: '이메일은 필수 입력입니다.',
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: '이메일 형식에 맞지 않습니다.',
-              },
-            })}
-          >
-            <Button type="submit" version="modal">
-              인증번호 발송
-            </Button>
-          </Input>
-          {errors.email && (
-            <S.errorText role="alert">{errors.email.message}</S.errorText>
-          )}
-        </div>
-        <div>
-          <Input
-            placeholder="이메일로 발송된 인증 코드를 입력해주세요."
-            type="text"
-            ref={keyRef}
-          >
-            <Button type="button" version="modal" onClick={onValidateKey}>
-              인증
-            </Button>
-          </Input>
-        </div>
+        <Input
+          placeholder="아이디(이메일)"
+          type="text"
+          errorText={errors.email && errors.email.message}
+          {...register('email', {
+            required: '이메일은 필수 입력입니다.',
+            pattern: RegisterValidation.email,
+          })}
+        >
+          <Button type="submit" version="modal">
+            인증번호 발송
+          </Button>
+        </Input>
+        <Input
+          placeholder="이메일로 발송된 인증 코드를 입력해주세요."
+          type="text"
+          ref={keyRef}
+        >
+          <Button type="button" version="modal" onClick={onValidateKey}>
+            인증
+          </Button>
+        </Input>
       </S.InputContainer>
       <S.ButtonContainer>
         <Button type="button" onClick={handlePage}>

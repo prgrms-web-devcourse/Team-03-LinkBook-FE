@@ -24,3 +24,9 @@ export const Action = styled.div`
   padding-right: 8px;
   padding-bottom: 8px;
 `;
+
+export const ErrorText = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.c[0]};
+  color: red;
+  margin: 5px;
+`;

@@ -20,10 +20,6 @@ const UserProvider = ({ children }: any) => {
     setPassword('');
   };
 
-  useEffect(() => {
-    console.log(email, password);
-  }, [email, password]);
-
   return (
     <UserContext.Provider
       value={{

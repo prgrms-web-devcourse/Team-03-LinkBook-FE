@@ -4,6 +4,7 @@ import type { LogIn, SignUpOrIn, UpdateInfo } from '../types';
 
 // 회원가입
 export const userSignUp = async ({ email, password }: SignUpOrIn) => {
+  console.log(email, password);
   const res = await axios.post(`${USER}${SIGNUP}`, {
     email,
     password,

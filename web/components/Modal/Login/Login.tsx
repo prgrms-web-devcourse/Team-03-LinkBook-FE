@@ -1,4 +1,4 @@
-import { MouseEventHandler, useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { userLogin } from '../../../apis/UserAPI';
 import { Button, Input } from '../../index';
 import { useSetRecoilState } from 'recoil';
@@ -7,20 +7,18 @@ import { loginStatus } from '../../../recoil/authentication';
 import { setCookies } from '../../../util/cookies';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LogIn } from '../../../types';
-
-interface Props {
-  switchFunc?: MouseEventHandler;
-  closeFunc: MouseEventHandler;
-}
+import { LoginValidation } from '../../../constants/validation.constants';
+import { showModalStatus } from '../../../recoil/showModal';
 
 interface IFormInput {
   email: string;
   password: string;
 }
 
-const Login = ({ switchFunc, closeFunc }: Props) => {
+const Login = () => {
   const checkRef = useRef<HTMLInputElement>(null);
   const setLoginStatus = useSetRecoilState(loginStatus);
+  const setShowModalStatus = useSetRecoilState(showModalStatus);
   const {
     register,
     handleSubmit,
@@ -40,12 +38,24 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
       setCookies('ACCESS_TOKEN', accessToken, '/');
 
       setLoginStatus(true);
-      closeFunc(e.target);
+      setShowModalStatus({
+        Login: false,
+        SignUp: false,
+        FirstLogin: false,
+      });
     } catch (error) {
       alert('이메일 혹은 비밀번호가 일치하지 않습니다.');
       console.log(error);
     }
   }, []);
+
+  const handleSwitchSignUpModal = () => {
+    setShowModalStatus({
+      Login: false,
+      SignUp: true,
+      FirstLogin: false,
+    });
+  };
 
   return (
     <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
@@ -53,34 +63,23 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
         <S.MainText>Linkbook</S.MainText>에 오신것을 환영합니다! 🎉
       </S.Title>
       <S.InputContainer>
-        <div>
-          <Input
-            placeholder="아이디(이메일)"
-            type="text"
-            {...register('email', {
-              required: '이메일은 필수 입력입니다.',
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: '이메일 형식에 맞지 않습니다.',
-              },
-            })}
-          />
-          {errors.email && (
-            <S.errorText role="alert">{errors.email.message}</S.errorText>
-          )}
-        </div>
-        <div>
-          <Input
-            placeholder="비밀번호"
-            type="password"
-            {...register('password', {
-              required: '비밀번호는 필수 입력입니다.',
-            })}
-          />
-          {errors.password && (
-            <S.errorText role="alert">{errors.password.message}</S.errorText>
-          )}
-        </div>
+        <Input
+          placeholder="아이디(이메일)"
+          type="text"
+          {...register('email', {
+            required: '이메일은 필수 입력입니다.',
+            pattern: LoginValidation.email,
+          })}
+          errorText={errors.email && errors.email.message}
+        />
+        <Input
+          placeholder="비밀번호"
+          type="password"
+          {...register('password', {
+            required: '비밀번호는 필수 입력입니다.',
+          })}
+          errorText={errors.password && errors.password.message}
+        />
         <S.keepLoginWrapper>
           <S.keepLoginInput type="checkbox" value="keepLogin" ref={checkRef} />
           <S.keepLoginText>로그인 상태 유지</S.keepLoginText>
@@ -91,14 +90,14 @@ const Login = ({ switchFunc, closeFunc }: Props) => {
           로그인
         </Button>
       </S.ButtonContainer>
-      {/* <S.ButtonContainer>
-        <Button type="button">Kakao 로그인</Button>
-        <Button type="button">Naver 로그인</Button>
-      </S.ButtonContainer> */}
       <S.SignUpContainer>
         <S.SignUpText> 아직 Linkbook의 회원이 아니신가요?</S.SignUpText>
         <S.ButtonContainer>
-          <Button type="button" version="mainLight" onClick={switchFunc}>
+          <Button
+            type="button"
+            version="mainLight"
+            onClick={handleSwitchSignUpModal}
+          >
             회원가입
           </Button>
         </S.ButtonContainer>

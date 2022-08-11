@@ -1,0 +1,38 @@
+import * as S from '../NavigationBar.style';
+import Link from 'next/link';
+import { Avatar, Button } from '../../index';
+import { PAGE_URL } from '../../../constants/url.constants';
+import { TEMP_USER_ID } from '../../../constants/alert.constants';
+import { removeCookie } from '../../../util/cookies';
+import { loginStatus } from '../../../recoil/authentication';
+import { useSetRecoilState } from 'recoil';
+
+const LoginSection = () => {
+  const setLoginState = useSetRecoilState(loginStatus);
+
+  const handleLogout = () => {
+    removeCookie('ACCESS_TOKEN');
+    removeCookie('REFRESH_TOKEN');
+    setLoginState(false);
+  };
+
+  return (
+    <>
+      <Avatar size={35} />
+      <S.Line>|</S.Line>
+      <S.UserContainer>
+        <Link href={`${PAGE_URL.USER}/${TEMP_USER_ID}`} passHref>
+          <S.NavItem>마이페이지</S.NavItem>
+        </Link>
+        <Button type="button" version="navBar">
+          새 폴더 작성
+        </Button>
+        <Button type="button" version="navBar" onClick={handleLogout}>
+          로그아웃
+        </Button>
+      </S.UserContainer>
+    </>
+  );
+};
+
+export default LoginSection;
