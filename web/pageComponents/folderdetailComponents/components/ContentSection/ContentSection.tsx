@@ -23,7 +23,6 @@ interface Props {
 }
 
 const ContentSection = ({ id }: Props) => {
-  // like 로직은 임의로 구현
   const [data, setData] = useState<SpecificFolder>(undefined);
   const router = useRouter();
 
@@ -90,7 +89,7 @@ const ContentSection = ({ id }: Props) => {
               folderId={id}
               likes={data.likes}
               token={TEMP_TOKEN}
-              likeId={5}
+              isLiked={data.isLiked}
             />
             <ScrapButtonSection id={id} data={data} token={TEMP_TOKEN} />
           </S.ButtonsContainer>

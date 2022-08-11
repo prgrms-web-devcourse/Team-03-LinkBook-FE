@@ -7,25 +7,17 @@ interface Props {
   folderId: number;
   likes: number;
   token: string;
-  likeId?: number | null;
+  isLiked: boolean;
 }
 
-const LikeButtonSection = ({
-  folderId,
-  likes,
-  token,
-  likeId = null,
-}: Props) => {
-  const [isLiked, setIsLiked] = useState(likeId ? true : false);
-  const [likeIdValue, setLikeIdValue] = useState(likeId);
+const LikeButtonSection = ({ folderId, likes, token, isLiked }: Props) => {
+  const [isLikedValue, setIsLikedValue] = useState(isLiked);
   const [likesNum, setLikesNum] = useState(likes);
 
   const handleClickAddLike = async () => {
     try {
-      const res: any = await createLike(folderId, TEMP_USER_ID, token);
-      const { id } = res;
-      setIsLiked(true);
-      setLikeIdValue(id);
+      await createLike(folderId, TEMP_USER_ID, token);
+      setIsLikedValue(true);
       setLikesNum(likesNum + 1);
     } catch (error) {
       alert('문제가 발생했습니다.');
@@ -35,9 +27,8 @@ const LikeButtonSection = ({
 
   const handleClickCancelLike = async () => {
     try {
-      await deleteLike(likeIdValue, token);
-      setIsLiked(false);
-      setLikeIdValue(null);
+      await deleteLike(folderId, token);
+      setIsLikedValue(false);
       setLikesNum(likesNum - 1);
     } catch (error) {
       alert('문제가 발생했습니다.');
@@ -49,8 +40,8 @@ const LikeButtonSection = ({
     <RoundButton
       iconName="likes_clicked_white"
       description={likesNum}
-      onClick={isLiked ? handleClickCancelLike : handleClickAddLike}
-      isClicked={isLiked}
+      onClick={isLikedValue ? handleClickCancelLike : handleClickAddLike}
+      isClicked={isLikedValue}
     />
   );
 };

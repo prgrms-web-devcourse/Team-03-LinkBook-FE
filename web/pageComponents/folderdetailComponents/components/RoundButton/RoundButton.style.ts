@@ -14,14 +14,19 @@ export const Button = styled.button<{ isClicked: boolean }>`
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: ${({ theme, isClicked }) =>
-    !isClicked ? theme.colors.gray[4] : theme.colors.main[0]};
+  background: ${({ theme, isClicked }) =>
+    !isClicked
+      ? `linear-gradient(to left, ${theme.colors.gray[3]} 50%, ${theme.colors.main[0]} 50%)`
+      : theme.colors.main[0]};
+  background-size: 200%;
+  background-position: right;
   border: none;
   border-radius: 50px;
   cursor: pointer;
+  transition: all 0.2s ease-out;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray[3]};
+    background-position: left;
   }
 `;
 
