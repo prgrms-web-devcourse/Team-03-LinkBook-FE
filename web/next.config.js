@@ -16,6 +16,7 @@ const nextConfig = {
       'www.google.com',
       'cdn.inflearn.com',
       'avatars.githubusercontent.com',
+      'linkbook-s3-1.s3-ap-northeast-2.amazonaws.com',
     ],
   },
   eslint: {
