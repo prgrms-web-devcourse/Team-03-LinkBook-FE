@@ -6,7 +6,7 @@ import { TEMP_TOKEN } from '../../constants/alert.constants';
 
 interface Props {
   version: 'comment' | 'update';
-  folderId: number;
+  folderId?: number;
   parentId?: number;
   defaultValue?: string;
 }
