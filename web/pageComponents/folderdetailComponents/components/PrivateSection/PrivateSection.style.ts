@@ -6,12 +6,16 @@ export const Container = styled.div`
 `;
 
 export const Tag = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-width: 70px;
   height: 28px;
+  max-height: 28px;
   margin-bottom: 5px;
   padding: 5px 10px;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.gray[3]};
-  text-align: center;
   border: 1px solid;
   border-radius: 20px;
 `;

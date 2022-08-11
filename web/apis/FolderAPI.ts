@@ -39,8 +39,15 @@ export const getUserFolderList = async ({
 };
 
 // 특정 폴더 조회
-export const getFolder = async (id: number) => {
-  const res = await axios.get(`${FOLDERS}/${id}`);
+export const getFolder = async (id: number, token?: string) => {
+  const tokenData = token
+    ? {
+        headers: {
+          'Access-Token': token,
+        },
+      }
+    : null;
+  const res = await axios.get(`${FOLDERS}/${id}`, tokenData);
 
   console.log(res);
   return res as unknown as SpecificFolder;
