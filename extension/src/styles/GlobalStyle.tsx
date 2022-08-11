@@ -13,9 +13,6 @@ function GlobalStyle() {
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
         }
-        html {
-          border-radius: 15px;
-        }
       `}
     />
   );

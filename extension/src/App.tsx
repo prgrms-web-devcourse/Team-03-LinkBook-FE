@@ -1,10 +1,8 @@
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
-import RootStack from "./pages/RootStack";
+import Root from "./pages/Root";
 
 function App() {
-  return <RootStack />;
+  return <Root />;
 }
 
 export default App;
