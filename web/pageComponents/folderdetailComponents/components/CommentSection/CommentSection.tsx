@@ -1,8 +1,8 @@
 import * as S from './CommentSection.style';
 import { useEffect, useState } from 'react';
 import { CommentInput, Comment } from '../../../../components';
-import { Comments } from '../../../../types';
 import { getFolderComment } from '../../../../apis/CommentAPI';
+import { Comments } from '../../../../types';
 
 interface Props {
   id?: number;
