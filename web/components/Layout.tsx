@@ -1,9 +1,12 @@
 import { ThemeProvider } from '@emotion/react';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
+import { getUserInfo } from '../apis/UserAPI';
 import { loginStatus } from '../recoil/authentication';
+import { userInfo } from '../recoil/user';
 import GlobalStyle from '../styles/GlobalStyle';
 import theme from '../styles/themes';
+import { MyInfo } from '../types';
 import Footer from './Footer';
 import NavigationBar from './NavigationBar';
 
@@ -13,12 +16,18 @@ interface Props {
 }
 
 const Layout = ({ token, children }: Props) => {
-  const setIsLoggedIn = useSetRecoilState(loginStatus);
+  const setLoginStatus = useSetRecoilState(loginStatus);
+  const setUserInfo = useSetRecoilState(userInfo);
   useEffect(() => {
     if (token) {
-      setIsLoggedIn(true);
+      setLoginStatus(true);
+      const fetch = async () => {
+        const userInfo: MyInfo = await getUserInfo(token);
+        setUserInfo(userInfo);
+      };
+      fetch();
     } else {
-      setIsLoggedIn(false);
+      setLoginStatus(false);
     }
   }, []);
 
