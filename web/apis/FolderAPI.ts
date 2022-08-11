@@ -3,11 +3,12 @@ import {
   CreateOrUpdateFolder,
   GetFolderList,
   GetUserFolderList,
+  SpecificFolder,
 } from '../types';
 import { FOLDERS, USER } from './url';
 
 const ACCESS_TOKEN =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYwMjAxNzE0LCJpYXQiOjE2NjAxOTgxMTQsImVtYWlsIjoic2dtaW4yMDZAbmF2ZXIuY29tIn0.HqLi70wGMQYTSUHboX1swvUiA99WOSSbjEXp4F3h93QUIPtqPmdmqY2Phd2hvHA-LFZse1p1KIPeRm57XVCSCQ';
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoicHJncm1zIiwiZXhwIjoxNjYxNDIzNDk2LCJpYXQiOjE2NjAyMTM4OTYsImVtYWlsIjoic2dtaW4yMDZAbmF2ZXIuY29tIn0.g196BRlE2_FMn4LwHBQ0EHnEP9hdM-6jLMiS7TL8qDn4zdn3LZhEE4mfZU4lORJTVEdIunH4RibPeleMZlpekQ';
 // 폴더 리스트 전체 조회 (페이지, 정렬)
 export const getFolderList = async ({ page, size, sort }: GetFolderList) => {
   const res = await axios.get(`${FOLDERS}`, {
@@ -52,7 +53,7 @@ export const getFolder = async (id: number) => {
   });
 
   console.log(res);
-  return res;
+  return res as unknown as SpecificFolder;
 };
 
 // 폴더 생성 (북마크까지) => 미개발
@@ -100,7 +101,6 @@ export const updateFolder = async ({
   tags,
   bookmarks,
 }: CreateOrUpdateFolder) => {
-  console.log(id);
   const res = await axios.put(
     `${FOLDERS}/${id}`,
     {

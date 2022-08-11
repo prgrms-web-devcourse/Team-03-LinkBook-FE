@@ -24,7 +24,7 @@ export const BookmarkInput = ({ bookmarks, setBookmarks }: Props) => {
   const urlInput = useRef<HTMLInputElement>();
 
   const addBookmark = useCallback(
-    (e) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       const title = titleInput.current.value || '제목 없음';

@@ -14,7 +14,7 @@ const ImageUpload = ({ imageSrc, setImageSrc, version }: Props) => {
   const [imgSrc, setImgSrc] = useState('');
 
   // Input 추가하면 ImageSrc 추가
-  const handleImage = async (img: Blob) => {
+  const handleImage = async (img: File) => {
     const result = await uploadImageToS3(img);
     const imageUrl = result.location;
     setImageSrc(imageUrl);

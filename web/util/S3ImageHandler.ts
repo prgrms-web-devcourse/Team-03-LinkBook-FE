@@ -10,7 +10,7 @@ const s3Config = {
 
 const s3 = new ReactS3Client(s3Config);
 
-export const uploadImageToS3 = async (file) => {
+export const uploadImageToS3 = async (file: File) => {
   const fileName = file.name.replace(/ /g, '');
 
   try {
@@ -23,7 +23,7 @@ export const uploadImageToS3 = async (file) => {
   }
 };
 
-export const deleteImageToS3 = async (file) => {
+export const deleteImageToS3 = async (file: File) => {
   const filepath = `${s3Config.dirName}/${file.name}`;
 
   try {
