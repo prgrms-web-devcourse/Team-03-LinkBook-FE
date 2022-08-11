@@ -1,29 +1,27 @@
-import { useState } from 'react';
+import React from 'react';
 import * as S from './Switch.style';
 
 export interface Props {
-  setIsPrivate?: (item: boolean) => void; // Update Page에서 사용될 props
+  isPrivate: boolean;
+  setIsPrivate: (item: boolean) => void; // Update Page에서 사용될 props
 }
 
-export const Switch = ({ setIsPrivate }: Props) => {
-  const [checked, setChecked] = useState(false);
-
+export const Switch = ({ isPrivate, setIsPrivate }: Props) => {
   const onToggle = () => {
-    setChecked(!checked);
-    //setIsPrivate(!checked)
+    setIsPrivate(!isPrivate);
   };
 
   return (
     <S.SwitchWrapper onClick={onToggle}>
       <S.SwitchInput type="checkbox" />
       <S.SwitchLabel
-        checked={checked}
+        checked={isPrivate}
         data-on="Public"
         data-off="Private"
       ></S.SwitchLabel>
-      <S.SwitchHandler checked={checked}></S.SwitchHandler>
+      <S.SwitchHandler checked={isPrivate}></S.SwitchHandler>
     </S.SwitchWrapper>
   );
 };
 
-export default Switch;
+export default React.memo(Switch);
