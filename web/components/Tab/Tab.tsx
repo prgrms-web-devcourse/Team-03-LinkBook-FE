@@ -1,10 +1,11 @@
 import TabItem from './TabItem';
 import * as S from './Tab.style';
+import { TabType } from '../../types';
 
 interface Props {
-  onClick: (item: string) => void;
-  selectedItem: string;
-  tabItems: string[];
+  onClick: (item: TabType) => void;
+  selectedItem: TabType;
+  tabItems: TabType[];
 }
 
 const Tab = ({ onClick, selectedItem, tabItems }: Props) => {
