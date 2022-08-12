@@ -1,16 +1,18 @@
 interface User {
   id: number;
+  email: string;
   name: string;
   image: string;
+  introduce: string;
 }
 
 interface Sort {
-  unsorted: boolean;
   empty: boolean;
+  unsorted: boolean;
   sorted: boolean;
 }
 
-interface Folder {
+export interface Folder {
   id: number;
   title: string;
   content: string;
@@ -24,6 +26,20 @@ interface Folder {
   createdAt: string;
 }
 
+interface Folders {
+  content: Folder[] | [];
+  pageable: Page;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
+
 interface Page {
   sort: Sort;
   offset: number;
@@ -34,32 +50,20 @@ interface Page {
 }
 
 interface Bookmark {
-  id: number;
+  id?: number;
   url: string;
   title: string;
 }
 
 // 전체 폴더리스트 조회
 export interface AllFolderList {
-  folders: {
-    content: Folder[] | [];
-    pageable: Page;
-    last: boolean;
-    totalElements: number;
-    totalPages: number;
-    numberOfElements: number;
-    sort: Sort;
-    number: number;
-    first: boolean;
-    size: number;
-    empty: boolean;
-  };
+  folders: Folders;
 }
 
 // 특정사용자의 폴더리스트 조회
 export interface SpecificUserFolderList {
-  userResponse: User;
-  folders: AllFolderList;
+  user: User;
+  folders: Folders;
 }
 
 //특정 폴더 조회
@@ -68,6 +72,17 @@ export interface SpecificFolder extends Folder {
   originId: string;
   bookmarks: Bookmark[] | [];
   originFolder: null | OriginFolder;
+}
+
+export interface PinnedFolder {
+  folders: {
+    id: number;
+    title: string;
+    image: string;
+    bookmarks: Bookmark[] | [];
+    tags: string[];
+    createdAt: string;
+  }[];
 }
 
 export interface OriginFolder {
@@ -110,4 +125,15 @@ export interface GetUserFolderList {
   page: number;
   size: number;
   sort: string;
+}
+
+export interface CreateOrUpdateFolder {
+  id?: number;
+  title: string;
+  image: string;
+  content: string;
+  isPinned: boolean;
+  isPrivate: boolean;
+  tags: string[];
+  bookmarks: Bookmark[] | [];
 }

@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import { Category, Pagination } from '../../components';
-import SearchBar from '../../pageComponents/folderlistComponents';
-import FolderListDummy from '../../shared/folderListPageDummy';
-import * as S from '../../styles/pageStyles/folderList.style';
+import { Category, Pagination } from '../../../../components';
+import { Folder } from '../../../../shared/DummyDataType';
+import * as S from './FolderList.style';
 
-const FolderList = () => {
-  const data = FolderListDummy;
+interface Props {
+  children?: React.ReactNode;
+  label: string;
+  data: Folder[];
+}
+
+const FolderList = ({ children, data, label }: Props) => {
+  // const data = FolderListDummy;
   // TODO: getServerSideProp
   const isLoading = false; // TODO: React-query 사용
   const [page, setPage] = useState(0);
@@ -21,24 +26,24 @@ const FolderList = () => {
 
   return (
     <S.PageContainer>
-      <S.SearchBarWrapper>
+      {/* <S.SearchBarWrapper>
         <SearchBar />
-      </S.SearchBarWrapper>
+      </S.SearchBarWrapper> */}
+      {children}
       <S.CategoryWrapper>
-        <pre>
-          <S.DescriptionText>
-            총 <S.BoldText>{data.length}</S.BoldText>
-            개의 북마크 폴더 리스트들을 찾았습니다
-          </S.DescriptionText>
-        </pre>
-        <Category
+        <S.DescriptionText>
+          {/* 총 <S.BoldText>{data.length}</S.BoldText>
+          개의 북마크 폴더 리스트들을 찾았습니다 */}
+          {label}
+        </S.DescriptionText>
+        {/* <Category
           tabItems={tabItems}
           isLoading={isLoading}
           onClick={onTabClick}
           selectedItem={selectedItem}
           data={data.slice(offset, offset + limit)}
           cardVersion="othersCard"
-        />
+        /> */}
       </S.CategoryWrapper>
       <S.PaginationWrapper>
         <Pagination

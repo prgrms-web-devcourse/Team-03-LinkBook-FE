@@ -1,14 +1,15 @@
 import * as S from '../Modal.style';
 import { useCallback, useRef } from 'react';
-import { userLogin } from '../../../apis/UserAPI';
+import { getUserInfo, userLogin } from '../../../apis/UserAPI';
 import { Button, Input } from '../../index';
 import { useSetRecoilState } from 'recoil';
 import { loginStatus } from '../../../recoil/authentication';
 import { setCookies } from '../../../util/cookies';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { LogIn } from '../../../types';
 import { LoginValidation } from '../../../constants/validation.constants';
 import { showModalStatus } from '../../../recoil/showModal';
+import { LogIn, MyInfo } from '../../../types';
+import { userInfo } from '../../../recoil/user';
 import {
   closeModal,
   showFirstModal,
@@ -24,6 +25,7 @@ const Login = () => {
   const checkRef = useRef<HTMLInputElement>(null);
   const setLoginStatus = useSetRecoilState(loginStatus);
   const setShowModalStatus = useSetRecoilState(showModalStatus);
+  const setUserInfo = useSetRecoilState(userInfo);
   const {
     register,
     handleSubmit,
@@ -41,6 +43,9 @@ const Login = () => {
 
       if (isChecked) setCookies('REFRESH_TOKEN', refreshToken, '/');
       setCookies('ACCESS_TOKEN', accessToken, '/');
+
+      const userInfoValue: MyInfo = await getUserInfo(accessToken);
+      setUserInfo(userInfoValue);
       setLoginStatus(true);
 
       if (!isFirstLogin) {

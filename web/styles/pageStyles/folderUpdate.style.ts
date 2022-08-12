@@ -9,6 +9,16 @@ export const ContentContainer = styled.div`
   gap: 24px;
 `;
 
+export const SwitchContainer = styled.div`
+  display: flex;
+
+  gap: 16px;
+`;
+
+export const IconWrapper = styled.div`
+  cursor: pointer;
+`;
+
 export const TitleInput = styled(Input)`
   margin-top: -16px;
   font-size: ${({ theme }) => theme.fontSize.t[0]};

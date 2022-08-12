@@ -14,8 +14,7 @@ export const getCookie = (key: string) => {
     if (cookie && cookie[key]) {
       return cookie[key];
     }
-    console.error('존재하지 않는 쿠키 입니다.');
-    return false;
+    throw new Error('존재하지 않는 쿠키 입니다.');
   } catch (error) {
     console.error(error);
   }
@@ -27,8 +26,7 @@ export const removeCookie = (key: string) => {
       nookies.destroy(null, key, { path: '/' });
       return;
     }
-    console.error('존재하지 않는 쿠키 입니다.');
-    return false;
+    throw new Error('존재하지 않는 쿠키 입니다.');
   } catch (error) {
     console.error(error);
   }

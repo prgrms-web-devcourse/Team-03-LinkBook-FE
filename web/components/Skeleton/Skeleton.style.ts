@@ -7,7 +7,7 @@ interface Container {
 
 export const SkeletonContainer = styled.div<Container>`
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 10px;
   width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
   height: ${({ height }) =>
     typeof height === 'number' ? `${height}px` : height};

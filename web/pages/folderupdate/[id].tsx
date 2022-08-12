@@ -1,29 +1,29 @@
 import * as S from '../../styles/pageStyles/folderUpdate.style';
 import {
-  Input,
   ImageUpload,
   CommentInput,
   BookmarkList,
   Button,
-  Modal,
+  Icon,
 } from '../../components';
-import { useRef, useState } from 'react';
-import { allFolders } from '../../shared/DummyData';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Switch } from '../../pageComponents/folderupdateComponents/components';
+import {
+  Switch,
+  BookmarkInput,
+} from '../../pageComponents/folderupdateComponents/components';
+import { getFolder, updateFolder } from '../../apis/FolderAPI';
+import { SpecificFolder } from '../../types';
+import { PAGE_URL } from '../../constants/url.constants';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
-  const [title, setTitle] = useState('');
-  const [tags, setTags] = useState([]);
+  const titleInput = useRef<HTMLInputElement>();
+  // const [tags, setTags] = useState([]);
   const [imageSrc, setImageSrc] = useState('');
-  const [content, setContent] = useState('');
+  const [isPinned, setIsPinned] = useState(false);
+  const contentInput = useRef<HTMLTextAreaElement>();
   const [bookmarks, setBookmarks] = useState([]);
-  const [showBookmarkModal, setShowBookmarkModal] = useState(false);
-
-  const handleBookmark = () => {
-    setShowBookmarkModal(!showBookmarkModal);
-  };
 
   const router = useRouter();
   const { id } = router.query;
@@ -32,31 +32,72 @@ const FolderUpdate = () => {
     router.push(`/user/1`); // 추후 전역에서 사용하는 user id 붙이기
   };
 
-  const moveFolderDetailPage = () => {
-    router.push(`/folderdetail/${id}`);
+  const changePin = () => {
+    setIsPinned(!isPinned);
   };
+
+  const moveFolderDetailPage = async () => {
+    const title = titleInput.current.value;
+    const content = contentInput.current.value;
+    console.log(title, imageSrc, content, isPinned, isPrivate, bookmarks);
+
+    await updateFolder(
+      {
+        id: Number(id),
+        title,
+        image: imageSrc,
+        content,
+        isPinned,
+        isPrivate,
+        tags: [],
+        bookmarks,
+      },
+      '',
+    ); // 토큰 추가
+    router.push(`${PAGE_URL.DETAIL}/${id}`);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { isPrivate, title, image, content, bookmarks }: SpecificFolder =
+        await getFolder(Number(id));
+      setIsPrivate(isPrivate);
+      titleInput.current.value = title;
+      // setTags(folder.tags)
+      setImageSrc(image);
+      contentInput.current.value = content;
+      setBookmarks(bookmarks);
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
-      <Modal version="bookmark" show={showBookmarkModal} />
       <S.ContentContainer>
-        <Switch />
+        <S.SwitchContainer>
+          <Switch isPrivate={isPrivate} setIsPrivate={setIsPrivate} />
+          <S.IconWrapper onClick={changePin}>
+            <Icon name={isPinned ? 'pin_blue_ic' : 'ico_pin'} size={30} />
+          </S.IconWrapper>
+        </S.SwitchContainer>
         <S.TitleInput
           type="text"
           maxLength={20}
-          placeholder="제목을 입력하세요"
+          placeholder="제목을 입력해 주세요"
+          ref={titleInput}
         />
-        <ImageUpload version="page" />
-        <CommentInput version="update" />
+        <ImageUpload
+          version="page"
+          imageSrc={imageSrc}
+          setImageSrc={setImageSrc}
+        />
+        <CommentInput ref={contentInput} version="update" />
         <BookmarkList
           version="update"
-          bookmarkItems={allFolders[0].bookmarks!}
+          bookmarkItems={bookmarks}
+          setBookmarks={setBookmarks}
         />
-        <S.ButtonWrapper>
-          <S.BookmarkButton onClick={handleBookmark} type="button">
-            북마크 추가하기 +
-          </S.BookmarkButton>
-        </S.ButtonWrapper>
+        <BookmarkInput bookmarks={bookmarks} setBookmarks={setBookmarks} />
       </S.ContentContainer>
       <S.ButtonWrapper>
         <Button type="button" version="mainLight" onClick={moveUserPage}>

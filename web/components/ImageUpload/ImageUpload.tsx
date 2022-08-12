@@ -2,21 +2,22 @@ import { ChangeEvent, DragEvent, useState, useCallback } from 'react';
 import * as S from './ImageUpload.style';
 import ModalPreview from './ModalPreview';
 import PagePreview from './PagePreview';
+import { uploadImageToS3 } from '../../util/S3ImageHandler';
 
 interface Props {
-  //setImageSrc => 상위 컴포넌트에서 form으로 api 보낼때 사용
+  imageSrc?: string;
+  setImageSrc?: React.Dispatch<React.SetStateAction<string>>;
   version: 'modal' | 'page';
 }
 
-const ImageUpload = ({
-  //setImageSrc,
-  version,
-}: Props) => {
+const ImageUpload = ({ imageSrc, setImageSrc, version }: Props) => {
   const [imgSrc, setImgSrc] = useState('');
 
   // Input 추가하면 ImageSrc 추가
-  const handleImage = (img: Blob) => {
-    // setImageSrc(file);
+  const handleImage = async (img: File) => {
+    const result = await uploadImageToS3(img);
+    const imageUrl = result.location;
+    setImageSrc(imageUrl);
 
     const reader = new FileReader();
     if (img) {
@@ -70,7 +71,7 @@ const ImageUpload = ({
           {version === 'modal' ? (
             <ModalPreview imgSrc={imgSrc} />
           ) : (
-            <PagePreview imgSrc={imgSrc} />
+            <PagePreview imgSrc={imgSrc ? imgSrc : imageSrc} />
           )}
         </S.FileLabel>
         <S.FileInput

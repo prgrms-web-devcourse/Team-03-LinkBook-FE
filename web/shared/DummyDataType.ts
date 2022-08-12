@@ -45,3 +45,14 @@ export interface Bookmark {
 }
 
 export interface AllFolders {}
+
+export interface SubTag {
+  name: string,
+  value: string
+}
+
+export interface Tag {
+  main: string,
+  value: string,
+  sub: SubTag[]
+}

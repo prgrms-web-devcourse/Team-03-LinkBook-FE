@@ -2,8 +2,8 @@ import * as S from './NavigationBar.style';
 import Link from 'next/link';
 import nookies from 'nookies';
 import { useEffect, useState } from 'react';
-import { Icon, Text } from '../index';
-import { useRecoilValue } from 'recoil';
+import { Avatar, Button, Icon, Text, Modal, SearchBar } from '../index';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { loginStatus } from '../../recoil/authentication';
 import { NextPageContext } from 'next';
 import { PAGE_URL } from '../../constants/url.constants';
@@ -27,7 +27,12 @@ interface Props {
 
 const NavigationBar = ({ token }: Props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const loginState = useRecoilValue(loginStatus);
+
+  const handleClickSearch = () => {
+    setShowSearchBar(!showSearchBar);
+  };
 
   useEffect(() => {
     setIsLoggedIn(loginState);
@@ -45,15 +50,30 @@ const NavigationBar = ({ token }: Props) => {
             </S.Logo>
           </Link>
           <S.Nav>
-            <Link href={PAGE_URL.LIST} passHref>
+            <Link
+              href={{
+                pathname: '/folderlist/explore/all',
+                query: {
+                  mainTag: 'all',
+                  subTag: 'all',
+                },
+              }}
+              as={'/folderlist/explore/all'}
+              passHref
+            >
               <S.NavItem>북마크리스트</S.NavItem>
             </Link>
             <Link href={PAGE_URL.INFO} passHref>
               <S.NavItem>이용방법</S.NavItem>
             </Link>
           </S.Nav>
+          <S.IconWrapper onClick={handleClickSearch}>
+            <Icon name="search_ic" size={20} />
+          </S.IconWrapper>
+          <S.Line>|</S.Line>
           {isLoggedIn ? <LoginSection /> : <LogoutSection />}
         </S.ItemContainer>
+        {showSearchBar && <SearchBar setShowSearchBar={setShowSearchBar} />}
       </S.Container>
     </>
   );
