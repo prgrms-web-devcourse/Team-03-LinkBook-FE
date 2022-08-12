@@ -12,8 +12,9 @@ import {
   Switch,
   BookmarkInput,
 } from '../../pageComponents/folderupdateComponents/components';
-import { createFolder, getFolder, updateFolder } from '../../apis/FolderAPI';
+import { createFolder } from '../../apis/FolderAPI';
 import { TEMP_TOKEN } from '../../constants/alert.constants';
+import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
 
 const FolderCreate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -37,12 +38,12 @@ const FolderCreate = () => {
   const moveFolderDetailPage = async () => {
     const title = titleInput.current.value;
     const content = contentInput.current.value;
-    console.log(title, imageSrc, content, isPinned, isPrivate, bookmarks);
+    const image = imageSrc || FOLDER_DEFAULT_IMAGE;
 
     const { id } = await createFolder(
       {
         title,
-        image: imageSrc,
+        image,
         content,
         isPinned,
         isPrivate,

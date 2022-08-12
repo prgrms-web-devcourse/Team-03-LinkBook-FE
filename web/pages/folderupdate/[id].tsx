@@ -14,6 +14,7 @@ import {
 } from '../../pageComponents/folderupdateComponents/components';
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
 import { TEMP_TOKEN } from '../../constants/alert.constants';
+import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -38,13 +39,13 @@ const FolderUpdate = () => {
   const moveFolderDetailPage = async () => {
     const title = titleInput.current.value;
     const content = contentInput.current.value;
-    console.log(title, imageSrc, content, isPinned, isPrivate, bookmarks);
+    const image = imageSrc || FOLDER_DEFAULT_IMAGE;
 
     await updateFolder(
       {
         id: Number(id),
         title,
-        image: imageSrc,
+        image,
         content,
         isPinned,
         isPrivate,
