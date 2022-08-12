@@ -13,8 +13,8 @@ import {
   BookmarkInput,
 } from '../../pageComponents/folderupdateComponents/components';
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
-import { TEMP_TOKEN } from '../../constants/alert.constants';
-import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
+import { SpecificFolder } from '../../types';
+import { PAGE_URL } from '../../constants/url.constants';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -52,9 +52,9 @@ const FolderUpdate = () => {
         tags: [],
         bookmarks,
       },
-      TEMP_TOKEN,
-    );
-    router.push(`/folderdetail/${id}`);
+      '',
+    ); // 토큰 추가
+    router.push(`${PAGE_URL.DETAIL}/${id}`);
   };
 
   useEffect(() => {

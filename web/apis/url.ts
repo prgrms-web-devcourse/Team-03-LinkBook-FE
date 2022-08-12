@@ -20,3 +20,7 @@ export const COMMENTS = '/comments';
 
 // like
 export const LIKES = '/likes';
+
+// emails
+export const EMAIL = '/emails';
+export const VERIFY_EMAIL_KEY = '/certification';

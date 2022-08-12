@@ -1,15 +1,15 @@
+import * as S from './NavigationBar.style';
 import Link from 'next/link';
+import nookies from 'nookies';
 import { useEffect, useState } from 'react';
 import { Avatar, Button, Icon, Text, Modal, SearchBar } from '../index';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { loginStatus } from '../../recoil/authentication';
-import nookies from 'nookies';
-import * as S from './NavigationBar.style';
-import { removeCookie } from '../../util/cookies';
 import { NextPageContext } from 'next';
 import { PAGE_URL } from '../../constants/url.constants';
-import { TEMP_USER_ID } from '../../constants/alert.constants';
-import { useRouter } from 'next/router';
+import HandleModalSection from './HandleModalSection';
+import LoginSection from './LoginSection';
+import LogoutSection from './LogoutSection';
 
 export const getServerSideProps = (ctx: NextPageContext) => {
   const { token } = nookies.get(ctx);
@@ -26,35 +26,9 @@ interface Props {
 }
 
 const NavigationBar = ({ token }: Props) => {
-  const [loginState, setLoginState] = useRecoilState(loginStatus);
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
-  const router = useRouter();
-
-  const handleLogin = () => {
-    setShowLoginModal(!showLoginModal);
-  };
-
-  const handleNewFolder = () => {
-    router.push(`/foldercreate`);
-  };
-
-  const handleLogout = () => {
-    removeCookie('ACCESS_TOKEN');
-    removeCookie('REFRESH_TOKEN');
-    setLoginState(false);
-  };
-
-  const handleSignUp = () => {
-    setShowSignUpModal(!showSignUpModal);
-  };
-
-  const handleSwitchModal = () => {
-    handleLogin();
-    handleSignUp();
-  };
+  const loginState = useRecoilValue(loginStatus);
 
   const handleClickSearch = () => {
     setShowSearchBar(!showSearchBar);
@@ -66,13 +40,7 @@ const NavigationBar = ({ token }: Props) => {
 
   return (
     <>
-      <Modal
-        version="login"
-        show={showLoginModal}
-        closeFunc={handleLogin}
-        switchFunc={handleSwitchModal}
-      />
-      <Modal version="signUp" show={showSignUpModal} closeFunc={handleSignUp} />
+      <HandleModalSection />
       <S.Container>
         <S.ItemContainer>
           <Link href={PAGE_URL.MAIN} passHref>
@@ -99,43 +67,11 @@ const NavigationBar = ({ token }: Props) => {
               <S.NavItem>이용방법</S.NavItem>
             </Link>
           </S.Nav>
-          {isLoggedIn ? (
-            <>
-              <S.IconWrapper onClick={handleClickSearch}>
-                <Icon name="search_ic" size={20} />
-              </S.IconWrapper>
-              <Avatar size={35} />
-              <S.Line>|</S.Line>
-              <S.UserContainer>
-                <Link href={`${PAGE_URL.USER}/${TEMP_USER_ID}`} passHref>
-                  <S.NavItem>마이페이지</S.NavItem>
-                </Link>
-                <Button
-                  type="button"
-                  version="navBar"
-                  onClick={handleNewFolder}
-                >
-                  새 폴더 작성
-                </Button>
-                <Button type="button" version="navBar" onClick={handleLogout}>
-                  로그아웃
-                </Button>
-              </S.UserContainer>
-            </>
-          ) : (
-            <>
-              <S.IconWrapper onClick={handleClickSearch}>
-                <Icon name="search_ic" size={20} />
-              </S.IconWrapper>
-              <S.Line>|</S.Line>
-              <S.UserContainer>
-                <S.UserButton onClick={handleSignUp}>회원가입</S.UserButton>
-                <Button type="button" version="navBar" onClick={handleLogin}>
-                  로그인
-                </Button>
-              </S.UserContainer>
-            </>
-          )}
+          <S.IconWrapper onClick={handleClickSearch}>
+            <Icon name="search_ic" size={20} />
+          </S.IconWrapper>
+          <S.Line>|</S.Line>
+          {isLoggedIn ? <LoginSection /> : <LogoutSection />}
         </S.ItemContainer>
         {showSearchBar && <SearchBar setShowSearchBar={setShowSearchBar} />}
       </S.Container>
