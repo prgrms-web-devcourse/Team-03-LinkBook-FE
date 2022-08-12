@@ -1,18 +1,20 @@
 import * as S from '../NavigationBar.style';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { Avatar, Button } from '../../index';
 import { PAGE_URL } from '../../../constants/url.constants';
 import { TEMP_USER_ID } from '../../../constants/alert.constants';
 import { removeCookie } from '../../../util/cookies';
 import { loginStatus } from '../../../recoil/authentication';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 import { userInfo } from '../../../recoil/user';
 
 const LoginSection = () => {
   const setLoginState = useSetRecoilState(loginStatus);
-  const [userInfoValue, setUserInfoValue] = useRecoilState(userInfo);
-  console.log(userInfoValue);
+  const userInfoValue = useRecoilValue(userInfo);
+  const resetUserInfoValue = useResetRecoilState(userInfo);
+  const [avatarSrc, setAvatarSrc] = useState(undefined);
   const router = useRouter();
 
   const handleCreateFolder = () => {
@@ -23,13 +25,20 @@ const LoginSection = () => {
     removeCookie('ACCESS_TOKEN');
     removeCookie('REFRESH_TOKEN');
     setLoginState(false);
-    setUserInfoValue({});
+    resetUserInfoValue();
   };
+
+  useEffect(() => {
+    if (!userInfoValue.user) return;
+
+    const { user } = userInfoValue;
+    setAvatarSrc(user.image);
+  }, [userInfoValue]);
 
   return (
     <>
       <S.Line>|</S.Line>
-      <Avatar size={35} />
+      <Avatar size={35} src={avatarSrc} />
       <S.Line>|</S.Line>
       <S.UserContainer>
         <Link href={`${PAGE_URL.USER}/${TEMP_USER_ID}`} passHref>
