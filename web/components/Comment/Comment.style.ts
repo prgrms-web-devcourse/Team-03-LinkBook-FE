@@ -4,23 +4,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-width: 1100px;
+  box-sizing: border-box;
+  max-width: 1200px;
   height: fit-content;
+  margin: 0 auto;
   padding: 15px 20px;
   font-family: 'Noto Sans KR', sans-serif;
   border-bottom: ${({ theme }) => `1px solid ${theme.colors.gray[5]}`};
-`;
-
-export const ProfileContainer = styled.div`
-  width: 100%;
-  height: fit-content;
-`;
-
-export const CommentContainer = styled.div`
-  width: 100%;
-  height: auto;
-  max-height: 100px;
-  line-height: 1.4;
 `;
 
 export const ButtonContainer = styled.div`
@@ -37,6 +27,7 @@ export const RepliesButton = styled.button`
   background-color: transparent;
   border: none;
   border-radius: 5px;
+  box-sizing: border-box;
   cursor: pointer;
 
   &:hover {
@@ -50,16 +41,7 @@ export const RepliesContainer = styled.div`
   gap: 10px;
   width: 100%;
   height: auto;
-  margin-left: 30px;
-`;
-
-export const ReplyContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 1100px;
-  height: fit-content;
-  padding: 10px;
+  padding-left: 30px;
 `;
 
 export const Line = styled.hr`

@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import Icon from "../Icon";
 import * as S from "./Modal.style";
-import { FolderModal01, FolderModal02 } from "./SelectFolder";
+import { SelectFolderModal, MakeFolderModal } from "./SelectFolder";
 
 interface Props {
   isVisible: boolean;
+  handleFolderMade: (id: number, title: string) => void;
   modalClose: () => void;
-  handleSelectFolder: (id: number, title: string) => void;
 }
 
-const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
-
+const Modal = ({ isVisible, handleFolderMade, modalClose }: Props) => {
   const [page, setPage] = useState(0);
 
-  const handleModalClose = () => {
+  const handleModalClose = (id: number, title: string) => {
+    handleFolderMade(id, title);
+    setPage(0);
+  };
+
+  const handleMdoalForceClose = () => {
     modalClose();
     setPage(0);
   };
@@ -22,29 +25,20 @@ const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
     setPage((prev) => prev + 1);
   };
 
-  const prevPage = () => {
-    setPage((prev) => prev - 1);
-  };
-
   const switchModal = (page: number) => {
     switch (page) {
       case 0:
         return (
-          <FolderModal01
-            handleSelectFolder={handleSelectFolder}
+          <SelectFolderModal
+            handleSelectFolder={handleModalClose}
             handleAddFolder={nextPage}
           />
         );
       case 1:
-        return (
-          <FolderModal02
-            handelPrevPage={prevPage}
-            modalClose={handleModalClose}
-          />
-        );
+        return <MakeFolderModal handleMakeFolder={handleModalClose} />;
       default:
-        <FolderModal01
-          handleSelectFolder={handleSelectFolder}
+        <SelectFolderModal
+          handleSelectFolder={handleFolderMade}
           handleAddFolder={nextPage}
         />;
     }
@@ -53,14 +47,14 @@ const Modal = ({ isVisible, modalClose, handleSelectFolder }: Props) => {
     <>
       {isVisible && (
         <>
-          <S.Dim onClick={handleModalClose} />
+          <S.Dim onClick={handleMdoalForceClose} />
           <S.Container>
             <S.CloseButtonWrapper>
-              <Icon
+              <S.CloseIcon
                 name="btn_x"
                 width={10}
                 height={10}
-                onClick={handleModalClose}
+                onClick={handleMdoalForceClose}
               />
             </S.CloseButtonWrapper>
             {switchModal(page)}

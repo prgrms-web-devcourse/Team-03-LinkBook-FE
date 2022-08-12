@@ -5,7 +5,7 @@ export interface CommentCreateOrUpdate {
   id: number;
 }
 
-interface Comment {
+export interface Comment {
   id: number;
   children: Comment[] | [];
   content: string;
@@ -25,5 +25,5 @@ export interface CreateOrUpdateComment {
   content: string;
   folderId: number;
   userId: number;
-  parentId: number;
+  parentId?: number;
 }

@@ -7,10 +7,15 @@ export const BookmarkWrapper = styled.div`
   align-items: center;
   width: 100%;
   max-width: 1100px;
-  padding: 13px 21px;
-  border: 1px solid ${({ theme }) => theme.colors.gray[3]};
-  border-radius: 8px;
+  padding: 15px 21px;
+  border: 1px solid ${({ theme }) => theme.colors.gray[5]};
+  border-radius: 10px;
   cursor: pointer;
+  transition: all 0.1s ease-out;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray[5]};
+  }
 `;
 
 export const BookmarkItem = styled.div`
@@ -20,20 +25,16 @@ export const BookmarkItem = styled.div`
   gap: 16px;
 `;
 
-export const BookmarkTitle = styled(Text)`
-  color: ${({ theme }) => theme.colors.gray[3]};
-`;
-
 export const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray[5]};
+    background-color: ${({ theme }) => theme.colors.gray[4]};
     border-radius: 50%;
   }
 `;

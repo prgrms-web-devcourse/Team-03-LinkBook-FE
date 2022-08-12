@@ -1,96 +1,106 @@
-import { specificFolder } from '../../../../shared/DummyData';
 import * as S from './ContentSection.style';
-import { Icon, Profile, BookmarkList, Tag } from '../../../../components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { PAGE_URL } from '../../../../constants/url.constants';
+import { Profile, BookmarkList, Tag } from '../../../../components';
+import { SpecificFolder } from '../../../../types';
+import { getFolder } from '../../../../apis/FolderAPI';
+import {
+  PrivateSection,
+  ScrapButtonSection,
+  LikeButtonSection,
+  OriginFolderSection,
+  PlaceholderSection,
+} from '../index';
+import {
+  TEMP_TOKEN,
+  TEMP_USER_ID,
+} from '../../../../constants/alert.constants';
 
 interface Props {
-  params?: string | string[];
+  id?: number;
 }
 
-const ContentSection = ({ params }: Props) => {
-  const {
-    title,
-    image,
-    content,
-    isPinned,
-    isPrivate,
-    likes,
-    bookmarks,
-    user,
-    tags,
-    createdAt,
-  } = specificFolder;
-
+const ContentSection = ({ id }: Props) => {
+  const [data, setData] = useState<SpecificFolder>(undefined);
   const router = useRouter();
 
-  const moveFolderUpdatePage = () => {
-    router.push(`/folderupdate/${params}`);
-  };
+  useEffect(() => {
+    if (!id) return;
+
+    (async () => {
+      try {
+        // token이 있다고 가정하고 테스트 진행
+        const contentRes = await getFolder(id, TEMP_TOKEN);
+        setData(contentRes);
+      } catch (error) {
+        console.log(error);
+        router.push(PAGE_URL.ERROR);
+      }
+    })();
+  }, [id]);
 
   return (
-    <S.Container>
-      <S.TitleContainer>
-        {/* 추후에 글 작성자인지 확인하는 로직으로 변경 예정 */}
-        {params === String(user.id) && (
-          <S.MyContainer>
-            <S.MyButtonsContainer>
-              <S.Tag>{isPrivate ? 'Private' : 'Public'}</S.Tag>
-              {isPinned && (
-                <S.Tag>
-                  <Icon name="ico_pin" size={20} />
-                </S.Tag>
-              )}
-            </S.MyButtonsContainer>
-            <S.MyButtonsContainer>
-              <S.UpdateButton onClick={moveFolderUpdatePage}>
-                수정
-              </S.UpdateButton>
-              |<S.UpdateButton>삭제</S.UpdateButton>
-            </S.MyButtonsContainer>
-          </S.MyContainer>
-        )}
-        <S.TitleWrapper>{title}</S.TitleWrapper>
-        <S.ProfileContainer>
-          <Profile iconSize={35} user={user} version="author" />
-          <S.Date>{createdAt}</S.Date>
-        </S.ProfileContainer>
-        <S.TagWrapper>
-          <Tag tagItems={tags} shrinking />
-        </S.TagWrapper>
-        <S.ImageWrapper>
-          <Image
-            src={image}
-            width={1200}
-            height={700}
-            layout="responsive"
-            objectFit="cover"
-          />
-        </S.ImageWrapper>
-        <S.Description>{content}</S.Description>
-      </S.TitleContainer>
-      <S.BookmarksContainer>
-        <S.SubTitle>북마크 모음</S.SubTitle>
-        <BookmarkList bookmarkItems={bookmarks} version="watch" />
-      </S.BookmarksContainer>
-      <S.ProfileWrapper>
-        <Profile user={user} />
-      </S.ProfileWrapper>
-      <S.ButtonsContainer>
-        <S.ButtonWrapper>
-          <S.NotClickedButton>
-            <Icon name="likes_clicked_white" size={25} />
-          </S.NotClickedButton>
-          <S.ButtonDescription>{likes}</S.ButtonDescription>
-        </S.ButtonWrapper>
-        <S.ButtonWrapper>
-          <S.NotClickedButton>
-            <Icon name="copy_white" size={25} />
-          </S.NotClickedButton>
-          <S.ButtonDescription>스크랩</S.ButtonDescription>
-        </S.ButtonWrapper>
-      </S.ButtonsContainer>
-    </S.Container>
+    <>
+      {data ? (
+        <S.Container>
+          <S.TitleContainer>
+            {/* 추후에 글 작성자인지 확인하는 로직으로 변경 예정 */}
+            {data.user.id === TEMP_USER_ID && (
+              <PrivateSection
+                id={id}
+                isPrivate={data.isPrivate}
+                isPinned={data.isPinned}
+                token={TEMP_TOKEN}
+              />
+            )}
+            {data.originFolder && (
+              <OriginFolderSection originFolder={data.originFolder} />
+            )}
+            <S.TitleWrapper>{data.title}</S.TitleWrapper>
+            <S.ProfileContainer>
+              <Profile iconSize={35} user={data.user} version="author" />
+              <S.Date>{data.createdAt.slice(0, 10)}</S.Date>
+            </S.ProfileContainer>
+            <S.TagWrapper>
+              <Tag tagItems={data.tags} shrinking />
+            </S.TagWrapper>
+            <S.ImageWrapper>
+              <Image
+                src={data.image}
+                width={1200}
+                height={700}
+                layout="responsive"
+                objectFit="cover"
+              />
+            </S.ImageWrapper>
+            <S.Description>{data.content}</S.Description>
+          </S.TitleContainer>
+          <S.BookmarksContainer>
+            <S.SubTitle>북마크 모음</S.SubTitle>
+            <BookmarkList bookmarkItems={data.bookmarks} version="watch" />
+          </S.BookmarksContainer>
+          <S.ProfileWrapper>
+            <Profile user={data.user} />
+          </S.ProfileWrapper>
+          <S.ButtonsContainer>
+            <LikeButtonSection
+              folderId={id}
+              likes={data.likes}
+              token={TEMP_TOKEN}
+              isLiked={data.isLiked}
+              disabled={data.user.id !== TEMP_USER_ID ? false : true}
+            />
+            {data.user.id !== TEMP_USER_ID && (
+              <ScrapButtonSection id={id} data={data} token={TEMP_TOKEN} />
+            )}
+          </S.ButtonsContainer>
+        </S.Container>
+      ) : (
+        <PlaceholderSection />
+      )}
+    </>
   );
 };
 

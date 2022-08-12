@@ -13,12 +13,14 @@ interface Sort {
 interface Folder {
   id: number;
   title: string;
+  content: string;
   image: string;
   isPinned: boolean;
   isPrivate: boolean;
   user: User;
   tags: string[];
   likes: number;
+  isLiked: boolean;
   createdAt: string;
 }
 
@@ -65,11 +67,34 @@ export interface SpecificFolder extends Folder {
   content: string;
   originId: string;
   bookmarks: Bookmark[] | [];
+  originFolder: null | OriginFolder;
+}
+
+export interface OriginFolder {
+  id: number;
+  title: string;
+  user: OriginUser;
+}
+
+export interface OriginUser {
+  id: number;
+  name: string;
 }
 
 // 폴더 생성 또는 수정 후 받는 response
 export interface FolderCreateOrUpdate {
   id: number;
+}
+
+export interface CreateOrUpdateFolder {
+  title: string;
+  image: string;
+  content: string;
+  isPinned: boolean;
+  isPrivate: boolean;
+  tags: string[];
+  bookmarks: Bookmark[] | [];
+  originId?: number;
 }
 
 // Req Body type
