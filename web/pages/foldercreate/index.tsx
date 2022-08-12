@@ -16,6 +16,9 @@ import {
 import { createFolder } from '../../apis/FolderAPI';
 import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
 import { getCookie } from '../../util/cookies';
+import { PAGE_URL } from '../../constants/url.constants';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../recoil/user';
 
 const FolderCreate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -28,9 +31,10 @@ const FolderCreate = () => {
 
   const router = useRouter();
   const token = getCookie('ACCESS_TOKEN');
+  const loginUser: any = useRecoilValue(userInfo);
 
   const moveUserPage = () => {
-    router.push(`/user/1`); // 추후 전역에서 사용하는 user id 붙이기
+    router.push(`${PAGE_URL.USER}/${loginUser.user.id}`);
   };
 
   const changePin = () => {
@@ -61,7 +65,7 @@ const FolderCreate = () => {
   const moveFolderDetailPage = async () => {
     const id = await createFolderAPI();
 
-    router.push(`/folderdetail/${id}`);
+    router.push(`${PAGE_URL.DETAIL}/${id}`);
   };
 
   return (
