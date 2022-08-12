@@ -39,13 +39,12 @@ const FolderUpdate = () => {
   const moveFolderDetailPage = async () => {
     const title = titleInput.current.value;
     const content = contentInput.current.value;
-    const image = imageSrc || FOLDER_DEFAULT_IMAGE;
 
     await updateFolder(
       {
         id: Number(id),
         title,
-        image,
+        image: imageSrc,
         content,
         isPinned,
         isPrivate,
