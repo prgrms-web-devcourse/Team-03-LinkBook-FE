@@ -1,4 +1,4 @@
-export type { LogIn, MyInfo, SignUpOrIn, UpdateInfo } from './user';
+export type { LogIn, MyInfo, SignUpOrIn, UpdateInfo, User } from './user';
 export type {
   AllFolderList,
   SpecificUserFolderList,

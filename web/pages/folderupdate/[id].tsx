@@ -5,6 +5,7 @@ import {
   BookmarkList,
   Button,
   Icon,
+  TagSelector,
 } from '../../components';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -15,21 +16,28 @@ import {
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
 import { SpecificFolder } from '../../types';
 import { PAGE_URL } from '../../constants/url.constants';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../recoil/user';
 
-const FolderUpdate = () => {
+interface Props {
+  token: string;
+}
+
+const FolderUpdate = ({ token }: Props) => {
   const [isPrivate, setIsPrivate] = useState(false);
   const titleInput = useRef<HTMLInputElement>();
-  // const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState([]);
   const [imageSrc, setImageSrc] = useState('');
   const [isPinned, setIsPinned] = useState(false);
   const contentInput = useRef<HTMLTextAreaElement>();
   const [bookmarks, setBookmarks] = useState([]);
+  const loginUser: any = useRecoilValue(userInfo);
 
   const router = useRouter();
   const { id } = router.query;
 
   const moveUserPage = () => {
-    router.push(`/user/1`); // 추후 전역에서 사용하는 user id 붙이기
+    router.push(`/user/${loginUser.user.id}`);
   };
 
   const changePin = () => {
@@ -39,7 +47,6 @@ const FolderUpdate = () => {
   const moveFolderDetailPage = async () => {
     const title = titleInput.current.value;
     const content = contentInput.current.value;
-    console.log(title, imageSrc, content, isPinned, isPrivate, bookmarks);
 
     await updateFolder(
       {
@@ -49,11 +56,11 @@ const FolderUpdate = () => {
         content,
         isPinned,
         isPrivate,
-        tags: [],
+        tags,
         bookmarks,
       },
-      '',
-    ); // 토큰 추가
+      token,
+    );
     router.push(`${PAGE_URL.DETAIL}/${id}`);
   };
 
@@ -63,7 +70,7 @@ const FolderUpdate = () => {
         await getFolder(Number(id));
       setIsPrivate(isPrivate);
       titleInput.current.value = title;
-      // setTags(folder.tags)
+      setTags(tags);
       setImageSrc(image);
       contentInput.current.value = content;
       setBookmarks(bookmarks);
@@ -80,6 +87,7 @@ const FolderUpdate = () => {
             <Icon name={isPinned ? 'pin_blue_ic' : 'ico_pin'} size={30} />
           </S.IconWrapper>
         </S.SwitchContainer>
+        <TagSelector selectedTag={tags} setSelectedTag={setTags} />
         <S.TitleInput
           type="text"
           maxLength={20}
