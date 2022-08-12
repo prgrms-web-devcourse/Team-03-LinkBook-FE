@@ -1,18 +1,8 @@
-import React, {
-  ButtonHTMLAttributes,
-  FormEventHandler,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { useCallback } from 'react';
 import { Input } from '../../../../components';
 import * as S from './BookmarkInput.style';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
-interface Bookmark {
-  id?: number;
-  title: string;
-  url: string;
-}
+import { Bookmark } from '../../../../types';
 
 export interface Props {
   bookmarks: Bookmark[];

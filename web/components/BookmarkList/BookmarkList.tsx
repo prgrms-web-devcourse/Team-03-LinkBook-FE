@@ -1,7 +1,7 @@
 import BookmarkItem from '../BookmarkItem';
 import * as S from './BookmarkList.style';
-import { Bookmark } from '../../shared/DummyDataType';
 import { useCallback } from 'react';
+import { Bookmark } from '../../types';
 
 interface Props {
   version: 'watch' | 'update';

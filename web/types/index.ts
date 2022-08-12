@@ -9,3 +9,4 @@ export type {
   CreateOrUpdateFolder,
 } from './folder';
 export type { Comments, CreateOrUpdateComment } from './comment';
+export type { CreateBookmark, Bookmark } from './bookmark';
