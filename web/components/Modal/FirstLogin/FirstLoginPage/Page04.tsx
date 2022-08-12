@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import * as S from '../../Modal.style';
-import { Button, Input, Icon } from '../../../index';
+import { Button, ImageUpload, Icon } from '../../../index';
 
 interface Props {
   handleNextPage: MouseEventHandler;
@@ -21,7 +21,9 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
           <S.MainText>'마이페이지'</S.MainText>에서 얼마든지 변경할 수 있어요!
         </S.Description>
       </S.Title>
-      <S.IconContainer>{/* 사용자의 프로필 사진 */}</S.IconContainer>
+      <S.IconContainer>
+        <ImageUpload version="modal" />
+      </S.IconContainer>
       <S.ButtonContainer>
         <Button type="button" onClick={handleNextPage}>
           다음 &gt;

@@ -115,8 +115,8 @@ export const MainText = styled.span`
 `;
 
 export const IconContainer = styled.div`
-  width: 150px;
-  height: 150px;
+  width: fit-content;
+  height: fit-content;
   margin: 0 auto;
   overflow: hidden;
   border: ${({ theme }) => `1px solid ${theme.colors.gray[4]}`};
