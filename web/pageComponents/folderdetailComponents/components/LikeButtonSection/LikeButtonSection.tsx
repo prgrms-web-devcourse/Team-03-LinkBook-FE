@@ -1,7 +1,10 @@
 import { RoundButton } from '../index';
 import { createLike, deleteLike } from '../../../../apis/LikeAPI';
 import { useEffect, useState } from 'react';
-import { TEMP_USER_ID } from '../../../../constants/alert.constants';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userInfo } from '../../../../recoil/user';
+import { showModalStatus } from '../../../../recoil/showModal';
+import { showLoginModal } from '../../../../constants/modal.constants';
 
 interface Props {
   folderId: number;
@@ -20,6 +23,8 @@ const LikeButtonSection = ({
 }: Props) => {
   const [isLikedValue, setIsLikedValue] = useState(isLiked);
   const [likesNum, setLikesNum] = useState(likes);
+  const setShowModalStatus = useSetRecoilState(showModalStatus);
+  const { user }: any = useRecoilValue(userInfo);
 
   useEffect(() => {
     setIsLikedValue(isLiked);
@@ -27,8 +32,14 @@ const LikeButtonSection = ({
   }, [isLiked, likes]);
 
   const handleClickAddLike = async () => {
+    if (!user) {
+      alert('로그인 후 가능합니다.');
+      setShowModalStatus(showLoginModal);
+      return;
+    }
+
     try {
-      await createLike(folderId, TEMP_USER_ID, token);
+      await createLike(folderId, user.id, token);
       setIsLikedValue(true);
       setLikesNum(likesNum + 1);
     } catch (error) {

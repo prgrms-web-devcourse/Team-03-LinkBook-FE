@@ -7,9 +7,11 @@ import { removeCookie } from '../../../util/cookies';
 import { loginStatus } from '../../../recoil/authentication';
 import { useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
+import { userInfo } from '../../../recoil/user';
 
 const LoginSection = () => {
   const setLoginState = useSetRecoilState(loginStatus);
+  const setUserInfo = useSetRecoilState(userInfo);
   const router = useRouter();
 
   const handleCreateFolder = () => {
@@ -20,6 +22,7 @@ const LoginSection = () => {
     removeCookie('ACCESS_TOKEN');
     removeCookie('REFRESH_TOKEN');
     setLoginState(false);
+    setUserInfo({});
   };
 
   return (

@@ -2,6 +2,9 @@ import * as S from './ContentSection.style';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../../../recoil/user';
+import { getCookie } from '../../../../util/cookies';
 import { PAGE_URL } from '../../../../constants/url.constants';
 import { Profile, BookmarkList, Tag } from '../../../../components';
 import { SpecificFolder } from '../../../../types';
@@ -13,13 +16,6 @@ import {
   OriginFolderSection,
   PlaceholderSection,
 } from '../index';
-import {
-  TEMP_TOKEN,
-  TEMP_USER_ID,
-} from '../../../../constants/alert.constants';
-import { useRecoilValue } from 'recoil';
-import { userInfo } from '../../../../recoil/user';
-import { getCookie } from '../../../../util/cookies';
 
 interface Props {
   id?: number;
@@ -27,9 +23,10 @@ interface Props {
 
 const ContentSection = ({ id }: Props) => {
   const [data, setData] = useState<SpecificFolder>(undefined);
-  const router = useRouter();
-  const loginUser: any = useRecoilValue(userInfo);
+  const [isMyFolder, setIsMyFolder] = useState<boolean>(false);
+  const { user }: any = useRecoilValue(userInfo);
   const token = getCookie('ACCESS_TOKEN');
+  const router = useRouter();
 
   useEffect(() => {
     if (!id) return;
@@ -37,8 +34,8 @@ const ContentSection = ({ id }: Props) => {
     (async () => {
       try {
         const contentRes = await getFolder(id, token);
-        console.log(contentRes);
         setData(contentRes);
+        if (user) setIsMyFolder(user.id === contentRes.user.id);
       } catch (error) {
         console.log(error);
         router.push(PAGE_URL.ERROR);
@@ -51,7 +48,7 @@ const ContentSection = ({ id }: Props) => {
       {data ? (
         <S.Container>
           <S.TitleContainer>
-            {data.user.id === loginUser.user.id && (
+            {isMyFolder && (
               <PrivateSection
                 id={id}
                 isPrivate={data.isPrivate}
@@ -94,9 +91,9 @@ const ContentSection = ({ id }: Props) => {
               likes={data.likes}
               token={token}
               isLiked={data.isLiked}
-              disabled={data.user.id !== TEMP_USER_ID ? false : true}
+              disabled={isMyFolder}
             />
-            {data.user.id !== TEMP_USER_ID && (
+            {!isMyFolder && (
               <ScrapButtonSection id={id} data={data} token={token} />
             )}
           </S.ButtonsContainer>
