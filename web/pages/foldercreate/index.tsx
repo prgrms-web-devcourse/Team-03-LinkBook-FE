@@ -7,24 +7,20 @@ import {
   Icon,
   TagSelector,
 } from '../../components';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   Switch,
   BookmarkInput,
 } from '../../pageComponents/folderupdateComponents/components';
-import { getFolder, updateFolder } from '../../apis/FolderAPI';
-import { SpecificFolder } from '../../types';
-import { PAGE_URL } from '../../constants/url.constants';
+import { createFolder } from '../../apis/FolderAPI';
 import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
+import { getCookie } from '../../util/cookies';
+import { PAGE_URL } from '../../constants/url.constants';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../recoil/user';
 
-interface Props {
-  token: string;
-}
-
-const FolderUpdate = ({ token }: Props) => {
+const FolderCreate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
   const titleInput = useRef<HTMLInputElement>();
   const [tags, setTags] = useState([]);
@@ -32,10 +28,10 @@ const FolderUpdate = ({ token }: Props) => {
   const [isPinned, setIsPinned] = useState(false);
   const contentInput = useRef<HTMLTextAreaElement>();
   const [bookmarks, setBookmarks] = useState([]);
-  const loginUser: any = useRecoilValue(userInfo);
 
   const router = useRouter();
-  const { id } = router.query;
+  const token = getCookie('ACCESS_TOKEN');
+  const loginUser: any = useRecoilValue(userInfo);
 
   const moveUserPage = () => {
     router.push(`${PAGE_URL.USER}/${loginUser.user.id}`);
@@ -45,14 +41,13 @@ const FolderUpdate = ({ token }: Props) => {
     setIsPinned(!isPinned);
   };
 
-  const updateFolderAPI = async () => {
+  const createFolderAPI = async () => {
     const title = titleInput.current.value;
     const content = contentInput.current.value;
     const image = imageSrc || FOLDER_DEFAULT_IMAGE;
 
-    await updateFolder(
+    const { id } = await createFolder(
       {
-        id: Number(id),
         title,
         image,
         content,
@@ -63,27 +58,15 @@ const FolderUpdate = ({ token }: Props) => {
       },
       token,
     );
+
+    return id;
   };
 
   const moveFolderDetailPage = async () => {
-    await updateFolderAPI();
+    const id = await createFolderAPI();
+
     router.push(`${PAGE_URL.DETAIL}/${id}`);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { isPrivate, title, image, content, bookmarks } = await getFolder(
-        Number(id),
-      );
-      setIsPrivate(isPrivate);
-      titleInput.current.value = title;
-      setTags(tags);
-      setImageSrc(image);
-      contentInput.current.value = content;
-      setBookmarks(bookmarks);
-    };
-    fetchData();
-  }, []);
 
   return (
     <>
@@ -126,4 +109,4 @@ const FolderUpdate = ({ token }: Props) => {
   );
 };
 
-export default FolderUpdate;
+export default FolderCreate;
