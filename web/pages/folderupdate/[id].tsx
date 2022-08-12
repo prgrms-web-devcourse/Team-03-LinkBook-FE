@@ -13,7 +13,7 @@ import {
   BookmarkInput,
 } from '../../pageComponents/folderupdateComponents/components';
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
-import { SpecificFolder } from '../../types';
+import { TEMP_TOKEN } from '../../constants/alert.constants';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -51,15 +51,16 @@ const FolderUpdate = () => {
         tags: [],
         bookmarks,
       },
-      '',
-    ); // 토큰 추가
+      TEMP_TOKEN,
+    );
     router.push(`/folderdetail/${id}`);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const { isPrivate, title, image, content, bookmarks }: SpecificFolder =
-        await getFolder(Number(id));
+      const { isPrivate, title, image, content, bookmarks } = await getFolder(
+        Number(id),
+      );
       setIsPrivate(isPrivate);
       titleInput.current.value = title;
       // setTags(folder.tags)
