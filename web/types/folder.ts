@@ -50,7 +50,7 @@ interface Page {
 }
 
 interface Bookmark {
-  id: number;
+  id?: number;
   url: string;
   title: string;
 }
@@ -125,4 +125,15 @@ export interface GetUserFolderList {
   page: number;
   size: number;
   sort: string;
+}
+
+export interface CreateOrUpdateFolder {
+  id?: number;
+  title: string;
+  image: string;
+  content: string;
+  isPinned: boolean;
+  isPrivate: boolean;
+  tags: string[];
+  bookmarks: Bookmark[] | [];
 }

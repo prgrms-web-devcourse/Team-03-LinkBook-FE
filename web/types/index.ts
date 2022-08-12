@@ -8,6 +8,8 @@ export type {
   GetFolderList,
   GetUserFolderList,
   PinnedFolder,
+  CreateOrUpdateFolder,
 } from './folder';
 export type { Comments, CreateOrUpdateComment } from './comment';
+export type { CreateBookmark, Bookmark } from './bookmark';
 export type { TabType } from './tab';

@@ -49,6 +49,7 @@ export const getUserFolderList = async ({
 };
 
 // 특정 폴더 조회
+
 export const getFolder = async (id: number, token?: string) => {
   const tokenData = token
     ? {
@@ -112,8 +113,36 @@ export const createFolder = async (
 
 // 폴더 수정 (북마크까지) => 미개발
 // Headers : Access Token 필요
-export const updateFolder = async (id: number) => {
-  const res = await axios.put(`${FOLDERS}/${id}`);
+export const updateFolder = async (
+  {
+    id,
+    title,
+    image,
+    content,
+    isPinned,
+    isPrivate,
+    tags,
+    bookmarks,
+  }: CreateOrUpdateFolder,
+  token: string,
+) => {
+  const res = await axios.put(
+    `${FOLDERS}/${id}`,
+    {
+      title,
+      image,
+      content,
+      isPinned,
+      isPrivate,
+      tags,
+      bookmarks,
+    },
+    {
+      headers: {
+        'Access-Token': token,
+      },
+    },
+  );
 
   console.log(res);
   return res;

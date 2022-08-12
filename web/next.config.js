@@ -11,6 +11,7 @@ const nextConfig = {
     ];
   },
   images: {
+
     domains: [
       'images.unsplash.com',
       'www.google.com',
