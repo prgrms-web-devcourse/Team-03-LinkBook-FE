@@ -49,7 +49,7 @@ const Page01 = ({ handlePage }: Props) => {
   };
 
   return (
-    <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
+    <S.FormContainer onSubmit={handleSubmit(onSubmit)}>
       <S.Title>
         <S.MainText>Linkbook</S.MainText>에 처음 오셨군요! 🎉
         <br />
@@ -85,7 +85,7 @@ const Page01 = ({ handlePage }: Props) => {
           다음 &gt;
         </Button>
       </S.ButtonContainer>
-    </S.InnerContainer>
+    </S.FormContainer>
   );
 };
 

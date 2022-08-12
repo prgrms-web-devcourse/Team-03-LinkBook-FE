@@ -73,7 +73,16 @@ export const CloseBtn = styled.button`
 `;
 
 // Modal Inner(version) Style
-export const InnerContainer = styled.form`
+export const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 420px;
+  height: 420px;
+  margin: 30px auto;
+`;
+
+export const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
