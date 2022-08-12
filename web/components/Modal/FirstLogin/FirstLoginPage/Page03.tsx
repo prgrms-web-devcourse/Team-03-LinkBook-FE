@@ -1,6 +1,6 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import * as S from '../../Modal.style';
-import { Button, Input, Icon } from '../../../index';
+import { Button, Input, Icon, TagSelector } from '../../../index';
 
 interface Props {
   handleNextPage: MouseEventHandler;
@@ -8,6 +8,7 @@ interface Props {
 }
 
 const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
+  const [selectedTag, setSelectedTag] = useState([]);
   return (
     <>
       <S.PreviousButton onClick={handlePreviousPage}>
@@ -21,7 +22,7 @@ const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
           추천해드려요.
         </S.Description>
       </S.Title>
-      <Input placeholder="관심사를 선택해주세요." type="text" />
+      <TagSelector selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
       <S.ButtonContainer>
         <Button type="button" onClick={handleNextPage}>
           다음 &gt;

@@ -119,8 +119,7 @@ export const IconContainer = styled.div`
   height: fit-content;
   margin: 0 auto;
   overflow: hidden;
-  border: ${({ theme }) => `1px solid ${theme.colors.gray[4]}`};
-  border-radius: 300px;
+  text-align: center;
 `;
 
 export const InputContainer = styled.div`
@@ -192,4 +191,10 @@ export const ConfirmButton = styled.button`
 export const LogoText = styled.span`
   font-size: ${({ theme }) => theme.fontSize.l[2]};
   font-family: 'Dongle', sans-serif;
+`;
+
+export const ErrorText = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.c[0]};
+  color: red;
+  margin: 5px;
 `;

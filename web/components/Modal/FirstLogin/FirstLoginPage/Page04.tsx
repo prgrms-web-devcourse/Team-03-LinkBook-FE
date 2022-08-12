@@ -1,13 +1,29 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import * as S from '../../Modal.style';
 import { Button, ImageUpload, Icon } from '../../../index';
+import { useUserInfo } from '../contexts/UserInfoProvider';
 
 interface Props {
   handleNextPage: MouseEventHandler;
   handlePreviousPage: MouseEventHandler;
 }
 
-const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
+const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
+  const [imageSrc, setImageSrc] = useState('');
+  const [errorText, setErrorText] = useState('');
+  const { setUserImage } = useUserInfo();
+
+  const handleClickStoreImage: MouseEventHandler = (e) => {
+    const res = setUserImage(imageSrc);
+
+    if (typeof res === 'string') {
+      setErrorText(res);
+      return;
+    }
+
+    handleNextPage(e);
+  };
+
   return (
     <>
       <S.PreviousButton onClick={handlePreviousPage}>
@@ -22,10 +38,11 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
         </S.Description>
       </S.Title>
       <S.IconContainer>
-        <ImageUpload version="modal" />
+        <ImageUpload version="modal" setImageSrc={setImageSrc} />
+        <S.ErrorText>{errorText}</S.ErrorText>
       </S.IconContainer>
       <S.ButtonContainer>
-        <Button type="button" onClick={handleNextPage}>
+        <Button type="button" onClick={handleClickStoreImage}>
           다음 &gt;
         </Button>
       </S.ButtonContainer>
@@ -33,4 +50,4 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
   );
 };
 
-export default Page02;
+export default Page04;

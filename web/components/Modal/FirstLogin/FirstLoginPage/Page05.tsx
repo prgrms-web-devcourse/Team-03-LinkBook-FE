@@ -2,12 +2,13 @@ import { MouseEventHandler } from 'react';
 import * as S from '../../Modal.style';
 import { Icon } from '../../../index';
 import Link from 'next/link';
+import { PAGE_URL } from '../../../../constants/url.constants';
 
 interface Props {
   handlePreviousPage: MouseEventHandler;
 }
 
-const Page02 = ({ handlePreviousPage }: Props) => {
+const Page05 = ({ handlePreviousPage }: Props) => {
   return (
     <>
       <S.PreviousButton onClick={handlePreviousPage}>
@@ -22,7 +23,7 @@ const Page02 = ({ handlePreviousPage }: Props) => {
         <S.MainText>북마크 폴더</S.MainText>를 등록하러 가 볼까요?
       </S.Title>
       <S.ButtonContainer>
-        <Link href="/information" passHref>
+        <Link href={PAGE_URL.INFO} passHref>
           <S.ConfirmButton type="button">
             <S.LogoText>링북</S.LogoText> 100% 활용법 &gt;
           </S.ConfirmButton>
@@ -32,4 +33,4 @@ const Page02 = ({ handlePreviousPage }: Props) => {
   );
 };
 
-export default Page02;
+export default Page05;
