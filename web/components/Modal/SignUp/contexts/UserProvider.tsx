@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 interface IUserContext {
   email: string;
@@ -8,10 +8,14 @@ interface IUserContext {
   removeUserInfo: Function;
 }
 
+interface Props {
+  children: ReactNode;
+}
+
 const UserContext = createContext<IUserContext>(null);
 export const useUserInfo = () => useContext(UserContext);
 
-const UserProvider = ({ children }: any) => {
+const UserProvider = ({ children }: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

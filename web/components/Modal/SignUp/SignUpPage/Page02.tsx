@@ -1,6 +1,6 @@
+import * as S from '../../Modal.style';
 import { MouseEventHandler, useCallback, useState, useRef } from 'react';
 import { Button, Input, Icon } from '../../../index';
-import * as S from '../../Modal.style';
 import { useUserInfo } from '../contexts/UserProvider';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { userSignUp } from '../../../../apis/UserAPI';
@@ -47,9 +47,8 @@ const Page02 = ({ handlePage }: Props) => {
       alert('회원가입이 완료되었습니다. 로그인을 진행해주세요.');
       handleSwitchLoginModal();
     } catch (error) {
-      alert('이미 등록된 회원입니다. 로그인을 진행해주세요.');
+      alert('이미 등록된 회원이거나 이메일 인증이 진행되지 않았습니다.');
       console.log(error);
-      handleSwitchLoginModal();
     }
   }, []);
 

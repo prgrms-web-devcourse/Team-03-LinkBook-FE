@@ -78,10 +78,10 @@ const Login = () => {
           })}
           errorText={errors.password && errors.password.message}
         />
-        <S.keepLoginWrapper>
-          <S.keepLoginInput type="checkbox" value="keepLogin" ref={checkRef} />
-          <S.keepLoginText>로그인 상태 유지</S.keepLoginText>
-        </S.keepLoginWrapper>
+        <S.KeepLoginWrapper>
+          <S.KeepLoginInput type="checkbox" value="keepLogin" ref={checkRef} />
+          <S.KeepLoginText>로그인 상태 유지</S.KeepLoginText>
+        </S.KeepLoginWrapper>
       </S.InputContainer>
       <S.ButtonContainer>
         <Button type="submit" disabled={isSubmitting}>
