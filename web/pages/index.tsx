@@ -1,6 +1,5 @@
 import type { NextPageContext } from 'next';
 import * as S from '../styles/pageStyles/index.style';
-import { allFolders } from '../shared/DummyData';
 import {
   MainCategory,
   MyFoldersAreaLogIn,
@@ -34,11 +33,7 @@ const MainPage = ({ token }: Props) => {
 
   return (
     <S.Container>
-      {isLoggedIn ? (
-        <MyFoldersAreaLogIn data={allFolders} />
-      ) : (
-        <MyFoldersAreaLogOut />
-      )}
+      {isLoggedIn ? <MyFoldersAreaLogIn /> : <MyFoldersAreaLogOut />}
       <MainCategory />
       <UseInfo />
     </S.Container>

@@ -1,22 +1,50 @@
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { Text } from '../../../../components';
 import { FolderSlider } from '../index';
-import * as S from './MyFoldersAreaLogIn.style';
 import theme from '../../../../styles/themes';
-import { Folder } from '../../../../shared/DummyDataType';
-import { useRouter } from 'next/router';
+import * as S from './MyFoldersAreaLogIn.style';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../../../recoil/user';
+import { PinnedFolder, SpecificUserFolderList } from '../../../../types';
+import { getPinnedFolder, getUserFolderList } from '../../../../apis/FolderAPI';
+import { getCookie } from '../../../../util/cookies';
 
-interface Props {
-  data: Folder[];
-}
-
-const MyFoldersAreaLogIn = ({ data }: Props) => {
+const MyFoldersAreaLogIn = () => {
+  const getUserInfo: any = useRecoilValue(userInfo);
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
   const router = useRouter();
   const moveUserPage = () => {
-    router.push(`user/1`);
+    const id = getUserInfo.user.id;
+    router.push(`user/${id}`);
   };
+  useEffect(() => {
+    setIsLoading(true);
+    const fetch = async () => {
+      if (Object.keys(getUserInfo).length === 0) return;
+      try {
+        const token = getCookie('ACCESS_TOKEN');
+        const res: PinnedFolder = await getPinnedFolder(token);
+        setData(res.folders);
+        setIsLoading(false);
+      } catch {
+        throw new Error('API 요청중 에러 발생');
+      }
+    };
+    fetch();
+  }, [getUserInfo]);
 
   return (
     <S.Container>
+      <Image
+        src="/backgrounds/myFoldersAreaLogIn.svg"
+        alt="로그인화면"
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center"
+      />
       <S.Header>
         <Text color={theme.colors.main[0]}>Miral</Text>
         <Text>
@@ -24,7 +52,7 @@ const MyFoldersAreaLogIn = ({ data }: Props) => {
         </Text>
         <Text>북마크 폴더 리스트</Text>
       </S.Header>
-      <FolderSlider data={data} />
+      <FolderSlider data={data} isLoading={isLoading} />
       <S.StyledButton type="button" onClick={moveUserPage}>
         북마크 편집 &#62;
       </S.StyledButton>

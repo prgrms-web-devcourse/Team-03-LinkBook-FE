@@ -1,6 +1,16 @@
 import axios from '.';
-import { GetFolderList, GetUserFolderList, SpecificFolder } from '../types';
-import { CreateOrUpdateFolder, FolderCreateOrUpdate } from '../types/folder';
+import {
+  AllFolderList,
+  GetFolderList,
+  GetUserFolderList,
+  SpecificFolder,
+  SpecificUserFolderList,
+} from '../types';
+import {
+  CreateOrUpdateFolder,
+  FolderCreateOrUpdate,
+  PinnedFolder,
+} from '../types/folder';
 import { FOLDERS, USER } from './url';
 
 // 폴더 리스트 전체 조회 (페이지, 정렬)
@@ -14,7 +24,7 @@ export const getFolderList = async ({ page, size, sort }: GetFolderList) => {
   });
 
   console.log(res);
-  return res;
+  return res as unknown as AllFolderList;
 };
 
 // 특정 사용자 폴더리스트 조회
@@ -35,7 +45,7 @@ export const getUserFolderList = async ({
   });
 
   console.log(res);
-  return res;
+  return res as unknown as SpecificUserFolderList;
 };
 
 // 특정 폴더 조회
@@ -52,6 +62,17 @@ export const getFolder = async (id: number, token?: string) => {
 
   console.log(res);
   return res as unknown as SpecificFolder;
+};
+
+// 로그인한 사용자의 고정된 폴더 조회
+export const getPinnedFolder = async (token: string) => {
+  const res = await axios.get(`${FOLDERS}/pinned`, {
+    headers: {
+      'Access-Token': token,
+    },
+  });
+
+  return res as unknown as PinnedFolder;
 };
 
 // 폴더 생성 (북마크까지) => 미개발

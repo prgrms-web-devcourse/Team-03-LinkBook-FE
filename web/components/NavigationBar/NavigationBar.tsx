@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Avatar, Button, Icon, Text, Modal } from '../index';
+import { Avatar, Button, Icon, Text, Modal, SearchBar } from '../index';
 import { useRecoilState } from 'recoil';
 import { loginStatus } from '../../recoil/authentication';
 import nookies from 'nookies';
@@ -29,6 +29,7 @@ const NavigationBar = ({ token }: Props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   const handleLogin = () => {
     setShowLoginModal(!showLoginModal);
@@ -47,6 +48,10 @@ const NavigationBar = ({ token }: Props) => {
   const handleSwitchModal = () => {
     handleLogin();
     handleSignUp();
+  };
+
+  const handleClickSearch = () => {
+    setShowSearchBar(!showSearchBar);
   };
 
   useEffect(() => {
@@ -71,7 +76,17 @@ const NavigationBar = ({ token }: Props) => {
             </S.Logo>
           </Link>
           <S.Nav>
-            <Link href={PAGE_URL.LIST} passHref>
+            <Link
+              href={{
+                pathname: '/folderlist/explore/all',
+                query: {
+                  mainTag: 'all',
+                  subTag: 'all',
+                },
+              }}
+              as={'/folderlist/explore/all'}
+              passHref
+            >
               <S.NavItem>북마크리스트</S.NavItem>
             </Link>
             <Link href={PAGE_URL.INFO} passHref>
@@ -80,6 +95,9 @@ const NavigationBar = ({ token }: Props) => {
           </S.Nav>
           {isLoggedIn ? (
             <>
+              <S.IconWrapper onClick={handleClickSearch}>
+                <Icon name="search_ic" size={20} />
+              </S.IconWrapper>
               <Avatar size={35} />
               <S.Line>|</S.Line>
               <S.UserContainer>
@@ -96,6 +114,9 @@ const NavigationBar = ({ token }: Props) => {
             </>
           ) : (
             <>
+              <S.IconWrapper onClick={handleClickSearch}>
+                <Icon name="search_ic" size={20} />
+              </S.IconWrapper>
               <S.Line>|</S.Line>
               <S.UserContainer>
                 <S.UserButton onClick={handleSignUp}>회원가입</S.UserButton>
@@ -106,6 +127,7 @@ const NavigationBar = ({ token }: Props) => {
             </>
           )}
         </S.ItemContainer>
+        {showSearchBar && <SearchBar setShowSearchBar={setShowSearchBar} />}
       </S.Container>
     </>
   );

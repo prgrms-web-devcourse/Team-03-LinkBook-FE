@@ -52,7 +52,7 @@ const UserPage = () => {
               {user.name}님의 북마크 폴더 ({data.length})
             </S.DescriptionText>
           </pre>
-          <Category
+          {/* <Category
             tabItems={tabItems}
             isLoading={isLoading}
             onClick={onTabClick}
@@ -60,7 +60,7 @@ const UserPage = () => {
             data={data.slice(offset, offset + limit)}
             cardVersion={id === userId ? 'myCard' : 'othersCard'}
             isPinned={true}
-          />
+          /> */}
         </S.CategoryWrapper>
         <S.PaginationWrapper>
           <Pagination

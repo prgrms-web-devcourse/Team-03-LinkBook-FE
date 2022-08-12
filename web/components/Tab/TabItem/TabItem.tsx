@@ -1,15 +1,16 @@
+import { TabType } from '../../../types';
 import * as S from './TabItem.style';
 
 interface Props {
-  children: string;
-  onClick: (item: string) => void;
+  children: TabType;
+  onClick: (item: TabType) => void;
   selected: boolean;
 }
 
 const TabItem = ({ onClick, children, selected }: Props) => {
   return (
     <S.TabItemWrapper selected={selected} onClick={() => onClick(children)}>
-      {children}
+      {children.name}
     </S.TabItemWrapper>
   );
 };
