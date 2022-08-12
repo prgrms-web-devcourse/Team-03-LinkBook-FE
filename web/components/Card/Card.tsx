@@ -28,7 +28,7 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
   const { isPinned } = data;
   const router = useRouter();
   const [reverseCard, setReverseCard] = useState(false);
-  const [bookmarks, setBookmarks] = useState([]);
+  const { bookmarks } = data;
 
   const handleRotateCard = () => {
     setReverseCard(!reverseCard);
@@ -37,17 +37,6 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
   const moveFolderDetailPage = () => {
     router.push(`/folderdetail/${data.id}`);
   };
-
-  // 임시로 북마크 불러오기
-  useEffect(() => {
-    if (version !== 'default') return;
-
-    const fetch = async () => {
-      const res: SpecificFolder = await getFolder(data.id);
-      setBookmarks(res.bookmarks);
-    };
-    fetch();
-  }, []);
 
   return (
     <S.Container>

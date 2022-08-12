@@ -7,8 +7,9 @@ import theme from '../../../../styles/themes';
 import * as S from './MyFoldersAreaLogIn.style';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
-import { SpecificUserFolderList } from '../../../../types';
-import { getUserFolderList } from '../../../../apis/FolderAPI';
+import { PinnedFolder, SpecificUserFolderList } from '../../../../types';
+import { getPinnedFolder, getUserFolderList } from '../../../../apis/FolderAPI';
+import { getCookie } from '../../../../util/cookies';
 
 const MyFoldersAreaLogIn = () => {
   const getUserInfo: any = useRecoilValue(userInfo);
@@ -23,25 +24,10 @@ const MyFoldersAreaLogIn = () => {
     setIsLoading(true);
     const fetch = async () => {
       if (Object.keys(getUserInfo).length === 0) return;
-
-      const id = getUserInfo.user.id;
-      const isPrivate = false;
-      const page = 0;
-      const size = 10;
-      const sort = 'likes';
       try {
-        const res: SpecificUserFolderList = await getUserFolderList({
-          id,
-          isPrivate,
-          page,
-          size,
-          sort,
-        });
-        console.log(res);
-        const pinnedFolder = res.folders.content.filter(
-          (folder) => folder?.isPinned === true,
-        );
-        setData(pinnedFolder);
+        const token = getCookie('ACCESS_TOKEN');
+        const res: PinnedFolder = await getPinnedFolder(token);
+        setData(res.folders);
         setIsLoading(false);
       } catch {
         throw new Error('API 요청중 에러 발생');
