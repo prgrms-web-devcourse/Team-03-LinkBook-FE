@@ -5,6 +5,7 @@ interface IUserInfoContext {
   userInfo: UpdateInfo;
   setUserName: Function;
   setUserIntroduce: Function;
+  setUserInterests: Function;
   setUserImage: Function;
   setUserInfo: Function;
   removeUserInfo: Function;
@@ -48,6 +49,15 @@ const UserInfoProvider = ({ children }: any) => {
     return true;
   };
 
+  const setUserInterests = (tags: string[]) => {
+    setUserInfo({
+      ...userInfo,
+      interests: tags,
+    });
+
+    return true;
+  };
+
   const setUserImage = (imageSrc: string) => {
     const imageLen = imageSrc.length;
     if (imageLen === 0) return '이미지를 업로드해주세요.';
@@ -75,6 +85,7 @@ const UserInfoProvider = ({ children }: any) => {
         setUserInfo,
         setUserName,
         setUserIntroduce,
+        setUserInterests,
         setUserImage,
         removeUserInfo,
       }}

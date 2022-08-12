@@ -198,3 +198,7 @@ export const ErrorText = styled.p`
   color: red;
   margin: 5px;
 `;
+
+export const TagSelectorWrapper = styled.div`
+  height: 200px;
+`;

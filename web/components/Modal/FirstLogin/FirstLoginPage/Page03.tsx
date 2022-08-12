@@ -1,6 +1,7 @@
-import { MouseEventHandler, useState } from 'react';
 import * as S from '../../Modal.style';
-import { Button, Input, Icon, TagSelector } from '../../../index';
+import { MouseEventHandler, useState } from 'react';
+import { Button, Icon, TagSelector } from '../../../index';
+import { useUserInfo } from '../contexts/UserInfoProvider';
 
 interface Props {
   handleNextPage: MouseEventHandler;
@@ -8,7 +9,14 @@ interface Props {
 }
 
 const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
+  const { setUserInterests } = useUserInfo();
   const [selectedTag, setSelectedTag] = useState([]);
+
+  const handleClickStoreInterests: MouseEventHandler = (e) => {
+    setUserInterests(selectedTag);
+    handleNextPage(e);
+  };
+
   return (
     <>
       <S.PreviousButton onClick={handlePreviousPage}>
@@ -22,9 +30,14 @@ const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
           추천해드려요.
         </S.Description>
       </S.Title>
-      <TagSelector selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
+      <S.TagSelectorWrapper>
+        <TagSelector
+          selectedTag={selectedTag}
+          setSelectedTag={setSelectedTag}
+        />
+      </S.TagSelectorWrapper>
       <S.ButtonContainer>
-        <Button type="button" onClick={handleNextPage}>
+        <Button type="button" onClick={handleClickStoreInterests}>
           다음 &gt;
         </Button>
       </S.ButtonContainer>
