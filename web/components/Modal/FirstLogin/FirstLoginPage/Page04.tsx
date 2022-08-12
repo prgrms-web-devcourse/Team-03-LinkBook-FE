@@ -2,8 +2,10 @@ import * as S from '../../Modal.style';
 import { MouseEventHandler, useState } from 'react';
 import { Button, ImageUpload, Icon } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
-import { updateUserInfo } from '../../../../apis/UserAPI';
+import { getUserInfo, updateUserInfo } from '../../../../apis/UserAPI';
 import { getCookie } from '../../../../util/cookies';
+import { useSetRecoilState } from 'recoil';
+import { userInfo as userInfoRecoil } from '../../../../recoil/user';
 
 interface Props {
   handleNextPage: MouseEventHandler;
@@ -13,20 +15,24 @@ interface Props {
 const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
   const [imageSrc, setImageSrc] = useState('');
   const [errorText, setErrorText] = useState('');
-  const { userInfo, setUserImage, removeUserInfo } = useUserInfo();
+  const { userInfo, getUpdatedUserInfo, removeUserInfo } = useUserInfo();
+  const setUserInfoState = useSetRecoilState(userInfoRecoil);
   const token = getCookie('ACCESS_TOKEN');
 
   const handleClickStoreImage: MouseEventHandler = async (e) => {
-    const setImageResult = setUserImage(imageSrc);
+    const updatedUserInfo = getUpdatedUserInfo(imageSrc);
 
-    if (typeof setImageResult === 'string') {
-      setErrorText(setImageResult);
+    if (typeof updatedUserInfo === 'string') {
+      setErrorText(updatedUserInfo);
       return;
     }
 
     try {
-      await updateUserInfo(userInfo, token);
+      await updateUserInfo(updatedUserInfo, token);
       await removeUserInfo();
+
+      const newUserInfo = await getUserInfo(token);
+      setUserInfoState(newUserInfo);
     } catch (error) {
       console.log(error);
       alert('문제가 발생했습니다.');

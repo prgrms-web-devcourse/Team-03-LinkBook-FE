@@ -5,13 +5,14 @@ import { PAGE_URL } from '../../../constants/url.constants';
 import { TEMP_USER_ID } from '../../../constants/alert.constants';
 import { removeCookie } from '../../../util/cookies';
 import { loginStatus } from '../../../recoil/authentication';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 import { userInfo } from '../../../recoil/user';
 
 const LoginSection = () => {
   const setLoginState = useSetRecoilState(loginStatus);
-  const setUserInfo = useSetRecoilState(userInfo);
+  const [userInfoValue, setUserInfoValue] = useRecoilState(userInfo);
+  console.log(userInfoValue);
   const router = useRouter();
 
   const handleCreateFolder = () => {
@@ -22,7 +23,7 @@ const LoginSection = () => {
     removeCookie('ACCESS_TOKEN');
     removeCookie('REFRESH_TOKEN');
     setLoginState(false);
-    setUserInfo({});
+    setUserInfoValue({});
   };
 
   return (
