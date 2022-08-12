@@ -16,6 +16,7 @@ import {
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
 import { SpecificFolder } from '../../types';
 import { PAGE_URL } from '../../constants/url.constants';
+import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../recoil/user';
 
@@ -37,22 +38,23 @@ const FolderUpdate = ({ token }: Props) => {
   const { id } = router.query;
 
   const moveUserPage = () => {
-    router.push(`/user/${loginUser.user.id}`);
+    router.push(`${PAGE_URL.USER}/${loginUser.user.id}`);
   };
 
   const changePin = () => {
     setIsPinned(!isPinned);
   };
 
-  const moveFolderDetailPage = async () => {
+  const updateFolderAPI = async () => {
     const title = titleInput.current.value;
     const content = contentInput.current.value;
+    const image = imageSrc || FOLDER_DEFAULT_IMAGE;
 
     await updateFolder(
       {
         id: Number(id),
         title,
-        image: imageSrc,
+        image,
         content,
         isPinned,
         isPrivate,
@@ -61,6 +63,10 @@ const FolderUpdate = ({ token }: Props) => {
       },
       token,
     );
+  };
+
+  const moveFolderDetailPage = async () => {
+    await updateFolderAPI();
     router.push(`${PAGE_URL.DETAIL}/${id}`);
   };
 

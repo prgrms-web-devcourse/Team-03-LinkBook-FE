@@ -19,16 +19,17 @@ import {
 } from '../../../../constants/alert.constants';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
+import { getCookie } from '../../../../util/cookies';
 
 interface Props {
   id?: number;
-  token: string;
 }
 
-const ContentSection = ({ id, token }: Props) => {
+const ContentSection = ({ id }: Props) => {
   const [data, setData] = useState<SpecificFolder>(undefined);
   const router = useRouter();
   const loginUser: any = useRecoilValue(userInfo);
+  const token = getCookie('ACCESS_TOKEN');
 
   useEffect(() => {
     if (!id) return;
@@ -55,7 +56,7 @@ const ContentSection = ({ id, token }: Props) => {
                 id={id}
                 isPrivate={data.isPrivate}
                 isPinned={data.isPinned}
-                token={TEMP_TOKEN}
+                token={token}
               />
             )}
             {data.originFolder && (
@@ -91,12 +92,12 @@ const ContentSection = ({ id, token }: Props) => {
             <LikeButtonSection
               folderId={id}
               likes={data.likes}
-              token={TEMP_TOKEN}
+              token={token}
               isLiked={data.isLiked}
               disabled={data.user.id !== TEMP_USER_ID ? false : true}
             />
             {data.user.id !== TEMP_USER_ID && (
-              <ScrapButtonSection id={id} data={data} token={TEMP_TOKEN} />
+              <ScrapButtonSection id={id} data={data} token={token} />
             )}
           </S.ButtonsContainer>
         </S.Container>
