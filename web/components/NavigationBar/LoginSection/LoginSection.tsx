@@ -6,9 +6,15 @@ import { TEMP_USER_ID } from '../../../constants/alert.constants';
 import { removeCookie } from '../../../util/cookies';
 import { loginStatus } from '../../../recoil/authentication';
 import { useSetRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
 
 const LoginSection = () => {
   const setLoginState = useSetRecoilState(loginStatus);
+  const router = useRouter();
+
+  const handleCreateFolder = () => {
+    router.push(`${PAGE_URL.CREATE}`);
+  };
 
   const handleLogout = () => {
     removeCookie('ACCESS_TOKEN');
@@ -24,7 +30,7 @@ const LoginSection = () => {
         <Link href={`${PAGE_URL.USER}/${TEMP_USER_ID}`} passHref>
           <S.NavItem>마이페이지</S.NavItem>
         </Link>
-        <Button type="button" version="navBar">
+        <Button type="button" version="navBar" onClick={handleCreateFolder}>
           새 폴더 작성
         </Button>
         <Button type="button" version="navBar" onClick={handleLogout}>
