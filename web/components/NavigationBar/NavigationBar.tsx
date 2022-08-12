@@ -2,8 +2,8 @@ import * as S from './NavigationBar.style';
 import Link from 'next/link';
 import nookies from 'nookies';
 import { useEffect, useState } from 'react';
-import { Avatar, Button, Icon, Text, Modal, SearchBar } from '../index';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { Icon, Text, SearchBar } from '../index';
+import { useRecoilValue } from 'recoil';
 import { loginStatus } from '../../recoil/authentication';
 import { NextPageContext } from 'next';
 import { PAGE_URL } from '../../constants/url.constants';
@@ -52,13 +52,13 @@ const NavigationBar = ({ token }: Props) => {
           <S.Nav>
             <Link
               href={{
-                pathname: '/folderlist/explore/all',
+                pathname: `${PAGE_URL.LIST}/explore/all`,
                 query: {
                   mainTag: 'all',
                   subTag: 'all',
                 },
               }}
-              as={'/folderlist/explore/all'}
+              as={`${PAGE_URL.LIST}/explore/all`}
               passHref
             >
               <S.NavItem>북마크리스트</S.NavItem>
@@ -68,9 +68,8 @@ const NavigationBar = ({ token }: Props) => {
             </Link>
           </S.Nav>
           <S.IconWrapper onClick={handleClickSearch}>
-            <Icon name="search_ic" size={20} />
+            <Icon name="search_ic" size={18} />
           </S.IconWrapper>
-          <S.Line>|</S.Line>
           {isLoggedIn ? <LoginSection /> : <LogoutSection />}
         </S.ItemContainer>
         {showSearchBar && <SearchBar setShowSearchBar={setShowSearchBar} />}

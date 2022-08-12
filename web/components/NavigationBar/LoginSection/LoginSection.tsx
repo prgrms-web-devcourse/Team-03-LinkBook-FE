@@ -24,6 +24,7 @@ const LoginSection = () => {
 
   return (
     <>
+      <S.Line>|</S.Line>
       <Avatar size={35} />
       <S.Line>|</S.Line>
       <S.UserContainer>
