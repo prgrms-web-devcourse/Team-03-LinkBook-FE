@@ -1,7 +1,9 @@
-import { MouseEventHandler, useState } from 'react';
 import * as S from '../../Modal.style';
+import { MouseEventHandler, useState } from 'react';
 import { Button, ImageUpload, Icon } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
+import { updateUserInfo } from '../../../../apis/UserAPI';
+import { getCookie } from '../../../../util/cookies';
 
 interface Props {
   handleNextPage: MouseEventHandler;
@@ -11,14 +13,23 @@ interface Props {
 const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
   const [imageSrc, setImageSrc] = useState('');
   const [errorText, setErrorText] = useState('');
-  const { setUserImage } = useUserInfo();
+  const { userInfo, setUserImage, removeUserInfo } = useUserInfo();
+  const token = getCookie('ACCESS_TOKEN');
 
-  const handleClickStoreImage: MouseEventHandler = (e) => {
-    const res = setUserImage(imageSrc);
+  const handleClickStoreImage: MouseEventHandler = async (e) => {
+    const setImageResult = setUserImage(imageSrc);
 
-    if (typeof res === 'string') {
-      setErrorText(res);
+    if (typeof setImageResult === 'string') {
+      setErrorText(setImageResult);
       return;
+    }
+
+    try {
+      await updateUserInfo(userInfo, token);
+      await removeUserInfo();
+    } catch (error) {
+      console.log(error);
+      alert('문제가 발생했습니다.');
     }
 
     handleNextPage(e);
@@ -30,7 +41,7 @@ const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
         <Icon name="arrowLeft" size={30} />
       </S.PreviousButton>
       <S.Title>
-        Haeyum님만의
+        {userInfo.name}님만의
         <br />
         <S.MainText>프로필 사진</S.MainText>을 설정해 주세요!
         <S.Description>

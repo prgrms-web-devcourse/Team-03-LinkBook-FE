@@ -11,7 +11,7 @@ interface Props {
 const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
   const introduceRef = useRef<HTMLInputElement>(null);
   const [errorText, setErrorText] = useState('');
-  const { setUserIntroduce } = useUserInfo();
+  const { userInfo, setUserIntroduce } = useUserInfo();
 
   const handleClickStoreIntroduce: MouseEventHandler = (e) => {
     const introduceValue = introduceRef.current.value;
@@ -32,7 +32,7 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
       </S.PreviousButton>
       <S.Title>
         <br />
-        Haeyum님 반가워요! 👋🏻
+        {userInfo.name}님 반가워요! 👋🏻
         <br />
         <S.MainText>한 줄로 자신을 소개</S.MainText>해 주세요!
       </S.Title>

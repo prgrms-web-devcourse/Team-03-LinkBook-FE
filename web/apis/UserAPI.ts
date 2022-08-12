@@ -40,16 +40,24 @@ export const getUserInfo = async (token: string) => {
 };
 
 // 내 정보 수정 성공
-export const updateUserInfo = async ({
-  name,
-  image,
-  interests,
-}: UpdateInfo) => {
-  const res = await axios.patch(`${USER}`, {
-    name,
-    image,
-    interests,
-  });
+export const updateUserInfo = async (
+  { name, image, introduce, interests }: UpdateInfo,
+  token: string,
+) => {
+  const res = await axios.patch(
+    `${USER}`,
+    {
+      name,
+      image,
+      introduce,
+      interests,
+    },
+    {
+      headers: {
+        'Access-Token': token,
+      },
+    },
+  );
 
   console.log(res);
   return res;
