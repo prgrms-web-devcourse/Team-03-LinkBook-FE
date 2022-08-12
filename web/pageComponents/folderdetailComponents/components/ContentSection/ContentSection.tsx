@@ -17,22 +17,26 @@ import {
   TEMP_TOKEN,
   TEMP_USER_ID,
 } from '../../../../constants/alert.constants';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../../../recoil/user';
 
 interface Props {
   id?: number;
+  token: string;
 }
 
-const ContentSection = ({ id }: Props) => {
+const ContentSection = ({ id, token }: Props) => {
   const [data, setData] = useState<SpecificFolder>(undefined);
   const router = useRouter();
+  const loginUser: any = useRecoilValue(userInfo);
 
   useEffect(() => {
     if (!id) return;
 
     (async () => {
       try {
-        // token이 있다고 가정하고 테스트 진행
-        const contentRes = await getFolder(id, TEMP_TOKEN);
+        const contentRes = await getFolder(id, token);
+        console.log(contentRes);
         setData(contentRes);
       } catch (error) {
         console.log(error);
@@ -46,8 +50,7 @@ const ContentSection = ({ id }: Props) => {
       {data ? (
         <S.Container>
           <S.TitleContainer>
-            {/* 추후에 글 작성자인지 확인하는 로직으로 변경 예정 */}
-            {data.user.id === TEMP_USER_ID && (
+            {data.user.id === loginUser.user.id && (
               <PrivateSection
                 id={id}
                 isPrivate={data.isPrivate}

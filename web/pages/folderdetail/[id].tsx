@@ -5,13 +5,17 @@ import {
   ContentSection,
 } from '../../pageComponents/folderdetailComponents/components';
 
-const folderDetailPage = () => {
+interface Props {
+  token: string;
+}
+
+const folderDetailPage = ({ token }: Props) => {
   const router = useRouter();
   const id = Number(router.query.id);
 
   return (
     <S.Container>
-      <ContentSection id={id} />
+      <ContentSection token={token} id={id} />
       <S.Line />
       <CommentSection id={id} />
     </S.Container>
