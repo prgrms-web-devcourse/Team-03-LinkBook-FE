@@ -14,6 +14,7 @@ import {
 } from '../../pageComponents/folderupdateComponents/components';
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
 import { SpecificFolder } from '../../types';
+import { PAGE_URL } from '../../constants/url.constants';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -53,7 +54,7 @@ const FolderUpdate = () => {
       },
       '',
     ); // 토큰 추가
-    router.push(`/folderdetail/${id}`);
+    router.push(`${PAGE_URL.DETAIL}/${id}`);
   };
 
   useEffect(() => {

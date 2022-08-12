@@ -1,23 +1,17 @@
-import { useState } from 'react';
-import { Button, Modal } from '../../../../components';
 import * as S from './MyFoldersAreaLogOut.style';
+import { useSetRecoilState } from 'recoil';
+import { Button } from '../../../../components';
+import { showModalStatus } from '../../../../recoil/showModal';
+import {
+  showLoginModal,
+  showSignUpModal,
+} from '../../../../constants/modal.constants';
 
 const MyFoldersAreaLogOut = () => {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
-
-  const handleLogin = () => {
-    setShowLoginModal(!showLoginModal);
-  };
-
-  const handleSignUp = () => {
-    setShowSignUpModal(!showSignUpModal);
-  };
+  const setShowModal = useSetRecoilState(showModalStatus);
 
   return (
     <>
-      <Modal version="login" show={showLoginModal} closeFunc={handleLogin} />
-      <Modal version="signUp" show={showSignUpModal} closeFunc={handleSignUp} />
       <S.AreaContainer>
         <S.BackgroundImage
           src="/backgrounds/myFoldersArea.svg"
@@ -39,10 +33,13 @@ const MyFoldersAreaLogOut = () => {
             </S.Description>
           </S.TextWrapper>
           <S.ButtonWrapper>
-            <Button type="submit" onClick={handleLogin}>
+            <Button type="submit" onClick={() => setShowModal(showLoginModal)}>
               로그인
             </Button>
-            <S.SignUpButton type="submit" onClick={handleSignUp}>
+            <S.SignUpButton
+              type="submit"
+              onClick={() => setShowModal(showSignUpModal)}
+            >
               회원가입
             </S.SignUpButton>
           </S.ButtonWrapper>

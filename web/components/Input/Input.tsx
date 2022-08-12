@@ -9,6 +9,7 @@ interface Props {
   onChange?: ChangeEventHandler;
   onKeyDown?: KeyboardEventHandler;
   ref?: React.Ref<HTMLInputElement>;
+  errorText?: string;
 }
 
 const defaultProps = {
@@ -18,22 +19,34 @@ const defaultProps = {
 
 const Input = React.forwardRef<HTMLInputElement, Props>(
   (
-    { children, placeholder, maxLength, onChange, type, onKeyDown, ...styles },
+    {
+      children,
+      placeholder,
+      maxLength,
+      onChange,
+      type,
+      onKeyDown,
+      errorText,
+      ...styles
+    },
     ref,
   ) => {
     return (
-      <S.Wrapper>
-        <S.Input
-          type={type}
-          placeholder={placeholder}
-          maxLength={maxLength}
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-          ref={ref}
-          {...styles}
-        />
-        <S.Action>{children}</S.Action>
-      </S.Wrapper>
+      <div>
+        <S.Wrapper>
+          <S.Input
+            type={type}
+            placeholder={placeholder}
+            maxLength={maxLength}
+            onChange={onChange}
+            onKeyDown={onKeyDown}
+            ref={ref}
+            {...styles}
+          />
+          <S.Action>{children}</S.Action>
+        </S.Wrapper>
+        <S.ErrorText>{errorText}</S.ErrorText>
+      </div>
     );
   },
 );
