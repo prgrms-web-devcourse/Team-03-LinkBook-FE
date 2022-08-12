@@ -92,16 +92,19 @@ export const createFolder = async (
 
 // 폴더 수정 (북마크까지) => 미개발
 // Headers : Access Token 필요
-export const updateFolder = async ({
-  id,
-  title,
-  image,
-  content,
-  isPinned,
-  isPrivate,
-  tags,
-  bookmarks,
-}: CreateOrUpdateFolder) => {
+export const updateFolder = async (
+  {
+    id,
+    title,
+    image,
+    content,
+    isPinned,
+    isPrivate,
+    tags,
+    bookmarks,
+  }: CreateOrUpdateFolder,
+  token: string,
+) => {
   const res = await axios.put(
     `${FOLDERS}/${id}`,
     {
@@ -115,7 +118,7 @@ export const updateFolder = async ({
     },
     {
       headers: {
-        'Access-Token': ACCESS_TOKEN,
+        'Access-Token': token,
       },
     },
   );

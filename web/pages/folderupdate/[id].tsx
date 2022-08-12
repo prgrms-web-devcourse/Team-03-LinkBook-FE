@@ -40,16 +40,19 @@ const FolderUpdate = () => {
     const content = contentInput.current.value;
     console.log(title, imageSrc, content, isPinned, isPrivate, bookmarks);
 
-    await updateFolder({
-      id: Number(id),
-      title,
-      image: imageSrc,
-      content,
-      isPinned,
-      isPrivate,
-      tags: [],
-      bookmarks,
-    });
+    await updateFolder(
+      {
+        id: Number(id),
+        title,
+        image: imageSrc,
+        content,
+        isPinned,
+        isPrivate,
+        tags: [],
+        bookmarks,
+      },
+      '',
+    ); // 토큰 추가
     router.push(`/folderdetail/${id}`);
   };
 
