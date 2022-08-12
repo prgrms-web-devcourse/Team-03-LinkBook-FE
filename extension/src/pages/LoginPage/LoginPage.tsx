@@ -26,26 +26,29 @@ const LoginPage = ({ isLogin }: Props) => {
     formState: { isSubmitting, errors },
   } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = useCallback(async (data, e) => {
-    if (e) e.preventDefault();
-    const { email, password } = data;
+  const onSubmit: SubmitHandler<IFormInput> = useCallback(
+    async (data, e) => {
+      if (e) e.preventDefault();
+      const { email, password } = data;
 
-    try {
-      const res = await userLogin({ email, password });
-      if (!res) throw new Error("잘못된 로그인 리스폰스 타입");
-      const { accessToken, refreshToken } = res;
+      try {
+        const res = await userLogin({ email, password });
+        if (!res) throw new Error("잘못된 로그인 리스폰스 타입");
+        const { accessToken, refreshToken } = res;
 
-      await setCookie(ACCESS_TOKEN, DOMAIN, URL, accessToken, false);
-      await setCookie(REFRESH_TOKEN, DOMAIN, URL, refreshToken, true);
+        await setCookie(ACCESS_TOKEN, DOMAIN, URL, accessToken, false);
+        await setCookie(REFRESH_TOKEN, DOMAIN, URL, refreshToken, true);
 
-      getCookie(ACCESS_TOKEN, URL);
+        getCookie(ACCESS_TOKEN, URL);
 
-      isLogin(true);
-    } catch (error) {
-      alert("이메일 혹은 비밀번호가 일치하지 않습니다.");
-      console.log(error);
-    }
-  }, []);
+        isLogin(true);
+      } catch (error) {
+        alert("이메일 혹은 비밀번호가 일치하지 않습니다.");
+        console.log(error);
+      }
+    },
+    [isLogin]
+  );
 
   return (
     <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>

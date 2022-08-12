@@ -18,6 +18,10 @@ export const IconWraaper = styled.div`
   align-items: center;
 `;
 
+export const LogoIconWrapper = styled.a`
+  display: inline-block;
+`;
+
 export const ImageWrapper = styled.div`
   align-self: center;
   margin: 15px auto;
