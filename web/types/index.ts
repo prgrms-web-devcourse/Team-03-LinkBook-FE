@@ -7,6 +7,7 @@ export type {
   FolderCreateOrUpdate,
   GetFolderList,
   GetUserFolderList,
+  PinnedFolder,
 } from './folder';
 export type { Comments, CreateOrUpdateComment } from './comment';
 export type { TabType } from './tab';

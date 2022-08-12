@@ -74,6 +74,17 @@ export interface SpecificFolder extends Folder {
   originFolder: null | OriginFolder;
 }
 
+export interface PinnedFolder {
+  folders: {
+    id: number;
+    title: string;
+    image: string;
+    bookmarks: Bookmark[] | [];
+    tags: string[];
+    createdAt: string;
+  }[];
+}
+
 export interface OriginFolder {
   id: number;
   title: string;
