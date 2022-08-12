@@ -9,6 +9,7 @@ import { removeCookie } from '../../util/cookies';
 import { NextPageContext } from 'next';
 import { PAGE_URL } from '../../constants/url.constants';
 import { TEMP_USER_ID } from '../../constants/alert.constants';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps = (ctx: NextPageContext) => {
   const { token } = nookies.get(ctx);
@@ -30,9 +31,14 @@ const NavigationBar = ({ token }: Props) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const router = useRouter();
 
   const handleLogin = () => {
     setShowLoginModal(!showLoginModal);
+  };
+
+  const handleNewFolder = () => {
+    router.push(`/foldercreate`);
   };
 
   const handleLogout = () => {
@@ -104,7 +110,11 @@ const NavigationBar = ({ token }: Props) => {
                 <Link href={`${PAGE_URL.USER}/${TEMP_USER_ID}`} passHref>
                   <S.NavItem>마이페이지</S.NavItem>
                 </Link>
-                <Button type="button" version="navBar">
+                <Button
+                  type="button"
+                  version="navBar"
+                  onClick={handleNewFolder}
+                >
                   새 폴더 작성
                 </Button>
                 <Button type="button" version="navBar" onClick={handleLogout}>
