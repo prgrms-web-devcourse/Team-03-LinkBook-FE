@@ -3,6 +3,7 @@ export const PAGE_URL = {
   DETAIL: '/folderdetail',
   LIST: '/folderlist',
   UPDATE: '/folderupdate',
+  CREATE: '/foldercreate',
   INFO: '/information',
   USER: '/user',
   ERROR: '/404',
