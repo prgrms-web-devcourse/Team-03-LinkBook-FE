@@ -15,7 +15,6 @@ export const setCookie = async (
     value,
   });
 
-  console.log(res?.value);
   return res?.value;
 };
 
@@ -24,6 +23,6 @@ export const getCookie = async (key: string, url: string) => {
     name: key,
     url,
   });
-  console.log(res?.value);
+
   return res?.value;
 };

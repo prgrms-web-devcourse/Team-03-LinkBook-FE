@@ -4,7 +4,7 @@ import ContextProvider from "./contexts/ContextProvider";
 function App() {
   return (
     <ContextProvider>
-      <Root />;
+      <Root />
     </ContextProvider>
   );
 }
