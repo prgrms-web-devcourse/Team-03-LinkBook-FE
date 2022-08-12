@@ -5,71 +5,68 @@ import {
   BookmarkList,
   Button,
   Icon,
+  TagSelector,
 } from '../../components';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   Switch,
   BookmarkInput,
 } from '../../pageComponents/folderupdateComponents/components';
-import { getFolder, updateFolder } from '../../apis/FolderAPI';
-import { SpecificFolder } from '../../types';
+import { createFolder } from '../../apis/FolderAPI';
+import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
+import { getCookie } from '../../util/cookies';
 import { PAGE_URL } from '../../constants/url.constants';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../recoil/user';
 
-const FolderUpdate = () => {
+const FolderCreate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
   const titleInput = useRef<HTMLInputElement>();
-  // const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState([]);
   const [imageSrc, setImageSrc] = useState('');
   const [isPinned, setIsPinned] = useState(false);
   const contentInput = useRef<HTMLTextAreaElement>();
   const [bookmarks, setBookmarks] = useState([]);
 
   const router = useRouter();
-  const { id } = router.query;
+  const token = getCookie('ACCESS_TOKEN');
+  const loginUser: any = useRecoilValue(userInfo);
 
   const moveUserPage = () => {
-    router.push(`/user/1`); // 추후 전역에서 사용하는 user id 붙이기
+    router.push(`${PAGE_URL.USER}/${loginUser.user.id}`);
   };
 
   const changePin = () => {
     setIsPinned(!isPinned);
   };
 
-  const moveFolderDetailPage = async () => {
+  const createFolderAPI = async () => {
     const title = titleInput.current.value;
     const content = contentInput.current.value;
+    const image = imageSrc || FOLDER_DEFAULT_IMAGE;
 
-    await updateFolder(
+    const { id } = await createFolder(
       {
-        id: Number(id),
         title,
-        image: imageSrc,
+        image,
         content,
         isPinned,
         isPrivate,
-        tags: [],
+        tags,
         bookmarks,
       },
-      '',
-    ); // 토큰 추가
-    router.push(`${PAGE_URL.DETAIL}/${id}`);
+      token,
+    );
+
+    return id;
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { isPrivate, title, image, content, bookmarks } = await getFolder(
-        Number(id),
-      );
-      setIsPrivate(isPrivate);
-      titleInput.current.value = title;
-      // setTags(folder.tags)
-      setImageSrc(image);
-      contentInput.current.value = content;
-      setBookmarks(bookmarks);
-    };
-    fetchData();
-  }, []);
+  const moveFolderDetailPage = async () => {
+    const id = await createFolderAPI();
+
+    router.push(`${PAGE_URL.DETAIL}/${id}`);
+  };
 
   return (
     <>
@@ -80,6 +77,7 @@ const FolderUpdate = () => {
             <Icon name={isPinned ? 'pin_blue_ic' : 'ico_pin'} size={30} />
           </S.IconWrapper>
         </S.SwitchContainer>
+        <TagSelector selectedTag={tags} setSelectedTag={setTags} />
         <S.TitleInput
           type="text"
           maxLength={20}
@@ -111,4 +109,4 @@ const FolderUpdate = () => {
   );
 };
 
-export default FolderUpdate;
+export default FolderCreate;
