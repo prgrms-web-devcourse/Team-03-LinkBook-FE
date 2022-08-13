@@ -5,6 +5,7 @@ import { IUserContext, useUserContext } from "../../contexts/ContextProvider";
 import { createBookmark, getUserInfo } from "../../utils/api";
 
 import * as S from "./MainPage.style";
+import Submit from "./components/Submit";
 
 const MainPage = () => {
   const { setUserInfo } = useUserContext() as IUserContext;
@@ -16,6 +17,7 @@ const MainPage = () => {
   });
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const getUrl = () => {
     chrome.tabs &&
@@ -56,6 +58,7 @@ const MainPage = () => {
       url: folderSelector.url,
       title: inputRef.current!.value,
     });
+    setIsSubmitted(true);
   };
 
   const handleFolderMade = (id: number, title: string) => {
@@ -68,7 +71,7 @@ const MainPage = () => {
     setModalVisible(false);
   };
 
-  return (
+  return !isSubmitted ? (
     <S.Container>
       <Modal
         isVisible={modalVisible}
@@ -77,9 +80,8 @@ const MainPage = () => {
       />
       <S.IconWraaper>
         <S.LogoIconWrapper href="https://linkbook.tk/" target="_blank">
-          <Icon name="logo" width={50} height={30} />
+          <Icon name="logo" width={35} height={20} />
         </S.LogoIconWrapper>
-
         <Icon
           name="btn_x"
           width={13}
@@ -102,11 +104,13 @@ const MainPage = () => {
         {folderSelector.title} ▼
       </S.FolderSelector>
       <S.ButtonWrapper>
-        <S.StoreButton onClick={handleSubmit} disabled={buttonDisabled}>
+        <S.SubmitButton onClick={handleSubmit} disabled={buttonDisabled}>
           저장
-        </S.StoreButton>
+        </S.SubmitButton>
       </S.ButtonWrapper>
     </S.Container>
+  ) : (
+    <Submit />
   );
 };
 

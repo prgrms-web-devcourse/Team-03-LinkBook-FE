@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Button } from "../../components";
 
-export const InnerContainer = styled.form`
+export const Container = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,19 +9,8 @@ export const InnerContainer = styled.form`
   border-radius: 15px;
   width: 355px;
   height: 380px;
-`;
 
-export const Title = styled.div`
-  width: fit-content;
-  margin: 0 auto;
-  padding-top: 20px;
-  font-weight: bold;
-  font-size: "24px";
-  font-family: "Noto Sans KR", sans-serif;
-  line-height: 1.3;
-  text-align: center;
-
-  animation: fadeIn 0.5s;
+  animation: fadeIn 0.75s;
 
   @keyframes fadeIn {
     from {
@@ -31,6 +20,30 @@ export const Title = styled.div`
       opacity: 1;
     }
   }
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const LogoIconWrapper = styled.a`
+  display: inline-block;
+`;
+
+export const EscapeIconWrapper = styled.div`
+  cursor: pointer;
+`;
+
+export const Title = styled.div`
+  width: fit-content;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: "24px";
+  font-family: "Noto Sans KR", sans-serif;
+  line-height: 1.3;
+  text-align: center;
 `;
 
 export const MainText = styled.span`

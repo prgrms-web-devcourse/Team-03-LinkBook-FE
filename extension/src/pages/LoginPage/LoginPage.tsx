@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Icon } from "../../components";
 import Input from "../../components/Input";
 import { userLogin } from "../../utils/api";
 import {
@@ -51,7 +52,20 @@ const LoginPage = ({ isLogin }: Props) => {
   );
 
   return (
-    <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
+    <S.Container onSubmit={handleSubmit(onSubmit)}>
+      <S.IconWrapper>
+        <S.LogoIconWrapper href="https://linkbook.tk/">
+          <Icon name="logo" width={35} height={20} />
+        </S.LogoIconWrapper>
+        <S.EscapeIconWrapper>
+          <Icon
+            name="btn_x"
+            width={13}
+            height={13}
+            onClick={() => window.close()}
+          />
+        </S.EscapeIconWrapper>
+      </S.IconWrapper>
       <S.Title>
         <S.MainText>Linkbook</S.MainText>에 오신것을 환영합니다! 🎉
       </S.Title>
@@ -88,7 +102,7 @@ const LoginPage = ({ isLogin }: Props) => {
       <S.ButtonContainer>
         <S.LoginButton disabled={isSubmitting}>로그인</S.LoginButton>
       </S.ButtonContainer>
-    </S.InnerContainer>
+    </S.Container>
   );
 };
 
