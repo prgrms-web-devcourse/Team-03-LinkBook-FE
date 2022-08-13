@@ -73,7 +73,16 @@ export const CloseBtn = styled.button`
 `;
 
 // Modal Inner(version) Style
-export const InnerContainer = styled.form`
+export const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 420px;
+  height: 420px;
+  margin: 30px auto;
+`;
+
+export const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -115,12 +124,11 @@ export const MainText = styled.span`
 `;
 
 export const IconContainer = styled.div`
-  width: 150px;
-  height: 150px;
+  width: fit-content;
+  height: fit-content;
   margin: 0 auto;
   overflow: hidden;
-  border: ${({ theme }) => `1px solid ${theme.colors.gray[4]}`};
-  border-radius: 300px;
+  text-align: center;
 `;
 
 export const InputContainer = styled.div`
@@ -192,4 +200,14 @@ export const ConfirmButton = styled.button`
 export const LogoText = styled.span`
   font-size: ${({ theme }) => theme.fontSize.l[2]};
   font-family: 'Dongle', sans-serif;
+`;
+
+export const ErrorText = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.c[0]};
+  color: red;
+  margin: 5px;
+`;
+
+export const TagSelectorWrapper = styled.div`
+  height: 200px;
 `;

@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
 import * as S from '../../styles/pageStyles/folderDetail.style';
+import { useRouter } from 'next/router';
 import {
   CommentSection,
   ContentSection,

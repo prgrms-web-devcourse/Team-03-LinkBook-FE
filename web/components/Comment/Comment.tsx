@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { CommentInput } from '../index';
 import { Comment } from '../../types/comment';
 import CommentItem from './CommentItem';
+import { getCookie } from '../../util/cookies';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../recoil/user';
 
 interface Props {
   comment: Comment;
@@ -13,6 +16,8 @@ const CommentComponent = ({ comment, folderId }: Props) => {
   const [showReplies, setShowReplies] = useState(false);
   const [showInputArea, setShowInputArea] = useState(false);
   const { id, children } = comment;
+  const { user } = useRecoilValue(userInfo);
+  const token = getCookie('ACCESS_TOKEN');
 
   const handleShowReplies = () => {
     setShowReplies(!showReplies);
@@ -24,7 +29,12 @@ const CommentComponent = ({ comment, folderId }: Props) => {
 
   return (
     <S.Container key={id}>
-      <CommentItem comment={comment} folderId={folderId} />
+      <CommentItem
+        comment={comment}
+        folderId={folderId}
+        userId={user && user.id}
+        token={token}
+      />
       <S.ButtonContainer>
         <S.RepliesButton onClick={handleShowInputArea}>
           답글 달기 {showInputArea ? '-' : '+'}

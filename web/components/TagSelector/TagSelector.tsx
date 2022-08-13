@@ -27,20 +27,17 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   const [activeItem, setActiveItem] = useState(0);
-  const [autoCompleteSearch, setAutoCompleteSearch] = useState<string[]>([]);
-  const [inputResultVisible, setInputResultVisible] = useState(false);
+  const [autoCompleteSearch, setAutoCompleteSearch] = useState<string[]>(tags);
 
   const handleFilterInputValue = () => {
-    const keyword = inputRef.current!.value;
+    const keyword = inputRef.current.value;
     const filteredSearch = tags.filter((tag) => tag.indexOf(keyword) >= 0);
 
     if (!keyword) {
-      setAutoCompleteSearch([]);
-      handleVisibleInputResult(false);
+      setAutoCompleteSearch(tags);
       return;
     }
 
-    handleVisibleInputResult(true);
     setAutoCompleteSearch(filteredSearch);
   };
 
@@ -52,8 +49,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   };
 
   const handleResetSelector = () => {
-    inputRef.current!.value = '';
-    handleVisibleInputResult(false);
+    inputRef.current.value = '';
     setActiveItem(0);
   };
 
@@ -67,12 +63,8 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
     setSelectedTag(updatedData);
   };
 
-  const handleVisibleInputResult = (state: boolean) => {
-    setInputResultVisible(state);
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!inputResultVisible || e.keyCode === 229) {
+    if (e.keyCode === 229) {
       return;
     }
 
@@ -83,13 +75,13 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
       case 'ArrowUp':
         if (activeItem > 0) {
           setActiveItem(activeItem - 1);
-          node?.scrollBy(0, -itemHeight!);
+          node?.scrollBy(0, -itemHeight);
         }
         break;
       case 'ArrowDown':
         if (activeItem < autoCompleteSearch.length - 1) {
           setActiveItem(activeItem + 1);
-          node?.scrollBy(0, itemHeight!);
+          node?.scrollBy(0, itemHeight);
         }
         break;
       case 'Enter':
@@ -102,7 +94,6 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
         break;
       default:
         setActiveItem(0);
-      // break;
     }
   };
 
@@ -119,7 +110,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
       <InputResult
         active={activeItem}
         ref={listRef}
-        inputResultVisible={inputResultVisible}
+        inputResultVisible={true}
         inputResults={autoCompleteSearch}
         onClick={handleClickResultItem}
       />

@@ -8,7 +8,8 @@ export const userSignUp = async ({ email, password }: SignUpOrIn) => {
   const res = await axios.post(`${USER}${SIGNUP}`, {
     email,
     password,
-    image: 'https://avatars.githubusercontent.com/u/72294509?v=4',
+    image:
+      'https://linkbook-s3-1.s3-ap-northeast-2.amazonaws.com/static/userImage.png.png',
   });
 
   console.log(res);
@@ -40,16 +41,24 @@ export const getUserInfo = async (token: string) => {
 };
 
 // 내 정보 수정 성공
-export const updateUserInfo = async ({
-  name,
-  image,
-  interests,
-}: UpdateInfo) => {
-  const res = await axios.patch(`${USER}`, {
-    name,
-    image,
-    interests,
-  });
+export const updateUserInfo = async (
+  { name, image, introduce, interests }: UpdateInfo,
+  token: string,
+) => {
+  const res = await axios.patch(
+    `${USER}`,
+    {
+      name,
+      image,
+      introduce,
+      interests,
+    },
+    {
+      headers: {
+        'Access-Token': token,
+      },
+    },
+  );
 
   console.log(res);
   return res;

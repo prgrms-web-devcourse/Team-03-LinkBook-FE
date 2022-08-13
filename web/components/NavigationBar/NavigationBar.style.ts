@@ -71,5 +71,14 @@ export const UserButton = styled.button`
 `;
 
 export const IconWrapper = styled.div`
+  width: 32px;
+  height: 32px;
+  padding-top: 6px;
+  text-align: center;
+  border-radius: 50%;
   cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray[5]};
+  }
 `;

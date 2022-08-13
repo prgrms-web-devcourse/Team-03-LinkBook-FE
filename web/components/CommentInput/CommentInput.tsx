@@ -1,22 +1,37 @@
+import * as S from './CommentInput.style';
 import { ChangeEvent, forwardRef, useState } from 'react';
 import { createComment } from '../../apis/CommentAPI';
-import Button from '../Button';
-import * as S from './CommentInput.style';
-import { TEMP_TOKEN } from '../../constants/alert.constants';
+import { Button } from '../index';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userInfo } from '../../recoil/user';
+import { showModalStatus } from '../../recoil/showModal';
+import { showLoginModal } from '../../constants/modal.constants';
+import { CreateOrUpdateComment } from '../../types';
+import { getCookie } from '../../util/cookies';
 
 interface Props {
   version: 'comment' | 'update';
   folderId?: number;
   parentId?: number;
   defaultValue?: string;
+  placeholder?: string;
 }
 
 const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
   (
-    { version = 'comment', folderId, parentId = null, defaultValue = '' },
+    {
+      version = 'comment',
+      folderId,
+      parentId = null,
+      defaultValue = '',
+      placeholder,
+    },
     ref,
   ) => {
     const [value, setValue] = useState(defaultValue);
+    const { user } = useRecoilValue(userInfo);
+    const token = getCookie('ACCESS_TOKEN');
+    const setShowModal = useSetRecoilState(showModalStatus);
 
     const handleChangeValue = ({
       target,
@@ -25,21 +40,23 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
     };
 
     const handleClickAddComment = async () => {
-      try {
-        const res = await createComment(
-          {
-            content: value,
-            folderId,
-            userId: 4,
-            parentId,
-          },
-          TEMP_TOKEN,
-        );
+      if (!user) {
+        alert('로그인 후 이용해주세요.');
+        setShowModal(showLoginModal);
+        return;
+      }
 
-        console.log(res);
+      try {
+        const newComment: CreateOrUpdateComment = {
+          parentId,
+          content: value,
+          folderId,
+          userId: user.id,
+        };
+        await createComment(newComment, token);
       } catch (error) {
-        alert('문제가 발생했습니다.');
         console.log(error);
+        alert('문제가 발생했습니다.');
       }
     };
 
@@ -52,7 +69,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
       <S.Container>
         <S.InputContainer>
           <S.TextInput
-            placeholder={placeholderText}
+            placeholder={placeholder ? placeholder : placeholderText}
             ref={ref}
             onChange={handleChangeValue}
             defaultValue={value}

@@ -27,12 +27,9 @@ export interface SignUpOrIn {
   password: string;
 }
 
-interface InterestsField {
-  field: string;
-}
 export interface UpdateInfo {
   name: string;
   image: string;
   introduce: string;
-  interests: InterestsField[] | [];
+  interests: string[] | [];
 }

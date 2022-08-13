@@ -3,14 +3,15 @@ import { Comment, CreateOrUpdateComment } from '../../../types/comment';
 import { deleteComment, updateComment } from '../../../apis/CommentAPI';
 import { useRef, useState } from 'react';
 import { CommentInput, Profile } from '../../index';
-import { TEMP_TOKEN, TEMP_USER_ID } from '../../../constants/alert.constants';
 
 interface Props {
   comment: Comment;
   folderId: number;
+  userId?: number;
+  token?: string;
 }
 
-const CommentItem = ({ comment, folderId }: Props) => {
+const CommentItem = ({ comment, folderId, userId, token }: Props) => {
   const { id, content, user, createdAt } = comment;
   const [updating, setUpdating] = useState(false);
   const updateInputRef = useRef<HTMLTextAreaElement>(null);
@@ -26,14 +27,15 @@ const CommentItem = ({ comment, folderId }: Props) => {
       id,
       content: updateInputRef.current.value,
       folderId,
-      userId: TEMP_USER_ID,
+      userId,
     };
 
     try {
-      await updateComment(newComment, TEMP_TOKEN);
+      await updateComment(newComment, token);
       setUpdating(!updating);
     } catch (error) {
       console.log(error);
+      alert('문제가 발생했습니다.');
     }
   };
 
@@ -42,11 +44,13 @@ const CommentItem = ({ comment, folderId }: Props) => {
     if (!confirmDelete) return;
 
     try {
-      await deleteComment(id, TEMP_TOKEN);
+      await deleteComment(id, token);
     } catch (error) {
       console.log(error);
+      alert('문제가 발생했습니다.');
     }
   };
+
   return (
     <S.Container key={id}>
       <S.HeaderWrapper>
@@ -56,7 +60,7 @@ const CommentItem = ({ comment, folderId }: Props) => {
           createdAt={`${createdAt.slice(0, 10)} ${createdAt.slice(11, 19)}`}
           iconSize={50}
         />
-        {TEMP_USER_ID === user.id && (
+        {userId === user.id && (
           <>
             {updating ? (
               <S.ButtonsWrapper>
@@ -73,14 +77,13 @@ const CommentItem = ({ comment, folderId }: Props) => {
         )}
       </S.HeaderWrapper>
       {updating ? (
-        <>
-          <CommentInput
-            version="update"
-            folderId={folderId}
-            defaultValue={content}
-            ref={updateInputRef}
-          />
-        </>
+        <CommentInput
+          version="update"
+          folderId={folderId}
+          defaultValue={content}
+          ref={updateInputRef}
+          placeholder="수정할 댓글을 입력해주세요."
+        />
       ) : (
         <S.BodyWrapper>{content}</S.BodyWrapper>
       )}

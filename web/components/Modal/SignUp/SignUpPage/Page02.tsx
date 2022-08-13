@@ -53,7 +53,7 @@ const Page02 = ({ handlePage }: Props) => {
   }, []);
 
   return (
-    <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
+    <S.FormContainer onSubmit={handleSubmit(onSubmit)}>
       <S.PreviousButton onClick={handlePage}>
         <Icon name="arrowLeft" size={30} />
       </S.PreviousButton>
@@ -84,7 +84,7 @@ const Page02 = ({ handlePage }: Props) => {
       <S.ButtonContainer>
         <Button type="submit">회원가입 &gt;</Button>
       </S.ButtonContainer>
-    </S.InnerContainer>
+    </S.FormContainer>
   );
 };
 

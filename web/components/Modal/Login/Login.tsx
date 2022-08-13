@@ -61,7 +61,7 @@ const Login = () => {
   }, []);
 
   return (
-    <S.InnerContainer onSubmit={handleSubmit(onSubmit)}>
+    <S.FormContainer onSubmit={handleSubmit(onSubmit)}>
       <S.Title>
         <S.MainText>Linkbook</S.MainText>에 오신것을 환영합니다! 🎉
       </S.Title>
@@ -105,7 +105,7 @@ const Login = () => {
           </Button>
         </S.ButtonContainer>
       </S.SignUpContainer>
-    </S.InnerContainer>
+    </S.FormContainer>
   );
 };
 
