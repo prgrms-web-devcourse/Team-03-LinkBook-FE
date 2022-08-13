@@ -43,11 +43,7 @@ const FirstLogin = () => {
     }
   };
 
-  return (
-    <UserInfoProvider>
-      <InnerContainer>{switchPage(page)}</InnerContainer>
-    </UserInfoProvider>
-  );
+  return <UserInfoProvider>{switchPage(page)}</UserInfoProvider>;
 };
 
 export default FirstLogin;

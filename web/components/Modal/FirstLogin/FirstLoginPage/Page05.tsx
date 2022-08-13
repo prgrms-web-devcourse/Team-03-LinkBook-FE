@@ -14,7 +14,7 @@ const Page05 = () => {
   };
 
   return (
-    <>
+    <S.InnerContainer>
       <S.Title>
         <br />
         <br />
@@ -28,7 +28,7 @@ const Page05 = () => {
           <S.LogoText>링북</S.LogoText> 100% 활용법 &gt;
         </S.ConfirmButton>
       </S.ButtonContainer>
-    </>
+    </S.InnerContainer>
   );
 };
 

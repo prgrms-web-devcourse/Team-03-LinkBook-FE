@@ -1,10 +1,10 @@
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import * as S from '../../Modal.style';
+import { FormEventHandler, useEffect, useRef, useState } from 'react';
 import { Input, Button } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
 
 interface Props {
-  handleNextPage: MouseEventHandler;
+  handleNextPage: FormEventHandler;
 }
 
 const Page01 = ({ handleNextPage }: Props) => {
@@ -12,7 +12,7 @@ const Page01 = ({ handleNextPage }: Props) => {
   const [errorText, setErrorText] = useState('');
   const { userInfo, setUserName } = useUserInfo();
 
-  const handleClickStoreName: MouseEventHandler = (e) => {
+  const handleClickStoreName: FormEventHandler<HTMLFormElement> = (e) => {
     const nameValue = nameRef.current.value;
     const res = setUserName(nameValue);
 
@@ -29,7 +29,7 @@ const Page01 = ({ handleNextPage }: Props) => {
   }, [userInfo]);
 
   return (
-    <>
+    <S.FormContainer onSubmit={handleClickStoreName}>
       <S.Title>
         <br />
         <S.MainText>Linkbook</S.MainText>에 오신 것을 환영해요! 🎉
@@ -43,11 +43,9 @@ const Page01 = ({ handleNextPage }: Props) => {
         errorText={errorText}
       />
       <S.ButtonContainer>
-        <Button type="button" onClick={handleClickStoreName}>
-          다음 &gt;
-        </Button>
+        <Button type="submit">다음 &gt;</Button>
       </S.ButtonContainer>
-    </>
+    </S.FormContainer>
   );
 };
 
