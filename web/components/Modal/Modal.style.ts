@@ -137,6 +137,12 @@ export const InputContainer = styled.div`
   gap: 20px;
 `;
 
+export const UserInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+`;
+
 export const ImageUploadWrapper = styled.div`
   width: fit-content;
   margin: 10px auto 0 auto;

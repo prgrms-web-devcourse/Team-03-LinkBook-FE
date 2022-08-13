@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userInfo } from '../../recoil/user';
 import { Category, Modal, Pagination, Profile } from '../../components';
 import * as S from '../../styles/pageStyles/user.style';
@@ -17,16 +17,19 @@ import {
   getUserFolderList,
 } from '../../apis/FolderAPI';
 import { getCookie } from '../../util/cookies';
+import { showModalStatus } from '../../recoil/showModal';
+import { showUserModal } from '../../constants/modal.constants';
 
 const UserPage = () => {
   const router = useRouter();
   const id = parseInt(router.query.id.toString());
   const getUserInfo: any = useRecoilValue(userInfo);
   const loginUserId = getUserInfo?.user?.id;
+  const [showModal, setShowModal] = useRecoilState(showModalStatus);
 
   const [folderData, setFolderData] = useState([]);
   const [userData, setUserData] = useState<User>();
-  const [totalElement, setTotalElment] = useState(0);
+  const [totalElement, setTotalElement] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   const [page, setPage] = useState(0);
@@ -46,14 +49,8 @@ const UserPage = () => {
         ];
   const [selectedItem, setSelectedItem] = useState(tabItems[0]);
 
-  const [showModal, setShowModal] = useState(false);
-
   const changeTabItem = (item: TabType) => {
     setSelectedItem(item);
-  };
-
-  const handleModal = () => {
-    setShowModal(!showModal);
   };
 
   useEffect(() => {
@@ -74,7 +71,7 @@ const UserPage = () => {
           });
           console.log(res);
           setFolderData(res.folders.content);
-          setTotalElment(res.folders.totalElements);
+          setTotalElement(res.folders.totalElements);
           setIsLoading(false);
         } catch {
           throw new Error('API 요청중 에러 발생');
@@ -94,7 +91,7 @@ const UserPage = () => {
             token,
           );
           setFolderData(res.folders.content);
-          setTotalElment(res.folders.totalElements);
+          setTotalElement(res.folders.totalElements);
           setIsLoading(false);
         } catch {
           throw new Error('API 요청중 에러 발생');
@@ -111,7 +108,7 @@ const UserPage = () => {
             id,
           );
           setFolderData(res.folders.content);
-          setTotalElment(res.folders.totalElements);
+          setTotalElement(res.folders.totalElements);
           setIsLoading(false);
         } catch {
           throw new Error('API 요청중 에러 발생');
@@ -122,7 +119,7 @@ const UserPage = () => {
           const res: PinnedFolder = await getPinnedFolder(token);
           console.log(res);
           setFolderData(res.folders);
-          setTotalElment(res.folders.length);
+          setTotalElement(res.folders.length);
           setIsLoading(false);
         } catch {
           throw new Error('API 요청중 에러 발생');
@@ -155,12 +152,15 @@ const UserPage = () => {
 
   return (
     <>
-      <Modal version="user" show={showModal} />
+      <Modal version="user" show={showModal.User} />
       <S.PageContainer>
         <S.ProfileWrapper>
           {userData && <Profile user={userData} />}
           {id === loginUserId && (
-            <S.ProfileModifyBtn type="button" onClick={handleModal}>
+            <S.ProfileModifyBtn
+              type="button"
+              onClick={() => setShowModal(showUserModal)}
+            >
               내 정보 수정
             </S.ProfileModifyBtn>
           )}
