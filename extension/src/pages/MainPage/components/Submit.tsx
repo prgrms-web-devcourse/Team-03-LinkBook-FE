@@ -6,7 +6,7 @@ const Submit = () => {
   return (
     <S.Container>
       <S.IconWrapper>
-        <S.LogoIconWrapper href="https://linkbook.tk/">
+        <S.LogoIconWrapper href="https://linkbook.tk/" target="_blank">
           <Icon name="logo" width={35} height={20} />
         </S.LogoIconWrapper>
         <S.EscapeIconWrapper>
@@ -22,7 +22,9 @@ const Submit = () => {
         <S.MainText>등록이 완료되었습니다! 🎉 확인하러 가 볼까요?</S.MainText>
       </S.MainTextWrapper>
       <S.MoveToWebButton>
-        <S.ButtonText>웹 사이트로 이동{">"}</S.ButtonText>
+        <S.Atag href="https://linkbook.tk/" target="_blank">
+          <S.ButtonText>웹 사이트로 이동{">"}</S.ButtonText>
+        </S.Atag>
       </S.MoveToWebButton>
     </S.Container>
   );

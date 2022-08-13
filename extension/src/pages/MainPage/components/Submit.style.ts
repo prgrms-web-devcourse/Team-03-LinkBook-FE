@@ -68,6 +68,10 @@ export const MoveToWebButton = styled(Button)`
   border-radius: 56px;
 `;
 
+export const Atag = styled.a`
+  text-decoration: none;
+`;
+
 export const ButtonText = styled.div`
   width: 100px;
   height: 19px;
