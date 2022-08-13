@@ -13,3 +13,4 @@ export type {
 export type { Comments, CreateOrUpdateComment } from './comment';
 export type { CreateBookmark, Bookmark } from './bookmark';
 export type { TabType } from './tab';
+export type { TagType } from './tag';

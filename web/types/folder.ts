@@ -15,8 +15,8 @@ interface Sort {
 export interface Folder {
   id: number;
   title: string;
-  content: string;
   image: string;
+  content: string;
   isPinned: boolean;
   isPrivate: boolean;
   user: User;
@@ -117,11 +117,12 @@ export interface GetFolderList {
   page: number;
   size: number;
   sort: string;
+  // title?: string;
 }
 
 export interface GetUserFolderList {
-  id: string;
-  isPrivate: boolean;
+  id: number;
+  isPrivate?: boolean;
   page: number;
   size: number;
   sort: string;
