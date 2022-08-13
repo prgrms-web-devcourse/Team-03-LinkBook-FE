@@ -9,6 +9,8 @@ export const AreaContainer = styled.div`
   align-items: center;
   width: 100%;
   height: auto;
+  padding-top: 120px;
+  padding-bottom: 100px;
 `;
 
 export const BackgroundImage = styled(Image)`
@@ -16,7 +18,7 @@ export const BackgroundImage = styled(Image)`
 `;
 
 export const ContentContainer = styled.div`
-  position: absolute;
+  position: relative;
 `;
 
 export const TextWrapper = styled.div`
