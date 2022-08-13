@@ -4,6 +4,7 @@ import Icon from '../Icon';
 import { Dispatch, SetStateAction, useRef } from 'react';
 import { useEffect } from 'react';
 import Router from 'next/router';
+import { PAGE_URL } from '../../constants/url.constants';
 
 interface Props {
   setShowSearchBar: Dispatch<SetStateAction<boolean>>;
@@ -22,7 +23,15 @@ const SearchBar = ({ setShowSearchBar }: Props) => {
       alert('올바른 검색어를 입력해주세요.');
       return;
     }
-    Router.push(`/folderlist/search/${value}`);
+    Router.push(
+      {
+        pathname: `${PAGE_URL.LIST}`,
+        query: {
+          search: value,
+        },
+      },
+      `${PAGE_URL.LIST}/search/${value}`,
+    );
   };
 
   useEffect(() => {
