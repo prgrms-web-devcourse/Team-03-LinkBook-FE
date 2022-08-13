@@ -1,5 +1,5 @@
 import * as S from '../../Modal.style';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { Button, ImageUpload, Icon } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
 import { getUserInfo, updateUserInfo } from '../../../../apis/UserAPI';
@@ -40,6 +40,10 @@ const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
 
     handleNextPage(e);
   };
+
+  useEffect(() => {
+    setImageSrc(userInfo.image);
+  }, [userInfo]);
 
   return (
     <>

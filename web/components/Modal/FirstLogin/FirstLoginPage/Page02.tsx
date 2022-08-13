@@ -1,4 +1,4 @@
-import { MouseEventHandler, useRef, useState } from 'react';
+import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import * as S from '../../Modal.style';
 import { Button, Input, Icon } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
@@ -24,6 +24,10 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
 
     handleNextPage(e);
   };
+
+  useEffect(() => {
+    introduceRef.current.value = userInfo.introduce;
+  }, [userInfo]);
 
   return (
     <>

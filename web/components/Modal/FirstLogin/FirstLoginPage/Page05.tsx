@@ -1,7 +1,7 @@
-import { MouseEventHandler } from 'react';
 import * as S from '../../Modal.style';
-import { Icon } from '../../../index';
 import Link from 'next/link';
+import { MouseEventHandler } from 'react';
+import { Icon } from '../../../index';
 import { PAGE_URL } from '../../../../constants/url.constants';
 
 interface Props {

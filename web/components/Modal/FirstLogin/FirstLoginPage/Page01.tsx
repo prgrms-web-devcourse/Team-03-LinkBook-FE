@@ -1,4 +1,4 @@
-import { MouseEventHandler, useRef, useState } from 'react';
+import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import * as S from '../../Modal.style';
 import { Input, Button } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
@@ -10,7 +10,7 @@ interface Props {
 const Page01 = ({ handleNextPage }: Props) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const [errorText, setErrorText] = useState('');
-  const { setUserName } = useUserInfo();
+  const { userInfo, setUserName } = useUserInfo();
 
   const handleClickStoreName: MouseEventHandler = (e) => {
     const nameValue = nameRef.current.value;
@@ -23,6 +23,10 @@ const Page01 = ({ handleNextPage }: Props) => {
 
     handleNextPage(e);
   };
+
+  useEffect(() => {
+    nameRef.current.value = userInfo.name;
+  }, [userInfo]);
 
   return (
     <>

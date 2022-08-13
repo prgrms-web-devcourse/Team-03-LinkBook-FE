@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { UpdateInfo } from '../../../../types';
 
 interface IUserInfoContext {
@@ -62,19 +62,18 @@ const UserInfoProvider = ({ children }: any) => {
     const imageLen = imageSrc.length;
     if (imageLen === 0) return '이미지를 업로드해주세요.';
 
-    return {
+    const finalUserInfo = {
       ...userInfo,
       image: imageSrc,
     };
+
+    setUserInfo(finalUserInfo);
+    return finalUserInfo;
   };
 
   const removeUserInfo = () => {
     setUserInfo(defaultValue);
   };
-
-  useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo]);
 
   return (
     <UserInfoContext.Provider

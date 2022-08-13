@@ -1,5 +1,5 @@
 import * as S from '../../Modal.style';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { Button, Icon, TagSelector } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
 
@@ -9,13 +9,17 @@ interface Props {
 }
 
 const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
-  const { setUserInterests } = useUserInfo();
+  const { userInfo, setUserInterests } = useUserInfo();
   const [selectedTag, setSelectedTag] = useState([]);
 
   const handleClickStoreInterests: MouseEventHandler = (e) => {
     setUserInterests(selectedTag);
     handleNextPage(e);
   };
+
+  useEffect(() => {
+    setSelectedTag(userInfo.interests);
+  }, [userInfo]);
 
   return (
     <>
