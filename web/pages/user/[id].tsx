@@ -22,7 +22,7 @@ const UserPage = () => {
   const router = useRouter();
   const id = parseInt(router.query.id.toString());
   const getUserInfo: any = useRecoilValue(userInfo);
-  const userId = getUserInfo?.user?.id;
+  const loginUserId = getUserInfo?.user?.id;
 
   const [folderData, setFolderData] = useState([]);
   const [userData, setUserData] = useState<User>();
@@ -33,7 +33,7 @@ const UserPage = () => {
   const limit = 12;
 
   const tabItems =
-    id === userId
+    id === loginUserId
       ? [
           { name: '전체공개', value: 'public' },
           { name: '나만보기', value: 'private' },
@@ -159,7 +159,7 @@ const UserPage = () => {
       <S.PageContainer>
         <S.ProfileWrapper>
           {userData && <Profile user={userData} />}
-          {id === userId && (
+          {id === loginUserId && (
             <S.ProfileModifyBtn type="button" onClick={handleModal}>
               내 정보 수정
             </S.ProfileModifyBtn>
@@ -179,7 +179,7 @@ const UserPage = () => {
             isLoading={isLoading}
             onClick={changeTabItem}
             selectedItem={selectedItem}
-            cardVersion={id === userId ? 'myCard' : 'othersCard'}
+            cardVersion={id === loginUserId ? 'myCard' : 'othersCard'}
           />
         </S.CategoryWrapper>
         <S.PaginationWrapper>
