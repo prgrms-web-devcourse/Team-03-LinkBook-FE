@@ -58,7 +58,7 @@ const NavigationBar = ({ token }: Props) => {
                   subTag: '전체 카테고리',
                 },
               }}
-              as={`${PAGE_URL.LIST}/explore/all`}
+              as={`${PAGE_URL.LIST}/explore/전체 카테고리`}
               passHref
             >
               <S.NavItem>북마크리스트</S.NavItem>
