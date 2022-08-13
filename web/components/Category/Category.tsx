@@ -29,7 +29,7 @@ const Category = ({
       </S.TabWrapper>
       <S.CategoryCardWrapper>
         {isLoading ? (
-          <Skeleton width={340} height={400} repeat={data.length} />
+          <Skeleton width={340} height={369} repeat={data.length} />
         ) : (
           data.map((item: any) => (
             <Card shrinking key={item.id} version={cardVersion} data={item} />

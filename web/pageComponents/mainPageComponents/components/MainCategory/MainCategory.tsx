@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AllFolderList, TabType } from '../../../../types';
 import { getFolderList } from '../../../../apis/FolderAPI';
+import { PAGE_URL } from '../../../../constants/url.constants';
 
 const MainCategory = () => {
   const tabItems = [
@@ -20,13 +21,13 @@ const MainCategory = () => {
   const moveFolderListPage = () => {
     router.push(
       {
-        pathname: '/folderlist/explore/all',
+        pathname: `${PAGE_URL.LIST}`,
         query: {
-          mainTag: 'all',
-          subTag: 'all',
+          mainTag: '전체 카테고리',
+          subTag: '전체 카테고리',
         },
       },
-      '/folderlist/explore/all',
+      `${PAGE_URL.LIST}/explore/전체 카테고리`,
     );
   };
 

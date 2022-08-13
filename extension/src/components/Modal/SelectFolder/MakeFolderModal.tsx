@@ -1,64 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useRef, useState } from "react";
-import Button from "../../Button";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 1px;
-  align-items: center;
-`;
-
-const FolderTitleInput = styled.input`
-  border-radius: 5px;
-  border: 1px solid #e0e0e0;
-  padding: 12px 18px;
-  font-size: 11px;
-  width: 100%;
-  line-height: 16px;
-  margin-bottom: 17px;
-  margin-top: 5px;
-`;
-
-const SelectPrivateText = styled.div`
-  font-weight: 500;
-  font-size: 14px;
-  color: #4285f4;
-  cursor: pointer;
-`;
-
-const SelectRangeWrapper = styled.div`
-  padding: 7px;
-  overflow: scroll;
-  border: 1px solid #e0e0e0;
-  position: relative;
-  border-top: 0;
-  border-radius: 5px;
-`;
-
-const SelectRange = styled.div`
-  width: 115px;
-  padding: 6px 9px;
-  font-size: 11px;
-  line-height: 11px;
-  color: #4f4f4f;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f2f2f2;
-  }
-`;
-
-const MakeFolderButton = styled(Button)`
-  background-color: #4285f4;
-  padding: 9.5px 31px;
-  font-weight: 500;
-  font-size: 14px;
-  position: absolute;
-  bottom: 10px;
-  border-radius: 56px;
-  cursor: pointer;
-`;
+import { createFolder } from "../../../utils/api";
+import { CreateFolderRes } from "../../../utils/types";
+import * as S from "./MakeFolderModal.style";
 
 interface Props {
   handleMakeFolder: (id: number, title: string) => void;
@@ -69,38 +12,50 @@ const MakeFolderModal = ({ handleMakeFolder }: Props) => {
   const [isPrivate, setIsPrivate] = useState(false);
   const [selectRangeOn, setSelectRangeOn] = useState<boolean>();
   const [selectRangeText, setSelectRangeText] = useState("🔒 공개 범위 선택 ▼");
-  const onMakeFolderBtnClick = () => {
+
+  const onMakeFolderBtnClick = async () => {
     if (!inputRef.current!.value) return alert("폴더이름을 작성해주세요");
     if (selectRangeOn === undefined) return alert("공개 범위를 선택해주세요");
-    //api
-    //폴더 생성
-    //title,image,isPinned,isPrivate,tags:[],bookmarks:[]
-    //response folder Id
+
+    const resFolderId: CreateFolderRes = await createFolder({
+      title: inputRef.current?.value as string,
+      isPrivate,
+    });
     if (inputRef.current && inputRef.current.value !== "") {
-      handleMakeFolder(1, inputRef.current.value);
+      handleMakeFolder(resFolderId.id, inputRef.current.value);
     }
   };
 
   return (
-    <Container>
-      <FolderTitleInput ref={inputRef} placeholder="폴더 이름" />
-      <SelectPrivateText onClick={() => setSelectRangeOn((prev) => !prev)}>
+    <S.Container>
+      <S.FolderTitleInput ref={inputRef} placeholder="폴더 이름" />
+      <S.SelectPrivateText onClick={() => setSelectRangeOn((prev) => !prev)}>
         {selectRangeText}
-      </SelectPrivateText>
+      </S.SelectPrivateText>
       {selectRangeOn && (
-        <SelectRangeWrapper onClick={() => setSelectRangeOn(false)}>
-          <SelectRange onClick={() => setSelectRangeText("나만보기")}>
+        <S.SelectRangeWrapper onClick={() => setSelectRangeOn(false)}>
+          <S.SelectRange
+            onClick={() => {
+              setSelectRangeText("나만보기");
+              setIsPrivate(true);
+            }}
+          >
             나만보기
-          </SelectRange>
-          <SelectRange onClick={() => setSelectRangeText("전체공개")}>
+          </S.SelectRange>
+          <S.SelectRange
+            onClick={() => {
+              setSelectRangeText("전체공개");
+              setIsPrivate(false);
+            }}
+          >
             전체공개
-          </SelectRange>
-        </SelectRangeWrapper>
+          </S.SelectRange>
+        </S.SelectRangeWrapper>
       )}
-      <MakeFolderButton onClick={onMakeFolderBtnClick}>
+      <S.MakeFolderButton onClick={onMakeFolderBtnClick}>
         폴더 만들기
-      </MakeFolderButton>
-    </Container>
+      </S.MakeFolderButton>
+    </S.Container>
   );
 };
 

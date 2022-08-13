@@ -1,10 +1,13 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Icon } from "../../components";
 import Modal from "../../components/Modal";
+import { IUserContext, useUserContext } from "../../contexts/ContextProvider";
+import { createBookmark, getUserInfo } from "../../utils/api";
 
 import * as S from "./MainPage.style";
 
 const MainPage = () => {
+  const { setUserInfo } = useUserContext() as IUserContext;
   const inputRef = useRef<HTMLInputElement>(null);
   const [folderSelector, setFolderSelector] = useState({
     id: 0,
@@ -20,8 +23,12 @@ const MainPage = () => {
         if (tabs[0].url) handleTabsCallback(tabs[0].url);
       });
   };
+
   useEffect(() => {
     getUrl();
+    (async function () {
+      setUserInfo(await getUserInfo());
+    })();
   }, []);
 
   const handleTabsCallback = (url: string) => {
@@ -44,9 +51,11 @@ const MainPage = () => {
       return;
     }
 
-    console.log("url: ", folderSelector.url);
-    console.log("folderId:", folderSelector.id);
-    console.log("title:", inputRef.current?.value);
+    createBookmark({
+      folderId: folderSelector.id,
+      url: folderSelector.url,
+      title: inputRef.current!.value,
+    });
   };
 
   const handleFolderMade = (id: number, title: string) => {
@@ -67,7 +76,10 @@ const MainPage = () => {
         modalClose={() => setModalVisible(false)}
       />
       <S.IconWraaper>
-        <Icon name="logo" width={50} height={30} />
+        <S.LogoIconWrapper href="https://linkbook.tk/" target="_blank">
+          <Icon name="logo" width={50} height={30} />
+        </S.LogoIconWrapper>
+
         <Icon
           name="btn_x"
           width={13}

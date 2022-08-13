@@ -1,9 +1,21 @@
 import axios from "axios";
-import { ACCESS_TOKEN, DOMAIN, REFRESH_TOKEN, URL } from "./constants";
+import {
+  ACCESS_TOKEN,
+  BOOKMARKS,
+  DOMAIN,
+  FOLDER_DEFAULT_IMG,
+  REFRESH_TOKEN,
+  URL,
+} from "./constants";
 import { getCookie, setCookie } from "./cookies";
-import { LogInResponse, SignUpOrIn } from "./types";
-import { LOGIN, USER } from "./url";
-import { BaseUrl } from "./url";
+import {
+  LogInResponse,
+  SignUpOrIn,
+  AllFolderList,
+  CreateFolderRes,
+  User,
+} from "./types";
+import { LOGIN, USER, ME, FOLDERS, BaseUrl } from "./constants";
 
 // access 토큰 재발급 함수
 export const onReissuanceAccessToken = async () => {
@@ -16,7 +28,6 @@ export const onReissuanceAccessToken = async () => {
         "Refresh-Token": RefreshToken as string,
       },
     });
-    console.log(res);
 
     return res.data.accessToken;
   } catch (error) {
@@ -28,13 +39,11 @@ export const onReissuanceAccessToken = async () => {
 export const cookieCheck = async () => {
   //access token 유효기간 확인
   const AccessToken = await getCookie(ACCESS_TOKEN, URL);
-
-  console.log("ACCESS_TOKEN:", AccessToken);
   if (AccessToken) return AccessToken;
 
   //refresh token 유효기간 확인
   const RefreshToken = await getCookie(REFRESH_TOKEN, URL);
-  console.log("RefreshToken:", RefreshToken);
+
   if (RefreshToken) {
     const reissuanceAccessToken = await onReissuanceAccessToken();
     const AccessToken = await setCookie(
@@ -65,15 +74,14 @@ export const authFetch = async (url: string, configs: Config) => {
     const res = await axios(`${BaseUrl}${url}`, {
       ...configs,
       headers: {
-        ...configs.headers,
         "Access-Token": Token as string,
       },
     });
-    console.log("authfetch:", res);
+
     if (!(res.status === 200)) throw new Error(`status error ${res.status}`);
 
     const { data } = res;
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);
@@ -89,10 +97,9 @@ export const fetch = async (url: string, configs: Config) => {
       },
     });
 
-    console.log("fetch:", res);
     if (!(res.status === 200)) throw new Error(`status error ${res.status}`);
     const { data } = res;
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);
@@ -104,20 +111,84 @@ export const userLogin = async ({ email, password }: SignUpOrIn) => {
   try {
     const res: LogInResponse = await fetch(`${USER}${LOGIN}`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       data: {
         email,
         password,
       },
     });
 
-    console.log("userLogin:", res);
-
     return res;
   } catch (error) {
     console.error(error);
     return null;
   }
+};
+
+interface GetUserRes {
+  user: User;
+}
+
+//내 정보 조회
+export const getUserInfo = async () => {
+  const res: GetUserRes = await authFetch(`${USER}${ME}`, {
+    method: "GET",
+  });
+
+  return res.user;
+};
+
+//특정 사용자의 폴더리스트 조회
+export const getFolderList = async (id: number) => {
+  const res: AllFolderList = await authFetch(`${FOLDERS}${USER}/${id}`, {
+    method: "GET",
+  });
+
+  const {
+    folders: { content },
+  } = res;
+
+  return content;
+};
+
+//폴더 생성
+interface CreateFolderReq {
+  title: string;
+  isPrivate: boolean;
+}
+export const createFolder = async ({ title, isPrivate }: CreateFolderReq) => {
+  const res: CreateFolderRes = await authFetch(`${FOLDERS}`, {
+    method: "POST",
+    data: {
+      title,
+      image: FOLDER_DEFAULT_IMG,
+      content: "테스트용",
+      isPinned: false,
+      isPrivate,
+      tags: [],
+      bookmarks: [],
+    },
+  });
+
+  return res;
+};
+
+interface CreateBookmarkReq {
+  folderId: number;
+  url: string;
+  title: string;
+}
+
+export const createBookmark = async ({
+  folderId,
+  url,
+  title,
+}: CreateBookmarkReq) => {
+  await authFetch(`${BOOKMARKS}`, {
+    method: "POST",
+    data: {
+      folderId,
+      url,
+      title,
+    },
+  });
 };

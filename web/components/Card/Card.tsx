@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import theme from '../../styles/themes';
 import { Avatar, Icon, Text, Tag } from '../index';
 import CardBack from './CardBack/CardBack';
 import * as S from './Card.style';
 import { Folder } from '../../shared/DummyDataType';
-import { getFolder } from '../../apis/FolderAPI';
-import { SpecificFolder } from '../../types';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../recoil/user';
 
 interface Props {
   data: Folder;
@@ -29,6 +29,8 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
   const router = useRouter();
   const [reverseCard, setReverseCard] = useState(false);
   const { bookmarks } = data;
+  const getUserInfo: any = useRecoilValue(userInfo);
+  const loginUserId = getUserInfo?.user?.id;
 
   const handleRotateCard = () => {
     setReverseCard(!reverseCard);
@@ -38,6 +40,19 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
     router.push(`/folderdetail/${data.id}`);
   };
 
+  const pinIcon = () => {
+    const path = router.pathname.split('/')[1];
+    if (isPinned && path === 'user') {
+      const id = parseInt(router.query.id.toString());
+      if (id === loginUserId) {
+        return (
+          <S.IconWrapper>
+            <Icon name="pin_blue_ic" size={25} />
+          </S.IconWrapper>
+        );
+      }
+    }
+  };
   return (
     <S.Container>
       <S.Card version={version} reverseCard={reverseCard} {...styles}>
@@ -56,14 +71,19 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
             />
           </S.ImageWrapper>
           <S.Content version={version}>
-            {isPinned && (
+            {pinIcon()}
+            {/* {isPinned && (
               <S.IconWrapper>
                 <Icon name="pin_blue_ic" size={25} />
               </S.IconWrapper>
-            )}
+            )} */}
             {version === 'myCard' && (
               <S.StatusWrapper>
-                <S.StatusText>Public</S.StatusText>
+                {data.isPrivate ? (
+                  <S.StatusText isPrivate={true}>Private</S.StatusText>
+                ) : (
+                  <S.StatusText>Public</S.StatusText>
+                )}
               </S.StatusWrapper>
             )}
             <S.TitleWrapper>

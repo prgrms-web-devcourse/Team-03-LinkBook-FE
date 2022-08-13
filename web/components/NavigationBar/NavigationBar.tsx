@@ -52,13 +52,13 @@ const NavigationBar = ({ token }: Props) => {
           <S.Nav>
             <Link
               href={{
-                pathname: `${PAGE_URL.LIST}/explore/all`,
+                pathname: `${PAGE_URL.LIST}`,
                 query: {
-                  mainTag: 'all',
-                  subTag: 'all',
+                  mainTag: '전체 카테고리',
+                  subTag: '전체 카테고리',
                 },
               }}
-              as={`${PAGE_URL.LIST}/explore/all`}
+              as={`${PAGE_URL.LIST}/explore/전체 카테고리`}
               passHref
             >
               <S.NavItem>북마크리스트</S.NavItem>
