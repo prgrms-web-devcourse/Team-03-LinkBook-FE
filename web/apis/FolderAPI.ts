@@ -83,33 +83,26 @@ export const getRootTagFolder = async (
   { page, size, sort }: GetFolderList,
   rootTag: string,
 ) => {
-  const res = await axios.get(`${FOLDERS}/root-tag`, {
+  const res = await axios.get(`${FOLDERS}/root-tag/${rootTag}}`, {
     params: {
       page,
       size,
       sort,
     },
-    data: {
-      rootTag,
-    },
   });
-  console.log(res);
   return res as unknown as AllFolderList;
 };
 
 // 하위 태그로 전체 폴더 조회
 export const getTagFolder = async (
   { page, size, sort }: GetFolderList,
-  tag: any,
+  tag: string,
 ) => {
-  const res = await axios.get(`${FOLDERS}/tag`, {
+  const res = await axios.get(`${FOLDERS}/tag/${tag}`, {
     params: {
       page,
       size,
       sort,
-    },
-    data: {
-      tag,
     },
   });
 
