@@ -7,8 +7,8 @@ import theme from '../../../../styles/themes';
 import * as S from './MyFoldersAreaLogIn.style';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
-import { PinnedFolder, SpecificUserFolderList } from '../../../../types';
-import { getPinnedFolder, getUserFolderList } from '../../../../apis/FolderAPI';
+import { PinnedFolder } from '../../../../types';
+import { getPinnedFolder } from '../../../../apis/FolderAPI';
 import { getCookie } from '../../../../util/cookies';
 
 const MyFoldersAreaLogIn = () => {
