@@ -1,29 +1,54 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../recoil/user';
 import { Category, Modal, Pagination, Profile } from '../../components';
-import { myInfo } from '../../shared/DummyData';
-import FolderListDummy from '../../shared/folderListPageDummy';
 import * as S from '../../styles/pageStyles/user.style';
+import {
+  AllFolderList,
+  PinnedFolder,
+  SpecificUserFolderList,
+  TabType,
+  User,
+} from '../../types';
+import {
+  getLikeFolder,
+  getPinnedFolder,
+  getUserFolderList,
+} from '../../apis/FolderAPI';
+import { getCookie } from '../../util/cookies';
 
 const UserPage = () => {
-  const userId = '1'; // Todo: recoil로 받아옴
-  const {
-    query: { id },
-  } = useRouter();
-  const data = FolderListDummy;
-  const user = myInfo;
-  // TODO: getServerSideProp
-  const isLoading = false; // TODO: React-query 사용
+  const router = useRouter();
+  const id = parseInt(router.query.id.toString());
+  const getUserInfo: any = useRecoilValue(userInfo);
+  const userId = getUserInfo?.user?.id;
+
+  const [folderData, setFolderData] = useState([]);
+  const [userData, setUserData] = useState<User>();
+  const [totalElement, setTotalElment] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
   const [page, setPage] = useState(0);
+  const limit = 12;
+
   const tabItems =
     id === userId
-      ? ['전체공개', '나만보기', '읽기목록', '즐겨찾기']
-      : ['전체공개', '읽기목록', '즐겨찾기'];
+      ? [
+          { name: '전체공개', value: 'public' },
+          { name: '나만보기', value: 'private' },
+          { name: '좋아요', value: 'likes' },
+          { name: '즐겨찾기', value: 'pinned' },
+        ]
+      : [
+          { name: '전체공개', value: 'public' },
+          { name: '좋아요', value: 'likes' },
+        ];
+  const [selectedItem, setSelectedItem] = useState(tabItems[0]);
 
-  const [selectedItem, setSelectedItem] = useState(tabItems?.[0]);
   const [showModal, setShowModal] = useState(false);
 
-  const onTabClick = (item: string) => {
+  const changeTabItem = (item: TabType) => {
     setSelectedItem(item);
   };
 
@@ -31,15 +56,109 @@ const UserPage = () => {
     setShowModal(!showModal);
   };
 
-  const limit = 12;
-  const offset = page * limit;
+  useEffect(() => {
+    setIsLoading(true);
+    const fetch = async () => {
+      const size = 12;
+      const sort = 'id';
+      let isPrivate = false;
+      const token = getCookie('ACCESS_TOKEN');
+      if (selectedItem.value === 'public') {
+        try {
+          const res: SpecificUserFolderList = await getUserFolderList({
+            id,
+            isPrivate,
+            page,
+            size,
+            sort,
+          });
+          console.log(res);
+          setFolderData(res.folders.content);
+          setTotalElment(res.folders.totalElements);
+          setIsLoading(false);
+        } catch {
+          throw new Error('API 요청중 에러 발생');
+        }
+      }
+      if (selectedItem.value === 'private') {
+        isPrivate = true;
+        try {
+          const res: SpecificUserFolderList = await getUserFolderList(
+            {
+              id,
+              isPrivate,
+              page,
+              size,
+              sort,
+            },
+            token,
+          );
+          setFolderData(res.folders.content);
+          setTotalElment(res.folders.totalElements);
+          setIsLoading(false);
+        } catch {
+          throw new Error('API 요청중 에러 발생');
+        }
+      }
+      if (selectedItem.value === 'likes') {
+        try {
+          const res: AllFolderList = await getLikeFolder(
+            {
+              page,
+              size,
+              sort,
+            },
+            id,
+          );
+          setFolderData(res.folders.content);
+          setTotalElment(res.folders.totalElements);
+          setIsLoading(false);
+        } catch {
+          throw new Error('API 요청중 에러 발생');
+        }
+      }
+      if (selectedItem.value === 'pinned') {
+        try {
+          const res: PinnedFolder = await getPinnedFolder(token);
+          console.log(res);
+          setFolderData(res.folders);
+          setTotalElment(res.folders.length);
+          setIsLoading(false);
+        } catch {
+          throw new Error('API 요청중 에러 발생');
+        }
+      }
+    };
+    fetch();
+  }, [selectedItem]);
+
+  // 유저 데이터만 받아오는 용도
+  // 위의 useEffect는 selectedItem이 바뀔때 마다 리렌더링 됨
+  useEffect(() => {
+    const fetch = async () => {
+      const size = 12;
+      const sort = 'id';
+      try {
+        const res: SpecificUserFolderList = await getUserFolderList({
+          id,
+          page,
+          size,
+          sort,
+        });
+        setUserData(res.user);
+      } catch {
+        throw new Error('API 요청중 에러 발생');
+      }
+    };
+    fetch();
+  }, []);
 
   return (
     <>
       <Modal version="user" show={showModal} />
       <S.PageContainer>
         <S.ProfileWrapper>
-          <Profile user={user} />
+          {userData && <Profile user={userData} />}
           {id === userId && (
             <S.ProfileModifyBtn type="button" onClick={handleModal}>
               내 정보 수정
@@ -48,25 +167,26 @@ const UserPage = () => {
         </S.ProfileWrapper>
         <S.CategoryWrapper>
           <pre>
-            <S.DescriptionText>
-              {user.name}님의 북마크 폴더 ({data.length})
-            </S.DescriptionText>
+            {userData && (
+              <S.DescriptionText>
+                {userData.name}님의 북마크 폴더 ({totalElement})
+              </S.DescriptionText>
+            )}
           </pre>
-          {/* <Category
+          <Category
+            data={folderData}
             tabItems={tabItems}
             isLoading={isLoading}
-            onClick={onTabClick}
+            onClick={changeTabItem}
             selectedItem={selectedItem}
-            data={data.slice(offset, offset + limit)}
             cardVersion={id === userId ? 'myCard' : 'othersCard'}
-            isPinned={true}
-          /> */}
+          />
         </S.CategoryWrapper>
         <S.PaginationWrapper>
           <Pagination
             defaultPage={0}
             limit={limit}
-            total={data.length}
+            total={totalElement}
             onChange={setPage}
           />
         </S.PaginationWrapper>
