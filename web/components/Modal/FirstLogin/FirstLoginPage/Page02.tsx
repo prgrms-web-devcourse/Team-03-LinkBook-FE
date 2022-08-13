@@ -20,6 +20,8 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
   const { userInfo, setUserIntroduce } = useUserInfo();
 
   const handleClickStoreIntroduce: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
     const introduceValue = introduceRef.current.value;
     const res = setUserIntroduce(introduceValue);
 

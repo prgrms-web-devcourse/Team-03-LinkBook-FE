@@ -41,6 +41,7 @@ const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
     } catch (error) {
       console.log(error);
       alert('문제가 발생했습니다.');
+      return;
     }
 
     handleNextPage(e);
