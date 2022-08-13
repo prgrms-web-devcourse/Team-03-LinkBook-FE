@@ -2,9 +2,9 @@ export const ACCESS_TOKEN = "ACCESS_TOKEN";
 
 export const REFRESH_TOKEN = "REFRESH_TOKEN";
 
-export const URL = "https://google.com";
+export const URL = "https://linkbook.tk/";
 
-export const DOMAIN = ".google.com";
+export const DOMAIN = ".linkbook.tk";
 
 export const BaseUrl = "https://www.linkbook-api.tk/api";
 
