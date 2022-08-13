@@ -1,14 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import theme from '../../styles/themes';
 import { Avatar, Icon, Text, Tag } from '../index';
 import CardBack from './CardBack/CardBack';
 import * as S from './Card.style';
 import { Folder } from '../../shared/DummyDataType';
-import { getFolder } from '../../apis/FolderAPI';
-import { SpecificFolder } from '../../types';
 
 interface Props {
   data: Folder;
@@ -63,7 +61,11 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
             )}
             {version === 'myCard' && (
               <S.StatusWrapper>
-                <S.StatusText>Public</S.StatusText>
+                {data.isPrivate ? (
+                  <S.StatusText isPrivate={true}>Private</S.StatusText>
+                ) : (
+                  <S.StatusText>Public</S.StatusText>
+                )}
               </S.StatusWrapper>
             )}
             <S.TitleWrapper>
