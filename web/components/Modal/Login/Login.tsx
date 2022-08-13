@@ -48,7 +48,7 @@ const Login = () => {
       setUserInfo(userInfoValue);
       setLoginStatus(true);
 
-      if (!isFirstLogin) {
+      if (isFirstLogin) {
         setShowModalStatus(showFirstModal);
         return;
       }
