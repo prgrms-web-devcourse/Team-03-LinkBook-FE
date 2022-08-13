@@ -14,6 +14,12 @@ interface Props {
   userData: User;
 }
 
+interface ValidateError {
+  name: string;
+  introduce: string;
+  image: string;
+}
+
 const Page01 = ({ handlePage, token, userData }: Props) => {
   const { validateUserInfo, setBasicUserInfo } = useUserInfo();
   const setUserInfoState = useSetRecoilState(userInfo);
@@ -23,7 +29,7 @@ const Page01 = ({ handlePage, token, userData }: Props) => {
   const introduceRef = useRef<HTMLInputElement>(null);
 
   const [imageSrc, setImageSrc] = useState('');
-  const [errorText, setErrorText] = useState({
+  const [errorText, setErrorText] = useState<ValidateError>({
     name: '',
     introduce: '',
     image: '',
@@ -36,27 +42,26 @@ const Page01 = ({ handlePage, token, userData }: Props) => {
       image: imageSrc,
     };
 
-    const errorText = validateUserInfo(storeUserData);
-    const { name, introduce, image } = errorText;
+    if (!validateUserBasicInfo(storeUserData)) return;
 
-    if (!name && !introduce && !image) {
-      setBasicUserInfo(storeUserData);
-      handlePage(e);
-      return;
-    }
-
-    setErrorText(errorText);
+    setBasicUserInfo(storeUserData);
+    handlePage(e);
   };
 
   const handleUpdateUserInfo = async () => {
-    const updateUserData = {
+    const storeUserData = {
       name: nameRef.current.value,
       introduce: introduceRef.current.value,
       image: imageSrc,
-      interests: userData.interests,
     };
 
+    if (!validateUserBasicInfo(storeUserData)) return;
+
     try {
+      const updateUserData = {
+        ...storeUserData,
+        interests: userData.interests,
+      };
       await updateUserInfo(updateUserData, token);
 
       const newUserInfo = await getUserInfo(token);
@@ -66,6 +71,28 @@ const Page01 = ({ handlePage, token, userData }: Props) => {
       console.log(error);
       alert('문제가 발생했습니다.');
     }
+  };
+
+  const validateUserBasicInfo = ({ name, introduce, image }: ValidateError) => {
+    const storeUserData = {
+      name,
+      introduce,
+      image,
+    };
+    const error = validateUserInfo(storeUserData);
+    const { nameValue, introduceValue, imageValue } = error;
+
+    if (!nameValue.status || !introduceValue.status || !imageValue.status) {
+      setErrorText({
+        name: nameValue.error,
+        introduce: introduceValue.error,
+        image: imageValue.error,
+      });
+
+      return false;
+    }
+
+    return true;
   };
 
   useEffect(() => {

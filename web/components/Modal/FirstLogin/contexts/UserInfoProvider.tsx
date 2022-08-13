@@ -29,8 +29,8 @@ const UserInfoProvider = ({ children }: any) => {
   const [userInfo, setUserInfo] = useState(defaultValue);
 
   const setUserName = (nameValue: string) => {
-    const nameLen = nameValue.length;
-    if (!validateName(nameLen)) return '1-8자 사이의 길이로 입력해주세요.';
+    const isValidateName = validateName(nameValue.length);
+    if (!isValidateName.status) return isValidateName.error;
 
     setUserInfo({
       ...userInfo,
@@ -41,9 +41,8 @@ const UserInfoProvider = ({ children }: any) => {
   };
 
   const setUserIntroduce = (introduceValue: string) => {
-    const introduceLen = introduceValue.length;
-    if (!validateIntroduce(introduceLen))
-      return '1-50자 사이의 길이로 입력해주세요.';
+    const isValidateIntroduce = validateIntroduce(introduceValue.length);
+    if (!isValidateIntroduce.status) return isValidateIntroduce.error;
 
     setUserInfo({
       ...userInfo,
@@ -63,15 +62,15 @@ const UserInfoProvider = ({ children }: any) => {
   };
 
   const getUpdatedUserInfo = (imageSrc: string) => {
-    const imageLen = imageSrc.length;
-    if (!validateImage(imageLen)) return '이미지를 업로드해주세요.';
+    const isValidateImage = validateImage(imageSrc.length);
+    if (!isValidateImage.status) return isValidateImage.error;
 
     const finalUserInfo = {
       ...userInfo,
       image: imageSrc,
     };
-
     setUserInfo(finalUserInfo);
+
     return finalUserInfo;
   };
 
