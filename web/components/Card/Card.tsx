@@ -42,7 +42,8 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
   const pinIcon = () => {
     const path = router.pathname.split('/')[1];
     if (isPinned && path === 'user') {
-      const id = parseInt(router.query.id.toString());
+      const id = data.user.id;
+
       if (id === loginUserId) {
         return (
           <S.IconWrapper>
@@ -67,11 +68,6 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
           </S.ImageWrapper>
           <S.Content version={version}>
             {pinIcon()}
-            {/* {isPinned && (
-              <S.IconWrapper>
-                <Icon name="pin_blue_ic" size={25} />
-              </S.IconWrapper>
-            )} */}
             {version === 'myCard' && (
               <S.StatusWrapper>
                 {data.isPrivate ? (
