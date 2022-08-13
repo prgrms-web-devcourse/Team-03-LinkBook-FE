@@ -1,5 +1,10 @@
 import * as S from '../../Modal.style';
-import { MouseEventHandler, useEffect, useState } from 'react';
+import {
+  KeyboardEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from 'react';
 import { Button, ImageUpload, Icon } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
 import { getUserInfo, updateUserInfo } from '../../../../apis/UserAPI';
@@ -46,7 +51,7 @@ const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
   }, [userInfo]);
 
   return (
-    <>
+    <S.InnerContainer>
       <S.PreviousButton onClick={handlePreviousPage}>
         <Icon name="arrowLeft" size={30} />
       </S.PreviousButton>
@@ -67,7 +72,7 @@ const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
           다음 &gt;
         </Button>
       </S.ButtonContainer>
-    </>
+    </S.InnerContainer>
   );
 };
 

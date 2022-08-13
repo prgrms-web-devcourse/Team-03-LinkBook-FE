@@ -1,10 +1,16 @@
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import * as S from '../../Modal.style';
 import { Button, Input, Icon } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
+import {
+  FormEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 interface Props {
-  handleNextPage: MouseEventHandler;
+  handleNextPage: FormEventHandler;
   handlePreviousPage: MouseEventHandler;
 }
 
@@ -13,7 +19,7 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
   const [errorText, setErrorText] = useState('');
   const { userInfo, setUserIntroduce } = useUserInfo();
 
-  const handleClickStoreIntroduce: MouseEventHandler = (e) => {
+  const handleClickStoreIntroduce: FormEventHandler<HTMLFormElement> = (e) => {
     const introduceValue = introduceRef.current.value;
     const res = setUserIntroduce(introduceValue);
 
@@ -30,7 +36,7 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
   }, [userInfo]);
 
   return (
-    <>
+    <S.FormContainer onSubmit={handleClickStoreIntroduce}>
       <S.PreviousButton onClick={handlePreviousPage}>
         <Icon name="arrowLeft" size={30} />
       </S.PreviousButton>
@@ -47,11 +53,9 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
         errorText={errorText}
       />
       <S.ButtonContainer>
-        <Button type="button" onClick={handleClickStoreIntroduce}>
-          다음 &gt;
-        </Button>
+        <Button type="submit">다음 &gt;</Button>
       </S.ButtonContainer>
-    </>
+    </S.FormContainer>
   );
 };
 
