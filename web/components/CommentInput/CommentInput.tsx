@@ -14,11 +14,18 @@ interface Props {
   folderId?: number;
   parentId?: number;
   defaultValue?: string;
+  placeholder?: string;
 }
 
 const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
   (
-    { version = 'comment', folderId, parentId = null, defaultValue = '' },
+    {
+      version = 'comment',
+      folderId,
+      parentId = null,
+      defaultValue = '',
+      placeholder,
+    },
     ref,
   ) => {
     const [value, setValue] = useState(defaultValue);
@@ -36,6 +43,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
       if (!user) {
         alert('로그인 후 이용해주세요.');
         setShowModal(showLoginModal);
+        return;
       }
 
       try {
@@ -61,7 +69,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
       <S.Container>
         <S.InputContainer>
           <S.TextInput
-            placeholder={placeholderText}
+            placeholder={placeholder ? placeholder : placeholderText}
             ref={ref}
             onChange={handleChangeValue}
             defaultValue={value}

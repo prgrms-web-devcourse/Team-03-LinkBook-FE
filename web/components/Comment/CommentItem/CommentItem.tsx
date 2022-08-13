@@ -82,6 +82,7 @@ const CommentItem = ({ comment, folderId, userId, token }: Props) => {
           folderId={folderId}
           defaultValue={content}
           ref={updateInputRef}
+          placeholder="수정할 댓글을 입력해주세요."
         />
       ) : (
         <S.BodyWrapper>{content}</S.BodyWrapper>
