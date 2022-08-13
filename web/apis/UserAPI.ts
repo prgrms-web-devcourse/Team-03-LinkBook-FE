@@ -8,7 +8,8 @@ export const userSignUp = async ({ email, password }: SignUpOrIn) => {
   const res = await axios.post(`${USER}${SIGNUP}`, {
     email,
     password,
-    image: 'https://avatars.githubusercontent.com/u/72294509?v=4',
+    image:
+      'https://linkbook-s3-1.s3-ap-northeast-2.amazonaws.com/static/userImage.png.png',
   });
 
   console.log(res);

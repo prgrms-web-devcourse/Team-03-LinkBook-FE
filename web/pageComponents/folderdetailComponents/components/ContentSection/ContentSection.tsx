@@ -24,7 +24,7 @@ interface Props {
 const ContentSection = ({ id }: Props) => {
   const [data, setData] = useState<SpecificFolder>(undefined);
   const [isMyFolder, setIsMyFolder] = useState<boolean>(false);
-  const { user }: any = useRecoilValue(userInfo);
+  const { user } = useRecoilValue(userInfo);
   const token = getCookie('ACCESS_TOKEN');
   const router = useRouter();
 
