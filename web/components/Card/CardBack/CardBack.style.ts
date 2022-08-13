@@ -11,7 +11,7 @@ export const Card = styled.div<Props>`
   left: 0;
   overflow: hidden;
   width: 300px;
-  height: 403px;
+  height: 384px;
   border-radius: 10px;
   padding: 16px 16px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
