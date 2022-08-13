@@ -18,6 +18,8 @@ const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
   const [selectedTag, setSelectedTag] = useState([]);
 
   const handleClickStoreInterests: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
     setUserInterests(selectedTag);
     handleNextPage(e);
   };

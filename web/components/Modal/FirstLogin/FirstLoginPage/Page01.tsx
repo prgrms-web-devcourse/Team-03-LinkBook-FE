@@ -13,6 +13,8 @@ const Page01 = ({ handleNextPage }: Props) => {
   const { userInfo, setUserName } = useUserInfo();
 
   const handleClickStoreName: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
     const nameValue = nameRef.current.value;
     const res = setUserName(nameValue);
 
