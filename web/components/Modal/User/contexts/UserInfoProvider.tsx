@@ -6,11 +6,11 @@ import {
   validateName,
 } from '../../../../util/validateUserInfo';
 
-interface IUpdateUserContext {
-  updateUser: UpdateInfo;
-  setUpdateUser: Function;
+interface IUserInfoContext {
+  updatedUserInfo: UpdateInfo;
+  setUpdatedUserInfo: Function;
   validateUserInfo: Function;
-  setUserBasicInfo: Function;
+  setBasicUserInfo: Function;
   getUpdatedUserInfo: Function;
   removeUserInfo: Function;
 }
@@ -21,17 +21,17 @@ interface BasicUserInfo {
   image: string;
 }
 
-const UpdateUserContext = createContext<IUpdateUserContext>(null);
-export const useUpdateUser = () => useContext(UpdateUserContext);
+const UserInfoContext = createContext<IUserInfoContext>(null);
+export const useUserInfo = () => useContext(UserInfoContext);
 
-const UpdateUserProvider = ({ children }: any) => {
+const UserInfoProvider = ({ children }: any) => {
   const defaultValue: UpdateInfo = {
     name: '',
     introduce: '',
     interests: [],
     image: '',
   };
-  const [updateUser, setUpdateUser] = useState(defaultValue);
+  const [updatedUserInfo, setUpdatedUserInfo] = useState(defaultValue);
 
   const validateUserInfo = ({ name, introduce, image }: BasicUserInfo) => {
     const nameLen = name.length;
@@ -49,9 +49,9 @@ const UpdateUserProvider = ({ children }: any) => {
     };
   };
 
-  const setUserBasicInfo = ({ name, introduce, image }: BasicUserInfo) => {
-    setUpdateUser({
-      ...updateUser,
+  const setBasicUserInfo = ({ name, introduce, image }: BasicUserInfo) => {
+    setUpdatedUserInfo({
+      ...updatedUserInfo,
       name,
       introduce,
       image,
@@ -60,29 +60,29 @@ const UpdateUserProvider = ({ children }: any) => {
 
   const getUpdatedUserInfo = (tags: string[]) => {
     return {
-      ...updateUser,
+      ...updatedUserInfo,
       interests: tags,
     };
   };
 
   const removeUserInfo = () => {
-    setUpdateUser(defaultValue);
+    setUpdatedUserInfo(defaultValue);
   };
 
   return (
-    <UpdateUserContext.Provider
+    <UserInfoContext.Provider
       value={{
-        updateUser,
-        setUpdateUser,
+        updatedUserInfo,
+        setUpdatedUserInfo,
         validateUserInfo,
-        setUserBasicInfo,
+        setBasicUserInfo,
         getUpdatedUserInfo,
         removeUserInfo,
       }}
     >
       {children}
-    </UpdateUserContext.Provider>
+    </UserInfoContext.Provider>
   );
 };
 
-export default UpdateUserProvider;
+export default UserInfoProvider;

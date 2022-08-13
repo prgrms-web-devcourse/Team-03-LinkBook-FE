@@ -1,12 +1,12 @@
+import UserInfoProvider from './contexts/UserInfoProvider';
 import { useState } from 'react';
 import { Page01, Page02 } from './UserPage';
-import UpdateUserProvider from './contexts/UpdateUserProvider';
 import { getCookie } from '../../../util/cookies';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../../recoil/user';
 
 const User = () => {
-  const [userInfoState, setUserInfoState] = useRecoilState(userInfo);
+  const userInfoState = useRecoilValue(userInfo);
   const token = getCookie('ACCESS_TOKEN');
 
   const [page, setPage] = useState(0);
@@ -32,7 +32,7 @@ const User = () => {
     }
   };
 
-  return <UpdateUserProvider>{switchPage(page)}</UpdateUserProvider>;
+  return <UserInfoProvider>{switchPage(page)}</UserInfoProvider>;
 };
 
 export default User;
