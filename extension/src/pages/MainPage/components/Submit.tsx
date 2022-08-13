@@ -19,7 +19,11 @@ const Submit = () => {
         </S.EscapeIconWrapper>
       </S.IconWrapper>
       <S.MainTextWrapper>
-        <S.MainText>등록이 완료되었습니다! 🎉 확인하러 가 볼까요?</S.MainText>
+        <S.MainText>
+          등록이 완료되었습니다! 🎉
+          <br />
+          확인하러 가 볼까요?
+        </S.MainText>
       </S.MainTextWrapper>
       <S.MoveToWebButton>
         <S.Atag href="https://linkbook.tk/" target="_blank">
