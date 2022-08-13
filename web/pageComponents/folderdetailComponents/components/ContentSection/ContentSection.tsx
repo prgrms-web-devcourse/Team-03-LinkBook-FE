@@ -35,13 +35,18 @@ const ContentSection = ({ id }: Props) => {
       try {
         const contentRes = await getFolder(id, token);
         setData(contentRes);
-        if (user) setIsMyFolder(user.id === contentRes.user.id);
       } catch (error) {
         console.log(error);
         router.push(PAGE_URL.ERROR);
       }
     })();
   }, [id]);
+
+  useEffect(() => {
+    if (!data || !user) return;
+
+    setIsMyFolder(user.id === data.user.id);
+  }, [data, user]);
 
   return (
     <>
