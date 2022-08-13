@@ -39,7 +39,7 @@ const FirstLogin = () => {
           />
         );
       default:
-        return <Page05 handlePreviousPage={handlePreviousPage} />;
+        return <Page05 />;
     }
   };
 
