@@ -6,5 +6,6 @@ export const showModalStatus = atom({
     Login: false,
     SignUp: false,
     FirstLogin: false,
+    User: false,
   },
 });

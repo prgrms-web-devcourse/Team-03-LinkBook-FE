@@ -1,32 +1,38 @@
-import { Button, Input, ImageUpload } from '../../index';
-import * as S from '../Modal.style';
+import { useState } from 'react';
+import { Page01, Page02 } from './UserPage';
+import UpdateUserProvider from './contexts/UpdateUserProvider';
+import { getCookie } from '../../../util/cookies';
+import { useRecoilState } from 'recoil';
+import { userInfo } from '../../../recoil/user';
 
 const User = () => {
-  const handleUpdate = () => {
-    console.log('회원정보 수정 완료');
+  const [userInfoState, setUserInfoState] = useRecoilState(userInfo);
+  const token = getCookie('ACCESS_TOKEN');
+
+  const [page, setPage] = useState(0);
+
+  const handleNextPage = () => {
+    setPage(page + 1);
   };
 
-  return (
-    <S.InnerContainer>
-      <S.Title>
-        Haeyum님 만의 멋있는 <br />
-        <S.MainText>프로필 사진</S.MainText>과 <S.MainText>닉네임</S.MainText>을
-        입력해주세요.
-      </S.Title>
-      <S.ImageUploadWrapper>
-        <ImageUpload version="modal" />
-      </S.ImageUploadWrapper>
-      <S.InputContainer>
-        <Input placeholder="변경할 닉네임" type="text" />
-        <Input placeholder="변경할 한 줄 소개" type="text" />
-      </S.InputContainer>
-      <S.ButtonContainer>
-        <Button type="button" onClick={handleUpdate}>
-          수정
-        </Button>
-      </S.ButtonContainer>
-    </S.InnerContainer>
-  );
+  const switchPage = (pageNum: number) => {
+    switch (pageNum) {
+      case 0:
+        return (
+          <Page01
+            handlePage={handleNextPage}
+            token={token}
+            userData={userInfoState.user}
+          />
+        );
+      case 1:
+        return <Page02 token={token} userData={userInfoState.user} />;
+      default:
+        return <></>;
+    }
+  };
+
+  return <UpdateUserProvider>{switchPage(page)}</UpdateUserProvider>;
 };
 
 export default User;

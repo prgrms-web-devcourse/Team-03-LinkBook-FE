@@ -1,5 +1,10 @@
 import { createContext, useContext, useState } from 'react';
 import { UpdateInfo } from '../../../../types';
+import {
+  validateImage,
+  validateIntroduce,
+  validateName,
+} from '../../../../util/validateUserInfo';
 
 interface IUserInfoContext {
   userInfo: UpdateInfo;
@@ -25,8 +30,7 @@ const UserInfoProvider = ({ children }: any) => {
 
   const setUserName = (nameValue: string) => {
     const nameLen = nameValue.length;
-    if (nameLen > 8 || nameLen === 0)
-      return '1-8자 사이의 길이로 입력해주세요.';
+    if (!validateName(nameLen)) return '1-8자 사이의 길이로 입력해주세요.';
 
     setUserInfo({
       ...userInfo,
@@ -38,7 +42,7 @@ const UserInfoProvider = ({ children }: any) => {
 
   const setUserIntroduce = (introduceValue: string) => {
     const introduceLen = introduceValue.length;
-    if (introduceLen > 50 || introduceLen === 0)
+    if (!validateIntroduce(introduceLen))
       return '1-50자 사이의 길이로 입력해주세요.';
 
     setUserInfo({
@@ -60,7 +64,7 @@ const UserInfoProvider = ({ children }: any) => {
 
   const getUpdatedUserInfo = (imageSrc: string) => {
     const imageLen = imageSrc.length;
-    if (imageLen === 0) return '이미지를 업로드해주세요.';
+    if (!validateImage(imageLen)) return '이미지를 업로드해주세요.';
 
     const finalUserInfo = {
       ...userInfo,

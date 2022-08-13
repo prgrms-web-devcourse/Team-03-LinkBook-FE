@@ -69,7 +69,7 @@ const ImageUpload = ({ imageSrc, setImageSrc, version }: Props) => {
       >
         <S.FileLabel htmlFor="fileInput">
           {version === 'modal' ? (
-            <ModalPreview imgSrc={imgSrc} />
+            <ModalPreview imgSrc={imgSrc ? imgSrc : imageSrc} />
           ) : (
             <PagePreview imgSrc={imgSrc ? imgSrc : imageSrc} />
           )}

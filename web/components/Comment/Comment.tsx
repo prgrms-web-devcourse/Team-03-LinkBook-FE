@@ -53,7 +53,12 @@ const CommentComponent = ({ comment, folderId }: Props) => {
           children?.map((child: Comment, index: number) => {
             return (
               <div key={child.id}>
-                <CommentItem comment={child} folderId={folderId} />
+                <CommentItem
+                  comment={child}
+                  folderId={folderId}
+                  userId={user && user.id}
+                  token={token}
+                />
                 {index !== children.length - 1 && <S.Line />}
               </div>
             );

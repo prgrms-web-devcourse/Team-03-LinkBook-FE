@@ -1,10 +1,5 @@
 import * as S from '../../Modal.style';
-import {
-  KeyboardEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { Button, ImageUpload, Icon } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
 import { getUserInfo, updateUserInfo } from '../../../../apis/UserAPI';
