@@ -37,12 +37,12 @@ const LoginSection = () => {
   return (
     <>
       <S.Line>|</S.Line>
-      <Avatar size={35} src={avatarSrc} />
-      <S.Line>|</S.Line>
       <S.UserContainer>
         {userInfoValue.user && (
           <Link href={`${PAGE_URL.USER}/${userInfoValue.user.id}`} passHref>
-            <S.NavItem>마이페이지</S.NavItem>
+            <S.AvatarWrapper>
+              <Avatar size={35} src={avatarSrc} />
+            </S.AvatarWrapper>
           </Link>
         )}
         <Button type="button" version="navBar" onClick={handleCreateFolder}>
