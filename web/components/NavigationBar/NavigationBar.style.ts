@@ -82,3 +82,14 @@ export const IconWrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.gray[5]};
   }
 `;
+
+export const AvatarWrapper = styled.div`
+  width: fit-content;
+  height: fit-content;
+  border: ${({ theme }) => `1px solid ${theme.colors.gray[5]}`};
+  border-radius: 50%;
+
+  &:hover {
+    border: ${({ theme }) => `1px solid ${theme.colors.gray[3]}`};
+  }
+`;
