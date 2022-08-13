@@ -4,6 +4,7 @@ import Text from '../Text';
 interface Props {
   version?: string;
   isPinned?: boolean;
+  isPrivate?: boolean;
   reverseCard?: boolean;
 }
 
@@ -14,7 +15,7 @@ export const Container = styled.div`
 export const Card = styled.div<Props>`
   overflow: hidden;
   width: ${({ version }) => (version === 'default' ? '300px' : '340px')};
-  height: auto;
+  height: ${({ version }) => (version === 'default' ? '384px' : '369px')};
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -65,10 +66,11 @@ export const StatusWrapper = styled.div`
   width: 65px;
 `;
 
-export const StatusText = styled(Text)`
+export const StatusText = styled(Text)<Props>`
   padding: 2px 10px;
   font-size: ${({ theme }) => theme.fontSize.b[1]};
-  color: ${({ theme }) => theme.colors.gray[3]};
+  color: ${({ theme, isPrivate }) =>
+    isPrivate ? theme.colors.main[0] : theme.colors.gray[3]};
   font-weight: 400;
 `;
 
