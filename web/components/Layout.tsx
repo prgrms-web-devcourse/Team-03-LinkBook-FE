@@ -22,8 +22,8 @@ const Layout = ({ token, children }: Props) => {
     if (token) {
       setLoginStatus(true);
       const fetch = async () => {
-        const userInfo: MyInfo = await getUserInfo(token);
-        setUserInfo(userInfo);
+        const loginUserInfo: MyInfo = await getUserInfo(token);
+        setUserInfo(loginUserInfo);
       };
       fetch();
     } else {
