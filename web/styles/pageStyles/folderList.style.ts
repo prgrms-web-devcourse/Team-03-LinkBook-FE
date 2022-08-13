@@ -5,6 +5,7 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 170px;
 `;
 
 export const SearchBarWrapper = styled.div`
