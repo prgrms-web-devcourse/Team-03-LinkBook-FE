@@ -28,6 +28,7 @@ const Page01 = ({ handleNextPage }: Props) => {
 
   useEffect(() => {
     nameRef.current.value = userInfo.name;
+    nameRef.current.focus();
   }, [userInfo]);
 
   return (

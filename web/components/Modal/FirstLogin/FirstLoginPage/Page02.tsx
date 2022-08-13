@@ -35,6 +35,7 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
 
   useEffect(() => {
     introduceRef.current.value = userInfo.introduce;
+    introduceRef.current.focus();
   }, [userInfo]);
 
   return (
