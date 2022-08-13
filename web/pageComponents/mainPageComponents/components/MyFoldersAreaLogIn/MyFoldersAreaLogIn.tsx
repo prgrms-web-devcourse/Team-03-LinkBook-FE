@@ -46,7 +46,9 @@ const MyFoldersAreaLogIn = () => {
         objectPosition="center"
       />
       <S.Header>
-        <Text color={theme.colors.main[0]}>Miral</Text>
+        <Text color={theme.colors.main[0]}>
+          {getUserInfo?.user?.name || '익명의사용자'}
+        </Text>
         <Text>
           의<br />
         </Text>
