@@ -27,8 +27,8 @@ const PrivateSection = ({ id, isPrivate, isPinned, token }: Props) => {
       await router.push(PAGE_URL.MAIN);
     } catch (error) {
       console.log(error);
+      alert('문제가 발생했습니다.');
     }
-    console.log('delete');
   };
 
   return (

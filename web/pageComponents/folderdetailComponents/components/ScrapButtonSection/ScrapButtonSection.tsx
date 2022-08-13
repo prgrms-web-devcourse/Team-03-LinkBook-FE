@@ -44,6 +44,7 @@ const ScrapButtonSection = ({ id, token, data }: Props) => {
       await router.push(`${PAGE_URL.DETAIL}/${res.id}`);
     } catch (error) {
       console.log(error);
+      alert('문제가 발생했습니다.');
     }
   };
 
