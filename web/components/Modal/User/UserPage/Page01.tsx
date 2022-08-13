@@ -3,7 +3,7 @@ import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { Button, Input, ImageUpload } from '../../../index';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
-import { useUpdateUser } from '../contexts/UpdateUserProvider';
+import { useUserInfo } from '../contexts/UserInfoProvider';
 import { getUserInfo, updateUserInfo } from '../../../../apis/UserAPI';
 import { showModalStatus } from '../../../../recoil/showModal';
 import { User } from '../../../../types';
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Page01 = ({ handlePage, token, userData }: Props) => {
-  const { validateUserInfo, setUserBasicInfo } = useUpdateUser();
+  const { validateUserInfo, setBasicUserInfo } = useUserInfo();
   const setUserInfoState = useSetRecoilState(userInfo);
   const closeModal = useResetRecoilState(showModalStatus);
 
@@ -40,7 +40,7 @@ const Page01 = ({ handlePage, token, userData }: Props) => {
     const { name, introduce, image } = errorText;
 
     if (!name && !introduce && !image) {
-      setUserBasicInfo(storeUserData);
+      setBasicUserInfo(storeUserData);
       handlePage(e);
       return;
     }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button, TagSelector } from '../../../index';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
-import { useUpdateUser } from '../contexts/UpdateUserProvider';
+import { useUserInfo } from '../contexts/UserInfoProvider';
 import { showModalStatus } from '../../../../recoil/showModal';
 import { User } from '../../../../types';
 import { getUserInfo, updateUserInfo } from '../../../../apis/UserAPI';
@@ -16,7 +16,7 @@ interface Props {
 const Page02 = ({ token, userData }: Props) => {
   const setUserInfoState = useSetRecoilState(userInfo);
   const closeModal = useResetRecoilState(showModalStatus);
-  const { getUpdatedUserInfo, removeUserInfo } = useUpdateUser();
+  const { getUpdatedUserInfo, removeUserInfo } = useUserInfo();
   const [selectedTag, setSelectedTag] = useState([]);
 
   const handleUpdate = async () => {
