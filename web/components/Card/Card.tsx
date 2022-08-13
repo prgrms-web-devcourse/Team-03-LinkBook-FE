@@ -7,6 +7,8 @@ import { Avatar, Icon, Text, Tag } from '../index';
 import CardBack from './CardBack/CardBack';
 import * as S from './Card.style';
 import { Folder } from '../../shared/DummyDataType';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../../recoil/user';
 
 interface Props {
   data: Folder;
@@ -27,6 +29,8 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
   const router = useRouter();
   const [reverseCard, setReverseCard] = useState(false);
   const { bookmarks } = data;
+  const getUserInfo: any = useRecoilValue(userInfo);
+  const loginUserId = getUserInfo?.user?.id;
 
   const handleRotateCard = () => {
     setReverseCard(!reverseCard);
@@ -36,6 +40,19 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
     router.push(`/folderdetail/${data.id}`);
   };
 
+  const pinIcon = () => {
+    const path = router.pathname.split('/')[1];
+    if (isPinned && path === 'user') {
+      const id = parseInt(router.query.id.toString());
+      if (id === loginUserId) {
+        return (
+          <S.IconWrapper>
+            <Icon name="pin_blue_ic" size={25} />
+          </S.IconWrapper>
+        );
+      }
+    }
+  };
   return (
     <S.Container>
       <S.Card version={version} reverseCard={reverseCard} {...styles}>
@@ -54,11 +71,12 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
             />
           </S.ImageWrapper>
           <S.Content version={version}>
-            {isPinned && (
+            {pinIcon()}
+            {/* {isPinned && (
               <S.IconWrapper>
                 <Icon name="pin_blue_ic" size={25} />
               </S.IconWrapper>
-            )}
+            )} */}
             {version === 'myCard' && (
               <S.StatusWrapper>
                 {data.isPrivate ? (
