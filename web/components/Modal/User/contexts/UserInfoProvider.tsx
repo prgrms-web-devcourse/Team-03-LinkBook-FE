@@ -39,13 +39,9 @@ const UserInfoProvider = ({ children }: any) => {
     const imageLen = image.length;
 
     return {
-      name: !validateName(nameLen)
-        ? '1-8자 사이의 길이로 입력해주세요.'
-        : false,
-      introduce: !validateIntroduce(introduceLen)
-        ? '1-50자 사이의 길이로 입력해주세요.'
-        : false,
-      image: !validateImage(imageLen) ? '이미지를 업로드해주세요.' : false,
+      nameValue: validateName(nameLen),
+      introduceValue: validateIntroduce(introduceLen),
+      imageValue: validateImage(imageLen),
     };
   };
 
