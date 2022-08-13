@@ -54,7 +54,7 @@ const LoginPage = ({ isLogin }: Props) => {
   return (
     <S.Container onSubmit={handleSubmit(onSubmit)}>
       <S.IconWrapper>
-        <S.LogoIconWrapper href="https://linkbook.tk/">
+        <S.LogoIconWrapper href="https://linkbook.tk/" target="_blank">
           <Icon name="logo" width={35} height={20} />
         </S.LogoIconWrapper>
         <S.EscapeIconWrapper>
