@@ -148,7 +148,7 @@ const UserPage = () => {
       }
     };
     fetch();
-  }, []);
+  }, [getUserInfo]);
 
   return (
     <>
