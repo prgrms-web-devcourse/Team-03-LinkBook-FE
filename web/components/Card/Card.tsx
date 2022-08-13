@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import theme from '../../styles/themes';
@@ -56,11 +55,7 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
   return (
     <S.Container>
       <S.Card version={version} reverseCard={reverseCard} {...styles}>
-        <S.ContentContainer
-          onClick={
-            version === 'default' ? handleRotateCard : moveFolderDetailPage
-          }
-        >
+        <S.ContentContainer onClick={moveFolderDetailPage}>
           <S.ImageWrapper version={version}>
             <Image
               className="image"
@@ -94,7 +89,7 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
             </S.TagWrapper>
             <S.Info version={version}>
               <Avatar name={author} src={authorImage} />
-              <div>
+              <S.InfoRight>
                 <Text size={theme.fontSize.c[1]}>
                   {data.createdAt.split('T')[0]}
                 </Text>
@@ -104,16 +99,14 @@ const Card = ({ data, version, shrinking, ...styles }: Props) => {
                     <Text size={theme.fontSize.c[1]}>{data.likes}</Text>
                   </S.Likes>
                 )}
-              </div>
+              </S.InfoRight>
             </S.Info>
           </S.Content>
         </S.ContentContainer>
         {version === 'default' && (
-          <S.LinkWrapper>
-            <Link href={`/user/${data.user.id}`}>
-              <S.StyledLink>북마크 확인하기 ▶</S.StyledLink>
-            </Link>
-          </S.LinkWrapper>
+          <S.ButtonWrapper onClick={handleRotateCard}>
+            <S.StyledLink>북마크 확인하기 ▶</S.StyledLink>
+          </S.ButtonWrapper>
         )}
       </S.Card>
       {version === 'default' && (
