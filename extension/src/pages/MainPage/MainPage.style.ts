@@ -6,10 +6,21 @@ export const Container = styled.div`
   flex-direction: column;
   width: 355px;
   height: 380px;
-  padding: 20px;
+  padding: 8px 14px;
   border-radius: 15px;
   background-color: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  animation: fadeIn 0.75s;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const IconWraaper = styled.div`
@@ -60,7 +71,7 @@ export const FolderSelector = styled.div`
   cursor: pointer;
 `;
 
-export const StoreButton = styled(Button)<{ disabled: boolean }>`
+export const SubmitButton = styled(Button)<{ disabled: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: center;
