@@ -91,6 +91,7 @@ export const Title = styled(Text)`
 `;
 
 export const TagWrapper = styled.div`
+  height: 31px;
   padding-top: 8px;
 `;
 
@@ -101,6 +102,12 @@ export const Info = styled.div<Props>`
   padding-top: ${({ version }) => (version === 'default' ? '16px' : '28px')};
 `;
 
+export const InfoRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
 export const Likes = styled.div`
   display: flex;
   justify-content: end;
@@ -109,7 +116,7 @@ export const Likes = styled.div`
   font-size: 12px;
 `;
 
-export const LinkWrapper = styled.div`
+export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2px;
