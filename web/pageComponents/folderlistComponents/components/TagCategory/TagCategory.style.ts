@@ -9,6 +9,10 @@ interface Props {
 
 export const Container = styled.div`
   width: 1100px;
+  margin-bottom: 50px;
+  /* background: url('/backgrounds/myFoldersAreaLogout.svg');
+  background-repeat: no-repeat;
+  background-size: cover; */
 `;
 
 export const Header = styled(Text)`
@@ -19,7 +23,7 @@ export const Header = styled(Text)`
 export const MainTagList = styled.ul`
   display: grid;
   grid-template-rows: repeat(4, 1fr);
-  grid-template-columns: repeat(4, 235px);
+  grid-template-columns: repeat(4, 250px);
   grid-template-areas:
     'child1 . . .'
     'child2 child3 child4 child5'
@@ -30,39 +34,60 @@ export const MainTagList = styled.ul`
   padding: 50px 0;
 `;
 
-export const TagConatiner = styled.div<Props>`
+export const TagContainer = styled.div<Props>`
   grid-area: ${({ idx }) => `child${idx}`};
 `;
 
+export const IconWrapper = styled.div`
+  display: none;
+  width: fit-content;
+  color: ${({ theme }) => theme.colors.gray[3]};
+  font-size: ${({ theme }) => theme.fontSize.c[1]};
+`;
+
 export const MainTag = styled.li<Props>`
+  display: flex;
+  justify-content: space-between;
   padding: 16px;
-  border: 1px solid ${({ theme }) => theme.colors.gray[3]};
-  border-radius: 6px;
+  font-weight: 600;
+  font-family: 'Noto Sans KR', sans-serif;
   background-color: ${({ theme, active }) =>
     active ? theme.colors.gray[5] : theme.colors.white[0]};
-  font-weight: 600;
+  border: 2px solid ${({ theme }) => theme.colors.gray[5]};
+  border-radius: 6px;
   cursor: pointer;
+  transition: all 0.1s;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray[5]};
+    ${IconWrapper} {
+      display: block;
+    }
   }
 `;
 
 export const SubTagList = styled.ul<Props>`
-  display: ${({ visible }) => (visible ? 'block' : 'none')};
+  display: ${({ visible }) => (visible ? 'block' : 'hidden')};
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
+  z-index: ${({ visible }) => !visible && -1};
   position: absolute;
   overflow: auto;
-  width: 235px;
-  max-height: 145px;
+  width: 250px;
+  max-height: ${({ visible }) => (visible ? '135px' : '0px')};
   padding: 8px 14px;
-  border: 1px solid ${({ theme }) => theme.colors.gray[4]};
+  border: 1px solid ${({ theme }) => theme.colors.gray[5]};
   border-top: none;
   border-radius: 0 0 6px 6px;
   background-color: ${({ theme }) => theme.colors.white[0]};
+  font-family: 'Noto Sans KR', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 10px -3px;
+  transition: max-height 0.2s;
+  animation: fadeIn 2s ease-out;
 
   &::-webkit-scrollbar {
     width: 8px;
   }
+
   &::-webkit-scrollbar-thumb {
     height: 30%;
     border-radius: 10px;
@@ -74,6 +99,7 @@ export const SubTag = styled.li`
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.1s;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray[5]};

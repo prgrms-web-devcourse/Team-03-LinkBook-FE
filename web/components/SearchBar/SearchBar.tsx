@@ -13,8 +13,12 @@ interface Props {
 const SearchBar = ({ setShowSearchBar }: Props) => {
   const inputRef = useRef<HTMLInputElement>();
 
-  const handleClickX = () => {
+  const handleClickCloseSearchBar = () => {
     setShowSearchBar(false);
+  };
+
+  const handleClickXButton = () => {
+    inputRef.current.value = '';
   };
 
   const handleOnSearch = () => {
@@ -53,30 +57,33 @@ const SearchBar = ({ setShowSearchBar }: Props) => {
   }, [handleOnSearch]);
 
   return (
-    <S.Container>
-      <S.Search>
-        <S.SearchInner>
-          <S.Input ref={inputRef} placeholder="검색어를 입력하세요." />
-          <S.Actions position="left">
-            <S.IconWrapper position="left">
-              <Icon name="search_ic" size={15} />
-            </S.IconWrapper>
-          </S.Actions>
-          <S.Actions position="right">
-            <S.IconWrapper position="right" onClick={handleClickX}>
-              <Icon name="x_white" size={10} />
-            </S.IconWrapper>
-          </S.Actions>
-        </S.SearchInner>
-      </S.Search>
-      <Image
-        src="/backgrounds/searchBar.svg"
-        alt="네비게이션 입력 바"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
-      />
-    </S.Container>
+    <>
+      <S.Container>
+        <S.Search>
+          <S.SearchInner>
+            <S.Input ref={inputRef} placeholder="검색어를 입력하세요." />
+            <S.Actions position="left">
+              <S.IconWrapper position="left">
+                <Icon name="search_ic" size={15} />
+              </S.IconWrapper>
+            </S.Actions>
+            <S.Actions position="right">
+              <S.IconWrapper position="right" onClick={handleClickXButton}>
+                <Icon name="x_white" size={10} />
+              </S.IconWrapper>
+            </S.Actions>
+          </S.SearchInner>
+        </S.Search>
+        <Image
+          src="/backgrounds/searchBar.svg"
+          alt="네비게이션 입력 바"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+        />
+      </S.Container>
+      <S.Dim onClick={handleClickCloseSearchBar} />
+    </>
   );
 };
 

@@ -9,9 +9,10 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  z-index: 7;
   height: 165px;
   background-color: ${({ theme }) => theme.colors.white[0]};
-
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px -3px;
   animation: searchBarShow 0.3s;
 
   @keyframes searchBarShow {
@@ -21,6 +22,26 @@ export const Container = styled.div`
     }
     to {
       margin-top: 0;
+      opacity: 1;
+    }
+  }
+`;
+
+export const Dim = styled.div`
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  animation: modalBgShow 0.3s;
+
+  @keyframes modalBgShow {
+    from {
+      opacity: 0;
+    }
+    to {
       opacity: 1;
     }
   }
