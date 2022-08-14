@@ -16,7 +16,8 @@ export const BackgroundImage = styled.div`
   bottom: 0;
   width: 100%;
   height: 334px;
-  background: url('/backgrounds/myFoldersAreaLogOut.svg');
+  background-image: url('/backgrounds/myFoldersAreaLogOut.svg');
+  background-repeat: no-repeat;
 `;
 
 export const ContentContainer = styled.div`
