@@ -8,13 +8,15 @@ export const AreaContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: auto;
-  padding-top: 120px;
-  padding-bottom: 100px;
+  height: 100vh;
 `;
 
-export const BackgroundImage = styled(Image)`
-  position: relative;
+export const BackgroundImage = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 334px;
+  background: url('/backgrounds/myFoldersAreaLogOut.svg');
 `;
 
 export const ContentContainer = styled.div`

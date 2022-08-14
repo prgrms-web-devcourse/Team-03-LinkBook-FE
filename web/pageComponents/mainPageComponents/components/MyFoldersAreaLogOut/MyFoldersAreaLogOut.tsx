@@ -12,12 +12,7 @@ const MyFoldersAreaLogOut = () => {
 
   return (
     <S.AreaContainer>
-      <S.BackgroundImage
-        src="/backgrounds/myFoldersAreaLogOut.svg"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
-      />
+      <S.BackgroundImage />
       <S.ContentContainer>
         <S.TextWrapper>
           <S.Header>
