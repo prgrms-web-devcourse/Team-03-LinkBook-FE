@@ -5,7 +5,7 @@ const theme: Theme = {
     black: ['#000000', '#222222'],
     white: ['#FFFFFF'],
     main: ['#4285F4'],
-    mainLight: ['#A0C4FF', '#F4F6FA'],
+    mainLight: ['#A0C4FF', '#F9FBFF'],
     gray: ['#333333', '#4F4F4F', '#828282', '#BDBDBD', '#E0E0E0', '#F2F2F2'],
   },
   fontSize: {

@@ -49,17 +49,34 @@ export const TagCategory = () => {
     fetch();
   }, []);
 
+  const tagsEmoji = [
+    '🌈',
+    '🤩',
+    '🐶',
+    '🎮',
+    '🍿',
+    '🎵',
+    '🤡',
+    '💪',
+    '💄',
+    '⚽',
+    '💻',
+    '🎒',
+    '🎵',
+  ];
+
   return (
     <S.Container>
       <S.Header>태그 리스트</S.Header>
       <S.MainTagList>
         {tags.map((tag, idx) => (
-          <S.TagConatiner key={tag.rootTag} idx={idx + 1}>
+          <S.TagContainer key={tag.rootTag} idx={idx + 1}>
             <S.MainTag
               active={selectMainTag === tag.rootTag}
               onClick={() => handleSelectMainTag(tag.rootTag)}
             >
-              {tag.rootTag}
+              {tagsEmoji[idx]} {tag.rootTag}
+              {idx !== 0 && <S.IconWrapper>▼</S.IconWrapper>}
             </S.MainTag>
             {tag.subTags.length > 0 && (
               <S.SubTagList visible={visibleSubTagList === tag.rootTag}>
@@ -73,7 +90,7 @@ export const TagCategory = () => {
                 ))}
               </S.SubTagList>
             )}
-          </S.TagConatiner>
+          </S.TagContainer>
         ))}
       </S.MainTagList>
     </S.Container>

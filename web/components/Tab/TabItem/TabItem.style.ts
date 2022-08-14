@@ -18,4 +18,10 @@ export const TabItemWrapper = styled.div<{ selected: boolean }>`
     selected ? theme.colors.gray[3] : theme.colors.white};
 
   cursor: pointer;
+  transition: all 0.1s;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.gray[3]};
+  }
 `;
