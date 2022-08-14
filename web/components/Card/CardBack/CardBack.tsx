@@ -20,7 +20,7 @@ const CardBack = ({
   return (
     <S.Card reverseCard={reverseCard} {...styles}>
       <S.IconWrapper onClick={handleRotateCard}>
-        <Icon name="back" size={20} />
+        <Icon name="back" size={18} />
       </S.IconWrapper>
       <S.BookmarkList reverseCard={reverseCard}>
         {data &&
