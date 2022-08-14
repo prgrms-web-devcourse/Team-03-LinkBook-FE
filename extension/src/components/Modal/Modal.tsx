@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Icon from "../Icon";
 import * as S from "./Modal.style";
 import { SelectFolderModal, MakeFolderModal } from "./SelectFolder";
 
@@ -50,7 +51,7 @@ const Modal = ({ isVisible, handleFolderMade, modalClose }: Props) => {
           <S.Dim onClick={handleMdoalForceClose} />
           <S.Container>
             <S.CloseButtonWrapper>
-              <S.CloseIcon
+              <Icon
                 name="btn_x"
                 width={10}
                 height={10}

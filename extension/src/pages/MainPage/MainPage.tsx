@@ -82,12 +82,14 @@ const MainPage = () => {
         <S.LogoIconWrapper href="https://linkbook.tk/" target="_blank">
           <Icon name="logo" width={35} height={20} />
         </S.LogoIconWrapper>
-        <Icon
-          name="btn_x"
-          width={13}
-          height={13}
-          onClick={() => window.close()}
-        />
+        <S.CloseIconWrapper>
+          <Icon
+            name="btn_x"
+            width={13}
+            height={13}
+            onClick={() => window.close()}
+          />
+        </S.CloseIconWrapper>
       </S.IconWraaper>
       <S.ImageWrapper>
         <img

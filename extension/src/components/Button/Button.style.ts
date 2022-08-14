@@ -12,4 +12,14 @@ export const Button = styled.button`
   text-decoration: none;
   white-space: nowrap;
   color: #ffffff;
+
+  &:hover {
+    transition: 0.25s;
+    box-shadow: 0 0.5em 0.5em -0.4em #bdbdbd;
+    transform: translateY(-0.25em);
+  }
+  &:active {
+    transition: all 0.2s;
+    transform: scale(0.95);
+  }
 `;

@@ -2,7 +2,9 @@ import axios from "axios";
 import {
   ACCESS_TOKEN,
   BOOKMARKS,
+  CURRENT_TIME,
   DOMAIN,
+  EXPIRE_TIME,
   FOLDER_DEFAULT_IMG,
   REFRESH_TOKEN,
   URL,
@@ -38,26 +40,26 @@ export const onReissuanceAccessToken = async () => {
 // 쿠키 확인함수
 export const cookieCheck = async () => {
   //access token 유효기간 확인
-  const AccessToken = await getCookie(ACCESS_TOKEN, URL);
-  if (AccessToken) return AccessToken;
-
-  //refresh token 유효기간 확인
+  const ExpireTime = await getCookie(EXPIRE_TIME, URL);
   const RefreshToken = await getCookie(REFRESH_TOKEN, URL);
+  const AccesToken = await getCookie(ACCESS_TOKEN, URL);
 
-  if (RefreshToken) {
+  if (Number(ExpireTime) < CURRENT_TIME && RefreshToken) {
     const reissuanceAccessToken = await onReissuanceAccessToken();
-    const AccessToken = await setCookie(
+    const NewAccessToken = await setCookie(
       ACCESS_TOKEN,
       DOMAIN,
       URL,
       reissuanceAccessToken,
-      false
+      true
     );
 
-    return AccessToken;
+    return NewAccessToken;
   }
 
-  return null;
+  if (Number(ExpireTime) < CURRENT_TIME && !RefreshToken) return null;
+
+  return AccesToken;
 };
 
 interface Config {
@@ -69,7 +71,7 @@ interface Config {
 // header에 토큰 들어가는 request
 export const authFetch = async (url: string, configs: Config) => {
   const Token = await cookieCheck();
-  if (!Token) return alert("토큰이 없습니다");
+  if (!Token) return;
   try {
     const res = await axios(`${BaseUrl}${url}`, {
       ...configs,
@@ -161,7 +163,7 @@ export const createFolder = async ({ title, isPrivate }: CreateFolderReq) => {
     data: {
       title,
       image: FOLDER_DEFAULT_IMG,
-      content: "테스트용",
+      content: "",
       isPinned: false,
       isPrivate,
       tags: [],

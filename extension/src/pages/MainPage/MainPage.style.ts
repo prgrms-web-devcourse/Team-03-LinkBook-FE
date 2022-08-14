@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button } from "../../components";
+import { Button, Icon } from "../../components";
 
 export const Container = styled.div`
   display: flex;
@@ -36,6 +36,10 @@ export const LogoIconWrapper = styled.a`
 export const ImageWrapper = styled.div`
   align-self: center;
   margin: 15px auto;
+`;
+
+export const CloseIconWrapper = styled.div`
+  cursor: pointer;
 `;
 
 export const UrlWrapper = styled.div`

@@ -1,7 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { onReissuanceAccessToken } from "../utils/api";
-import { ACCESS_TOKEN, REFRESH_TOKEN, URL } from "../utils/constants";
-import { getCookie } from "../utils/cookies";
+import { cookieCheck } from "../utils/api";
 import LoginPage from "./LoginPage";
 import MainPage from "./MainPage";
 
@@ -9,15 +7,12 @@ const Root = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   useLayoutEffect(() => {
-    getCookie(ACCESS_TOKEN, URL).then((res) => {
+    const cookieCheckFunc = async () => {
+      const res = await cookieCheck();
       if (res) return setIsLogin(true);
-      getCookie(REFRESH_TOKEN, URL).then((res) => {
-        if (res) {
-          onReissuanceAccessToken();
-          return setIsLogin(true);
-        }
-      });
-    });
+    };
+
+    cookieCheckFunc();
   }, []);
 
   return <>{isLogin ? <MainPage /> : <LoginPage isLogin={setIsLogin} />}</>;

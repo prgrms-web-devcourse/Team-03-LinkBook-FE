@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button } from "../../components";
+import { Button, Icon } from "../../components";
 
 export const Container = styled.form`
   display: flex;
@@ -32,7 +32,7 @@ export const LogoIconWrapper = styled.a`
   display: inline-block;
 `;
 
-export const EscapeIconWrapper = styled.div`
+export const CloseIconWrapper = styled.div`
   cursor: pointer;
 `;
 
