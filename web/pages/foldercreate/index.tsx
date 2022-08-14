@@ -72,7 +72,10 @@ const FolderCreate = () => {
   };
 
   useEffect(() => {
-    if (!loginUser?.user?.id) router.push(`${PAGE_URL.ERROR}`);
+    if (!loginUser?.user?.id) {
+      alert('올바르지 않은 접근입니다');
+      router.push(`${PAGE_URL.MAIN}`);
+    }
   }, []);
 
   return (
