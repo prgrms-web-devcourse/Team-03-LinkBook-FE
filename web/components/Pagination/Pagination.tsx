@@ -51,68 +51,79 @@ const Pagination = ({ defaultPage, limit, total, onChange }: Props) => {
   );
 
   return (
-    <S.PaginationContainer>
-      <ArrowButton isLeft onClick={() => page !== 0 && changePage(page - 1)} />
-      {filterdArray.map((i, index) => {
-        if (page < 4) {
-          if (totalPage > 5 && index === filterdArray.length - 2)
-            return (
-              <S.PaginationButton disable key={i}>
-                ...
-              </S.PaginationButton>
-            );
-          return (
-            <S.PaginationButton
-              onClick={() => changePage(i)}
-              disable={false}
-              key={i}
-              active={page === i}
-            >
-              {i + 1}
-            </S.PaginationButton>
-          );
-        }
-        if (page > totalPage - 5) {
-          if (index === 1)
-            return (
-              <S.PaginationButton disable key={i}>
-                ...
-              </S.PaginationButton>
-            );
-          return (
-            <S.PaginationButton
-              onClick={() => changePage(i)}
-              disable={false}
-              key={i}
-              active={page === i}
-            >
-              {i + 1}
-            </S.PaginationButton>
-          );
-        }
+    <>
+      {total !== 0 && (
+        <S.PaginationContainer>
+          <ArrowButton
+            isLeft
+            onClick={() => page !== 0 && changePage(page - 1)}
+          />
+          {filterdArray.map((i, index) => {
+            if (page < 4) {
+              if (totalPage > 5 && index === filterdArray.length - 2)
+                return (
+                  <S.PaginationButton disable key={i}>
+                    ...
+                  </S.PaginationButton>
+                );
+              return (
+                <S.PaginationButton
+                  onClick={() => changePage(i)}
+                  disable={false}
+                  key={i}
+                  active={page === i}
+                >
+                  {i + 1}
+                </S.PaginationButton>
+              );
+            }
+            if (page > totalPage - 5) {
+              if (index === 1)
+                return (
+                  <S.PaginationButton disable key={i}>
+                    ...
+                  </S.PaginationButton>
+                );
+              return (
+                <S.PaginationButton
+                  onClick={() => changePage(i)}
+                  disable={false}
+                  key={i}
+                  active={page === i}
+                >
+                  {i + 1}
+                </S.PaginationButton>
+              );
+            }
 
-        if (index === 1 || index === filterdArray.length - 2)
-          return (
-            <S.PaginationButton onClick={() => changePage(i)} disable key={i}>
-              ...
-            </S.PaginationButton>
-          );
-        return (
-          <S.PaginationButton
-            onClick={() => changePage(i)}
-            disable={false}
-            key={i}
-            active={page === i}
-          >
-            {i + 1}
-          </S.PaginationButton>
-        );
-      })}
-      <ArrowButton
-        isLeft={false}
-        onClick={() => page + 1 !== totalPage && changePage(page + 1)}
-      />
-    </S.PaginationContainer>
+            if (index === 1 || index === filterdArray.length - 2)
+              return (
+                <S.PaginationButton
+                  onClick={() => changePage(i)}
+                  disable
+                  key={i}
+                >
+                  ...
+                </S.PaginationButton>
+              );
+            return (
+              <S.PaginationButton
+                onClick={() => changePage(i)}
+                disable={false}
+                key={i}
+                active={page === i}
+              >
+                {i + 1}
+              </S.PaginationButton>
+            );
+          })}
+          <ArrowButton
+            isLeft={false}
+            onClick={() => page + 1 !== totalPage && changePage(page + 1)}
+          />
+        </S.PaginationContainer>
+      )}
+    </>
   );
 };
 
