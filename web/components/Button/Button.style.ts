@@ -16,7 +16,7 @@ const NavBarBtn = ({ theme }: ThemeProps) => css`
 `;
 
 const MainLightBtn = ({ theme }: ThemeProps) => css`
-  width: 7rem;
+  width: 7.5rem;
   height: 3rem;
 
   font-size: ${theme.fontSize.h[2]};
@@ -26,7 +26,7 @@ const MainLightBtn = ({ theme }: ThemeProps) => css`
 `;
 
 const MainBtn = ({ theme }: ThemeProps) => css`
-  width: 7rem;
+  width: 7.5rem;
   height: 3rem;
 
   font-size: ${theme.fontSize.h[2]};
