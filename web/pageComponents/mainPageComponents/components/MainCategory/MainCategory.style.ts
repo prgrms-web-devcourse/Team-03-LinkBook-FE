@@ -7,7 +7,7 @@ export const CategoryWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 100px auto;
   padding: 0 50px;
 `;
 

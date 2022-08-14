@@ -50,7 +50,7 @@ const MyFoldersAreaLogIn = () => {
       </S.Header>
       <FolderSlider data={data} isLoading={isLoading} />
       <S.StyledButton type="button" onClick={moveUserPage}>
-        북마크 편집 &#62;
+        북마크 편집 ▶
       </S.StyledButton>
     </S.Container>
   );
