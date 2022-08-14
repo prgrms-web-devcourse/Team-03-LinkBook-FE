@@ -2,6 +2,10 @@ export const ACCESS_TOKEN = "ACCESS_TOKEN";
 
 export const REFRESH_TOKEN = "REFRESH_TOKEN";
 
+export const EXPIRE_TIME = "EXPIRE_TIME";
+
+export const CURRENT_TIME = new Date().getTime() / 1000;
+
 export const URL = "https://linkbook.tk/";
 
 export const DOMAIN = ".linkbook.tk";

@@ -53,8 +53,5 @@ export const CloseButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-`;
-
-export const CloseIcon = styled(Icon)`
   cursor: pointer;
 `;

@@ -1,17 +1,17 @@
+import { CURRENT_TIME } from "./constants";
+
 export const setCookie = async (
   key: string,
   domain: string,
   url: string,
   value: string,
-  isRefresh: boolean
+  isToken: boolean
 ) => {
   const res = await chrome.cookies.set({
     name: key,
     domain,
     url,
-    expirationDate: isRefresh
-      ? new Date().getTime() / 1000 + 1209600
-      : new Date().getTime() / 1000 + 18000,
+    expirationDate: isToken ? CURRENT_TIME + 1209600 : CURRENT_TIME + 18000,
     value,
   });
 
@@ -26,3 +26,5 @@ export const getCookie = async (key: string, url: string) => {
 
   return res?.value;
 };
+
+export const checkExpireTime = () => {};

@@ -5,7 +5,9 @@ import Input from "../../components/Input";
 import { userLogin } from "../../utils/api";
 import {
   ACCESS_TOKEN,
+  CURRENT_TIME,
   DOMAIN,
+  EXPIRE_TIME,
   REFRESH_TOKEN,
   URL,
 } from "../../utils/constants";
@@ -37,8 +39,15 @@ const LoginPage = ({ isLogin }: Props) => {
         if (!res) throw new Error("잘못된 로그인 리스폰스 타입");
         const { accessToken, refreshToken } = res;
 
-        await setCookie(ACCESS_TOKEN, DOMAIN, URL, accessToken, false);
+        await setCookie(ACCESS_TOKEN, DOMAIN, URL, accessToken, true);
         await setCookie(REFRESH_TOKEN, DOMAIN, URL, refreshToken, true);
+        await setCookie(
+          EXPIRE_TIME,
+          DOMAIN,
+          URL,
+          (CURRENT_TIME + 18000).toString(),
+          false
+        );
 
         getCookie(ACCESS_TOKEN, URL);
 
@@ -57,14 +66,14 @@ const LoginPage = ({ isLogin }: Props) => {
         <S.LogoIconWrapper href="https://linkbook.tk/" target="_blank">
           <Icon name="logo" width={35} height={20} />
         </S.LogoIconWrapper>
-        <S.EscapeIconWrapper>
+        <S.CloseIconWrapper>
           <Icon
             name="btn_x"
             width={13}
             height={13}
             onClick={() => window.close()}
           />
-        </S.EscapeIconWrapper>
+        </S.CloseIconWrapper>
       </S.IconWrapper>
       <S.Title>
         <S.MainText>Linkbook</S.MainText>에 오신것을 환영합니다! 🎉
