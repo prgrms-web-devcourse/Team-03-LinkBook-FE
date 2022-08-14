@@ -21,6 +21,7 @@ export const BackgroundImage = styled.div<Props>`
   height: ${({ hasPinnedFolder }) => (hasPinnedFolder ? '490px' : '100vh')};
   background-image: url('/backgrounds/myFoldersAreaLogIn.svg');
   background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export const Header = styled.div`
