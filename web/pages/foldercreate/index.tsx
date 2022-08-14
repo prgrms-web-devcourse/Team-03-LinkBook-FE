@@ -7,7 +7,7 @@ import {
   Icon,
   TagSelector,
 } from '../../components';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   Switch,
@@ -42,10 +42,13 @@ const FolderCreate = () => {
   };
 
   const createFolderAPI = async () => {
-    const title = titleInput.current.value;
+    const title = titleInput.current.value || '제목없음';
     const content = contentInput.current.value;
     const image = imageSrc || FOLDER_DEFAULT_IMAGE;
-
+    if (bookmarks.length === 0) {
+      alert('북마크를 추가해주세요');
+      return false;
+    }
     const { id } = await createFolder(
       {
         title,
@@ -65,8 +68,12 @@ const FolderCreate = () => {
   const moveFolderDetailPage = async () => {
     const id = await createFolderAPI();
 
-    router.push(`${PAGE_URL.DETAIL}/${id}`);
+    if (id) router.push(`${PAGE_URL.DETAIL}/${id}`);
   };
+
+  useEffect(() => {
+    if (!loginUser?.user?.id) router.push(`${PAGE_URL.ERROR}`);
+  }, []);
 
   return (
     <>
