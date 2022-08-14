@@ -27,6 +27,7 @@ export const Text = styled.span`
   font-weight: ${({ weight }: Props) => weight};
   color: ${({ color }: Props) => color};
   font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.4;
 
   ${({ version }: Props) => {
     switch (version) {

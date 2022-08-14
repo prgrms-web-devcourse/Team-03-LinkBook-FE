@@ -14,7 +14,7 @@ const UseInfo = () => {
         <S.TextWrapper>
           <S.Header>
             <S.MainColorHeader>나만의 북마크</S.MainColorHeader>를<br />
-            편하게 공유하세요!
+            편하게 <S.MainColorHeader>공유</S.MainColorHeader>하세요!
           </S.Header>
           <S.Description>
             내 바탕화면을 깔끔하게
