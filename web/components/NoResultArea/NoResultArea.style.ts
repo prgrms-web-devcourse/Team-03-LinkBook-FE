@@ -7,8 +7,8 @@ export const Container = styled.div`
   height: 405px;
   font-family: 'Noto Sans KR', sans-serif;
   background: url('/backgrounds/NoResultArea.svg');
-  border: 3px solid #e7f5fb;
   border-radius: 10px;
+  overflow: hidden;
   animation: moveLeftToRight 7s infinite linear;
 
   @keyframes moveLeftToRight {
