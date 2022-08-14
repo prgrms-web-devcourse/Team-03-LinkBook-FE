@@ -11,7 +11,7 @@ export interface Comment {
   content: string;
   user: User;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 export interface Comments {
