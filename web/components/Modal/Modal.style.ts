@@ -201,6 +201,16 @@ export const ConfirmButton = styled.button`
   border: none;
   border-radius: 30px;
   cursor: pointer;
+
+  &:hover {
+    transition: 0.25s;
+    box-shadow: 0 0.5em 0.5em -0.4em ${({ theme }) => theme.colors.gray[3]};
+    transform: translateY(-0.25em);
+  }
+  &:active {
+    transition: all 0.2s;
+    transform: scale(0.95);
+  }
 `;
 
 export const LogoText = styled.span`
