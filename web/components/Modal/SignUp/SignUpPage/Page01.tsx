@@ -16,6 +16,7 @@ interface EmailInput {
 
 const Page01 = ({ handlePage }: Props) => {
   const [emailValue, setEmailValue] = useState('');
+  const [isValidate, setIsValidate] = useState(false);
   const { setEmail } = useUserInfo();
   const keyRef = useRef<HTMLInputElement>(null);
   const {
@@ -24,23 +25,27 @@ const Page01 = ({ handlePage }: Props) => {
     formState: { errors },
   } = useForm<EmailInput>();
 
-  const onSubmit: SubmitHandler<EmailInput> = useCallback(async (data) => {
-    const { email } = data;
+  const handleSubmitInputData: SubmitHandler<EmailInput> = useCallback(
+    async (data) => {
+      const { email } = data;
 
-    try {
-      await requestEmailKey(email);
-      setEmailValue(email);
-      alert('입력한 이메일로 인증 코드가 전송되었습니다.');
-    } catch (error) {
-      alert('문제가 발생했습니다. 다시 시도해주세요.');
-      console.log(error);
-    }
-  }, []);
+      try {
+        await requestEmailKey(email);
+        setEmailValue(email);
+        alert('입력한 이메일로 인증 코드가 전송되었습니다.');
+      } catch (error) {
+        alert('문제가 발생했습니다. 다시 시도해주세요.');
+        console.log(error);
+      }
+    },
+    [],
+  );
 
-  const onValidateKey = async () => {
+  const handleClickValidateKey = async () => {
     try {
       await validateEmailKey(emailValue, keyRef.current.value);
       alert('인증되었습니다.');
+      setIsValidate(true);
       setEmail(emailValue);
     } catch (error) {
       alert('인증코드가 일치하지 않습니다.');
@@ -48,8 +53,18 @@ const Page01 = ({ handlePage }: Props) => {
     }
   };
 
+  const handleClickCheckValidate: MouseEventHandler = (e) => {
+    console.log(isValidate);
+    if (!isValidate) {
+      alert('이메일 인증을 먼저 진행해주세요.');
+      return;
+    }
+
+    handlePage(e);
+  };
+
   return (
-    <S.FormContainer onSubmit={handleSubmit(onSubmit)}>
+    <S.FormContainer onSubmit={handleSubmit(handleSubmitInputData)}>
       <S.Title>
         <S.MainText>Linkbook</S.MainText>에 처음 오셨군요! 🎉
         <br />
@@ -75,13 +90,17 @@ const Page01 = ({ handlePage }: Props) => {
           type="text"
           ref={keyRef}
         >
-          <Button type="button" version="modal" onClick={onValidateKey}>
+          <Button
+            type="button"
+            version="modal"
+            onClick={handleClickValidateKey}
+          >
             인증
           </Button>
         </Input>
       </S.InputContainer>
       <S.ButtonContainer>
-        <Button type="button" onClick={handlePage}>
+        <Button type="button" onClick={handleClickCheckValidate}>
           다음 &gt;
         </Button>
       </S.ButtonContainer>
