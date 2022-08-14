@@ -16,6 +16,7 @@ export const Card = styled.div<Props>`
   overflow: hidden;
   width: ${({ version }) => (version === 'default' ? '300px' : '340px')};
   height: ${({ version }) => (version === 'default' ? '384px' : '369px')};
+  font-family: 'Noto Sans KR', sans-serif;
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -119,14 +120,22 @@ export const Likes = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 2px;
-  padding: 16px 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.gray[4]};
+  margin-top: 5px;
+  padding: 7px 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.gray[5]};
 `;
 
 export const StyledLink = styled.a`
-  font-size: 16px;
-  font-weight: bold;
+  padding: 7px 15px;
   color: ${({ theme }) => theme.colors.main[0]};
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 10px;
   cursor: pointer;
+  transition: all 0.1s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray[5]};
+  }
 `;
