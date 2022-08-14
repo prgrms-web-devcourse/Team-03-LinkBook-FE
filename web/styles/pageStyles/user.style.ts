@@ -25,9 +25,8 @@ export const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 50px;
 `;
 
 export const DescriptionText = styled(Text)`
