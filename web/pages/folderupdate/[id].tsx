@@ -14,17 +14,13 @@ import {
   BookmarkInput,
 } from '../../pageComponents/folderupdateComponents/components';
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
-import { SpecificFolder } from '../../types';
 import { PAGE_URL } from '../../constants/url.constants';
 import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../recoil/user';
+import { getCookie } from '../../util/cookies';
 
-interface Props {
-  token: string;
-}
-
-const FolderUpdate = ({ token }: Props) => {
+const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
   const titleInput = useRef<HTMLInputElement>();
   const [tags, setTags] = useState([]);
@@ -33,12 +29,13 @@ const FolderUpdate = ({ token }: Props) => {
   const contentInput = useRef<HTMLTextAreaElement>();
   const [bookmarks, setBookmarks] = useState([]);
   const loginUser: any = useRecoilValue(userInfo);
-
+  const loginUserId = loginUser?.user?.id;
+  const token = getCookie('ACCESS_TOKEN');
   const router = useRouter();
   const { id } = router.query;
 
   const moveUserPage = () => {
-    router.push(`${PAGE_URL.USER}/${loginUser.user.id}`);
+    router.push(`${PAGE_URL.USER}/${loginUserId}`);
   };
 
   const changePin = () => {
@@ -46,41 +43,55 @@ const FolderUpdate = ({ token }: Props) => {
   };
 
   const updateFolderAPI = async () => {
-    const title = titleInput.current.value;
+    const title = titleInput.current.value || '제목없음';
     const content = contentInput.current.value;
     const image = imageSrc || FOLDER_DEFAULT_IMAGE;
-
-    await updateFolder(
-      {
-        id: Number(id),
-        title,
-        image,
-        content,
-        isPinned,
-        isPrivate,
-        tags,
-        bookmarks,
-      },
-      token,
-    );
+    if (bookmarks.length === 0) {
+      alert('북마크를 추가해주세요');
+      return false;
+    } else {
+      await updateFolder(
+        {
+          id: Number(id),
+          title,
+          image,
+          content,
+          isPinned,
+          isPrivate,
+          tags,
+          bookmarks,
+        },
+        token,
+      );
+      return true;
+    }
   };
 
   const moveFolderDetailPage = async () => {
-    await updateFolderAPI();
-    router.push(`${PAGE_URL.DETAIL}/${id}`);
+    const res = await updateFolderAPI();
+    if (res) router.push(`${PAGE_URL.DETAIL}/${id}`);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const { isPrivate, title, image, content, bookmarks } = await getFolder(
-        Number(id),
-      );
-      setIsPrivate(isPrivate);
-      titleInput.current.value = title;
-      setTags(tags);
-      setImageSrc(image);
-      contentInput.current.value = content;
-      setBookmarks(bookmarks);
+      try {
+        const { isPrivate, title, image, content, bookmarks, isPinned, user } =
+          await getFolder(Number(id));
+        if (user.id !== loginUserId) {
+          router.push(`${PAGE_URL.ERROR}`);
+          return;
+        }
+        setIsPrivate(isPrivate);
+        setIsPinned(isPinned);
+        titleInput.current.value = title;
+        setTags(tags);
+        setImageSrc(image);
+        contentInput.current.value = content;
+        setBookmarks(bookmarks);
+      } catch (e) {
+        router.push(`${PAGE_URL.ERROR}`);
+        return;
+      }
     };
     fetchData();
   }, []);
