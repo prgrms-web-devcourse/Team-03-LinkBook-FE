@@ -1,4 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { getTag } from '../../apis/TagAPI';
+import { SubTagList } from '../../pageComponents/folderlistComponents/components/TagCategory/TagCategory.style';
+import { TagType } from '../../types';
+import { TagItemType } from '../../types/tag';
 import { Input, InputResult, Tag } from '../index';
 import * as S from './TagSelector.style';
 
@@ -8,28 +12,36 @@ interface Props {
 }
 
 const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
-  // Todo: api요청 혹은 전역 데이터로 관리
-  const tags = [
-    '개발',
-    '쇼핑',
-    '코딩',
-    '취미',
-    '창업',
-    '마케팅',
-    '개발 필터링 테스트',
-    '쇼핑 필터링 테스트',
-    '코딩 필터링 테스트',
-    '취미 필터링 테스트',
-    '창업 필터링 테스트',
-    '마케팅 필터링 테스트',
-  ];
+  const [tags, setTags] = useState([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
   const [activeItem, setActiveItem] = useState(0);
   const [autoCompleteSearch, setAutoCompleteSearch] = useState<string[]>(tags);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: TagType = await getTag();
+        let subTags: string[] = [];
+
+        res.tags.forEach((tag: TagItemType) => {
+          tag.subTags.forEach((subTag: string) => {
+            subTags.push(subTag);
+          });
+        });
+
+        setTags(subTags);
+        setAutoCompleteSearch(subTags);
+      } catch (error) {
+        console.log(error);
+        alert('문제가 발생했습니다.')
+      }
+    })();
+  }, []);
+
   const handleFilterInputValue = () => {
+    console.log(tags);
     const keyword = inputRef.current.value;
     const filteredSearch = tags.filter((tag) => tag.indexOf(keyword) >= 0);
 
@@ -103,7 +115,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
       <Input
         type="text"
         ref={inputRef}
-        placeholder="태그를 입력해 주세요! 클릭 혹은 엔터를 사용해서 입력할 수 있습니다."
+        placeholder="클릭 혹은 엔터를 사용해서 태그를 입력해 주세요."
         onChange={handleFilterInputValue}
         onKeyDown={handleKeyDown}
       />

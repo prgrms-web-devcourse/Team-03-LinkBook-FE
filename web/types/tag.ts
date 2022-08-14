@@ -1,8 +1,8 @@
+export interface TagItemType {
+  rootTag: string;
+  subTags: string[];
+}
+
 export interface TagType {
-  tags: [
-    {
-      rootTag: string;
-      subTags: string[];
-    },
-  ];
+  tags: TagItemType[];
 }
