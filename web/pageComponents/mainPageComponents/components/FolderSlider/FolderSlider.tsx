@@ -96,10 +96,9 @@ const FolderSlider = ({ data, isLoading }: Props) => {
             등록된 북마크 폴더가 없어요!
             <br />
             <br />
-            <br />
             지금 바로 나만의 북마크 폴더를
             <br />
-            만들어 보세요!😊
+            만들어 보세요!😯
           </Text>
         </S.DefaultContainer>
       );

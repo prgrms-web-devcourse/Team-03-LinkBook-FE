@@ -3,7 +3,7 @@ import { Button, Text } from '../../../../components';
 
 export const Container = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 15px;
   align-items: flex-end;
   justify-content: center;
   width: 100%;
@@ -41,10 +41,9 @@ export const MainColorHeader = styled(Header)`
 `;
 
 export const Description = styled(Text)`
-  font-size: ${({ theme }) => theme.fontSize.h[1]};
-  font-weight: 700;
+  font-size: ${({ theme }) => theme.fontSize.b[0]};
+  font-weight: 500;
   text-align: center;
-  line-height: 30px;
 `;
 
 export const MainColorDes = styled(Description)`
@@ -78,9 +77,9 @@ export const LinkButton = styled(Button)`
 `;
 
 export const Whale3Wrapper = styled.div`
-  width: 180px;
+  width: 160px;
   height: 300px;
-  margin-right: 20px;
+  margin-right: 40px;
   background: url('/backgrounds/whale3.svg');
   background-repeat: no-repeat;
   background-position: top right;
