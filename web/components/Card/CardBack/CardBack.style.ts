@@ -24,8 +24,18 @@ export const Card = styled.div<Props>`
 `;
 
 export const IconWrapper = styled.div`
-  display: inline;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border-radius: 50%;
   cursor: pointer;
+  transition: all 0.1s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray[5]};
+  }
 `;
 
 export const BookmarkList = styled.ul<Props>`
@@ -54,6 +64,7 @@ export const Bookmark = styled.li`
   padding: 8px;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 0.1s;
 
   &:hover {
     background-color: ${(props) => props.theme.colors.gray[5]};
