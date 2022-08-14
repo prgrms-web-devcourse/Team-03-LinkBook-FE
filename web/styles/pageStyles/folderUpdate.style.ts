@@ -4,7 +4,7 @@ import { Input, Button } from '../../components';
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 80px auto;
   gap: 24px;
 `;

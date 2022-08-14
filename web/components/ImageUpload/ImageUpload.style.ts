@@ -12,7 +12,7 @@ const ModalImageUploadForm = () => css`
 `;
 
 const PageImageUploadForm = () => css`
-  width: 1200px;
+  width: 1100px;
   height: 600px;
 `;
 
