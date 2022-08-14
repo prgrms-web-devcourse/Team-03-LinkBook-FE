@@ -3,15 +3,34 @@ import { Comment, CreateOrUpdateComment } from '../../../types/comment';
 import { deleteComment, updateComment } from '../../../apis/CommentAPI';
 import { useRef, useState } from 'react';
 import { CommentInput, Profile } from '../../index';
+import { User } from '../../../types';
 
 interface Props {
   comment: Comment;
   folderId: number;
+  parentId?: number;
   userId?: number;
   token?: string;
+  handleCreateComment?: (
+    id: number,
+    parentId: number,
+    content: string,
+    user: User,
+  ) => void;
+  handleDeleteComment: (id: number, parentId: number) => void;
+  handleUpdateComment: (id: number, parentId: number, content: string) => void;
 }
 
-const CommentItem = ({ comment, folderId, userId, token }: Props) => {
+const CommentItem = ({
+  comment,
+  folderId,
+  parentId = null,
+  userId,
+  token,
+  handleCreateComment,
+  handleDeleteComment,
+  handleUpdateComment,
+}: Props) => {
   const { id, content, user, createdAt } = comment;
   const [updating, setUpdating] = useState(false);
   const updateInputRef = useRef<HTMLTextAreaElement>(null);
@@ -23,15 +42,17 @@ const CommentItem = ({ comment, folderId, userId, token }: Props) => {
   const handleClickUpdateComment = async () => {
     if (!updateInputRef) return;
 
+    const editContent = updateInputRef.current.value;
     const newComment: CreateOrUpdateComment = {
       id,
-      content: updateInputRef.current.value,
+      content: editContent,
       folderId,
       userId,
     };
 
     try {
       await updateComment(newComment, token);
+      handleUpdateComment(id, parentId, editContent);
       setUpdating(!updating);
     } catch (error) {
       console.log(error);
@@ -45,6 +66,7 @@ const CommentItem = ({ comment, folderId, userId, token }: Props) => {
 
     try {
       await deleteComment(id, token);
+      handleDeleteComment(id, parentId);
     } catch (error) {
       console.log(error);
       alert('문제가 발생했습니다.');
@@ -57,7 +79,7 @@ const CommentItem = ({ comment, folderId, userId, token }: Props) => {
         <Profile
           version="comment"
           user={user}
-          createdAt={`${createdAt.slice(0, 10)} ${createdAt.slice(11, 19)}`}
+          createdAt={`${createdAt.split('T')[0]}`}
           iconSize={50}
         />
         {userId === user.id && (
@@ -83,6 +105,7 @@ const CommentItem = ({ comment, folderId, userId, token }: Props) => {
           defaultValue={content}
           ref={updateInputRef}
           placeholder="수정할 댓글을 입력해주세요."
+          handleCreateComment={handleCreateComment}
         />
       ) : (
         <S.BodyWrapper>{content}</S.BodyWrapper>

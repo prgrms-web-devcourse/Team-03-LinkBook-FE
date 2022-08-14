@@ -6,8 +6,9 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../recoil/user';
 import { showModalStatus } from '../../recoil/showModal';
 import { showLoginModal } from '../../constants/modal.constants';
-import { CreateOrUpdateComment } from '../../types';
+import { CreateOrUpdateComment, User } from '../../types';
 import { getCookie } from '../../util/cookies';
+import { CommentCreateOrUpdate } from '../../types/comment';
 
 interface Props {
   version: 'comment' | 'update';
@@ -15,6 +16,12 @@ interface Props {
   parentId?: number;
   defaultValue?: string;
   placeholder?: string;
+  handleCreateComment: (
+    id: number,
+    parentId: number,
+    content: string,
+    user: User,
+  ) => void;
 }
 
 const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
@@ -25,6 +32,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
       parentId = null,
       defaultValue = '',
       placeholder,
+      handleCreateComment,
     },
     ref,
   ) => {
@@ -53,7 +61,12 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
           folderId,
           userId: user.id,
         };
-        await createComment(newComment, token);
+        const res: CommentCreateOrUpdate = await createComment(
+          newComment,
+          token,
+        );
+        const { id } = res;
+        handleCreateComment(id, parentId, newComment.content, user);
       } catch (error) {
         console.log(error);
         alert('문제가 발생했습니다.');
