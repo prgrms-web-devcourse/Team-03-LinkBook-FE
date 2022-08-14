@@ -16,7 +16,7 @@ interface Props {
   parentId?: number;
   defaultValue?: string;
   placeholder?: string;
-  handleCreateComment: (
+  handleCreateComment?: (
     id: number,
     parentId: number,
     content: string,
