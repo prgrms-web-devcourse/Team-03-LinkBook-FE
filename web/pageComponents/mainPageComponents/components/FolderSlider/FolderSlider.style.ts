@@ -24,7 +24,7 @@ export const DefaultContainer = styled.div`
   align-items: center;
   z-index: 2;
   width: 1200px;
-  height: 415px;
+  height: 384px;
   border: 3px solid ${({ theme }) => theme.colors.white[0]};
   border-radius: 10px;
   text-align: center;

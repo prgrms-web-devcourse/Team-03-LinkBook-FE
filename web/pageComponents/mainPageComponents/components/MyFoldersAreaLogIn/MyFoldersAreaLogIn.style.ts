@@ -1,15 +1,25 @@
 import styled from '@emotion/styled';
 import { Button } from '../../../../components';
 
+interface Props {
+  hasPinnedFolder: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: auto;
-  padding-top: 100px;
-  padding-bottom: 170px;
+  height: 100vh;
+`;
+
+export const BackgroundImage = styled.div<Props>`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: ${({ hasPinnedFolder }) => (hasPinnedFolder ? '490px' : '100vh')};
+  background: url('/backgrounds/myFoldersAreaLogIn.svg');
 `;
 
 export const Header = styled.div`
@@ -24,5 +34,6 @@ export const Header = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
+  position: relative;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px;
 `;

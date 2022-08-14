@@ -38,13 +38,7 @@ const MyFoldersAreaLogIn = () => {
 
   return (
     <S.Container>
-      <Image
-        src="/backgrounds/myFoldersAreaLogIn.svg"
-        alt="로그인화면"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
-      />
+      <S.BackgroundImage hasPinnedFolder={data.length !== 0} />
       <S.Header>
         <Text color={theme.colors.main[0]}>
           {getUserInfo?.user?.name || '익명의사용자'}
