@@ -1,5 +1,6 @@
 import axios from '.';
 import { Comments, CreateOrUpdateComment } from '../types';
+import { CommentCreateOrUpdate } from '../types/comment';
 import { FOLDERS, COMMENTS } from './url';
 
 // 특정 폴더 댓글 조회
@@ -32,7 +33,7 @@ export const createComment = async (
   );
 
   console.log(res);
-  return res;
+  return res as unknown as CommentCreateOrUpdate;
 };
 
 // 댓글 수정
