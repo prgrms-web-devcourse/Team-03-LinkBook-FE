@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { getTag } from '../../apis/TagAPI';
-import { SubTagList } from '../../pageComponents/folderlistComponents/components/TagCategory/TagCategory.style';
 import { TagType } from '../../types';
 import { TagItemType } from '../../types/tag';
 import { Input, InputResult, Tag } from '../index';
@@ -13,6 +12,7 @@ interface Props {
 
 const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   const [tags, setTags] = useState([]);
+  const selectorRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -62,6 +62,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
 
   const handleResetSelector = () => {
     inputRef.current.value = '';
+    listRef.current.scrollBy(0, 0);
     setActiveItem(0);
   };
 
@@ -113,30 +114,43 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
     setInputResultVisible(true);
   };
 
-  const handleBlurInput = () => {
-    setInputResultVisible(false);
+  const handleCloseInputResult = (e: any) => {
+    const element = selectorRef.current;
+    if (!element) return;
+
+    if (!element.contains(e.target)) {
+      setInputResultVisible(false);
+    }
   };
 
+  useEffect(() => {
+    window.addEventListener('click', handleCloseInputResult);
+    return () => {
+      window.removeEventListener('click', handleCloseInputResult);
+    };
+  }, []);
+
   return (
-    <S.Container {...styles}>
-      <Tag tagItems={selectedTag} handleRemoveTag={handleRemoveTag} />
-      <Input
-        type="text"
-        ref={inputRef}
-        placeholder="클릭 혹은 엔터를 사용해서 태그를 입력해 주세요."
-        onChange={handleFilterInputValue}
-        onKeyDown={handleKeyDown}
-        handleFoucsInput={handleFoucsInput}
-        handleBlurInput={handleBlurInput}
-      />
-      <InputResult
-        active={activeItem}
-        ref={listRef}
-        inputResultVisible={inputResultVisible}
-        inputResults={autoCompleteSearch}
-        onClick={handleClickResultItem}
-      />
-    </S.Container>
+    <>
+      <S.Container ref={selectorRef} {...styles}>
+        <Tag tagItems={selectedTag} handleRemoveTag={handleRemoveTag} />
+        <Input
+          type="text"
+          ref={inputRef}
+          placeholder="클릭 혹은 엔터를 사용해서 태그를 입력해 주세요."
+          onChange={handleFilterInputValue}
+          onKeyDown={handleKeyDown}
+          handleFoucsInput={handleFoucsInput}
+        />
+        <InputResult
+          active={activeItem}
+          ref={listRef}
+          inputResultVisible={inputResultVisible}
+          inputResults={autoCompleteSearch}
+          onClick={handleClickResultItem}
+        />
+      </S.Container>
+    </>
   );
 };
 
