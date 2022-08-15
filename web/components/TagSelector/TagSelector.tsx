@@ -42,7 +42,6 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   }, []);
 
   const handleFilterInputValue = () => {
-    console.log(tags);
     const keyword = inputRef.current.value;
     const filteredSearch = tags.filter((tag) => tag.indexOf(keyword) >= 0);
 
