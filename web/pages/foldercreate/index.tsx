@@ -6,6 +6,7 @@ import {
   Button,
   Icon,
   TagSelector,
+  Seo,
 } from '../../components';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -80,6 +81,7 @@ const FolderCreate = () => {
 
   return (
     <>
+      <Seo title="폴더 생성 | 링크북" />
       <S.ContentContainer>
         <S.SwitchContainer>
           <Switch isPrivate={isPrivate} setIsPrivate={setIsPrivate} />

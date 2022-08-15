@@ -10,6 +10,7 @@ import { useRecoilValue } from 'recoil';
 import { loginStatus } from '../recoil/authentication';
 import nookies from 'nookies';
 import { useEffect, useState } from 'react';
+import { Seo } from '../components';
 
 export const getServerSideProps = (ctx: NextPageContext) => {
   const { token } = nookies.get(ctx);
@@ -33,6 +34,7 @@ const MainPage = ({ token }: Props) => {
 
   return (
     <S.Container>
+      <Seo title="링북" />
       {isLoggedIn ? <MyFoldersAreaLogIn /> : <MyFoldersAreaLogOut />}
       <MainCategory />
       <UseInfo />
