@@ -41,6 +41,7 @@ export const IconWrapper = styled.div`
 export const BookmarkList = styled.ul<Props>`
   height: 340px;
   padding-top: 8px;
+  padding-bottom: 16px;
   /* overflow: auto; */
   overflow: ${({ reverseCard }) => (reverseCard ? 'auto' : 'hidden')};
   overscroll-behavior-y: ${({ reverseCard }) =>
