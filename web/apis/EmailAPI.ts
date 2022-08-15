@@ -7,7 +7,6 @@ export const requestEmailKey = async (email: string) => {
     email,
   });
 
-  console.log(res);
   return res;
 };
 
@@ -18,6 +17,5 @@ export const validateEmailKey = async (email: string, key: string) => {
     key,
   });
 
-  console.log(res);
   return res;
 };

@@ -27,7 +27,6 @@ export const getFolderList = async (
     },
   });
 
-  console.log(res);
   return res as unknown as AllFolderList;
 };
 
@@ -47,7 +46,6 @@ export const getUserFolderList = async (
     },
   });
 
-  console.log(res);
   return res as unknown as SpecificUserFolderList;
 };
 
@@ -63,7 +61,6 @@ export const getFolder = async (id: number, token?: string) => {
     : null;
   const res = await axios.get(`${FOLDERS}/${id}`, tokenData);
 
-  console.log(res);
   return res as unknown as SpecificFolder;
 };
 
@@ -150,14 +147,12 @@ export const createFolder = async (
     bookmarks,
     originId,
   };
-  console.log(data);
   const res = await axios.post(`${FOLDERS}`, data, {
     headers: {
       'Access-Token': token,
     },
   });
 
-  console.log(res);
   return res as unknown as FolderCreateOrUpdate;
 };
 
@@ -194,7 +189,6 @@ export const updateFolder = async (
     },
   );
 
-  console.log(res);
   return res;
 };
 
@@ -207,6 +201,5 @@ export const deleteFolder = async (id: number, token: string) => {
     },
   });
 
-  console.log(res);
   return res;
 };

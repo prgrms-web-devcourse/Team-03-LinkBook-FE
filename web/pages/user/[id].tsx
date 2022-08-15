@@ -69,7 +69,6 @@ const UserPage = () => {
             size,
             sort,
           });
-          console.log(res);
           setFolderData(res.folders.content);
           setTotalElement(res.folders.totalElements);
           setIsLoading(false);
@@ -117,7 +116,6 @@ const UserPage = () => {
       if (selectedItem.value === 'pinned') {
         try {
           const res: PinnedFolder = await getPinnedFolder(token);
-          console.log(res);
           setFolderData(res.folders);
           setTotalElement(res.folders.length);
           setIsLoading(false);
