@@ -17,13 +17,14 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   const [activeItem, setActiveItem] = useState(0);
+  const [inputResultVisible, setInputResultVisible] = useState(false);
   const [autoCompleteSearch, setAutoCompleteSearch] = useState<string[]>(tags);
 
   useEffect(() => {
     (async () => {
       try {
         const res: TagType = await getTag();
-        let subTags: string[] = [];
+        const subTags: string[] = [];
 
         res.tags.forEach((tag: TagItemType) => {
           tag.subTags.forEach((subTag: string) => {
@@ -35,7 +36,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
         setAutoCompleteSearch(subTags);
       } catch (error) {
         console.log(error);
-        alert('문제가 발생했습니다.')
+        alert('문제가 발생했습니다.');
       }
     })();
   }, []);
@@ -109,6 +110,14 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
     }
   };
 
+  const handleFoucsInput = () => {
+    setInputResultVisible(true);
+  };
+
+  const handleBlurInput = () => {
+    setInputResultVisible(false);
+  };
+
   return (
     <S.Container {...styles}>
       <Tag tagItems={selectedTag} handleRemoveTag={handleRemoveTag} />
@@ -118,11 +127,13 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
         placeholder="클릭 혹은 엔터를 사용해서 태그를 입력해 주세요."
         onChange={handleFilterInputValue}
         onKeyDown={handleKeyDown}
+        handleFoucsInput={handleFoucsInput}
+        handleBlurInput={handleBlurInput}
       />
       <InputResult
         active={activeItem}
         ref={listRef}
-        inputResultVisible={true}
+        inputResultVisible={inputResultVisible}
         inputResults={autoCompleteSearch}
         onClick={handleClickResultItem}
       />
