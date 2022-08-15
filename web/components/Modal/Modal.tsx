@@ -4,7 +4,6 @@ import { Icon } from '../index';
 import FirstLogin from './FirstLogin';
 import Login from './Login';
 import SignUp from './SignUp';
-import Bookmark from './Bookmark';
 import User from './User';
 import { useSetRecoilState } from 'recoil';
 import { showModalStatus } from '../../recoil/showModal';
@@ -33,8 +32,6 @@ const Modal = ({ version, show }: Props) => {
         return <Login />;
       case 'signUp':
         return <SignUp />;
-      case 'bookmark':
-        return <Bookmark />;
       case 'user':
         return <User />;
       default:
