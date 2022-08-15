@@ -4,7 +4,6 @@ import type { LogIn, MyInfo, SignUpOrIn, UpdateInfo } from '../types';
 
 // 회원가입
 export const userSignUp = async ({ email, password }: SignUpOrIn) => {
-  console.log(email, password);
   const res = await axios.post(`${USER}${SIGNUP}`, {
     email,
     password,
@@ -12,19 +11,16 @@ export const userSignUp = async ({ email, password }: SignUpOrIn) => {
       'https://linkbook-s3-1.s3-ap-northeast-2.amazonaws.com/static/userImage.png.png',
   });
 
-  console.log(res);
   return res;
 };
 
 // 로그인
 export const userLogin = async ({ email, password }: SignUpOrIn) => {
-  console.log(email, password);
   const res = await axios.post(`${USER}${LOGIN}`, {
     email,
     password,
   });
 
-  console.log(res);
   return res as unknown as LogIn;
 };
 
@@ -36,7 +32,6 @@ export const getUserInfo = async (token: string) => {
     },
   });
 
-  console.log(res);
   return res as unknown as MyInfo;
 };
 
@@ -60,6 +55,5 @@ export const updateUserInfo = async (
     },
   );
 
-  console.log(res);
   return res;
 };

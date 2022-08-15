@@ -7,7 +7,6 @@ import { FOLDERS, COMMENTS } from './url';
 export const getFolderComment = async (id: number) => {
   const res = await axios.get(`${COMMENTS}${FOLDERS}/${id}`);
 
-  console.log(res);
   return res as unknown as Comments;
 };
 
@@ -32,7 +31,6 @@ export const createComment = async (
     },
   );
 
-  console.log(res);
   return res as unknown as CommentCreateOrUpdate;
 };
 
@@ -57,7 +55,6 @@ export const updateComment = async (
     },
   );
 
-  console.log(res);
   return res;
 };
 
@@ -70,6 +67,5 @@ export const deleteComment = async (id: number, token: string) => {
     },
   });
 
-  console.log(res);
   return res;
 };

@@ -16,7 +16,6 @@ const BookmarkList = ({ version, bookmarkItems, setBookmarks }: Props) => {
       event.preventDefault();
 
       const newBookmarks = bookmarkItems.filter(({ url }) => url !== removeUrl);
-      console.log(newBookmarks);
       setBookmarks(newBookmarks);
     },
     [bookmarkItems],

@@ -21,7 +21,6 @@ export const createLike = async (
     },
   );
 
-  console.log(res);
   return res;
 };
 
@@ -34,6 +33,5 @@ export const deleteLike = async (id: number, token: string) => {
     },
   });
 
-  console.log(res);
   return res;
 };

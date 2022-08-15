@@ -54,7 +54,6 @@ const Page01 = ({ handlePage }: Props) => {
   };
 
   const handleClickCheckValidate: MouseEventHandler = (e) => {
-    console.log(isValidate);
     if (!isValidate) {
       alert('이메일 인증을 먼저 진행해주세요.');
       return;

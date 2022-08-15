@@ -15,7 +15,6 @@ export const uploadImageToS3 = async (file: File) => {
 
   try {
     const res = await s3.uploadFile(file, fileName);
-    console.log(res);
     return res;
   } catch (exception) {
     console.log(exception);
@@ -35,7 +34,6 @@ export const deleteImageToS3 = async (file: File) => {
 export const listFiles = async () => {
   try {
     const fileList = await s3.listFiles();
-    console.log(fileList);
   } catch (exception) {
     console.log(exception);
   }

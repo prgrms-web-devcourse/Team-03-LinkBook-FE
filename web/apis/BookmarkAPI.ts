@@ -15,7 +15,6 @@ export const updateBookmark = async ({
     folderId,
   });
 
-  console.log(res);
   return res;
 };
 
@@ -24,6 +23,5 @@ export const updateBookmark = async ({
 export const deleteBookmark = async (id: number) => {
   const res = await axios.delete(`${BOOKMARKS}/${id}`);
 
-  console.log(res);
   return res;
 };

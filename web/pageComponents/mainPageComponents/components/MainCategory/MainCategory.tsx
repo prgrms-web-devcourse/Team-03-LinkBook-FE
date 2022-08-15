@@ -11,7 +11,6 @@ const MainCategory = () => {
     { name: '최신순', value: 'createdAt,desc' },
     { name: '오래된순', value: 'createdAt,asc' },
     { name: '인기순', value: 'likes,desc' },
-    { name: '아이디순', value: 'id' },
   ];
   const router = useRouter();
   const [data, setData] = useState([]);
