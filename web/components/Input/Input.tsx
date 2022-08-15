@@ -10,6 +10,8 @@ interface Props {
   onKeyDown?: KeyboardEventHandler;
   ref?: React.Ref<HTMLInputElement>;
   errorText?: string;
+  handleFoucsInput?: () => void;
+  handleBlurInput?: () => void;
 }
 
 const defaultProps = {
@@ -27,6 +29,8 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
       type,
       onKeyDown,
       errorText,
+      handleFoucsInput,
+      handleBlurInput,
       ...styles
     },
     ref,
@@ -40,6 +44,8 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
             maxLength={maxLength}
             onChange={onChange}
             onKeyDown={onKeyDown}
+            onFocus={handleFoucsInput}
+            onBlur={handleBlurInput}
             ref={ref}
             {...styles}
           />
