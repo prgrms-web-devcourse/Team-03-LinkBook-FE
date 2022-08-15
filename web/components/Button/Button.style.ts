@@ -69,6 +69,16 @@ export const Button = styled.button`
     transition: all 0.2s;
     transform: scale(0.95);
   }
+  &:disabled {
+    cursor: auto;
+    background-color: ${({ theme }) => theme.colors.gray[3]};
+  }
+  &:disabled:hover {
+    transform: none;
+  }
+  &:disabled:active {
+    transform: scale(1);
+  }
 
   ${({ version }: Props) => {
     switch (version) {
