@@ -1,10 +1,11 @@
 import * as S from '../../Modal.style';
-import { Button, Input } from '../../../index';
+import { Button, Icon, Input } from '../../../index';
 import { MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUserInfo } from '../contexts/UserProvider';
 import { requestEmailKey, validateEmailKey } from '../../../../apis/EmailAPI';
 import { RegisterValidation } from '../../../../constants/validation.constants';
+import Timer from './Timer';
 
 interface Props {
   handlePage: MouseEventHandler;
@@ -17,6 +18,8 @@ interface EmailInput {
 const Page01 = ({ handlePage }: Props) => {
   const [emailValue, setEmailValue] = useState('');
   const [isValidate, setIsValidate] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [timerVisible, setTimerVisible] = useState(false);
   const { setEmail } = useUserInfo();
   const keyRef = useRef<HTMLInputElement>(null);
   const {
@@ -30,9 +33,12 @@ const Page01 = ({ handlePage }: Props) => {
       const { email } = data;
 
       try {
+        setIsLoading(true);
         await requestEmailKey(email);
         setEmailValue(email);
         alert('입력한 이메일로 인증 코드가 전송되었습니다.');
+        setIsLoading(false);
+        setTimerVisible(true);
       } catch (error) {
         alert('문제가 발생했습니다. 다시 시도해주세요.');
         console.log(error);
@@ -47,6 +53,7 @@ const Page01 = ({ handlePage }: Props) => {
       alert('인증되었습니다.');
       setIsValidate(true);
       setEmail(emailValue);
+      setTimerVisible(false);
     } catch (error) {
       alert('인증코드가 일치하지 않습니다.');
       console.log(error);
@@ -81,9 +88,20 @@ const Page01 = ({ handlePage }: Props) => {
             pattern: RegisterValidation.email,
           })}
         >
-          <Button type="submit" version="modal">
-            인증번호 발송
-          </Button>
+          {isLoading ? (
+            <Button type="submit" version="modal" disabled={true}>
+              <S.Spinner>
+                <Icon name="loading" size={14} />
+              </S.Spinner>
+            </Button>
+          ) : (
+            <>
+              {timerVisible && <Timer mm={3} ss={0} />}
+              <Button type="submit" version="modal">
+                인증번호 발송
+              </Button>
+            </>
+          )}
         </Input>
         <Input
           placeholder="이메일로 발송된 인증 코드를 입력해주세요."
