@@ -26,7 +26,7 @@ export const BookmarkInput = ({ bookmarks, setBookmarks }: Props) => {
       const newBookmarks = [...bookmarks, { title, url }];
       setBookmarks(newBookmarks);
 
-      reset(data);
+      reset({ title: '', url: '' });
     },
     [bookmarks],
   );
