@@ -13,7 +13,6 @@ import LogoutSection from './LogoutSection';
 
 export const getServerSideProps = (ctx: NextPageContext) => {
   const { token } = nookies.get(ctx);
-  console.log(token);
   return {
     props: {
       token,
