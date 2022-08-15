@@ -27,6 +27,8 @@ const SearchBar = ({ setShowSearchBar }: Props) => {
       alert('올바른 검색어를 입력해주세요.');
       return;
     }
+
+    handleClickCloseSearchBar();
     Router.push(
       {
         pathname: `${PAGE_URL.LIST}`,
@@ -47,6 +49,7 @@ const SearchBar = ({ setShowSearchBar }: Props) => {
       if (e.keyCode === 229) return;
       if (e.key === 'Enter') {
         handleOnSearch();
+        handleClickCloseSearchBar();
       }
     };
 
