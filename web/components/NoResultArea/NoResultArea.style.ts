@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1100px;
   height: 405px;
+  margin-bottom: 40px;
   font-family: 'Noto Sans KR', sans-serif;
   background: url('/backgrounds/NoResultArea.svg');
   border-radius: 10px;
