@@ -227,3 +227,14 @@ export const ErrorText = styled.p`
 export const TagSelectorWrapper = styled.div`
   height: 200px;
 `;
+
+export const Spinner = styled.div`
+  width: 14px;
+  height: 14px;
+  animation: spin 1000ms infinite linear;
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
