@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Text } from '../../../../components';
 
 interface Props {
   active?: boolean;
@@ -9,6 +8,7 @@ interface Props {
 
 export const Container = styled.div`
   width: 100%;
+  height: 350px;
   margin-bottom: 50px;
   background: url('/backgrounds/myFoldersAreaLogout.svg');
   background-repeat: no-repeat;
