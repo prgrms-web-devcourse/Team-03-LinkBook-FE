@@ -128,52 +128,6 @@
 
 # 📁 프로젝트 구조
 
-```
-📦src
- ┣ 📂api
- ┣ 📂assets
- ┣ 📂components
- ┣ 📂contexts
- ┣ 📂hoc
- ┣ 📂hooks
- ┣ 📂mock
- ┣ 📂pages
- ┃ ┣ 📂GuidePage
- ┃ ┣ 📂MainPage
- ┃ ┃ ┣ 📂components
- ┃ ┃ ┣ 📜index.js
- ┃ ┃ ┗ 📜MainPage.style.js
- ┃ ┣ 📂NotFoundPage
- ┃ ┃ ┣ 📜index.js
- ┃ ┃ ┗ 📜NotFoundPage.style.js
- ┃ ┣ 📂PostListPage
- ┃ ┃ ┣ 📂components
- ┃ ┃ ┣ 📜index.js
- ┃ ┃ ┗ 📜PostListPage.style.js
- ┃ ┣ 📂PostPage
- ┃ ┃ ┣ 📂components
- ┃ ┃ ┣ 📂data
- ┃ ┃ ┣ 📂PostCreatePage
- ┃ ┃ ┣ 📂PostDetailPage
- ┃ ┃ ┣ 📂PostEditPage
- ┃ ┃ ┣ 📜index.js
- ┃ ┃ ┗ 📜PostPage.style.js
- ┃ ┣ 📂UserPage
- ┃ ┃ ┣ 📂components
- ┃ ┃ ┣ 📜index.js
- ┃ ┃ ┗ 📜UserPage.style.js
- ┃ ┗ 📜index.js
- ┣ 📂recoil
- ┣ 📂repository
- ┣ 📂stories
- ┣ 📂styles
- ┣ 📂utils
- ┣ 📜App.js
- ┣ ...
- ┗ 📜setupTests.js
-```
-<br>
-
 ![image](https://user-images.githubusercontent.com/72294509/184610986-1cb2c6b6-01bc-486b-822a-c82b4ffd527f.png)
 
 
