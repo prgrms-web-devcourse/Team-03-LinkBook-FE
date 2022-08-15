@@ -1,15 +1,10 @@
 import * as S from '../../Modal.style';
-import {
-  FormEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { Button, Icon, TagSelector } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
 
 interface Props {
-  handleNextPage: FormEventHandler;
+  handleNextPage: MouseEventHandler;
   handlePreviousPage: MouseEventHandler;
 }
 
@@ -17,7 +12,9 @@ const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
   const { userInfo, setUserInterests } = useUserInfo();
   const [selectedTag, setSelectedTag] = useState([]);
 
-  const handleClickStoreInterests: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleClickStoreInterests: MouseEventHandler<HTMLButtonElement> = (
+    e,
+  ) => {
     e.preventDefault();
 
     setUserInterests(selectedTag);
@@ -29,7 +26,7 @@ const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
   }, [userInfo]);
 
   return (
-    <S.FormContainer onSubmit={handleClickStoreInterests}>
+    <S.InnerContainer>
       <S.PreviousButton onClick={handlePreviousPage}>
         <Icon name="arrowLeft" size={30} />
       </S.PreviousButton>
@@ -48,9 +45,11 @@ const Page03 = ({ handleNextPage, handlePreviousPage }: Props) => {
         />
       </S.TagSelectorWrapper>
       <S.ButtonContainer>
-        <Button type="submit">다음 &gt;</Button>
+        <Button type="button" onClick={handleClickStoreInterests}>
+          다음 &gt;
+        </Button>
       </S.ButtonContainer>
-    </S.FormContainer>
+    </S.InnerContainer>
   );
 };
 

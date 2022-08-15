@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Page01, Page02, Page03, Page04, Page05 } from './FirstLoginPage';
-import { InnerContainer } from '../Modal.style';
 import UserInfoProvider from './contexts/UserInfoProvider';
 
 const FirstLogin = () => {

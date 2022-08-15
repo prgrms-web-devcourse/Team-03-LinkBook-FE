@@ -70,7 +70,7 @@ const ContentSection = ({ id }: Props) => {
               <S.Date>{data.createdAt.slice(0, 10)}</S.Date>
             </S.ProfileContainer>
             <S.TagWrapper>
-              <Tag tagItems={data.tags} shrinking />
+              <Tag tagItems={data.tags} />
             </S.TagWrapper>
             <S.ImageWrapper>
               <Image
