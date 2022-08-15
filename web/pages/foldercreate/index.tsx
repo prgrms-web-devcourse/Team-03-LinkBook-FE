@@ -90,7 +90,7 @@ const FolderCreate = () => {
         <TagSelector selectedTag={tags} setSelectedTag={setTags} />
         <S.TitleInput
           type="text"
-          maxLength={20}
+          maxLength={40}
           placeholder="제목을 입력해 주세요"
           ref={titleInput}
         />
