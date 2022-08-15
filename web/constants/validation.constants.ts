@@ -11,6 +11,6 @@ export const RegisterValidation = {
   email: LoginValidation.email,
   password: {
     value: PASSWORD_REGEX,
-    message: '8-20자, 문자와 숫자의 조합으로 입력해주세요.',
+    message: '8-20자, 영문자와 숫자의 조합으로 입력해주세요.',
   },
 } as const;
