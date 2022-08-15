@@ -44,7 +44,7 @@ export const cookieCheck = async () => {
   const RefreshToken = await getCookie(REFRESH_TOKEN, URL);
   const AccesToken = await getCookie(ACCESS_TOKEN, URL);
 
-  if (Number(ExpireTime) < CURRENT_TIME && RefreshToken) {
+  if (!ExpireTime && RefreshToken) {
     const reissuanceAccessToken = await onReissuanceAccessToken();
     const NewAccessToken = await setCookie(
       ACCESS_TOKEN,
@@ -53,11 +53,18 @@ export const cookieCheck = async () => {
       reissuanceAccessToken,
       true
     );
+    await setCookie(
+      EXPIRE_TIME,
+      DOMAIN,
+      URL,
+      (CURRENT_TIME + 18000).toString(),
+      false
+    );
 
     return NewAccessToken;
   }
 
-  if (Number(ExpireTime) < CURRENT_TIME && !RefreshToken) return null;
+  if (!ExpireTime && !RefreshToken) return null;
 
   return AccesToken;
 };

@@ -10,7 +10,7 @@ export const URL = "https://linkbook.tk/";
 
 export const DOMAIN = ".linkbook.tk";
 
-export const BaseUrl = "https://www.linkbook-api.tk/api";
+export const BaseUrl = process.env.REACT_APP_API_END_POINT;
 
 export const USER = "/users";
 
