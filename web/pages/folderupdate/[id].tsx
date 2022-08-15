@@ -6,6 +6,7 @@ import {
   Button,
   Icon,
   TagSelector,
+  Seo,
 } from '../../components';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -99,6 +100,7 @@ const FolderUpdate = () => {
   return (
     <>
       <S.ContentContainer>
+        <Seo title="폴더 수정페이지 | 링북" />
         <S.SwitchContainer>
           <Switch isPrivate={isPrivate} setIsPrivate={setIsPrivate} />
           <S.IconWrapper onClick={changePin}>

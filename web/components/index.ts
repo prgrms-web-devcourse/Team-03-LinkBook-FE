@@ -22,3 +22,4 @@ export { default as InputResult } from './InputResult';
 export { default as TagSelector } from './TagSelector';
 export { default as SearchBar } from './SearchBar';
 export { default as NoResultArea } from './NoResultArea';
+export { default as Seo } from './Seo';

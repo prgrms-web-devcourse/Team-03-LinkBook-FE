@@ -4,6 +4,7 @@ import {
   CommentSection,
   ContentSection,
 } from '../../pageComponents/folderdetailComponents/components';
+import { Seo } from '../../components';
 
 const folderDetailPage = () => {
   const router = useRouter();
@@ -11,6 +12,7 @@ const folderDetailPage = () => {
 
   return (
     <S.Container>
+      <Seo title="폴더 상세페이지 | 링북" />
       <ContentSection id={id} />
       <S.Line />
       <CommentSection id={id} />

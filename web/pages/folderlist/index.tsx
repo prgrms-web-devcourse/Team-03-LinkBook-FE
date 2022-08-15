@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getFolderList, getTagFolder } from '../../apis/FolderAPI';
-import { Category, Pagination } from '../../components';
+import { Category, Pagination, Seo } from '../../components';
 import { TagCategory } from '../../pageComponents/folderlistComponents/components';
 import * as S from '../../styles/pageStyles/folderList.style';
 import { AllFolderList, TabType } from '../../types';
@@ -81,6 +81,7 @@ const FolderList = () => {
 
   return (
     <S.PageContainer>
+      <Seo title="폴더 리스트 | 링북" />
       {type === 'explore' && <TagCategory />}
       <S.CategoryWrapper>
         <S.DescriptionText>{label()}</S.DescriptionText>

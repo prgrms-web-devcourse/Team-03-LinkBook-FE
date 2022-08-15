@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userInfo } from '../../recoil/user';
-import { Category, Modal, Pagination, Profile } from '../../components';
+import { Category, Modal, Pagination, Profile, Seo } from '../../components';
 import * as S from '../../styles/pageStyles/user.style';
 import {
   AllFolderList,
@@ -152,6 +152,7 @@ const UserPage = () => {
 
   return (
     <>
+      <Seo title="마이페이지 | 링북" />
       <Modal version="user" show={showModal.User} />
       <S.PageContainer>
         <S.ProfileWrapper>
