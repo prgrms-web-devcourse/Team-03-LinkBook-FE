@@ -15,7 +15,7 @@ const PrivateSection = ({ id, isPrivate, isPinned, token }: Props) => {
   const router = useRouter();
 
   const handleClickMoveUpdate = () => {
-    router.push(`/${PAGE_URL.UPDATE}/${id}`);
+    router.push(`${PAGE_URL.UPDATE}/${id}`);
   };
 
   const handleClickDeletePost = async () => {
