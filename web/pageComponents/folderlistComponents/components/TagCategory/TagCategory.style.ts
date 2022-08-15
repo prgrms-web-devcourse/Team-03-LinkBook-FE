@@ -8,16 +8,19 @@ interface Props {
 }
 
 export const Container = styled.div`
-  width: 1100px;
+  width: 100%;
   margin-bottom: 50px;
-  /* background: url('/backgrounds/myFoldersAreaLogout.svg');
+  background: url('/backgrounds/myFoldersAreaLogout.svg');
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
 `;
 
-export const Header = styled(Text)`
+export const Header = styled.div`
+  width: 1100px;
+  margin: 0 auto;
   font-size: ${({ theme }) => theme.fontSize.h[0]};
   font-weight: bold;
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 export const MainTagList = styled.ul`
@@ -53,7 +56,7 @@ export const MainTag = styled.li<Props>`
   font-family: 'Noto Sans KR', sans-serif;
   background-color: ${({ theme, active }) =>
     active ? theme.colors.gray[5] : theme.colors.white[0]};
-  border: 2px solid ${({ theme }) => theme.colors.gray[5]};
+  /* border: 2px solid ${({ theme }) => theme.colors.gray[5]}; */
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.1s;
@@ -82,7 +85,6 @@ export const SubTagList = styled.ul<Props>`
   font-family: 'Noto Sans KR', sans-serif;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 10px -3px;
   transition: max-height 0.2s;
-  animation: fadeIn 2s ease-out;
 
   &::-webkit-scrollbar {
     width: 8px;

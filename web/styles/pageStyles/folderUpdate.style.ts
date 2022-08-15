@@ -23,6 +23,7 @@ export const TitleInput = styled(Input)`
   margin-top: -16px;
   font-size: ${({ theme }) => theme.fontSize.t[0]};
   font-weight: 700;
+
   ::placeholder {
     color: ${({ theme }) => theme.colors.gray[3]};
   }
