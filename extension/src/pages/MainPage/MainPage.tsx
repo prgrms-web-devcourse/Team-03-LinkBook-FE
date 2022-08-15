@@ -41,7 +41,7 @@ const MainPage = () => {
   };
 
   const handleErrorImg = (e: ChangeEvent<HTMLImageElement>) => {
-    e.target.src = "/icons/defaultImg.png";
+    e.target.src = "/icons/logo-128.png";
   };
 
   const handleSubmit = () => {

@@ -1,6 +1,6 @@
 {
-  "name": "Linkbook",
-  "description": "Linkbook extension",
+  "name": "링북",
+  "description": "북마크를 연결하다",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
@@ -10,7 +10,7 @@
   "icons": {
     "16": "./icons/logo-ex.png",
     "48": "./icons/logo-ex.png",
-    "128": "./icons/logo-ex.png"
+    "128": "./icons/logo-128.png"
   },
   "content_scripts": [
     {
