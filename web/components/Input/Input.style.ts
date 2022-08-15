@@ -21,6 +21,7 @@ export const Action = styled.div`
   right: 0;
   bottom: 0;
   display: flex;
+  align-items: center;
   padding-right: 8px;
   padding-bottom: 8px;
 `;
