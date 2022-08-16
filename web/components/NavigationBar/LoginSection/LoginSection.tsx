@@ -25,6 +25,7 @@ const LoginSection = () => {
     removeCookie('REFRESH_TOKEN');
     setLoginState(false);
     resetUserInfoValue();
+    router.push('/');
   };
 
   useEffect(() => {
