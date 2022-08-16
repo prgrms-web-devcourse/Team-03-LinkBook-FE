@@ -56,7 +56,6 @@ export const MainTag = styled.li<Props>`
   font-family: 'Noto Sans KR', sans-serif;
   background-color: ${({ theme, active }) =>
     active ? theme.colors.gray[5] : theme.colors.white[0]};
-  /* border: 2px solid ${({ theme }) => theme.colors.gray[5]}; */
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.1s;
