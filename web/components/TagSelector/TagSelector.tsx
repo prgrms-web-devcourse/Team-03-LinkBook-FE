@@ -62,7 +62,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
 
   const handleResetSelector = () => {
     inputRef.current.value = '';
-    listRef.current.scrollBy(0, 0);
+    listRef.current.scrollTo(0, 0);
     setActiveItem(0);
   };
 
@@ -88,13 +88,13 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
       case 'ArrowUp':
         if (activeItem > 0) {
           setActiveItem(activeItem - 1);
-          node?.scrollBy(0, -itemHeight);
+          node?.scrollTo(0, itemHeight * (activeItem - 1));
         }
         break;
       case 'ArrowDown':
         if (activeItem < autoCompleteSearch.length - 1) {
           setActiveItem(activeItem + 1);
-          node?.scrollBy(0, itemHeight);
+          node?.scrollTo(0, itemHeight * activeItem);
         }
         break;
       case 'Enter':
