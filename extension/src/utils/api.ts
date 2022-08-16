@@ -3,7 +3,6 @@ import {
   ACCESS_TOKEN,
   BOOKMARKS,
   CURRENT_TIME,
-  DOMAIN,
   EXPIRE_TIME,
   FOLDER_DEFAULT_IMG,
   REFRESH_TOKEN,
@@ -48,18 +47,11 @@ export const cookieCheck = async () => {
     const reissuanceAccessToken = await onReissuanceAccessToken();
     const NewAccessToken = await setCookie(
       ACCESS_TOKEN,
-      DOMAIN,
       URL,
       reissuanceAccessToken,
       true
     );
-    await setCookie(
-      EXPIRE_TIME,
-      DOMAIN,
-      URL,
-      (CURRENT_TIME + 18000).toString(),
-      false
-    );
+    await setCookie(EXPIRE_TIME, URL, (CURRENT_TIME + 18000).toString(), false);
 
     return NewAccessToken;
   }

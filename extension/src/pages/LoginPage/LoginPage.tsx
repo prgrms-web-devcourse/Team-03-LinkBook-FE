@@ -6,7 +6,6 @@ import { userLogin } from "../../utils/api";
 import {
   ACCESS_TOKEN,
   CURRENT_TIME,
-  DOMAIN,
   EXPIRE_TIME,
   REFRESH_TOKEN,
   URL,
@@ -39,11 +38,10 @@ const LoginPage = ({ isLogin }: Props) => {
         if (!res) throw new Error("잘못된 로그인 리스폰스 타입");
         const { accessToken, refreshToken } = res;
 
-        await setCookie(ACCESS_TOKEN, DOMAIN, URL, accessToken, true);
-        await setCookie(REFRESH_TOKEN, DOMAIN, URL, refreshToken, true);
+        await setCookie(ACCESS_TOKEN, URL, accessToken, true);
+        await setCookie(REFRESH_TOKEN, URL, refreshToken, true);
         await setCookie(
           EXPIRE_TIME,
-          DOMAIN,
           URL,
           (CURRENT_TIME + 18000).toString(),
           false
