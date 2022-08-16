@@ -18,13 +18,13 @@
 
 # 🐳 목차
 
-1. [🐳 프로젝트 소개](#🐳-프로젝트-소개)
-2. [🐳 프로젝트 화면](#🐳-프로젝트-화면)
-3. [📚 사용 기술](#📚-사용-기술)
-4. [📁 프로젝트 구조](#📁-프로젝트-구조)
-5. [💻 익스텐션 사용방법](#💻-익스텐션-사용방법)
-6. [👍 Convention](#👍-Convention)
-7. [🤼‍♀️ 팀 소개](#🤼‍♀️-팀-소개강력3팀)
+1. [🐳 프로젝트 소개](#-프로젝트-소개)
+2. [🐳 프로젝트 화면](#-프로젝트-화면)
+3. [📚 사용 기술](#-사용-기술)
+4. [📁 프로젝트 구조](#-프로젝트-구조)
+5. [💻 익스텐션 사용방법](#-익스텐션-사용방법)
+6. [👍 Convention](#-convention)
+7. [🤼‍♀️ 팀 소개](#%EF%B8%8F-팀-소개)
 
 <br><br><br>
 
@@ -131,6 +131,7 @@
 
 ### 📃 Languages / Libraries
 
+![NextJS](https://img.shields.io/badge/NextJS-%23000000.svg?style=for-the-badge&logo=Next.js&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-004088.svg?style=for-the-badge&logo=typescript&logoColor=white)<br/>
 ![Recoil](https://img.shields.io/badge/Recoil-white?style=for-the-badge&logo=react&logoColor=black)
@@ -163,10 +164,9 @@
 ### 📃 Languages / Libraries
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-004088.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-004088.svg?style=for-the-badge&logo=typescript&logoColor=white)<br/>
 ![ContextAPI](https://img.shields.io/badge/Context_API-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![axios](https://img.shields.io/badge/Axios-3668FF?style=for-the-badge&logo=react&logoColor=white)
-![Storybook](https://img.shields.io/badge/storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
 ![Emotion](https://img.shields.io/badge/Emotion-%237F5AB6?style=for-the-badge&logo=react&logoColor=white)
 
 <br><br><br>
@@ -243,9 +243,9 @@ Design: 스타일(CSS) 수정
 
 <br><br><br>
 
-# 🤼‍♀️ 팀 소개(강력3팀)
+# 🤼‍♀️ 팀 소개
 
-## 프론트엔드
+## 강력 3팀 프론트엔드
 
 | [김동언](https://github.com/960817)                                              | [민상기](https://github.com/Steadystudy)                                         | [유용상](https://github.com/Miral3)                                              | [정지영](https://github.com/Jungjjeong)                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -254,7 +254,7 @@ Design: 스타일(CSS) 수정
 
 <br><br>
 
-## 백엔드
+## 강력 3팀 백엔드
 
 [🐳 링북 백엔드 레포](https://github.com/prgrms-web-devcourse/Team-03-LinkBook-BE)
 
@@ -294,7 +294,7 @@ Design: 스타일(CSS) 수정
     <td><b>김수미</b></td>
   </tr>
   <tr>
-    <td><b>Product Owner</b></td>
+    <td><b>Backend Developer</b></td>
     <td><b>Backend Developer</b></td>
     <td><b>Backend Developer</b></td>
     <td><b>Backend Developer</b></td>
