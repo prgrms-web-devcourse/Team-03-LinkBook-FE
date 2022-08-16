@@ -39,7 +39,6 @@
 # 🐳 프로젝트 화면
 
 ### 1️⃣ 크롬 익스텐션
-
 <img width="1440" alt="스크린샷 2022-08-15 오후 3 58 44" src="https://user-images.githubusercontent.com/92906766/184805826-02a201fd-783d-4c23-8d15-55974e7dd53e.png">
 <p>
 <img width=33% alt="스크린샷 2022-08-15 오전 1 49 09" src="https://user-images.githubusercontent.com/92906766/184805908-0f513f7f-e99c-4ad0-8eae-0e378b577a52.png">
@@ -52,7 +51,6 @@
 <img width=33% alt="스크린샷 2022-08-15 오후 9 09 26" src="https://user-images.githubusercontent.com/92906766/184806009-7b31a283-2bfb-4f0c-8cad-049f377e15c8.png">
 <img width=33% alt="스크린샷 2022-08-15 오전 2 23 29" src="https://user-images.githubusercontent.com/92906766/184806040-de6ba4b3-c551-4f84-acf9-954c26b8fe50.png">
 </p>
-
 <br>
 
 ### 2️⃣ 메인
@@ -165,7 +163,6 @@
 <br>
 6. 우측 상단에서 링북 익스텐션을 여시면 됩니다! <br>
 <img width="372" alt="스크린샷 2022-08-16 오후 5 01 37" src="https://user-images.githubusercontent.com/92906766/184828883-f2a82f85-7dbf-4cf3-a136-b73bc0b6ab17.png">
-
 
 
 # 👍 Convention
