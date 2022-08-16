@@ -51,7 +51,7 @@
 <p>
 <img width=33% alt="스크린샷 2022-08-15 오후 9 09 26" src="https://user-images.githubusercontent.com/92906766/184806009-7b31a283-2bfb-4f0c-8cad-049f377e15c8.png">
 <img width=33% alt="스크린샷 2022-08-15 오전 2 23 29" src="https://user-images.githubusercontent.com/92906766/184806040-de6ba4b3-c551-4f84-acf9-954c26b8fe50.png">
-</P>
+</p>
 
 <br>
 
@@ -135,7 +135,11 @@
 ## 2️⃣ Extension
 ### 📃 Languages / Libraries
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-004088.svg?style=for-the-badge&logo=typescript&logoColor=white)<br/>
+![TypeScript](https://img.shields.io/badge/typescript-004088.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![ContextAPI](https://img.shields.io/badge/Context_API-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![axios](https://img.shields.io/badge/Axios-3668FF?style=for-the-badge&logo=react&logoColor=white)
+![Storybook](https://img.shields.io/badge/storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
+![Emotion](https://img.shields.io/badge/Emotion-%237F5AB6?style=for-the-badge&logo=react&logoColor=white)
 
 <br><br><br>
 
@@ -145,6 +149,24 @@
 
 
 <br><br><br>
+
+# 익스텐션 사용방법
+
+현재 익스텐션은 구글 크롬에서 검수중에 있습니다 ㅠ 임시 사용방법은
+
+1. 레포를 다운로드합니다: <br>
+2. ``` git clone git@github.com:prgrms-web-devcourse/Team-03-LinkBook-FE.git ``` <br>
+3. `chrome://extensions/` 접속 후<br>
+4. 우측 상단의 개발자 모드를 여신후 <br>
+<img width="1440" alt="스크린샷 2022-08-16 오후 4 53 33 1" src="https://user-images.githubusercontent.com/92906766/184827612-69eab16f-e4cb-49d1-8a31-616e49aba9f1.png">
+<br>
+5. 좌측 상단의 압축해제된 확장프로그램을 로드합니다 (load unpacked) 클릭!<br>
+<img width="490" alt="스크린샷 2022-08-16 오후 4 59 34" src="https://user-images.githubusercontent.com/92906766/184828508-f9346825-cf25-4f3e-8d52-57dc434b1fe4.png">
+<br>
+6. 우측 상단에서 링북 익스텐션을 여시면 됩니다! <br>
+<img width="372" alt="스크린샷 2022-08-16 오후 5 01 37" src="https://user-images.githubusercontent.com/92906766/184828883-f2a82f85-7dbf-4cf3-a136-b73bc0b6ab17.png">
+
+
 
 # 👍 Convention
 
