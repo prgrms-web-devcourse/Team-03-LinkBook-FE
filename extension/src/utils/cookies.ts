@@ -2,14 +2,12 @@ import { CURRENT_TIME } from "./constants";
 
 export const setCookie = async (
   key: string,
-  domain: string,
   url: string,
   value: string,
   isToken: boolean
 ) => {
   const res = await chrome.cookies.set({
     name: key,
-    domain,
     url,
     expirationDate: isToken ? CURRENT_TIME + 1209600 : CURRENT_TIME + 18000,
     value,
