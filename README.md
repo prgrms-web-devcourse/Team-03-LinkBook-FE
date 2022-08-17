@@ -179,19 +179,9 @@
 
 # 💻 익스텐션 사용방법
 
-현재 익스텐션은 구글 크롬에서 검수중에 있습니다 ㅠ 임시 사용방법은
+~~현재 익스텐션은 구글 크롬에서 검수중에 있습니다ㅠ~~ 검수 통과했습니다! 👏
 
-1. 레포를 다운로드합니다: <br>
-2. `git clone git@github.com:prgrms-web-devcourse/Team-03-LinkBook-FE.git` <br>
-3. `chrome://extensions/` 접속 후<br>
-4. 우측 상단의 개발자 모드를 여신후 <br>
-   <img width="1440" alt="스크린샷 2022-08-16 오후 4 53 33 1" src="https://user-images.githubusercontent.com/92906766/184827612-69eab16f-e4cb-49d1-8a31-616e49aba9f1.png">
-   <br>
-5. 좌측 상단의 압축해제된 확장프로그램을 로드합니다 (load unpacked) 클릭!<br>
-   <img width="490" alt="스크린샷 2022-08-16 오후 4 59 34" src="https://user-images.githubusercontent.com/92906766/184828508-f9346825-cf25-4f3e-8d52-57dc434b1fe4.png">
-   <br>
-6. 우측 상단에서 링북 익스텐션을 여시면 됩니다! <br>
-   <img width="372" alt="스크린샷 2022-08-16 오후 5 01 37" src="https://user-images.githubusercontent.com/92906766/184828883-f2a82f85-7dbf-4cf3-a136-b73bc0b6ab17.png">
+[🐳 익스텐션다운로드](https://chrome.google.com/webstore/detail/%EB%A7%81%EB%B6%81/bplkibfnipjgpmdgjklalkpfeiogepmp?hl=ko)
 
 # 👍 Convention
 
