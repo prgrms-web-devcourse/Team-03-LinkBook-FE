@@ -150,7 +150,9 @@
 
 # 익스텐션 사용방법
 
-현재 익스텐션은 구글 크롬에서 검수중에 있습니다 ㅠ 임시 사용방법은
+[🐳 익스텐션다운로드](https://chrome.google.com/webstore/detail/%EB%A7%81%EB%B6%81/bplkibfnipjgpmdgjklalkpfeiogepmp?hl=ko)
+<br>
+현재 익스텐션 1.1v은 구글 크롬에서 검수중에 있습니다 ㅠ 임시 사용방법은
 
 1. 레포를 다운로드합니다: <br>
 2. ``` git clone git@github.com:prgrms-web-devcourse/Team-03-LinkBook-FE.git ``` <br>
