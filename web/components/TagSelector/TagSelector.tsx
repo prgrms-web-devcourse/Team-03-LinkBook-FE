@@ -67,6 +67,9 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
   };
 
   const handleAddTag = (value: string) => {
+    if (value === '' || value === undefined) {
+      return;
+    }
     const updatedData = new Set([...selectedTag, value]);
     setSelectedTag(Array.from(updatedData));
   };
