@@ -7,6 +7,7 @@ import {
   Icon,
   TagSelector,
   Seo,
+  Toast,
 } from '../../components';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -48,7 +49,7 @@ const FolderUpdate = () => {
     const content = contentInput.current.value;
     const image = imageSrc || FOLDER_DEFAULT_IMAGE;
     if (bookmarks.length === 0) {
-      alert('북마크를 추가해주세요');
+      Toast.show('북마크를 추가해주세요');
       return false;
     } else {
       await updateFolder(

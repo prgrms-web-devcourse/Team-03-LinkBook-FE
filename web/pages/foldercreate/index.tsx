@@ -7,6 +7,7 @@ import {
   Icon,
   TagSelector,
   Seo,
+  Toast,
 } from '../../components';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -47,7 +48,7 @@ const FolderCreate = () => {
     const content = contentInput.current.value;
     const image = imageSrc || FOLDER_DEFAULT_IMAGE;
     if (bookmarks.length === 0) {
-      alert('북마크를 추가해주세요');
+      Toast.show('북마크를 추가해주세요');
       return false;
     }
     const { id } = await createFolder(
@@ -74,7 +75,7 @@ const FolderCreate = () => {
 
   useEffect(() => {
     if (!loginUser?.user?.id) {
-      alert('올바르지 않은 접근입니다');
+      Toast.show('올바르지 않은 접근입니다');
       router.push(`${PAGE_URL.MAIN}`);
     }
   }, []);
