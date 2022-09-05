@@ -138,3 +138,9 @@ export interface CreateOrUpdateFolder {
   tags: string[];
   bookmarks: Bookmark[] | [];
 }
+
+export interface ScrapOriginFolder {
+  title: string;
+  isPrivate: boolean;
+  isPinned: boolean;
+}
