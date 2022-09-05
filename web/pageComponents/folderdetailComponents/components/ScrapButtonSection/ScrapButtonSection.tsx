@@ -1,13 +1,22 @@
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { createFolder } from '../../../../apis/FolderAPI';
-import { showLoginModal } from '../../../../constants/modal.constants';
+import { Modal } from '../../../../components';
 import { PAGE_URL } from '../../../../constants/url.constants';
 import { showModalStatus } from '../../../../recoil/showModal';
 import { userInfo } from '../../../../recoil/user';
-import { SpecificFolder } from '../../../../types';
-import { CreateOrUpdateFolder } from '../../../../types/folder';
 import { RoundButton } from '../index';
+import {
+  SpecificFolder,
+  CreateOrUpdateFolder,
+  ScrapOriginFolder,
+} from '../../../../types';
+import {
+  closeModal,
+  showLoginModal,
+  showScrapModal,
+} from '../../../../constants/modal.constants';
 
 interface Props {
   id: number;
@@ -16,9 +25,11 @@ interface Props {
 }
 
 const ScrapButtonSection = ({ id, token, data }: Props) => {
+  const showModal = useRecoilValue(showModalStatus);
   const router = useRouter();
   const setShowModalStatus = useSetRecoilState(showModalStatus);
   const { user }: any = useRecoilValue(userInfo);
+  const [originFolder, setOriginFolder] = useState<ScrapOriginFolder>(null);
 
   const handleClickScrap = async () => {
     if (!user) {
@@ -27,9 +38,16 @@ const ScrapButtonSection = ({ id, token, data }: Props) => {
       return;
     }
 
-    const { title, image, content, isPinned, isPrivate, tags, bookmarks } =
-      data;
-    const folderData: CreateOrUpdateFolder = {
+    setShowModalStatus(showScrapModal);
+  };
+
+  const handleScrapFolder = async ({
+    title,
+    isPrivate,
+    isPinned,
+  }: ScrapOriginFolder) => {
+    const { image, content, tags, bookmarks } = data;
+    const updatedFolderData: CreateOrUpdateFolder = {
       title,
       image,
       content,
@@ -39,8 +57,10 @@ const ScrapButtonSection = ({ id, token, data }: Props) => {
       bookmarks,
       originId: id,
     };
+
     try {
-      const res = await createFolder(folderData, token);
+      const res = await createFolder(updatedFolderData, token);
+      setShowModalStatus(closeModal);
       await router.push(`${PAGE_URL.DETAIL}/${res.id}`);
     } catch (error) {
       console.log(error);
@@ -48,12 +68,30 @@ const ScrapButtonSection = ({ id, token, data }: Props) => {
     }
   };
 
+  useEffect(() => {
+    if (!data) return;
+
+    setOriginFolder({
+      title: data.title,
+      isPrivate: data.isPrivate,
+      isPinned: data.isPinned,
+    });
+  }, [data]);
+
   return (
-    <RoundButton
-      iconName="copy_white"
-      description="스크랩"
-      onClick={handleClickScrap}
-    />
+    <>
+      <Modal
+        version="scrap"
+        show={showModal.Scrap}
+        originFolder={originFolder}
+        setScrapFolder={handleScrapFolder}
+      />
+      <RoundButton
+        iconName="copy_white"
+        description="스크랩"
+        onClick={handleClickScrap}
+      />
+    </>
   );
 };
 

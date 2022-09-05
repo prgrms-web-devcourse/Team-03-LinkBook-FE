@@ -131,6 +131,12 @@ export const IconContainer = styled.div`
   text-align: center;
 `;
 
+export const IconWrapper = styled.div`
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: 10px;
+`;
+
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -169,6 +175,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
   justify-content: center;
+  align-items: center;
   margin-top: 10px;
 `;
 
