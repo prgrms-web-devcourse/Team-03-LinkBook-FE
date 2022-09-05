@@ -1,7 +1,7 @@
 import * as S from '../Modal.style';
 import { Button, Icon, Input, Switch } from '../../index';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ScrapOriginFolder } from '../../../types';
 
 interface Props {
@@ -10,8 +10,8 @@ interface Props {
 }
 
 const Scrap = ({ originFolder, setScrapFolder }: Props) => {
-  const [isPrivate, setIsPrivate] = useState(false);
-  const [isPinned, setIsPinned] = useState(false);
+  const [updatedIsPrivate, setUpdatedIsPrivate] = useState(false);
+  const [updatedIsPinned, setUpdatedIsPinned] = useState(false);
   const {
     register,
     handleSubmit,
@@ -19,25 +19,30 @@ const Scrap = ({ originFolder, setScrapFolder }: Props) => {
     formState: { errors },
   } = useForm<ScrapOriginFolder>();
 
-  const handleSubmitScrap: SubmitHandler<ScrapOriginFolder> = useCallback(
-    (data, e) => {
-      e.preventDefault();
-      const { title } = data;
+  const handleSubmitScrap: SubmitHandler<ScrapOriginFolder> = (data, e) => {
+    e.preventDefault();
 
-      setScrapFolder({ title, isPrivate, isPinned });
-    },
-    [],
-  );
+    const { title } = data;
+    const updatedScrapFolder: ScrapOriginFolder = {
+      title,
+      isPrivate: updatedIsPrivate,
+      isPinned: updatedIsPinned,
+    };
+
+    setScrapFolder(updatedScrapFolder);
+  };
 
   const handleClickSetIsPinned = () => {
-    setIsPinned(!isPinned);
+    setUpdatedIsPinned(!updatedIsPinned);
   };
 
   useEffect(() => {
     if (!originFolder) return;
 
-    setValue('title', originFolder.title);
-    setIsPrivate(originFolder.isPrivate);
+    const { title, isPrivate, isPinned } = originFolder;
+    setValue('title', title);
+    setUpdatedIsPrivate(isPrivate);
+    setUpdatedIsPinned(isPinned);
   }, [originFolder]);
 
   return (
@@ -49,9 +54,12 @@ const Scrap = ({ originFolder, setScrapFolder }: Props) => {
         <S.MainText>수정할 제목</S.MainText>을 입력해 주세요.
       </S.Title>
       <S.ButtonContainer>
-        <Switch isPrivate={isPrivate} setIsPrivate={setIsPrivate} />
+        <Switch
+          isPrivate={updatedIsPrivate}
+          setIsPrivate={setUpdatedIsPrivate}
+        />
         <S.IconWrapper onClick={handleClickSetIsPinned}>
-          <Icon name={isPinned ? 'pin_blue_ic' : 'ico_pin'} size={30} />
+          <Icon name={updatedIsPinned ? 'pin_blue_ic' : 'ico_pin'} size={30} />
         </S.IconWrapper>
       </S.ButtonContainer>
       <S.InputContainer>
