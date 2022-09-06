@@ -29,9 +29,6 @@ const UserInfoProvider = ({ children }: any) => {
   const [userInfo, setUserInfo] = useState(defaultValue);
 
   const setUserName = (nameValue: string) => {
-    const isValidateName = validateName(nameValue.length);
-    if (!isValidateName.status) return isValidateName.error;
-
     setUserInfo({
       ...userInfo,
       name: nameValue,

@@ -48,8 +48,10 @@ const Page01 = ({ handlePage }: Props) => {
   );
 
   const handleClickValidateKey = async () => {
+    const keyValue = keyRef.current.value.replaceAll(' ', '');
+
     try {
-      await validateEmailKey(emailValue, keyRef.current.value);
+      await validateEmailKey(emailValue, keyValue);
       alert('인증되었습니다.');
       setIsValidate(true);
       setEmail(emailValue);

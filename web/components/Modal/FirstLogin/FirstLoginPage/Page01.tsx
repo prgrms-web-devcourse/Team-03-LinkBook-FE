@@ -1,38 +1,42 @@
 import * as S from '../../Modal.style';
-import { FormEventHandler, useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { Input, Button } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+interface IFormInput {
+  name: string;
+}
 
 interface Props {
-  handleNextPage: FormEventHandler;
+  handleNextPage: Function;
 }
 
 const Page01 = ({ handleNextPage }: Props) => {
-  const nameRef = useRef<HTMLInputElement>(null);
-  const [errorText, setErrorText] = useState('');
   const { userInfo, setUserName } = useUserInfo();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setFocus,
+    formState: { errors },
+  } = useForm<IFormInput>();
 
-  const handleClickStoreName: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmitStoreName: SubmitHandler<IFormInput> = (data, e) => {
     e.preventDefault();
+    const { name } = data;
 
-    const nameValue = nameRef.current.value;
-    const res = setUserName(nameValue);
-
-    if (typeof res === 'string') {
-      setErrorText(res);
-      return;
-    }
-
-    handleNextPage(e);
+    setUserName(name);
+    handleNextPage();
   };
 
   useEffect(() => {
-    nameRef.current.value = userInfo.name;
-    nameRef.current.focus();
+    setValue('name', userInfo.name);
+    setFocus('name');
   }, [userInfo]);
 
   return (
-    <S.FormContainer onSubmit={handleClickStoreName}>
+    <S.FormContainer onSubmit={handleSubmit(handleSubmitStoreName)}>
       <S.Title>
         <br />
         <S.MainText>Linkbook</S.MainText>에 오신 것을 환영해요! 🎉
@@ -42,8 +46,12 @@ const Page01 = ({ handleNextPage }: Props) => {
       <Input
         placeholder="닉네임"
         type="text"
-        ref={nameRef}
-        errorText={errorText}
+        {...register('name', {
+          required: true,
+          minLength: 1,
+          maxLength: 8,
+        })}
+        errorText={errors.name && '1-8자 사이의 길이로 입력해주세요.'}
       />
       <S.ButtonContainer>
         <Button type="submit">다음 &gt;</Button>
