@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import ToastManager, { CreateToast } from './ToastManager';
 
 const TOAST_PORTAL_ID = 'toast-portal';
@@ -20,21 +20,22 @@ class Toast {
       if (portalElement) {
         this.portal = portalElement;
         return;
-      } else {
-        this.portal = document.createElement('div');
-        this.portal.id = this.portalId;
-        this.portal.style.display = 'flex';
-        this.portal.style.justifyContent = 'center';
-        document.body.appendChild(this.portal);
       }
 
-      ReactDOM.render(
+      this.portal = document.createElement('div');
+      this.portal.id = this.portalId;
+      this.portal.style.display = 'flex';
+      this.portal.style.justifyContent = 'center';
+      document.body.appendChild(this.portal);
+
+      const root = ReactDOMClient.createRoot(this.portal);
+
+      root.render(
         <ToastManager
           bind={(createToast) => {
             this.createToast = createToast;
           }}
         />,
-        this.portal,
       );
     }
   }
