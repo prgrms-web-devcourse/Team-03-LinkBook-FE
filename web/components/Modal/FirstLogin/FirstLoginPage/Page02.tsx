@@ -1,45 +1,43 @@
 import * as S from '../../Modal.style';
 import { Button, Input, Icon } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
-import {
-  FormEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { MouseEventHandler, useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+interface IFormInput {
+  introduce: string;
+}
 
 interface Props {
-  handleNextPage: FormEventHandler;
+  handleNextPage: Function;
   handlePreviousPage: MouseEventHandler;
 }
 
 const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
-  const introduceRef = useRef<HTMLInputElement>(null);
-  const [errorText, setErrorText] = useState('');
   const { userInfo, setUserIntroduce } = useUserInfo();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setFocus,
+    formState: { errors },
+  } = useForm<IFormInput>();
 
-  const handleClickStoreIntroduce: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleClickStoreIntroduce: SubmitHandler<IFormInput> = (data, e) => {
     e.preventDefault();
+    const { introduce } = data;
 
-    const introduceValue = introduceRef.current.value;
-    const res = setUserIntroduce(introduceValue);
-
-    if (typeof res === 'string') {
-      setErrorText(res);
-      return;
-    }
-
-    handleNextPage(e);
+    setUserIntroduce(introduce);
+    handleNextPage();
   };
 
   useEffect(() => {
-    introduceRef.current.value = userInfo.introduce;
-    introduceRef.current.focus();
+    setValue('introduce', userInfo.introduce);
+    setFocus('introduce');
   }, [userInfo]);
 
   return (
-    <S.FormContainer onSubmit={handleClickStoreIntroduce}>
+    <S.FormContainer onSubmit={handleSubmit(handleClickStoreIntroduce)}>
       <S.PreviousButton onClick={handlePreviousPage}>
         <Icon name="arrowLeft" size={30} />
       </S.PreviousButton>
@@ -52,8 +50,12 @@ const Page02 = ({ handleNextPage, handlePreviousPage }: Props) => {
       <Input
         placeholder="한 줄 소개"
         type="text"
-        ref={introduceRef}
-        errorText={errorText}
+        {...register('introduce', {
+          required: true,
+          minLength: 1,
+          maxLength: 50,
+        })}
+        errorText={errors.introduce && '1-50자 사이의 길이로 입력해주세요.'}
       />
       <S.ButtonContainer>
         <Button type="submit">다음 &gt;</Button>

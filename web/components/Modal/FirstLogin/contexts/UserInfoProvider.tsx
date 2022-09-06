@@ -38,9 +38,6 @@ const UserInfoProvider = ({ children }: any) => {
   };
 
   const setUserIntroduce = (introduceValue: string) => {
-    const isValidateIntroduce = validateIntroduce(introduceValue.length);
-    if (!isValidateIntroduce.status) return isValidateIntroduce.error;
-
     setUserInfo({
       ...userInfo,
       introduce: introduceValue,
