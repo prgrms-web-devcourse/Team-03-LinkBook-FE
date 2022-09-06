@@ -14,18 +14,16 @@ interface Props {
 
 const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
   const [imageSrc, setImageSrc] = useState('');
-  const [errorText, setErrorText] = useState('');
   const { userInfo, getUpdatedUserInfo, removeUserInfo } = useUserInfo();
   const setUserInfoState = useSetRecoilState(userInfoRecoil);
   const token = getCookie('ACCESS_TOKEN');
 
   const handleClickStoreImage: MouseEventHandler = async (e) => {
-    const updatedUserInfo = getUpdatedUserInfo(imageSrc);
-
-    if (typeof updatedUserInfo === 'string') {
-      setErrorText(updatedUserInfo);
-      return;
-    }
+    const profileImage =
+      imageSrc.length === 0
+        ? 'https://linkbook-s3-1.s3-ap-northeast-2.amazonaws.com/static/userImage.png.png'
+        : imageSrc;
+    const updatedUserInfo = getUpdatedUserInfo(profileImage);
 
     try {
       await updateUserInfo(updatedUserInfo, token);
@@ -61,7 +59,6 @@ const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
       </S.Title>
       <S.IconContainer>
         <ImageUpload version="modal" setImageSrc={setImageSrc} />
-        <S.ErrorText>{errorText}</S.ErrorText>
       </S.IconContainer>
       <S.ButtonContainer>
         <Button type="button" onClick={handleClickStoreImage}>

@@ -1,10 +1,5 @@
 import { createContext, useContext, useState } from 'react';
 import { UpdateInfo } from '../../../../types';
-import {
-  validateImage,
-  validateIntroduce,
-  validateName,
-} from '../../../../util/validateUserInfo';
 
 interface IUserInfoContext {
   userInfo: UpdateInfo;
@@ -56,15 +51,12 @@ const UserInfoProvider = ({ children }: any) => {
   };
 
   const getUpdatedUserInfo = (imageSrc: string) => {
-    const isValidateImage = validateImage(imageSrc.length);
-    if (!isValidateImage.status) return isValidateImage.error;
-
     const finalUserInfo = {
       ...userInfo,
       image: imageSrc,
     };
-    setUserInfo(finalUserInfo);
 
+    setUserInfo(finalUserInfo);
     return finalUserInfo;
   };
 
