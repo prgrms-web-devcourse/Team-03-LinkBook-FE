@@ -25,8 +25,8 @@ const ToastItem = ({ toast, onDone }: ToastItemProps) => {
   }, duration);
 
   return (
-    <S.ToastBox style={{ opacity: show ? 1 : 0 }}>
-      <S.ProgressBar style={{ animationDuration: `${duration}ms` }} />
+    <S.ToastBox show={show}>
+      <S.ProgressBar duration={duration} />
       <Text>{message}</Text>
     </S.ToastBox>
   );

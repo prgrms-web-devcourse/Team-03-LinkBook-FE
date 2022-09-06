@@ -8,7 +8,11 @@ export const ToastContainer = styled.div`
   z-index: 1500;
 `;
 
-export const ToastBox = styled.div`
+type Box = {
+  show: boolean;
+};
+
+export const ToastBox = styled.div<Box>`
   position: relative;
   display: flex;
   width: 20rem;
@@ -22,7 +26,7 @@ export const ToastBox = styled.div`
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  opacity: 1;
+  opacity: ${({ show }) => (show ? 1 : 0)};
   transition: opacity 0.4s ease-out;
   &:first-of-type {
     animation: move 0.4s ease-out forwards;
@@ -40,7 +44,11 @@ export const ToastBox = styled.div`
   }
 `;
 
-export const ProgressBar = styled.div`
+type ProgressBar = {
+  duration: number;
+};
+
+export const ProgressBar = styled.div<ProgressBar>`
   position: absolute;
   top: 0;
   left: 0;
@@ -50,6 +58,7 @@ export const ProgressBar = styled.div`
   animation-name: progress;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
+  animation-duration: ${({ duration }) => `${duration}ms`};
   @keyframes progress {
     0% {
       width: 0;
