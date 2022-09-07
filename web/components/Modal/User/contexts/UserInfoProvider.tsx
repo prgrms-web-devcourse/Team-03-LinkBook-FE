@@ -1,15 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { UpdateInfo } from '../../../../types';
-import {
-  validateImage,
-  validateIntroduce,
-  validateName,
-} from '../../../../util/validateUserInfo';
 
 interface IUserInfoContext {
   updatedUserInfo: UpdateInfo;
   setUpdatedUserInfo: Function;
-  validateUserInfo: Function;
   setBasicUserInfo: Function;
   getUpdatedUserInfo: Function;
   removeUserInfo: Function;
@@ -33,18 +27,6 @@ const UserInfoProvider = ({ children }: any) => {
   };
   const [updatedUserInfo, setUpdatedUserInfo] = useState(defaultValue);
 
-  const validateUserInfo = ({ name, introduce, image }: BasicUserInfo) => {
-    const nameLen = name.length;
-    const introduceLen = introduce.length;
-    const imageLen = image.length;
-
-    return {
-      nameValue: validateName(nameLen),
-      introduceValue: validateIntroduce(introduceLen),
-      imageValue: validateImage(imageLen),
-    };
-  };
-
   const setBasicUserInfo = ({ name, introduce, image }: BasicUserInfo) => {
     setUpdatedUserInfo({
       ...updatedUserInfo,
@@ -65,12 +47,15 @@ const UserInfoProvider = ({ children }: any) => {
     setUpdatedUserInfo(defaultValue);
   };
 
+  useEffect(() => {
+    console.log(updatedUserInfo);
+  }, [updatedUserInfo]);
+
   return (
     <UserInfoContext.Provider
       value={{
         updatedUserInfo,
         setUpdatedUserInfo,
-        validateUserInfo,
         setBasicUserInfo,
         getUpdatedUserInfo,
         removeUserInfo,
