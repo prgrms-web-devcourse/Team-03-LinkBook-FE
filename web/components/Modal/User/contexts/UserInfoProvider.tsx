@@ -1,11 +1,10 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { UpdateInfo } from '../../../../types';
 
 interface IUserInfoContext {
   updatedUserInfo: UpdateInfo;
   setUpdatedUserInfo: Function;
   setBasicUserInfo: Function;
-  getUpdatedUserInfo: Function;
   removeUserInfo: Function;
 }
 
@@ -36,20 +35,9 @@ const UserInfoProvider = ({ children }: any) => {
     });
   };
 
-  const getUpdatedUserInfo = (tags: string[]) => {
-    return {
-      ...updatedUserInfo,
-      interests: tags,
-    };
-  };
-
   const removeUserInfo = () => {
     setUpdatedUserInfo(defaultValue);
   };
-
-  useEffect(() => {
-    console.log(updatedUserInfo);
-  }, [updatedUserInfo]);
 
   return (
     <UserInfoContext.Provider
@@ -57,7 +45,6 @@ const UserInfoProvider = ({ children }: any) => {
         updatedUserInfo,
         setUpdatedUserInfo,
         setBasicUserInfo,
-        getUpdatedUserInfo,
         removeUserInfo,
       }}
     >
