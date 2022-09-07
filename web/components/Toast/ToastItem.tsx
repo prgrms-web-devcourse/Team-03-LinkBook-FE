@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { useState } from 'react';
 import { Text } from '../';
 import useTimeout from '../../util/useTimeout';

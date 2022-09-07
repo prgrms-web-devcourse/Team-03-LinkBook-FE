@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { useCallback, useEffect, useState } from 'react';
 import ToastItem, { Toast } from './ToastItem';
 import * as S from './Toast.style';

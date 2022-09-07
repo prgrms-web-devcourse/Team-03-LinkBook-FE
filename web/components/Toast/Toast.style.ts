@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import theme from '../../styles/themes';
 
 export const ToastContainer = styled.div`
   position: fixed;
@@ -19,10 +20,10 @@ export const ToastBox = styled.div<Box>`
   height: 5rem;
   padding: 0 20px;
   align-items: center;
-  border-radius: 1rem;
+  border-radius: 0.4rem;
   border-top-left-radius: 0.2rem;
   border-top-right-radius: 0.2rem;
-  border: 1px solid #ccc;
+  border: 1px solid ${theme.colors.gray[4]};
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
@@ -54,7 +55,7 @@ export const ProgressBar = styled.div<ProgressBar>`
   left: 0;
   width: 0;
   height: 4px;
-  background-color: #a0c4ff;
+  background-color: ${theme.colors.mainLight[0]};
   animation-name: progress;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
