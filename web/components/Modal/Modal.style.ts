@@ -135,6 +135,7 @@ export const IconWrapper = styled.div`
   width: fit-content;
   height: fit-content;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 export const InputContainer = styled.div`
