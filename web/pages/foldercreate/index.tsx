@@ -7,13 +7,11 @@ import {
   Icon,
   TagSelector,
   Seo,
+  Switch,
 } from '../../components';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-import {
-  Switch,
-  BookmarkInput,
-} from '../../pageComponents/folderupdateComponents/components';
+import { BookmarkInput } from '../../pageComponents/folderupdateComponents/components';
 import { createFolder } from '../../apis/FolderAPI';
 import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
 import { getCookie } from '../../util/cookies';
