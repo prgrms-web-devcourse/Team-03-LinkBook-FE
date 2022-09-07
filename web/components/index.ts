@@ -24,3 +24,4 @@ export { default as SearchBar } from './SearchBar';
 export { default as NoResultArea } from './NoResultArea';
 export { default as Seo } from './Seo';
 export { default as Toast } from './Toast';
+export { default as Switch } from './Switch';

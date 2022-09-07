@@ -3,6 +3,7 @@ export const closeModal = {
   SignUp: false,
   FirstLogin: false,
   User: false,
+  Scrap: false,
 };
 
 export const showLoginModal = {
@@ -10,6 +11,7 @@ export const showLoginModal = {
   SignUp: false,
   FirstLogin: false,
   User: false,
+  Scrap: false,
 };
 
 export const showSignUpModal = {
@@ -17,6 +19,7 @@ export const showSignUpModal = {
   SignUp: true,
   FirstLogin: false,
   User: false,
+  Scrap: false,
 };
 
 export const showFirstModal = {
@@ -24,6 +27,7 @@ export const showFirstModal = {
   SignUp: false,
   FirstLogin: true,
   User: false,
+  Scrap: false,
 };
 
 export const showUserModal = {
@@ -31,4 +35,13 @@ export const showUserModal = {
   SignUp: false,
   FirstLogin: false,
   User: true,
+  Scrap: false,
+};
+
+export const showScrapModal = {
+  Login: false,
+  SignUp: false,
+  FirstLogin: false,
+  User: false,
+  Scrap: true,
 };
