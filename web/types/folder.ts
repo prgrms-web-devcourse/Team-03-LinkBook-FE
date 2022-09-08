@@ -102,6 +102,7 @@ export interface FolderCreateOrUpdate {
 }
 
 export interface CreateOrUpdateFolder {
+  id?: number;
   title: string;
   image: string;
   content: string;
@@ -109,9 +110,8 @@ export interface CreateOrUpdateFolder {
   isPrivate: boolean;
   tags: string[];
   bookmarks: Bookmark[] | [];
-  originId?: number;
+  originId?: null | number;
 }
-
 // Req Body type
 export interface GetFolderList {
   page: number;
@@ -126,17 +126,6 @@ export interface GetUserFolderList {
   page: number;
   size: number;
   sort: string;
-}
-
-export interface CreateOrUpdateFolder {
-  id?: number;
-  title: string;
-  image: string;
-  content: string;
-  isPinned: boolean;
-  isPrivate: boolean;
-  tags: string[];
-  bookmarks: Bookmark[] | [];
 }
 
 export interface ScrapOriginFolder {
