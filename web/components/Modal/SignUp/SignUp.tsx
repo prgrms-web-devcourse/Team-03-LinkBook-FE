@@ -9,16 +9,12 @@ const SignUp = () => {
     setPage(page + 1);
   };
 
-  const handlePreviousPage = () => {
-    setPage(page - 1);
-  };
-
   const switchPage = (pageNum: number) => {
     switch (pageNum) {
       case 0:
         return <Page01 handlePage={handleNextPage} />;
       case 1:
-        return <Page02 handlePage={handlePreviousPage} />;
+        return <Page02 />;
       default:
         return <Page01 handlePage={handleNextPage} />;
     }

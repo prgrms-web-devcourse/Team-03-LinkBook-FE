@@ -1,10 +1,5 @@
 import { createContext, useContext, useState } from 'react';
 import { UpdateInfo } from '../../../../types';
-import {
-  validateImage,
-  validateIntroduce,
-  validateName,
-} from '../../../../util/validateUserInfo';
 
 interface IUserInfoContext {
   userInfo: UpdateInfo;
@@ -29,9 +24,6 @@ const UserInfoProvider = ({ children }: any) => {
   const [userInfo, setUserInfo] = useState(defaultValue);
 
   const setUserName = (nameValue: string) => {
-    const isValidateName = validateName(nameValue.length);
-    if (!isValidateName.status) return isValidateName.error;
-
     setUserInfo({
       ...userInfo,
       name: nameValue,
@@ -41,9 +33,6 @@ const UserInfoProvider = ({ children }: any) => {
   };
 
   const setUserIntroduce = (introduceValue: string) => {
-    const isValidateIntroduce = validateIntroduce(introduceValue.length);
-    if (!isValidateIntroduce.status) return isValidateIntroduce.error;
-
     setUserInfo({
       ...userInfo,
       introduce: introduceValue,
@@ -62,15 +51,12 @@ const UserInfoProvider = ({ children }: any) => {
   };
 
   const getUpdatedUserInfo = (imageSrc: string) => {
-    const isValidateImage = validateImage(imageSrc.length);
-    if (!isValidateImage.status) return isValidateImage.error;
-
     const finalUserInfo = {
       ...userInfo,
       image: imageSrc,
     };
-    setUserInfo(finalUserInfo);
 
+    setUserInfo(finalUserInfo);
     return finalUserInfo;
   };
 

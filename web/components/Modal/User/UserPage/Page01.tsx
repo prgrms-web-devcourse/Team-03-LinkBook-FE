@@ -1,5 +1,5 @@
 import * as S from '../../Modal.style';
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { Button, Input, ImageUpload } from '../../../index';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
@@ -7,6 +7,7 @@ import { useUserInfo } from '../contexts/UserInfoProvider';
 import { getUserInfo, updateUserInfo } from '../../../../apis/UserAPI';
 import { showModalStatus } from '../../../../recoil/showModal';
 import { User } from '../../../../types';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   handlePage: MouseEventHandler;
@@ -14,52 +15,58 @@ interface Props {
   userData: User;
 }
 
-interface ValidateError {
+interface IFormInput {
   name: string;
   introduce: string;
-  image: string;
 }
 
 const Page01 = ({ handlePage, token, userData }: Props) => {
-  const { validateUserInfo, setBasicUserInfo } = useUserInfo();
+  const { setBasicUserInfo } = useUserInfo();
   const setUserInfoState = useSetRecoilState(userInfo);
   const closeModal = useResetRecoilState(showModalStatus);
-
-  const nameRef = useRef<HTMLInputElement>(null);
-  const introduceRef = useRef<HTMLInputElement>(null);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setFocus,
+    getValues,
+    formState: { errors },
+  } = useForm<IFormInput>();
 
   const [imageSrc, setImageSrc] = useState('');
-  const [errorText, setErrorText] = useState<ValidateError>({
-    name: '',
-    introduce: '',
-    image: '',
-  });
 
-  const handleStoreUserInfo: MouseEventHandler<HTMLInputElement> = (e) => {
+  const handleClickUpdateTags: MouseEventHandler<HTMLInputElement> = (e) => {
+    const name = getValues('name');
+    const introduce = getValues('introduce');
+    const profileImage =
+      imageSrc.length === 0
+        ? 'https://linkbook-s3-1.s3-ap-northeast-2.amazonaws.com/static/userImage.png.png'
+        : imageSrc;
+
     const storeUserData = {
-      name: nameRef.current.value,
-      introduce: introduceRef.current.value,
-      image: imageSrc,
+      name,
+      introduce,
+      image: profileImage,
     };
-
-    if (!validateUserBasicInfo(storeUserData)) return;
-
     setBasicUserInfo(storeUserData);
+
     handlePage(e);
   };
 
-  const handleUpdateUserInfo = async () => {
-    const storeUserData = {
-      name: nameRef.current.value,
-      introduce: introduceRef.current.value,
-      image: imageSrc,
-    };
+  const handleUpdateUserInfo: SubmitHandler<IFormInput> = async (data, e) => {
+    e.preventDefault();
 
-    if (!validateUserBasicInfo(storeUserData)) return;
+    const { name, introduce } = data;
+    const profileImage =
+      imageSrc.length === 0
+        ? 'https://linkbook-s3-1.s3-ap-northeast-2.amazonaws.com/static/userImage.png.png'
+        : imageSrc;
 
     try {
       const updateUserData = {
-        ...storeUserData,
+        name,
+        introduce,
+        image: profileImage,
         interests: userData.interests,
       };
       await updateUserInfo(updateUserData, token);
@@ -73,36 +80,15 @@ const Page01 = ({ handlePage, token, userData }: Props) => {
     }
   };
 
-  const validateUserBasicInfo = ({ name, introduce, image }: ValidateError) => {
-    const storeUserData = {
-      name,
-      introduce,
-      image,
-    };
-    const error = validateUserInfo(storeUserData);
-    const { nameValue, introduceValue, imageValue } = error;
-
-    if (!nameValue.status || !introduceValue.status || !imageValue.status) {
-      setErrorText({
-        name: nameValue.error,
-        introduce: introduceValue.error,
-        image: imageValue.error,
-      });
-
-      return false;
-    }
-
-    return true;
-  };
-
   useEffect(() => {
     if (!userData) return;
+    const { name, introduce, image } = userData;
 
-    nameRef.current.value = userData.name;
-    introduceRef.current.value = userData.introduce;
-    setImageSrc(userData.image);
+    setValue('name', name);
+    setValue('introduce', introduce);
+    setImageSrc(image);
 
-    nameRef.current.focus();
+    setFocus('name');
   }, [userData]);
 
   return (
@@ -119,34 +105,43 @@ const Page01 = ({ handlePage, token, userData }: Props) => {
               imageSrc={imageSrc}
               setImageSrc={setImageSrc}
             />
-            {errorText.image && <S.ErrorText>{errorText.image}</S.ErrorText>}
           </S.ImageUploadWrapper>
-          <S.UserInputContainer>
-            <Input
-              placeholder="변경할 닉네임"
-              type="text"
-              ref={nameRef}
-              errorText={errorText.name}
-            />
-            <Input
-              placeholder="변경할 한 줄 소개"
-              type="text"
-              ref={introduceRef}
-              errorText={errorText.introduce}
-            />
-          </S.UserInputContainer>
-          <S.ButtonContainer>
-            <Button type="button" onClick={handleUpdateUserInfo}>
-              수정 완료
-            </Button>
-            <Button
-              type="button"
-              onClick={handleStoreUserInfo}
-              version="mainLight"
-            >
-              관심 태그 수정
-            </Button>
-          </S.ButtonContainer>
+          <S.FormContainer onSubmit={handleSubmit(handleUpdateUserInfo)}>
+            <S.UserInputContainer>
+              <Input
+                placeholder="변경할 닉네임"
+                type="text"
+                {...register('name', {
+                  required: true,
+                  minLength: 1,
+                  maxLength: 8,
+                })}
+                errorText={errors.name && '1-8자 사이의 길이로 입력해주세요. '}
+              />
+              <Input
+                placeholder="변경할 한 줄 소개"
+                type="text"
+                {...register('introduce', {
+                  required: true,
+                  minLength: 1,
+                  maxLength: 50,
+                })}
+                errorText={
+                  errors.introduce && '1-50자 사이의 길이로 입력해주세요. '
+                }
+              />
+            </S.UserInputContainer>
+            <S.ButtonContainer>
+              <Button type="submit">수정 완료</Button>
+              <Button
+                type="button"
+                onClick={handleClickUpdateTags}
+                version="mainLight"
+              >
+                관심 태그 수정
+              </Button>
+            </S.ButtonContainer>
+          </S.FormContainer>
         </S.InnerContainer>
       )}
     </>

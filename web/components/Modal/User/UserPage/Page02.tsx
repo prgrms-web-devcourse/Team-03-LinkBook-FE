@@ -16,17 +16,20 @@ interface Props {
 const Page02 = ({ token, userData }: Props) => {
   const setUserInfoState = useSetRecoilState(userInfo);
   const closeModal = useResetRecoilState(showModalStatus);
-  const { getUpdatedUserInfo, removeUserInfo } = useUserInfo();
+  const { updatedUserInfo, removeUserInfo } = useUserInfo();
   const [selectedTag, setSelectedTag] = useState([]);
 
   const handleUpdate = async () => {
-    const updateUserData = getUpdatedUserInfo(selectedTag);
+    const userData = {
+      ...updatedUserInfo,
+      interests: selectedTag,
+    };
 
     try {
-      await updateUserInfo(updateUserData, token);
-
+      await updateUserInfo(userData, token);
       const newUserInfo = await getUserInfo(token);
       setUserInfoState(newUserInfo);
+
       closeModal();
     } catch (error) {
       console.log(error);

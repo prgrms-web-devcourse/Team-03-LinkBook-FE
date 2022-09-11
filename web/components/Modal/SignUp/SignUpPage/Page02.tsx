@@ -9,15 +9,11 @@ import { useSetRecoilState } from 'recoil';
 import { showModalStatus } from '../../../../recoil/showModal';
 import { showLoginModal } from '../../../../constants/modal.constants';
 
-interface Props {
-  handlePage: MouseEventHandler;
-}
-
 interface PasswordInput {
   password: string;
 }
 
-const Page02 = ({ handlePage }: Props) => {
+const Page02 = () => {
   const setShowModalStatus = useSetRecoilState(showModalStatus);
   const { email, removeUserInfo } = useUserInfo();
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -54,9 +50,6 @@ const Page02 = ({ handlePage }: Props) => {
 
   return (
     <S.FormContainer onSubmit={handleSubmit(onSubmit)}>
-      <S.PreviousButton onClick={handlePage}>
-        <Icon name="arrowLeft" size={30} />
-      </S.PreviousButton>
       <S.Title>
         <br />
         사용할 <S.MainText>비밀번호</S.MainText>를 입력해 주세요.
