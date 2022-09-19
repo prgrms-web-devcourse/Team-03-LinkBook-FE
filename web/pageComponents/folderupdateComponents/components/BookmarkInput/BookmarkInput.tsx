@@ -46,10 +46,6 @@ export const BookmarkInput = ({ bookmarks, setBookmarks }: Props) => {
         placeholder="url을 입력해주세요"
         {...register('url', {
           required: 'url은 필수 입력입니다.',
-          // pattern: {
-          //   value: /\.com$/,
-          //   message: 'url 형식에 맞지 않습니다.',
-          // },
         })}
       />
       {errors.url && <span>{errors.url.message}</span>}
