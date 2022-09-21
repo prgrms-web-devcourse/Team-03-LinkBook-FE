@@ -78,6 +78,11 @@ const FolderList = () => {
     fetch();
   }, [selectedItem, page, search, subTag]);
 
+  useEffect(() => {
+    setPage(0);
+  }, [selectedItem, subTag]);
+
+  console.log('hello');
   return (
     <S.PageContainer>
       <Seo title="폴더 리스트 | 링북" />
@@ -95,7 +100,7 @@ const FolderList = () => {
       </S.CategoryWrapper>
       <S.PaginationWrapper>
         <Pagination
-          defaultPage={0}
+          page={page}
           limit={limit}
           total={totalElement}
           onChange={setPage}
