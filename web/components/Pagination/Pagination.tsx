@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Icon from '../Icon';
 
 interface Props {
-  defaultPage: number;
+  page: number;
   limit: number;
   total: number;
   onChange: (page: number) => void;
@@ -26,13 +26,11 @@ const ArrowButton = ({ isLeft, onClick }: ArrowButtonProps) => {
   );
 };
 
-const Pagination = ({ defaultPage, limit, total, onChange }: Props) => {
-  const [page, setPage] = useState(defaultPage);
+const Pagination = ({ page, limit, total, onChange }: Props) => {
   const totalPage = Math.ceil(total / limit);
 
   const changePage = (newPage: number) => {
     onChange(newPage);
-    setPage(newPage);
   };
 
   const filterdArray = Array.from(new Array(totalPage), (_, i) => i).filter(
@@ -40,12 +38,10 @@ const Pagination = ({ defaultPage, limit, total, onChange }: Props) => {
       if (page < 4) {
         return i < 6 || i === totalPage - 1;
       } else if (page > totalPage - 5) {
-        return i === defaultPage || i > totalPage - 7;
+        return i === page || i > totalPage - 7;
       }
       return (
-        i === defaultPage ||
-        i === totalPage - 1 ||
-        (i >= page - 2 && i <= page + 2)
+        i === page || i === totalPage - 1 || (i >= page - 2 && i <= page + 2)
       );
     },
   );
