@@ -20,6 +20,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           property="og:image"
           content="https://linkbook.tk/_next/image?url=https%3A%2F%2Flinkbook-s3-1.s3-ap-northeast-2.amazonaws.com%2Fstatic%2FGroup33705.png.png&w=3840&q=75"
         />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Head>
       <Layout {...pageProps}>
         <Component {...pageProps} />
