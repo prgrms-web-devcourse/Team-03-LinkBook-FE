@@ -1,6 +1,6 @@
 import * as S from './PrivateSection.style';
 import { useRouter } from 'next/router';
-import { Icon } from '../../../../components';
+import { Icon, Toast } from '../../../../components';
 import { deleteFolder } from '../../../../apis/FolderAPI';
 import { PAGE_URL } from '../../../../constants/url.constants';
 
@@ -27,7 +27,7 @@ const PrivateSection = ({ id, isPrivate, isPinned, token }: Props) => {
       await router.push(PAGE_URL.MAIN);
     } catch (error) {
       console.log(error);
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
     }
   };
 

@@ -1,6 +1,6 @@
 import * as S from '../../Modal.style';
 import { useEffect, useState } from 'react';
-import { Button, TagSelector } from '../../../index';
+import { Button, TagSelector, Toast } from '../../../index';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
 import { useUserInfo } from '../contexts/UserInfoProvider';
@@ -33,7 +33,7 @@ const Page02 = ({ token, userData }: Props) => {
       closeModal();
     } catch (error) {
       console.log(error);
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
     }
   };
 

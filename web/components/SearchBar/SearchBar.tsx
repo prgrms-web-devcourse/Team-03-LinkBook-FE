@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction, useRef } from 'react';
 import { useEffect } from 'react';
 import Router from 'next/router';
 import { PAGE_URL } from '../../constants/url.constants';
+import Toast from '../Toast';
 
 interface Props {
   setShowSearchBar: Dispatch<SetStateAction<boolean>>;
@@ -24,7 +25,7 @@ const SearchBar = ({ setShowSearchBar }: Props) => {
   const handleOnSearch = () => {
     const value = inputRef.current.value;
     if (value.replace(/ /g, '') === '') {
-      alert('올바른 검색어를 입력해주세요.');
+      Toast.show('올바른 검색어를 입력해주세요.');
       return;
     }
 
