@@ -32,7 +32,7 @@ const SearchBar = ({ setShowSearchBar }: Props) => {
     handleClickCloseSearchBar();
     Router.push(
       {
-        pathname: `${PAGE_URL.LIST}`,
+        pathname: `${PAGE_URL.LIST}/search/${value}`,
         query: {
           search: value,
         },
