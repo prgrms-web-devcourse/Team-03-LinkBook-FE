@@ -1,6 +1,6 @@
 import * as S from '../../Modal.style';
 import { MouseEventHandler, useCallback, useState, useRef } from 'react';
-import { Button, Input, Icon } from '../../../index';
+import { Button, Input, Icon, Toast } from '../../../index';
 import { useUserInfo } from '../contexts/UserProvider';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { userSignUp } from '../../../../apis/UserAPI';
@@ -9,15 +9,11 @@ import { useSetRecoilState } from 'recoil';
 import { showModalStatus } from '../../../../recoil/showModal';
 import { showLoginModal } from '../../../../constants/modal.constants';
 
-interface Props {
-  handlePage: MouseEventHandler;
-}
-
 interface PasswordInput {
   password: string;
 }
 
-const Page02 = ({ handlePage }: Props) => {
+const Page02 = () => {
   const setShowModalStatus = useSetRecoilState(showModalStatus);
   const { email, removeUserInfo } = useUserInfo();
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -44,19 +40,16 @@ const Page02 = ({ handlePage }: Props) => {
     try {
       await userSignUp({ email, password });
       await removeUserInfo();
-      alert('회원가입이 완료되었습니다. 로그인을 진행해주세요.');
+      Toast.show('회원가입이 완료되었습니다. 로그인을 진행해주세요.');
       handleSwitchLoginModal();
     } catch (error) {
-      alert('이미 등록된 회원이거나 이메일 인증이 진행되지 않았습니다.');
+      Toast.show('이미 등록된 회원이거나 이메일 인증이 진행되지 않았습니다.');
       console.log(error);
     }
   }, []);
 
   return (
     <S.FormContainer onSubmit={handleSubmit(onSubmit)}>
-      <S.PreviousButton onClick={handlePage}>
-        <Icon name="arrowLeft" size={30} />
-      </S.PreviousButton>
       <S.Title>
         <br />
         사용할 <S.MainText>비밀번호</S.MainText>를 입력해 주세요.

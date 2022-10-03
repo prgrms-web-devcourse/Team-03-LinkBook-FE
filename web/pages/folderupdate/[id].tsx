@@ -7,19 +7,19 @@ import {
   Icon,
   TagSelector,
   Seo,
+  Toast,
+  Switch,
 } from '../../components';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-import {
-  Switch,
-  BookmarkInput,
-} from '../../pageComponents/folderupdateComponents/components';
+import { BookmarkInput } from '../../pageComponents/folderupdateComponents/components';
 import { getFolder, updateFolder } from '../../apis/FolderAPI';
 import { PAGE_URL } from '../../constants/url.constants';
 import { FOLDER_DEFAULT_IMAGE } from '../../constants/image.constants';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../recoil/user';
 import { getCookie } from '../../util/cookies';
+import { SpecificFolder } from '../../types';
 
 const FolderUpdate = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -29,6 +29,7 @@ const FolderUpdate = () => {
   const [isPinned, setIsPinned] = useState(false);
   const contentInput = useRef<HTMLTextAreaElement>();
   const [bookmarks, setBookmarks] = useState([]);
+  const [originId, setOriginId] = useState(null);
   const loginUser: any = useRecoilValue(userInfo);
   const loginUserId = loginUser?.user?.id;
   const token = getCookie('ACCESS_TOKEN');
@@ -48,22 +49,21 @@ const FolderUpdate = () => {
     const content = contentInput.current.value;
     const image = imageSrc || FOLDER_DEFAULT_IMAGE;
     if (bookmarks.length === 0) {
-      alert('북마크를 추가해주세요');
+      Toast.show('북마크를 추가해주세요');
       return false;
     } else {
-      await updateFolder(
-        {
-          id: Number(id),
-          title,
-          image,
-          content,
-          isPinned,
-          isPrivate,
-          tags,
-          bookmarks,
-        },
-        token,
-      );
+      const newData = {
+        id: Number(id),
+        title,
+        image,
+        content,
+        isPinned,
+        isPrivate,
+        tags,
+        bookmarks,
+        originId,
+      };
+      await updateFolder(newData, token);
       return true;
     }
   };
@@ -76,8 +76,17 @@ const FolderUpdate = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { isPrivate, title, image, content, bookmarks, isPinned, user } =
-          await getFolder(Number(id));
+        const {
+          isPinned,
+          isPrivate,
+          title,
+          tags,
+          image,
+          content,
+          bookmarks,
+          user,
+          originFolder,
+        } = await getFolder(Number(id));
         if (user.id !== loginUserId) {
           router.push(`${PAGE_URL.ERROR}`);
           return;
@@ -89,6 +98,7 @@ const FolderUpdate = () => {
         setImageSrc(image);
         contentInput.current.value = content;
         setBookmarks(bookmarks);
+        setOriginId(originFolder.id);
       } catch (e) {
         router.push(`${PAGE_URL.ERROR}`);
         return;
@@ -132,7 +142,7 @@ const FolderUpdate = () => {
           작성 취소
         </Button>
         <Button type="submit" onClick={moveFolderDetailPage}>
-          폴더 등록
+          폴더 수정
         </Button>
       </S.ButtonWrapper>
     </>

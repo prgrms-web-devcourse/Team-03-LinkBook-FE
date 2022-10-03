@@ -1,5 +1,5 @@
 import * as S from '../../Modal.style';
-import { Button, Icon, Input } from '../../../index';
+import { Button, Icon, Input, Toast } from '../../../index';
 import { MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUserInfo } from '../contexts/UserProvider';
@@ -36,11 +36,11 @@ const Page01 = ({ handlePage }: Props) => {
         setIsLoading(true);
         await requestEmailKey(email);
         setEmailValue(email);
-        alert('입력한 이메일로 인증 코드가 전송되었습니다.');
+        Toast.show('입력한 이메일로 인증 코드가 전송되었습니다.');
         setIsLoading(false);
         setTimerVisible(true);
       } catch (error) {
-        alert('문제가 발생했습니다. 다시 시도해주세요.');
+        Toast.show('문제가 발생했습니다. 다시 시도해주세요.');
         console.log(error);
       }
     },
@@ -48,21 +48,23 @@ const Page01 = ({ handlePage }: Props) => {
   );
 
   const handleClickValidateKey = async () => {
+    const keyValue = keyRef.current.value.replaceAll(' ', '');
+
     try {
-      await validateEmailKey(emailValue, keyRef.current.value);
-      alert('인증되었습니다.');
+      await validateEmailKey(emailValue, keyValue);
+      Toast.show('인증되었습니다.');
       setIsValidate(true);
       setEmail(emailValue);
       setTimerVisible(false);
     } catch (error) {
-      alert('인증코드가 일치하지 않습니다.');
+      Toast.show('인증코드가 일치하지 않습니다.');
       console.log(error);
     }
   };
 
   const handleClickCheckValidate: MouseEventHandler = (e) => {
     if (!isValidate) {
-      alert('이메일 인증을 먼저 진행해주세요.');
+      Toast.show('이메일 인증을 먼저 진행해주세요.');
       return;
     }
 

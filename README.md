@@ -1,13 +1,12 @@
 ![Group 33679](https://user-images.githubusercontent.com/72294509/184585998-fc420e7e-1748-43bf-8ac2-61ebac6fcac6.png)
 
-
 <div align='center'>
     <h1>LinkBook</h1>
 
-  ```
-    "북마크 공유 소셜 서비스 링북(LinkBook)" 프로젝트
-    (2022.07.21 - 2022.08.16)
-  ```
+```
+  "북마크 공유 소셜 서비스 링북(LinkBook)" 프로젝트
+  (2022.07.21 - 2022.08.16)
+```
 
   <br>
   
@@ -17,7 +16,20 @@
 
 <br><br><br>
 
+# 🐳 목차
+
+1. [🐳 프로젝트 소개](#-프로젝트-소개)
+2. [🐳 프로젝트 화면](#-프로젝트-화면)
+3. [📚 사용 기술](#-사용-기술)
+4. [📁 프로젝트 구조](#-프로젝트-구조)
+5. [💻 익스텐션 사용방법](#-익스텐션-사용방법)
+6. [👍 Convention](#-convention)
+7. [🤼‍♀️ 팀 소개](#%EF%B8%8F-팀-소개)
+
+<br><br><br>
+
 # 🐳 프로젝트 소개
+
 ### 1️⃣ 크롬 익스텐션
 
 마음에 드는 사이트를 **크롬 익스텐션**으로 내 북마크 폴더에 등록해보세요!
@@ -39,6 +51,7 @@
 # 🐳 프로젝트 화면
 
 ### 1️⃣ 크롬 익스텐션
+
 <img width="1440" alt="스크린샷 2022-08-15 오후 3 58 44" src="https://user-images.githubusercontent.com/92906766/184805826-02a201fd-783d-4c23-8d15-55974e7dd53e.png">
 <p>
 <img width=33% alt="스크린샷 2022-08-15 오전 1 49 09" src="https://user-images.githubusercontent.com/92906766/184805908-0f513f7f-e99c-4ad0-8eae-0e378b577a52.png">
@@ -54,17 +67,20 @@
 <br>
 
 ### 2️⃣ 메인
+
 <img src="https://user-images.githubusercontent.com/72294509/184589915-ac073330-c791-4b21-b3bd-daaa79d3fcd0.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184596562-e71c0657-3f10-4590-840e-8fd1e217c03f.png" align="center" width="50%">
 ![image](https://user-images.githubusercontent.com/72294509/184608897-b935d623-569d-4640-aa40-4bf9bda06dc0.png)
 
-
 #### 로그인
+
 ![image](https://user-images.githubusercontent.com/72294509/184591332-8ab60fc5-3665-48a5-b9a0-1111a26df3ca.png)
 
 #### 회원가입
+
 <img src="https://user-images.githubusercontent.com/72294509/184593257-36955201-b0d5-46ac-a81f-0029638fab4c.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184593549-a5640e63-a3e2-4637-b070-3d60a2b14447.png" align="center" width="50%">
 
 #### 첫 로그인 시 회원 정보 수정 모달
+
 <img src="https://user-images.githubusercontent.com/72294509/184593730-a75f78f2-14d8-4881-984f-4afe05820446.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184593849-9da31e54-272f-4df2-870d-c91a8ed9404c.png" align="center" width="50%">
 <img src="https://user-images.githubusercontent.com/72294509/184594059-7652413f-4005-4558-b5c9-96745ed45c54.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184594137-3e6cd2a8-b462-4840-9ade-ecac4517f7c0.png" align="center" width="50%">
 ![image](https://user-images.githubusercontent.com/72294509/184594424-ccba4745-fdab-46da-b3b7-60f317cc921f.png)
@@ -72,39 +88,50 @@
 <br>
 
 ### 3️⃣ 북마크 폴더 리스트
+
 #### 태그 분류 리스트
+
 ![image](https://user-images.githubusercontent.com/72294509/184606472-21c0b725-5dec-440e-97b9-95b642660367.png)
 
 #### 검색 결과 리스트
+
 ![image](https://user-images.githubusercontent.com/72294509/184606633-3abca0b5-3358-45b5-ac9d-e6a39b041831.png)
 ![image](https://user-images.githubusercontent.com/72294509/184606693-8858dd5a-a41e-4ec4-a8e8-d74a494ed3bb.png)
-
 
 <br>
 
 ### 4️⃣ 특정 북마크 폴더 조회 / 작성 및 수정
+
 #### 북마크 폴더 조회
+
 <img src="https://user-images.githubusercontent.com/72294509/184606966-06045081-bb42-4f32-8854-23c04005ed06.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184607083-8c2846d1-da0d-4319-9130-d2c05e98a602.png" align="center" width="50%">
 <img src="https://user-images.githubusercontent.com/72294509/184607173-c91cc367-01ed-459b-a22e-c41cd67704ff.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184607329-0170c87c-3543-46c5-a112-2e26541fdf49.png" align="center" width="50%">
 
 #### 북마크 폴더 작성 및 수정
+
 <img src="https://user-images.githubusercontent.com/72294509/184607561-608a165f-289e-4cd6-bade-b9de2fa52f6c.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184607621-3595505c-2ec8-4a9c-aa07-c3d8e57185da.png" align="center" width="50%">
 
 <br>
 
 ### 5️⃣ 회원 페이지
+
 #### 회원 페이지
+
 ![image](https://user-images.githubusercontent.com/72294509/184605489-7576d3fc-cebe-4e57-bdd2-f160a72b867d.png)
 
 #### 사용자 정보 수정
-<img src="https://user-images.githubusercontent.com/72294509/184605628-567f0376-9cae-4ae0-aac0-3f67008b82ee.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184606060-c1b0ccbb-b54d-4e39-b792-a22eb12277e4.png" align="center" width="50%">
 
+<img src="https://user-images.githubusercontent.com/72294509/184605628-567f0376-9cae-4ae0-aac0-3f67008b82ee.png" align="center" width="50%"><img src="https://user-images.githubusercontent.com/72294509/184606060-c1b0ccbb-b54d-4e39-b792-a22eb12277e4.png" align="center" width="50%">
 
 <br><br><br>
 
 # 📚 사용 기술
+
 ## 1️⃣ Web
+
 ### 📃 Languages / Libraries
+
+![NextJS](https://img.shields.io/badge/NextJS-%23000000.svg?style=for-the-badge&logo=Next.js&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-004088.svg?style=for-the-badge&logo=typescript&logoColor=white)<br/>
 ![Recoil](https://img.shields.io/badge/Recoil-white?style=for-the-badge&logo=react&logoColor=black)
@@ -115,6 +142,7 @@
 ![Emotion](https://img.shields.io/badge/Emotion-%237F5AB6?style=for-the-badge&logo=react&logoColor=white)<br>
 
 ### 🛠 Tools
+
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
@@ -123,6 +151,7 @@
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 ### 🧐 Linters
+
 ![Eslint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
 
@@ -131,12 +160,13 @@
 <br><br>
 
 ## 2️⃣ Extension
+
 ### 📃 Languages / Libraries
+
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-004088.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-004088.svg?style=for-the-badge&logo=typescript&logoColor=white)<br/>
 ![ContextAPI](https://img.shields.io/badge/Context_API-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![axios](https://img.shields.io/badge/Axios-3668FF?style=for-the-badge&logo=react&logoColor=white)
-![Storybook](https://img.shields.io/badge/storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
 ![Emotion](https://img.shields.io/badge/Emotion-%237F5AB6?style=for-the-badge&logo=react&logoColor=white)
 
 <br><br><br>
@@ -145,38 +175,27 @@
 
 ![image](https://user-images.githubusercontent.com/72294509/184610986-1cb2c6b6-01bc-486b-822a-c82b4ffd527f.png)
 
-
 <br><br><br>
 
-# 익스텐션 사용방법
+# 💻 익스텐션 사용방법
+
+~~현재 익스텐션은 구글 크롬에서 검수중에 있습니다ㅠ~~ 검수 통과했습니다! 👏
 
 [🐳 익스텐션다운로드](https://chrome.google.com/webstore/detail/%EB%A7%81%EB%B6%81/bplkibfnipjgpmdgjklalkpfeiogepmp?hl=ko)
-<br>
-현재 익스텐션 1.1v은 구글 크롬에서 검수중에 있습니다 ㅠ 임시 사용방법은
-
-1. 레포를 다운로드합니다: <br>
-2. ``` git clone git@github.com:prgrms-web-devcourse/Team-03-LinkBook-FE.git ``` <br>
-3. `chrome://extensions/` 접속 후<br>
-4. 우측 상단의 개발자 모드를 여신후 <br>
-<img width="1440" alt="스크린샷 2022-08-16 오후 4 53 33 1" src="https://user-images.githubusercontent.com/92906766/184827612-69eab16f-e4cb-49d1-8a31-616e49aba9f1.png">
-<br>
-5. 좌측 상단의 압축해제된 확장프로그램을 로드합니다 (load unpacked) 클릭!<br>
-<img width="490" alt="스크린샷 2022-08-16 오후 4 59 34" src="https://user-images.githubusercontent.com/92906766/184828508-f9346825-cf25-4f3e-8d52-57dc434b1fe4.png">
-<br>
-6. 우측 상단에서 링북 익스텐션을 여시면 됩니다! <br>
-<img width="372" alt="스크린샷 2022-08-16 오후 5 01 37" src="https://user-images.githubusercontent.com/92906766/184828883-f2a82f85-7dbf-4cf3-a136-b73bc0b6ab17.png">
-
 
 # 👍 Convention
 
 ## 1️⃣ Code Convention
+
 - **Airbnb Eslint**를 따릅니다.
 
 <br>
 
 ## 2️⃣ Commit Convention
+
 - [유다시티의 커밋 메세지 스타일 가이드](https://udacity.github.io/git-styleguide/)
-- Commit Type만 영어로 작성합니다. 
+- Commit Type만 영어로 작성합니다.
+
 ```
 Feat: 새로운 기능 추가
 Fix: 버그 수정
@@ -191,36 +210,42 @@ Design: 스타일(CSS) 수정
 <br>
 
 ## 3️⃣ Issue / Branch
+
 ### (1) Dev
+
 - 작업한 내용들이 최종적으로 합쳐지는 Branch
 - Feature Branch 기능 완성 시, `rebase` 및 `PR`
 
 ### (2) main
+
 - 배포를 위한 Branch
 
 ### (3) IssueNum/CommitType/구현 내용
-- Issue 단위로 브랜치를 생성하고 작업합니다. 
+
+- Issue 단위로 브랜치를 생성하고 작업합니다.
 
 <br>
 
 ## 4️⃣ Code Review
+
 - 우선적으로 **기능의 정상 동작 검사**
 - 가독성 / 컨벤션
 
 <br><br><br>
 
-# 🤼‍♀️ 팀 - 강력 3팀
+# 🤼‍♀️ 팀 소개
 
-## 프론트엔드
+## 강력 3팀 프론트엔드
 
-| [김동언](https://github.com/960817)                                          | [민상기](https://github.com/Steadystudy)                                            | [유용상](https://github.com/Miral3)                                          | [정지영](https://github.com/Jungjjeong)
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |-------------------------------------------------------------------------------- |
-| <img src="https://avatars.githubusercontent.com/u/92906766?v=4" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/76620786?v=4" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/59829606?v=4" width="150px" /> |<img src="https://avatars.githubusercontent.com/u/72294509?v=4" width="150px" /> |
-| frontend Developer                                                               | frontend Developer                                                               | frontend Developer                                                               | frontend Developer
+| [김동언](https://github.com/960817)                                              | [민상기](https://github.com/Steadystudy)                                         | [유용상](https://github.com/Miral3)                                              | [정지영](https://github.com/Jungjjeong)                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| <img src="https://avatars.githubusercontent.com/u/92906766?v=4" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/76620786?v=4" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/59829606?v=4" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/72294509?v=4" width="150px" /> |
+| frontend Developer                                                               | frontend Developer                                                               | frontend Developer                                                               | frontend Developer                                                               |
 
 <br><br>
 
-## 백엔드
+## 강력 3팀 백엔드
+
 [🐳 링북 백엔드 레포](https://github.com/prgrms-web-devcourse/Team-03-LinkBook-BE)
 
 <table>
@@ -259,7 +284,7 @@ Design: 스타일(CSS) 수정
     <td><b>김수미</b></td>
   </tr>
   <tr>
-    <td><b>Product Owner</b></td>
+    <td><b>Backend Developer</b></td>
     <td><b>Backend Developer</b></td>
     <td><b>Backend Developer</b></td>
     <td><b>Backend Developer</b></td>

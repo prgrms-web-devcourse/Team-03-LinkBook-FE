@@ -156,7 +156,6 @@ export const createFolder = async (
   return res as unknown as FolderCreateOrUpdate;
 };
 
-// 폴더 수정 (북마크까지) => 미개발
 // Headers : Access Token 필요
 export const updateFolder = async (
   {
@@ -168,6 +167,7 @@ export const updateFolder = async (
     isPrivate,
     tags,
     bookmarks,
+    originId,
   }: CreateOrUpdateFolder,
   token: string,
 ) => {
@@ -181,6 +181,7 @@ export const updateFolder = async (
       isPrivate,
       tags,
       bookmarks,
+      originId,
     },
     {
       headers: {

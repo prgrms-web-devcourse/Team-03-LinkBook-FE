@@ -1,7 +1,7 @@
 import * as S from './CommentInput.style';
 import { ChangeEvent, forwardRef, useState } from 'react';
 import { createComment } from '../../apis/CommentAPI';
-import { Button } from '../index';
+import { Button, Toast } from '../index';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../recoil/user';
 import { showModalStatus } from '../../recoil/showModal';
@@ -49,7 +49,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
 
     const handleClickAddComment = async () => {
       if (!user) {
-        alert('로그인 후 이용해주세요.');
+        Toast.show('로그인 후 이용해주세요.');
         setShowModal(showLoginModal);
         return;
       }
@@ -69,7 +69,7 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
         handleCreateComment(id, parentId, newComment.content, user);
       } catch (error) {
         console.log(error);
-        alert('문제가 발생했습니다.');
+        Toast.show('문제가 발생했습니다.');
       }
     };
 

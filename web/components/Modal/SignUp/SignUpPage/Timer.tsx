@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Text from '../../../Text';
+import { Text, Toast } from '../../../';
 
 interface Props {
   mm: number;
@@ -17,7 +17,7 @@ const Timer = ({ mm, ss }: Props) => {
       }
       if (second === 0) {
         if (minute === 0) {
-          alert('제한 시간을 초과하셨습니다. 재전송 버튼을 눌러주세요');
+          Toast.show('제한 시간을 초과하셨습니다. 재전송 버튼을 눌러주세요');
           clearInterval(timerId);
         } else {
           setMinute(minute - 1);

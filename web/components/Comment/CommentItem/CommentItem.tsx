@@ -2,7 +2,7 @@ import * as S from './CommentItem.style';
 import { Comment, CreateOrUpdateComment } from '../../../types/comment';
 import { deleteComment, updateComment } from '../../../apis/CommentAPI';
 import { useRef, useState } from 'react';
-import { CommentInput, Profile } from '../../index';
+import { CommentInput, Profile, Toast } from '../../index';
 import { User } from '../../../types';
 
 interface Props {
@@ -56,7 +56,7 @@ const CommentItem = ({
       setUpdating(!updating);
     } catch (error) {
       console.log(error);
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
     }
   };
 
@@ -69,7 +69,7 @@ const CommentItem = ({
       handleDeleteComment(id, parentId);
     } catch (error) {
       console.log(error);
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
     }
   };
 

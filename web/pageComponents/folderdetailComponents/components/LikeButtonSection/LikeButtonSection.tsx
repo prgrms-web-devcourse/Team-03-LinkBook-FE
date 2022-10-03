@@ -5,6 +5,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
 import { showModalStatus } from '../../../../recoil/showModal';
 import { showLoginModal } from '../../../../constants/modal.constants';
+import { Toast } from '../../../../components';
 
 interface Props {
   folderId: number;
@@ -33,7 +34,7 @@ const LikeButtonSection = ({
 
   const handleClickAddLike = async () => {
     if (!user) {
-      alert('로그인 후 가능합니다.');
+      Toast.show('로그인 후 가능합니다.');
       setShowModalStatus(showLoginModal);
       return;
     }
@@ -43,7 +44,7 @@ const LikeButtonSection = ({
       setIsLikedValue(true);
       setLikesNum(likesNum + 1);
     } catch (error) {
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
       console.log(error);
     }
   };
@@ -54,7 +55,7 @@ const LikeButtonSection = ({
       setIsLikedValue(false);
       setLikesNum(likesNum - 1);
     } catch (error) {
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
       console.log(error);
     }
   };

@@ -1,3 +1,5 @@
+import { Toast } from '../components';
+
 type onCopyUrl = (url: string) => Promise<boolean>;
 
 export const useCopyUrl = (): onCopyUrl => {
@@ -5,7 +7,7 @@ export const useCopyUrl = (): onCopyUrl => {
     try {
       await navigator.clipboard.writeText(url);
 
-      alert('url 복사 성공'); // 추후에 Toast로 하면 좋을 거 같습니다
+      Toast.show('url 복사 성공');
       return true;
     } catch (error) {
       console.error('url 복사 실패', [error]);

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { getTag } from '../../apis/TagAPI';
 import { TagType } from '../../types';
 import { TagItemType } from '../../types/tag';
-import { Input, InputResult, Tag } from '../index';
+import { Input, InputResult, Tag, Toast } from '../index';
 import * as S from './TagSelector.style';
 
 interface Props {
@@ -36,7 +36,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
         setAutoCompleteSearch(subTags);
       } catch (error) {
         console.log(error);
-        alert('문제가 발생했습니다.');
+        Toast.show('문제가 발생했습니다.');
       }
     })();
   }, []);
@@ -62,11 +62,12 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
 
   const handleResetSelector = () => {
     inputRef.current.value = '';
-    listRef.current.scrollBy(0, 0);
+    listRef.current.scrollTo(0, 0);
     setActiveItem(0);
   };
 
   const handleAddTag = (value: string) => {
+    if (!value) return;
     const updatedData = new Set([...selectedTag, value]);
     setSelectedTag(Array.from(updatedData));
   };
@@ -88,13 +89,13 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
       case 'ArrowUp':
         if (activeItem > 0) {
           setActiveItem(activeItem - 1);
-          node?.scrollBy(0, -itemHeight);
+          node?.scrollTo(0, itemHeight * (activeItem - 1));
         }
         break;
       case 'ArrowDown':
         if (activeItem < autoCompleteSearch.length - 1) {
           setActiveItem(activeItem + 1);
-          node?.scrollBy(0, itemHeight);
+          node?.scrollTo(0, itemHeight * activeItem);
         }
         break;
       case 'Enter':
