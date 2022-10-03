@@ -1,4 +1,5 @@
 import Router, { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { getTag } from '../../../../apis/TagAPI';
 import { PAGE_URL } from '../../../../constants/url.constants';
@@ -31,7 +32,7 @@ export const TagCategory = () => {
   const handleSelectSubTag = (mainTag: string, subTag: string) => {
     Router.push(
       {
-        pathname: `${PAGE_URL.LIST}`,
+        pathname: `${PAGE_URL.LIST}/explore/${subTag}`,
         query: {
           mainTag,
           subTag,
