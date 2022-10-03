@@ -47,7 +47,7 @@ export const Dim = styled.div`
   }
 `;
 
-export const Search = styled.div`
+export const Search = styled.form`
   display: flex;
   z-index: 1;
   width: 500px;
