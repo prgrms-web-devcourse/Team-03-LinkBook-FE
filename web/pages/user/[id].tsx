@@ -183,7 +183,7 @@ const UserPage = () => {
         </S.CategoryWrapper>
         <S.PaginationWrapper>
           <Pagination
-            defaultPage={0}
+            page={0}
             limit={limit}
             total={totalElement}
             onChange={setPage}
