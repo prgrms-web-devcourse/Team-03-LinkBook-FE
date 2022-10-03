@@ -51,7 +51,7 @@ const NavigationBar = ({ token }: Props) => {
           <S.Nav>
             <Link
               href={{
-                pathname: `${PAGE_URL.LIST}`,
+                pathname: `${PAGE_URL.LIST}/explore/전체 카테고리`,
                 query: {
                   mainTag: '전체 카테고리',
                   subTag: '전체 카테고리',
