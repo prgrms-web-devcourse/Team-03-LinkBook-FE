@@ -22,7 +22,7 @@ const SearchBar = ({ setShowSearchBar }: Props) => {
     inputRef.current.value = '';
   };
 
-  const handleOnSearch = () => {
+  const handleOnSumbit = () => {
     const value = inputRef.current.value;
     if (value.replace(/ /g, '') === '') {
       Toast.show('올바른 검색어를 입력해주세요.');
@@ -45,25 +45,10 @@ const SearchBar = ({ setShowSearchBar }: Props) => {
     inputRef.current.focus();
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.keyCode === 229) return;
-      if (e.key === 'Enter') {
-        handleOnSearch();
-        handleClickCloseSearchBar();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleOnSearch]);
-
   return (
     <>
       <S.Container>
-        <S.Search>
+        <S.Search onSubmit={handleOnSumbit}>
           <S.SearchInner>
             <S.Input ref={inputRef} placeholder="검색어를 입력하세요." />
             <S.Actions position="left">
