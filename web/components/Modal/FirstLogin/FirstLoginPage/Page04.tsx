@@ -1,6 +1,6 @@
 import * as S from '../../Modal.style';
 import { MouseEventHandler, useEffect, useState } from 'react';
-import { Button, ImageUpload, Icon } from '../../../index';
+import { Button, ImageUpload, Icon, Toast } from '../../../index';
 import { useUserInfo } from '../contexts/UserInfoProvider';
 import { getUserInfo, updateUserInfo } from '../../../../apis/UserAPI';
 import { getCookie } from '../../../../util/cookies';
@@ -33,7 +33,7 @@ const Page04 = ({ handleNextPage, handlePreviousPage }: Props) => {
       setUserInfoState(newUserInfo);
     } catch (error) {
       console.log(error);
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
       return;
     }
 

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { createFolder } from '../../../../apis/FolderAPI';
-import { Modal } from '../../../../components';
+import { Modal, Toast } from '../../../../components';
 import { PAGE_URL } from '../../../../constants/url.constants';
 import { showModalStatus } from '../../../../recoil/showModal';
 import { userInfo } from '../../../../recoil/user';
@@ -33,7 +33,7 @@ const ScrapButtonSection = ({ id, token, data }: Props) => {
 
   const handleClickScrap = async () => {
     if (!user) {
-      alert('로그인 후 가능합니다.');
+      Toast.show('로그인 후 가능합니다.');
       setShowModalStatus(showLoginModal);
       return;
     }
@@ -64,7 +64,7 @@ const ScrapButtonSection = ({ id, token, data }: Props) => {
       await router.push(`${PAGE_URL.DETAIL}/${res.id}`);
     } catch (error) {
       console.log(error);
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
     }
   };
 

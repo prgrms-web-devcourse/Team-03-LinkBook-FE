@@ -1,7 +1,7 @@
 import * as S from '../Modal.style';
 import { useCallback, useRef } from 'react';
 import { getUserInfo, userLogin } from '../../../apis/UserAPI';
-import { Button, Input } from '../../index';
+import { Button, Input, Toast } from '../../index';
 import { useSetRecoilState } from 'recoil';
 import { loginStatus } from '../../../recoil/authentication';
 import { setCookies } from '../../../util/cookies';
@@ -55,7 +55,7 @@ const Login = () => {
 
       setShowModalStatus(closeModal);
     } catch (error) {
-      alert('이메일 혹은 비밀번호가 일치하지 않습니다.');
+      Toast.show('이메일 혹은 비밀번호가 일치하지 않습니다.');
       console.log(error);
     }
   }, []);

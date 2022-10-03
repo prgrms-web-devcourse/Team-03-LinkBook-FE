@@ -1,6 +1,6 @@
 import * as S from '../../Modal.style';
 import { MouseEventHandler, useCallback, useState, useRef } from 'react';
-import { Button, Input, Icon } from '../../../index';
+import { Button, Input, Icon, Toast } from '../../../index';
 import { useUserInfo } from '../contexts/UserProvider';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { userSignUp } from '../../../../apis/UserAPI';
@@ -40,10 +40,10 @@ const Page02 = () => {
     try {
       await userSignUp({ email, password });
       await removeUserInfo();
-      alert('회원가입이 완료되었습니다. 로그인을 진행해주세요.');
+      Toast.show('회원가입이 완료되었습니다. 로그인을 진행해주세요.');
       handleSwitchLoginModal();
     } catch (error) {
-      alert('이미 등록된 회원이거나 이메일 인증이 진행되지 않았습니다.');
+      Toast.show('이미 등록된 회원이거나 이메일 인증이 진행되지 않았습니다.');
       console.log(error);
     }
   }, []);

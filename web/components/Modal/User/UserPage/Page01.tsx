@@ -1,6 +1,6 @@
 import * as S from '../../Modal.style';
 import { MouseEventHandler, useEffect, useState } from 'react';
-import { Button, Input, ImageUpload } from '../../../index';
+import { Button, Input, ImageUpload, Toast } from '../../../index';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../../../recoil/user';
 import { useUserInfo } from '../contexts/UserInfoProvider';
@@ -76,7 +76,7 @@ const Page01 = ({ handlePage, token, userData }: Props) => {
       closeModal();
     } catch (error) {
       console.log(error);
-      alert('문제가 발생했습니다.');
+      Toast.show('문제가 발생했습니다.');
     }
   };
 

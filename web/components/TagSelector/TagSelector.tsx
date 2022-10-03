@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { getTag } from '../../apis/TagAPI';
 import { TagType } from '../../types';
 import { TagItemType } from '../../types/tag';
-import { Input, InputResult, Tag } from '../index';
+import { Input, InputResult, Tag, Toast } from '../index';
 import * as S from './TagSelector.style';
 
 interface Props {
@@ -36,7 +36,7 @@ const TagSelector = ({ selectedTag, setSelectedTag, ...styles }: Props) => {
         setAutoCompleteSearch(subTags);
       } catch (error) {
         console.log(error);
-        alert('문제가 발생했습니다.');
+        Toast.show('문제가 발생했습니다.');
       }
     })();
   }, []);
