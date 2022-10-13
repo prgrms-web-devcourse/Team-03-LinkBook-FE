@@ -64,6 +64,10 @@ const FolderList = () => {
     setPage(0);
   }, [selectedTabItem, subTag]);
 
+  useEffect(() => {
+    setSelectedTabItem(tabItems[0]);
+  }, [subTag]);
+
   return (
     <S.PageContainer>
       <Seo title="폴더 리스트 | 링북" />
