@@ -98,7 +98,7 @@ const FolderUpdate = () => {
         setImageSrc(image);
         contentInput.current.value = content;
         setBookmarks(bookmarks);
-        setOriginId(originFolder.id);
+        setOriginId(originFolder?.id);
       } catch (e) {
         router.push(`${PAGE_URL.ERROR}`);
         return;
