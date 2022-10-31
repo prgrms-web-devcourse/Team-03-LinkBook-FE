@@ -6,32 +6,18 @@ import CommentItem from './CommentItem';
 import { getCookie } from '../../util/cookies';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../recoil/user';
-import { User } from '../../types';
+import { useComments } from '../../pageComponents/folderdetailComponents/components/CommentSection/contexts/CommentProvider';
 
 interface Props {
   comment: Comment;
   folderId: number;
   inputRef: any;
-  handleCreateComment: (
-    id: number,
-    parentId: number,
-    content: string,
-    user: User,
-  ) => void;
-  handleDeleteComment: (id: number, parentId: number) => void;
-  handleUpdateComment: (id: number, parentId: number, content: string) => void;
 }
 
-const CommentComponent = ({
-  comment,
-  folderId,
-  inputRef,
-  handleCreateComment,
-  handleDeleteComment,
-  handleUpdateComment,
-}: Props) => {
+const CommentComponent = ({ comment, folderId, inputRef }: Props) => {
   const [showReplies, setShowReplies] = useState(false);
   const [showInputArea, setShowInputArea] = useState(false);
+  const { createComment, updateComment, deleteComment } = useComments();
   const { id, children } = comment;
   const { user } = useRecoilValue(userInfo);
   const token = getCookie('ACCESS_TOKEN');
@@ -51,8 +37,8 @@ const CommentComponent = ({
         folderId={folderId}
         userId={user && user.id}
         token={token}
-        handleDeleteComment={handleDeleteComment}
-        handleUpdateComment={handleUpdateComment}
+        handleDeleteComment={deleteComment}
+        handleUpdateComment={updateComment}
       />
       <S.ButtonContainer>
         <S.RepliesButton onClick={handleShowInputArea}>
@@ -71,7 +57,6 @@ const CommentComponent = ({
             folderId={folderId}
             parentId={id}
             ref={inputRef}
-            handleCreateComment={handleCreateComment}
           />
         )}
         {showReplies &&
@@ -84,9 +69,9 @@ const CommentComponent = ({
                   userId={user && user.id}
                   token={token}
                   parentId={id}
-                  handleCreateComment={handleCreateComment}
-                  handleDeleteComment={handleDeleteComment}
-                  handleUpdateComment={handleUpdateComment}
+                  handleCreateComment={createComment}
+                  handleDeleteComment={deleteComment}
+                  handleUpdateComment={updateComment}
                 />
                 {index !== children.length - 1 && <S.Line />}
               </div>

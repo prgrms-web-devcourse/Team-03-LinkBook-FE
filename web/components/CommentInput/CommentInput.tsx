@@ -1,6 +1,6 @@
 import * as S from './CommentInput.style';
 import { ChangeEvent, forwardRef, useState } from 'react';
-import { createComment } from '../../apis/CommentAPI';
+import { createComment as createCommentApi } from '../../apis/CommentAPI';
 import { Button, Toast } from '../index';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../recoil/user';
@@ -9,6 +9,7 @@ import { showLoginModal } from '../../constants/modal.constants';
 import { CreateOrUpdateComment, User } from '../../types';
 import { getCookie } from '../../util/cookies';
 import { CommentCreateOrUpdate } from '../../types/comment';
+import { useComments } from '../../pageComponents/folderdetailComponents/components/CommentSection/contexts/CommentProvider';
 
 interface Props {
   version: 'comment' | 'update';
@@ -16,12 +17,6 @@ interface Props {
   parentId?: number;
   defaultValue?: string;
   placeholder?: string;
-  handleCreateComment?: (
-    id: number,
-    parentId: number,
-    content: string,
-    user: User,
-  ) => void;
 }
 
 const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
@@ -32,11 +27,11 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
       parentId = null,
       defaultValue = '',
       placeholder,
-      handleCreateComment,
     },
     ref,
   ) => {
     const [value, setValue] = useState(defaultValue);
+    const { createComment } = useComments();
     const { user } = useRecoilValue(userInfo);
     const token = getCookie('ACCESS_TOKEN');
     const setShowModal = useSetRecoilState(showModalStatus);
@@ -61,12 +56,12 @@ const CommentInput = forwardRef<HTMLTextAreaElement, Props>(
           folderId,
           userId: user.id,
         };
-        const res: CommentCreateOrUpdate = await createComment(
+        const res: CommentCreateOrUpdate = await createCommentApi(
           newComment,
           token,
         );
         const { id } = res;
-        handleCreateComment(id, parentId, newComment.content, user);
+        createComment(id, parentId, newComment.content, user);
       } catch (error) {
         console.log(error);
         Toast.show('문제가 발생했습니다.');

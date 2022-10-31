@@ -3,7 +3,6 @@ import { Comment, CreateOrUpdateComment } from '../../../types/comment';
 import { deleteComment, updateComment } from '../../../apis/CommentAPI';
 import { useRef, useState } from 'react';
 import { CommentInput, Profile, Toast } from '../../index';
-import { User } from '../../../types';
 
 interface Props {
   comment: Comment;
@@ -11,14 +10,9 @@ interface Props {
   parentId?: number;
   userId?: number;
   token?: string;
-  handleCreateComment?: (
-    id: number,
-    parentId: number,
-    content: string,
-    user: User,
-  ) => void;
-  handleDeleteComment: (id: number, parentId: number) => void;
-  handleUpdateComment: (id: number, parentId: number, content: string) => void;
+  handleCreateComment?: Function;
+  handleDeleteComment: Function;
+  handleUpdateComment: Function;
 }
 
 const CommentItem = ({
@@ -105,7 +99,6 @@ const CommentItem = ({
           defaultValue={content}
           ref={updateInputRef}
           placeholder="수정할 댓글을 입력해주세요."
-          handleCreateComment={handleCreateComment}
         />
       ) : (
         <S.BodyWrapper>{content}</S.BodyWrapper>

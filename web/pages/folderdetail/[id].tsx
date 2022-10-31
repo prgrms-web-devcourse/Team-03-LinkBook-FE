@@ -5,18 +5,21 @@ import {
   ContentSection,
 } from '../../pageComponents/folderdetailComponents/components';
 import { Seo } from '../../components';
+import CommentsProvider from '../../pageComponents/folderdetailComponents/components/CommentSection/contexts/CommentProvider';
 
 const folderDetailPage = () => {
   const router = useRouter();
   const id = Number(router.query.id);
 
   return (
-    <S.Container>
-      <Seo title="폴더 상세페이지 | 링북" />
-      <ContentSection id={id} />
-      <S.Line />
-      <CommentSection id={id} />
-    </S.Container>
+    <CommentsProvider>
+      <S.Container>
+        <Seo title="폴더 상세페이지 | 링북" />
+        <ContentSection id={id} />
+        <S.Line />
+        <CommentSection id={id} />
+      </S.Container>
+    </CommentsProvider>
   );
 };
 
