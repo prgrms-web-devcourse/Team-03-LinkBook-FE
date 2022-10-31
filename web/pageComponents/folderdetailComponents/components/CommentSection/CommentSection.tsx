@@ -2,7 +2,7 @@ import * as S from './CommentSection.style';
 import { useEffect, useRef, useState } from 'react';
 import { CommentInput, Comment } from '../../../../components';
 import { getFolderComment } from '../../../../apis/CommentAPI';
-import { Comments } from '../../../../types';
+import { Comments, Comment as TComment } from '../../../../types';
 import { useComments } from './contexts/CommentProvider';
 
 interface Props {
@@ -28,13 +28,19 @@ const CommentSection = ({ id }: Props) => {
     })();
   }, [id]);
 
+  const getCommentsNum = (comments: Array<TComment>) => {
+    return (
+      comments.length + comments.reduce((a, c) => a + c.children.length, 0)
+    );
+  };
+
   return (
     <>
       {data && (
         <S.Container>
           {!data.isPrivate && (
             <>
-              <S.Title>{data.comments.length}개의 댓글</S.Title>
+              <S.Title>{getCommentsNum(comments)}개의 댓글</S.Title>
               <CommentInput version="comment" folderId={id} ref={inputRef} />
               {comments.map((comment: any) => {
                 return (

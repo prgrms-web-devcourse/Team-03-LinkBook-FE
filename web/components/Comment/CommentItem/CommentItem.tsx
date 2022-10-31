@@ -21,7 +21,6 @@ const CommentItem = ({
   parentId = null,
   userId,
   token,
-  handleCreateComment,
   handleDeleteComment,
   handleUpdateComment,
 }: Props) => {

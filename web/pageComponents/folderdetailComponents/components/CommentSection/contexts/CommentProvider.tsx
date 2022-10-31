@@ -1,9 +1,9 @@
 import { createContext, useContext, useState } from 'react';
-import { Comments, User } from '../../../../../types';
+import { Comments, Comment, User } from '../../../../../types';
 import { getDate } from '../../../../../util/date';
 
 interface ICommentContext {
-  comments: Array<Comments>;
+  comments: Array<Comment>;
   setComments: Function;
   createComment: Function;
   updateComment: Function;

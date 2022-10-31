@@ -6,7 +6,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userInfo } from '../../recoil/user';
 import { showModalStatus } from '../../recoil/showModal';
 import { showLoginModal } from '../../constants/modal.constants';
-import { CreateOrUpdateComment, User } from '../../types';
+import { CreateOrUpdateComment } from '../../types';
 import { getCookie } from '../../util/cookies';
 import { CommentCreateOrUpdate } from '../../types/comment';
 import { useComments } from '../../pageComponents/folderdetailComponents/components/CommentSection/contexts/CommentProvider';
