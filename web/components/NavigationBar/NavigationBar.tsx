@@ -60,7 +60,7 @@ const NavigationBar = ({ token }: Props) => {
               as={`${PAGE_URL.LIST}/explore/전체 카테고리`}
               passHref
             >
-              <S.NavItem>북마크리스트</S.NavItem>
+              <S.NavItem>둘러보기</S.NavItem>
             </Link>
             <Link href={PAGE_URL.INFO} passHref>
               <S.NavItem>이용방법</S.NavItem>
