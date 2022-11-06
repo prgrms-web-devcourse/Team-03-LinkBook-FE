@@ -9,7 +9,7 @@ import { showLoginModal } from '../../constants/modal.constants';
 import { CreateOrUpdateComment } from '../../types';
 import { getCookie } from '../../util/cookies';
 import { CommentCreateOrUpdate } from '../../types/comment';
-import { useComments } from '../../pageComponents/folderdetailComponents/components/CommentSection/contexts/CommentProvider';
+import { useComments } from '../../contexts/CommentProvider';
 
 interface Props {
   version: 'comment' | 'update';

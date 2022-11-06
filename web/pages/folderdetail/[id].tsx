@@ -5,7 +5,7 @@ import {
   ContentSection,
 } from '../../pageComponents/folderdetailComponents/components';
 import { Seo } from '../../components';
-import CommentsProvider from '../../pageComponents/folderdetailComponents/components/CommentSection/contexts/CommentProvider';
+import CommentsProvider from '../../contexts/CommentProvider';
 
 const folderDetailPage = () => {
   const router = useRouter();

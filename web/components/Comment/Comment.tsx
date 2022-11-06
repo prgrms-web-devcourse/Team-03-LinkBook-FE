@@ -6,7 +6,7 @@ import CommentItem from './CommentItem';
 import { getCookie } from '../../util/cookies';
 import { useRecoilValue } from 'recoil';
 import { userInfo } from '../../recoil/user';
-import { useComments } from '../../pageComponents/folderdetailComponents/components/CommentSection/contexts/CommentProvider';
+import { useComments } from '../../contexts/CommentProvider';
 
 interface Props {
   comment: Comment;

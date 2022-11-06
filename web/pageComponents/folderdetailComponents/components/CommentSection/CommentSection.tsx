@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CommentInput, Comment } from '../../../../components';
 import { getFolderComment } from '../../../../apis/CommentAPI';
 import { Comments, Comment as TComment } from '../../../../types';
-import { useComments } from './contexts/CommentProvider';
+import { useComments } from '../../../../contexts/CommentProvider';
 
 interface Props {
   id?: number;
